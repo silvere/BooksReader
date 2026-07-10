@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>维纳《控制论》逐章导读 · 控制论读书笔记</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">控制论<span class="loop-mark"> ⟲ </span>READING</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-jin.html">《控制论与科学方法论》</a>
+      <a href="book-wiener.html" class="active">维纳《控制论》</a>
+      <a href="cases.html">案例库</a>
+      <a href="ai-era.html">控制论与 AI</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">GUIDED READING · 诺伯特·维纳 · 1948 / 1961</div>
+    <h1>维纳《控制论》逐章导读</h1>
+    <p class="lede">全名《控制论：或关于在动物和机器中控制和通信的科学》。这是一本"哲学与偏微分方程交替出现"的奇书——有的章节任何人都能读，有的章节数学家也要放慢速度。本页给出每章的主旨、难度标记与取舍建议。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">STRATEGY · 阅读策略</div>
+    <h2>诚实的建议：不必逐字读完</h2>
+    <p>维纳自己在导言里就承认，这本书对不同读者有不同的入口。对以建立思维框架为目的的读者，推荐的路线是：</p>
+    <p><strong>导言（必读，全书最精彩）→ 第一章 → 第四、五章（技术核心，抓思想跳推导）→ 第六、七、八章（人文视野）→ 第九、十章（1961 年增补，看维纳如何预言机器学习）</strong>。第二、三章数学密度极高，初读建议只看每章开头与结尾的文字段落。</p>
+    <p>难度图例：<span class="difficulty"><i class="on"></i><i></i><i></i></span> 顺畅　<span class="difficulty"><i class="on"></i><i class="on"></i><i></i></span> 需要耐心　<span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i></span> 数学重灾区</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">PART I · 1948 初版</div>
+    <h2>导言与八章</h2>
+
+    <div class="chapter">
+      <div class="ch-no">INTRODUCTION</div>
+      <h3>导言 <span class="difficulty"><i class="on"></i><i></i><i></i></span></h3>
+      <p>全书最值得反复读的部分。维纳亲述控制论的诞生史：火控研究、与罗森布吕特的跨学科合作、梅西会议，以及那个著名的判断——科学最肥沃的领域在<strong>已建立学科之间的无人区</strong>。他还在此表达了对新科学被滥用的忧虑（自动化对劳工的冲击），这份技术伦理的清醒在 1948 年极为超前。</p>
+      <div class="keybox"><b>一句话主旨</b>通信与控制是同一件事：控制就是发送改变对方行为的消息，而社会的黏合剂正是信息。</div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 01</div>
+      <h3>牛顿时间与柏格森时间 <span class="difficulty"><i class="on"></i><i class="on"></i><i></i></span></h3>
+      <p>为什么一本讲机器的书从"时间"开始？因为维纳要先划清阵营：牛顿力学的时间是<strong>可逆</strong>的（行星轨道倒放依然成立），而生命与统计世界的时间是<strong>不可逆</strong>的（有方向、会老化、有历史）。控制论研究的机器属于后者——它和生物一样，活在充满噪声的、不可逆的时间里。这一章为"机器与生命同构"扫清哲学障碍。</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 02</div>
+      <h3>群和统计力学 <span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i></span></h3>
+      <p>从吉布斯统计力学引出全书的世界观：我们研究的不是单一确定的宇宙，而是<strong>可能宇宙的系综与其概率分布</strong>。熵在此登场——以及那个著名的论断：信息是负熵，有组织即是对抗混乱。麦克斯韦妖的讨论是本章的思想亮点。<em>数学推导可跳，抓住"熵—信息—组织"三角即可。</em></p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 03</div>
+      <h3>时间序列、信息与通信 <span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i></span></h3>
+      <p>全书数学最重的一章：信息量的定义、滤波与预测理论（维纳滤波的源头，防空火控的直接产物）。它与香农信息论同年独立成型。<em>非数学背景读者建议只读开头对信息量的定义部分，其余留给需要时再回来。</em></p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 04</div>
+      <h3>反馈与振荡 <span class="difficulty"><i class="on"></i><i class="on"></i><i></i></span></h3>
+      <p><strong>全书技术核心，必读。</strong>负反馈如何实现目的性行为；增益过大或延迟过长时反馈如何转为振荡。最动人的是论证方式：维纳把机器振荡与神经疾病并置——小脑损伤病人的意向性震颤，就是人体反馈回路的增益失调。机器故障与神经症状第一次被放进同一张方程。可配合本站<a class="text-link" href="concepts.html#feedback">恒温器模拟器</a>亲手复现振荡。</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 05</div>
+      <h3>计算机与神经系统 <span class="difficulty"><i class="on"></i><i class="on"></i><i></i></span></h3>
+      <p>1948 年，电子计算机尚在襁褓，维纳已经系统对比了数字计算机与大脑：二进制开关 ↔ 神经元的全或无放电，存储器 ↔ 记忆，程序 ↔ 突触连接。这一章与麦卡洛克—皮茨神经元模型一起，构成了今日神经网络叙事的史前史。读它的乐趣在于看清：哪些预言惊人地准，哪些类比后来被证明太粗糙。</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 06</div>
+      <h3>格式塔与普遍观念 <span class="difficulty"><i class="on"></i><i class="on"></i><i></i></span></h3>
+      <p>大脑如何做到"不管字母多大、什么字体、在视野哪个角落，都认得它是 A"？维纳用群不变性讨论知觉的模式识别——这正是今天计算机视觉里"平移/尺度不变性"问题的最早提法之一。</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 07</div>
+      <h3>控制论与精神病理学 <span class="difficulty"><i class="on"></i><i class="on"></i><i></i></span></h3>
+      <p>如果精神疾病不是"零件坏了"，而是<strong>回路病</strong>呢？维纳猜想某些精神障碍是信息处理的恶性循环（如强迫性的思维反刍），并从系统冗余的角度讨论大脑的容错。作为医学假说它已过时，作为"从系统而非零件找病因"的思路示范，它历久弥新——今天的抑郁症网络理论仍是这个思路。</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 08</div>
+      <h3>信息、语言和社会 <span class="difficulty"><i class="on"></i><i></i><i></i></span></h3>
+      <p><strong>人文读者的高潮章节。</strong>社会由通信黏合，因此也被通信的病理侵蚀。维纳尖锐地指出：当传播通道被商业与权力垄断，社会的"反馈回路"就会失灵——群体比个体更容易愚蠢，因为大共同体中信息经过太多层级的过滤与扭曲。1948 年写下的这些话，放在算法推荐与流量经济的今天，锋利如新。</p>
+      <div class="keybox"><b>金句</b>"我们已经把评价世界的标准交给了市场——但信息与熵不服从市场规律。"（大意）维纳对"把信息当普通商品"的警告，是全书留给今天最重的遗产。</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">PART II · 1961 增补</div>
+    <h2>第二版新增两章：晚年维纳看向未来</h2>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 09</div>
+      <h3>关于学习和自增殖机 <span class="difficulty"><i class="on"></i><i class="on"></i><i></i></span></h3>
+      <p>机器能否学习？能否复制自己？维纳以下国际象棋的程序和自适应滤波为例，论证学习就是<strong>用经验改写自身的控制策略</strong>——一个会根据战绩调整走法的下棋机器，原理上完全可造。今天读来，这一章像是给强化学习提前写的序言。</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 10</div>
+      <h3>脑电波与自组织系统 <span class="difficulty"><i class="on"></i><i class="on"></i><i></i></span></h3>
+      <p>以脑电波的频率牵引现象为例，探讨大量振子如何自发同步——萤火虫齐闪、掌声趋齐、脑内节律，同属一类<strong>自组织</strong>现象。这是维纳留下的最后一块拼图：秩序不仅可以被控制出来，还可以自己涌现出来。后来的协同学、复杂系统科学沿此路开进。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">LEGACY · 遗产清单</div>
+    <h2>这本书里埋着多少条现代学科的源头</h2>
+    <div class="grid cols-3" style="margin-top:28px">
+      <div class="card"><span class="tag">CH 3</span><h3>信号处理</h3><p>维纳滤波、预测理论——通信与雷达工程的基石。</p></div>
+      <div class="card"><span class="tag">CH 4</span><h3>控制工程</h3><p>反馈稳定性分析，通往现代控制理论与机器人学。</p></div>
+      <div class="card"><span class="tag">CH 5</span><h3>人工智能</h3><p>脑机类比与神经元逻辑——联结主义 AI 的史前篇章。</p></div>
+      <div class="card"><span class="tag">CH 6</span><h3>模式识别</h3><p>知觉不变性问题，计算机视觉六十年后仍在回答。</p></div>
+      <div class="card"><span class="tag">CH 8</span><h3>媒介批评</h3><p>通信垄断与社会反馈失灵——信息社会批判的开山。</p></div>
+      <div class="card"><span class="tag">CH 9-10</span><h3>机器学习 / 复杂系统</h3><p>自适应、自增殖、自组织——今日 AI 议程的第一份草稿。</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">CROSS-READING · 对照阅读</div>
+    <h2>两本书怎么对照着读</h2>
+    <table class="terms">
+      <tr><th>维纳《控制论》</th><th>金观涛《控制论与科学方法论》</th><th>同一主题</th></tr>
+      <tr><td>第 3 章 信息量与预测</td><td>第二章 信息、思维和组织</td><td>信息 = 不确定性的消除</td></tr>
+      <tr><td>第 4 章 反馈与振荡</td><td>第一章 负反馈调节 / 正反馈</td><td>反馈回路及其病理</td></tr>
+      <tr><td>第 2 章 熵与麦克斯韦妖</td><td>第二章 组织与有序 / 第三章 稳态</td><td>秩序如何对抗退化</td></tr>
+      <tr><td>第 9 章 学习机器</td><td>第一章 有记忆的控制</td><td>经验如何改进控制</td></tr>
+      <tr><td>第 8 章 信息、语言和社会</td><td>第三章 系统及其演化（超稳定）</td><td>社会作为控制系统</td></tr>
+    </table>
+    <p>读法上互为镜像：金观涛<strong>自下而上</strong>（从概念到世界观），维纳<strong>自上而下</strong>（从世界观到方程）。先读前者建立骨架，再读后者填入血肉与深度。</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 控制论 ⟲ 维纳导读</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-jin.html">金观涛</a> ·
+      <a href="cases.html">案例</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《控制论与科学方法论》精读 · 控制论读书笔记</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">控制论<span class="loop-mark"> ⟲ </span>READING</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-jin.html" class="active">《控制论与科学方法论》</a>
+      <a href="book-wiener.html">维纳《控制论》</a>
+      <a href="cases.html">案例库</a>
+      <a href="ai-era.html">控制论与 AI</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CLOSE READING · 金观涛 / 华国凡 · 1983</div>
+    <h1>《控制论与科学方法论》精读</h1>
+    <p class="lede">这本小书的野心写在书名里：它讲的不是控制论这门学科，而是把控制论当作<strong>方法论</strong>——一套看世界的透镜。以下按全书脉络整理各章的核心论点、关键概念与自测问题。不同版本章节编排略有差异，以主题为准。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">HOW TO READ · 读法建议</div>
+    <h2>把它当训练手册，不是当教材</h2>
+    <p>此书行文极其流畅，案例三步一个，很容易"读得很爽但什么都没留下"。建议的读法是：<strong>每章读完，合上书，用自己手头的一个真实问题（工作、健康、投资皆可）把该章概念完整套用一遍</strong>。本页每章末尾的自测问题就是为此准备的。</p>
+    <p>全书的暗线只有一句话：<em>不确定性是世界的常态，而人可以用选择、反馈和信息，在不确定中建立秩序。</em></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">STRUCTURE · 全书脉络</div>
+    <h2>四步递进：控制 → 信息 → 系统 → 质变</h2>
+
+    <div class="chapter">
+      <div class="ch-no">第一章 · CHAPTER 01</div>
+      <h3>控制和反馈</h3>
+      <p>全书地基。从"可能性空间"出发，定义控制为有方向的选择，然后沿控制能力递增的阶梯逐级展开。</p>
+      <ul>
+        <li><strong>可能性空间</strong>：事物发展的多种可能状态构成的集合；认识它是控制的前提。</li>
+        <li><strong>人通过选择改造世界</strong>：控制 = 依据目的缩小可能性空间；控制能力可以比较、可以度量。</li>
+        <li><strong>随机控制 → 有记忆的控制</strong>：试错不排除 vs 试错排除。记忆使每次失败都转化为信息。</li>
+        <li><strong>共轭控制</strong>：L → 直接控制 → L⁻¹。曹冲称象；工具与仪器是人手、人眼的共轭延伸。</li>
+        <li><strong>负反馈调节</strong>：把目标与现状的偏差回送为纠正动作，不需预知干扰即可逼近目标——控制能力的质的飞跃。</li>
+        <li><strong>正反馈与恶性循环</strong>：偏差放大偏差；调节过度还会引发振荡。</li>
+      </ul>
+      <div class="keybox">
+        <b>SELF-TEST · 自测</b>
+        用"可能性空间"改写你正在做的一个项目：目标状态是什么？当前空间有多大？你的每个动作分别把空间缩小了多少？哪一步其实是共轭控制？
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">第二章 · CHAPTER 02</div>
+      <h3>信息、思维和组织</h3>
+      <p>把第一章的"选择"翻译成"信息"，然后大胆推进到思维与组织：认识过程本身就是一个信息—控制过程。</p>
+      <ul>
+        <li><strong>信息的定义</strong>：信息是可能性空间的缩小；信息量可以度量（对接香农熵）。</li>
+        <li><strong>信息的传递与通道</strong>：信源—编码—通道—解码—信宿；通道容量有限，噪声使信息衰减。</li>
+        <li><strong>思维是信息加工</strong>：知觉是对输入信息的选择与组织，记忆是信息的存储，学习是用信息改进控制。</li>
+        <li><strong>组织与有序</strong>：组织程度可以用信息量刻画；维持组织就要不断输入信息与能量，对抗自发的退化（呼应热力学第二定律与"负熵"）。</li>
+      </ul>
+      <div class="keybox">
+        <b>SELF-TEST · 自测</b>
+        找一次"沟通失败"复盘：损耗发生在编码（你没说清）、通道（场合嘈杂/层层转述）还是解码（对方的先验不同）？信息量是否超出了对方的通道容量？
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">第三章 · CHAPTER 03</div>
+      <h3>系统及其演化</h3>
+      <p>视角从单个回路上升到回路的网络——系统。核心问题：系统为什么能保持稳定？又为什么会演化？</p>
+      <ul>
+        <li><strong>系统与整体性</strong>：系统是相互关联的要素形成的整体，整体性质不能还原为部分之和。</li>
+        <li><strong>稳态与适应</strong>：多重负反馈联合维持关键变量恒定；稳定性有大小、有边界。</li>
+        <li><strong>系统的演化</strong>：扰动超出调节能力时，旧稳态瓦解，系统跃入新的组织形态——演化是稳态之间的跳迁。</li>
+        <li><strong>超稳定系统</strong>：具备"用一个调节机制修复另一个调节机制"的系统，能在大破坏后重建同构秩序。这是金观涛后来分析中国传统社会的理论雏形。</li>
+      </ul>
+      <div class="keybox">
+        <b>SELF-TEST · 自测</b>
+        选一个你觉得"怎么都改不动"的组织或习惯：列出至少两个把它拉回原状的负反馈回路。要改变它，是加大推力，还是先拆回路？
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">第四章 · CHAPTER 04</div>
+      <h3>质变的数学模型</h3>
+      <p>全书最见野心的一章：用控制论给"量变质变"这个哲学命题一个精确的骨架。</p>
+      <ul>
+        <li><strong>质变 = 可能性空间结构的改变</strong>：量变是在原空间内移动，质变是空间本身重组。</li>
+        <li><strong>阈值与临界</strong>：负反馈的调节能力有边界；扰动越过阈值，系统脱离原稳态——水在 0–100°C 之间怎么加热都是水，越界即相变。</li>
+        <li><strong>正反馈驱动的突变</strong>：临界点附近，正反馈接管，微小偏差被急剧放大，系统以指数速度冲向新形态。</li>
+        <li><strong>渐变与突变的统一</strong>：同一系统，参数连续变化可导致行为的不连续跳跃——与同时代的突变论、后来的复杂系统研究遥相呼应。</li>
+      </ul>
+      <div class="keybox">
+        <b>SELF-TEST · 自测</b>
+        回想一次"忽然崩了"的经历（项目、健康、关系）：事后看，阈值在哪里？越界之前有哪些被稳态掩盖的量变信号？
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">方法论总结 · EPISTEMOLOGY</div>
+      <h3>黑箱、模型与科学认识</h3>
+      <p>贯穿全书并在后段收拢的认识论主题：控制论如何回答"人怎样认识世界"。</p>
+      <ul>
+        <li><strong>黑箱方法</strong>：通过输入—输出关系认识不可打开的系统；黑箱 → 灰箱 → 白箱是认识深化的一般路径。</li>
+        <li><strong>模型即知识</strong>：科学理论是与对象"输入输出等价"的模型，不必也不能是对象本身的复制。</li>
+        <li><strong>观察者不可去除</strong>：认识是认识者与对象之间的控制—信息回路，主体的目的与通道容量必然参与其中。</li>
+        <li><strong>方法论的自觉</strong>：科学的进步不仅是知识增加，更是方法的升级——这正是本书书名的落点。</li>
+      </ul>
+      <div class="keybox">
+        <b>SELF-TEST · 自测</b>
+        把你最依赖的一个理论（经济学模型、心理学框架、技术架构原则）当成黑箱模型重新审视：它在哪些输入范围内被验证过？你是否在验证范围之外使用它？
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">TERMS · 术语速查</div>
+    <h2>本书术语 ↔ 现代对应</h2>
+    <table class="terms">
+      <tr><th>书中术语</th><th>现代语境里的名字</th><th>你可能在哪里遇到它</th></tr>
+      <tr><td>可能性空间</td><td>状态空间 / 搜索空间</td><td>算法设计、强化学习的 state space</td></tr>
+      <tr><td>有记忆的控制</td><td>启发式搜索、剪枝</td><td>二分查找、A*、排除法诊断</td></tr>
+      <tr><td>共轭控制</td><td>问题变换 / 域迁移</td><td>傅里叶变换、把业务问题转成数学问题</td></tr>
+      <tr><td>负反馈调节</td><td>闭环控制、PID</td><td>自动驾驶、OKR 复盘、恒温器</td></tr>
+      <tr><td>正反馈</td><td>增长飞轮 / 恶性循环</td><td>网络效应、挤兑、算法推荐的信息茧房</td></tr>
+      <tr><td>稳态</td><td>动态平衡、鲁棒性</td><td>SRE 的自愈系统、生态平衡</td></tr>
+      <tr><td>信息量</td><td>香农熵、比特</td><td>压缩、机器学习的交叉熵损失</td></tr>
+      <tr><td>黑箱方法</td><td>系统辨识、行为测试</td><td>API 逆向、神经网络可解释性研究</td></tr>
+      <tr><td>超稳定系统</td><td>自修复 / 反脆弱结构</td><td>金观涛《兴盛与危机》、组织惯性分析</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">VERDICT · 一句话总评</div>
+    <h2>为什么四十年后仍然值得读</h2>
+    <p>市面上讲"系统思维"的书汗牛充栋，大多停留在比喻层面。这本 1983 年的小书的稀缺之处在于：它的每个概念都<strong>可定义、可度量、可操作</strong>，彼此严密咬合成一个体系，而且作者亲自示范了如何用它切开真实世界——从称象到王朝兴衰。</p>
+    <p>读完它，再去读维纳，你会发现自己已经拿着地图了。<a class="text-link" href="book-wiener.html">→ 前往维纳《控制论》逐章导读</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 控制论 ⟲ 金观涛精读</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-wiener.html">维纳</a> ·
+      <a href="cases.html">案例</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

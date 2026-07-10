@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 控制论读书笔记</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">控制论<span class="loop-mark"> ⟲ </span>READING</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-jin.html">《控制论与科学方法论》</a>
+      <a href="book-wiener.html">维纳《控制论》</a>
+      <a href="cases.html">案例库</a>
+      <a href="ai-era.html">控制论与 AI</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPTS · 核心概念图解</div>
+    <h1>七个概念，一套完整的思维工具</h1>
+    <p class="lede">按依赖顺序排列：先懂"控制是选择"，才能懂反馈；懂了反馈，稳态与信息才有着落；最后黑箱方法把这一切变成认识世界的通用姿势。</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ========== 01 可能性空间 ========== -->
+<section id="possibility" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT 01 · POSSIBILITY SPACE</div>
+    <h2>可能性空间：控制就是缩小它</h2>
+    <div class="prose">
+      <p>这是金观涛全书的第一块基石。任何事物在任一时刻都有若干种可能的状态，这些状态的集合叫<strong>可能性空间</strong>。所谓控制，就是<em>根据自己的目的，在可能性空间中进行有方向的选择，把它缩小</em>。</p>
+      <p>猎人打猎：兔子可能出现在山坡任何位置（巨大的可能性空间）；观察足迹、埋伏在必经之路，是一步步缩小空间；扣动扳机命中，是把空间收缩为唯一状态。教育、医疗、管理、写代码——一切"做事"都可以翻译成这个操作。</p>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 720 200" role="img" aria-label="可能性空间逐级缩小示意图">
+        <ellipse cx="120" cy="100" rx="95" ry="80" fill="#e8edf7" stroke="#2b4c9b" stroke-width="2"/>
+        <g fill="#2b4c9b" opacity="0.55">
+          <circle cx="80" cy="70" r="5"/><circle cx="130" cy="55" r="5"/><circle cx="160" cy="95" r="5"/>
+          <circle cx="95" cy="125" r="5"/><circle cx="140" cy="140" r="5"/><circle cx="70" cy="105" r="5"/>
+          <circle cx="120" cy="95" r="5"/><circle cx="155" cy="130" r="5"/>
+        </g>
+        <text x="120" y="196" text-anchor="middle" font-family="PingFang SC" font-size="13" fill="#5c6470">全部可能状态</text>
+        <line x1="230" y1="100" x2="290" y2="100" stroke="#1b1c1e" stroke-width="2"/>
+        <text x="260" y="88" text-anchor="middle" font-family="PingFang SC" font-size="12" fill="#be3b2c">施加控制</text>
+        <ellipse cx="380" cy="100" rx="60" ry="50" fill="#e8edf7" stroke="#2b4c9b" stroke-width="2"/>
+        <g fill="#2b4c9b" opacity="0.55">
+          <circle cx="360" cy="90" r="5"/><circle cx="400" cy="80" r="5"/><circle cx="385" cy="120" r="5"/>
+        </g>
+        <text x="380" y="196" text-anchor="middle" font-family="PingFang SC" font-size="13" fill="#5c6470">空间缩小</text>
+        <line x1="455" y1="100" x2="515" y2="100" stroke="#1b1c1e" stroke-width="2"/>
+        <text x="485" y="88" text-anchor="middle" font-family="PingFang SC" font-size="12" fill="#be3b2c">再控制</text>
+        <circle cx="600" cy="100" r="26" fill="#2b4c9b"/>
+        <circle cx="600" cy="100" r="8" fill="#fff"/>
+        <text x="600" y="196" text-anchor="middle" font-family="PingFang SC" font-size="13" fill="#5c6470">目标状态（确定）</text>
+      </svg>
+      <div class="figcap"><b>FIG. 01</b> 控制的本质：目的性的选择，使可能性空间逐级收缩，直至落在目标状态上。</div>
+    </div>
+    <div class="keybox prose">
+      <b>KEY INSIGHT</b>
+      "控制能力"可以量化：你能把可能性空间缩到多小，就说明你的控制能力有多强。这为比较"谁更有办法"提供了统一标尺——它同时适用于恒温器、医生和政府。
+    </div>
+  </div>
+</section>
+
+<!-- ========== 02 三种控制方式 ========== -->
+<section id="modes" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT 02 · THREE MODES OF CONTROL</div>
+    <h2>随机、记忆、共轭：控制的三级台阶</h2>
+    <div class="prose">
+      <p>当你不知道该选哪个状态时，怎么办？金观涛给出三级递进的策略：</p>
+    </div>
+    <div class="grid cols-3" style="margin-top:24px">
+      <div class="card">
+        <span class="tag">初级</span>
+        <h3>随机控制</h3>
+        <p>逐个试，试错后<strong>不排除</strong>已试过的选项——像忘性大的人找钥匙，同一个口袋翻三遍。效率最低，但零知识时它是唯一起点。</p>
+      </div>
+      <div class="card">
+        <span class="tag">进阶</span>
+        <h3>有记忆的控制</h3>
+        <p>试错后<strong>排除</strong>失败选项，可能性空间单调缩小——猜数字游戏、排除法诊断、二分查找。记忆让每一次失败都产生信息。</p>
+      </div>
+      <div class="card">
+        <span class="tag red">高阶</span>
+        <h3>共轭控制</h3>
+        <p>直接控制做不到，就找一个变换 L 把问题映射到能控制的领域，解决后再用 L⁻¹ 映射回来。<strong>曹冲称象</strong>是教科书级案例：象不可分割 → 换成等重的石头（可分割）→ 分块称量 → 求和还原。</p>
+      </div>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 720 190" role="img" aria-label="共轭控制示意图：L 变换、直接控制、L 逆变换">
+        <rect x="30" y="60" width="170" height="70" fill="#fff" stroke="#1b1c1e" stroke-width="2"/>
+        <text x="115" y="90" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700">原问题</text>
+        <text x="115" y="112" text-anchor="middle" font-family="PingFang SC" font-size="12" fill="#5c6470">称一头大象（不可控）</text>
+        <rect x="520" y="60" width="170" height="70" fill="#e8edf7" stroke="#1b1c1e" stroke-width="2"/>
+        <text x="605" y="90" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700" fill="#1e3a75">共轭问题</text>
+        <text x="605" y="112" text-anchor="middle" font-family="PingFang SC" font-size="12" fill="#5c6470">称一堆石头（可控）</text>
+        <path d="M 200 75 C 300 20, 420 20, 520 75" fill="none" stroke="#2b4c9b" stroke-width="2" marker-end="url(#arrC)"/>
+        <text x="360" y="34" text-anchor="middle" font-family="SF Mono, monospace" font-size="13" fill="#2b4c9b">L 变换：等吃水深度换石头</text>
+        <path d="M 520 118 C 420 172, 300 172, 200 118" fill="none" stroke="#be3b2c" stroke-width="2" marker-end="url(#arrR)"/>
+        <text x="360" y="176" text-anchor="middle" font-family="SF Mono, monospace" font-size="13" fill="#be3b2c">L⁻¹ 还原：石重之和 = 象重</text>
+        <defs>
+          <marker id="arrC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2b4c9b"/></marker>
+          <marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#be3b2c"/></marker>
+        </defs>
+      </svg>
+      <div class="figcap"><b>FIG. 02</b> 共轭控制：L → 直接控制 → L⁻¹。人类的工具、模型、货币、实验室，本质上都是共轭变换。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 03 负反馈 ========== -->
+<section id="feedback" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT 03 · NEGATIVE FEEDBACK</div>
+    <h2>负反馈：让偏差消灭偏差</h2>
+    <div class="prose">
+      <p>如果目标一次选不中怎么办？负反馈给出了天才的答案：<em>不需要一次选中，只要每次都朝着缩小偏差的方向修正</em>。把输出量回送给输入端、与目标比较，用"偏差"驱动下一轮动作——偏差越大纠正越强，系统便自动逼近目标。</p>
+      <p>它扩大控制能力的关键在于：你不再需要预知全部干扰。风往哪吹、路怎么颠，统统不必建模——反馈会替你兜底。恒温器、骑自行车、公司里的周会复盘，都是这一个回路。</p>
+      <p>但反馈不是免费午餐。修正得<strong>太猛或太迟</strong>，系统会绕着目标来回冲过头——<strong>振荡</strong>。维纳《控制论》第四章专门处理这个问题，小脑损伤病人的手部震颤正是生物版的反馈失调。用下面的模拟器亲手试一试：</p>
+    </div>
+
+    <div class="sim">
+      <div class="sim-title">INTERACTIVE · 恒温器负反馈模拟器</div>
+      <div class="sim-canvas"><canvas id="simCanvas" style="width:100%;height:100%;display:block"></canvas></div>
+      <div class="sim-controls">
+        <label>目标温度 <input type="range" id="setpoint" min="18" max="28" step="0.5" value="22"> <span class="sim-readout" id="spVal">22.0°C</span></label>
+        <label>反馈增益 <input type="range" id="gain" min="0.2" max="6" step="0.1" value="1.2"> <span class="sim-readout" id="gainVal">1.2</span></label>
+        <label><input type="checkbox" id="openLoop"> 断开反馈（开环）</label>
+        <button id="disturb">开窗（施加扰动）</button>
+        <span class="sim-readout" id="tempVal">--°C</span>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:14px;margin-bottom:0">
+        试三件事：① 点"开窗"，看温度如何被自动拉回目标；② 把增益调到 5 以上，观察<strong style="color:var(--red)">振荡</strong>——纠正过猛，冲过头再冲回来；③ 勾选"断开反馈"再开窗——没有回路，偏差无人问津，温度一路漂走。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 04 正反馈 ========== -->
+<section id="positive" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT 04 · POSITIVE FEEDBACK</div>
+    <h2>正反馈：偏差放大偏差</h2>
+    <div class="prose">
+      <p>把回路的符号反过来：输出不去抵消偏差，反而<em>加强</em>它——这就是正反馈。它没有目标，只有方向；不收敛，只发散。</p>
+      <p>正反馈是雪崩、挤兑、军备竞赛、麦克风啸叫和网络爆红的共同数学结构。它本身无所谓好坏：创业者叫它"增长飞轮"，社会学家叫它"恶性循环"。关键是认出它——<strong>凡是"越……就越……"句式能成立的地方，就有一个正反馈回路在转</strong>。真实系统中的正反馈最终都会撞上资源上限，或被某个负反馈回路接管，否则系统解体。</p>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 720 210" role="img" aria-label="负反馈收敛与正反馈发散的对比曲线">
+        <line x1="40" y1="180" x2="330" y2="180" stroke="#5c6470" stroke-width="1.5"/>
+        <line x1="40" y1="180" x2="40" y2="30" stroke="#5c6470" stroke-width="1.5"/>
+        <line x1="40" y1="90" x2="330" y2="90" stroke="#2b4c9b" stroke-width="1.5" stroke-dasharray="6 5"/>
+        <text x="336" y="94" font-family="SF Mono, monospace" font-size="11" fill="#2b4c9b">目标</text>
+        <path d="M 40 170 Q 80 30 130 110 Q 165 150 205 84 Q 245 60 330 90" fill="none" stroke="#2b4c9b" stroke-width="2.5"/>
+        <text x="185" y="200" text-anchor="middle" font-family="PingFang SC" font-size="13" fill="#1e3a75" font-weight="700">负反馈：围绕目标收敛</text>
+        <line x1="430" y1="180" x2="700" y2="180" stroke="#5c6470" stroke-width="1.5"/>
+        <line x1="430" y1="180" x2="430" y2="30" stroke="#5c6470" stroke-width="1.5"/>
+        <path d="M 430 172 Q 520 168 580 140 Q 650 105 680 34" fill="none" stroke="#be3b2c" stroke-width="2.5"/>
+        <text x="565" y="200" text-anchor="middle" font-family="PingFang SC" font-size="13" fill="#be3b2c" font-weight="700">正反馈：指数发散（直到撞墙）</text>
+      </svg>
+      <div class="figcap"><b>FIG. 04</b> 同一个回路结构，符号一正一负，命运截然不同：收敛于目标，或发散至极限。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 05 稳态 ========== -->
+<section id="homeostasis" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT 05 · HOMEOSTASIS</div>
+    <h2>稳态：在扰动的海洋里保持自己</h2>
+    <div class="prose">
+      <p>你的体温常年维持在 37°C 上下，血糖、血压、渗透压也各守着自己的窄带——外界寒暑剧变，内环境岿然不动。生理学家坎农把这叫<strong>内稳态（homeostasis）</strong>，其背后是<em>成百上千个负反馈回路的联合值守</em>。</p>
+      <p>控制论把它推广成组织存续的一般定义：<strong>一个系统"活着"，就是它的关键变量被维持在允许范围内</strong>。细胞如此，公司现金流如此，生态位如此。金观涛更进一步，把稳态用于历史分析——中国传统社会正是一个靠多重反馈自我修复的"超稳定系统"，王朝崩溃后总是回到同构的秩序。</p>
+      <p>稳态也有代价：维持稳定的机制，同时就是抑制变化的机制。理解一个系统为什么"改不动"，先去找那些默默把它拉回原位的负反馈回路。</p>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 720 200" role="img" aria-label="稳态示意：关键变量在允许带内波动，扰动后回归">
+        <rect x="40" y="70" width="640" height="60" fill="#e8edf7"/>
+        <line x1="40" y1="70" x2="680" y2="70" stroke="#2b4c9b" stroke-width="1.5" stroke-dasharray="6 5"/>
+        <line x1="40" y1="130" x2="680" y2="130" stroke="#2b4c9b" stroke-width="1.5" stroke-dasharray="6 5"/>
+        <text x="688" y="74" font-family="SF Mono, monospace" font-size="11" fill="#2b4c9b">上限</text>
+        <text x="688" y="134" font-family="SF Mono, monospace" font-size="11" fill="#2b4c9b">下限</text>
+        <path d="M 40 100 Q 90 92 130 103 Q 170 112 210 97 L 250 40 Q 270 30 285 55 Q 320 110 360 100 Q 420 92 460 105 L 500 158 Q 520 172 540 140 Q 570 100 620 98 Q 650 97 680 101"
+              fill="none" stroke="#1b1c1e" stroke-width="2.5"/>
+        <circle cx="250" cy="40" r="5" fill="#be3b2c"/>
+        <text x="250" y="26" text-anchor="middle" font-family="PingFang SC" font-size="12" fill="#be3b2c">扰动 A（发烧）</text>
+        <circle cx="500" cy="158" r="5" fill="#be3b2c"/>
+        <text x="500" y="184" text-anchor="middle" font-family="PingFang SC" font-size="12" fill="#be3b2c">扰动 B（失血）</text>
+      </svg>
+      <div class="figcap"><b>FIG. 05</b> 稳态 ≠ 静止。变量被扰动推出允许带后，负反馈将其拉回——"活着"就是这条曲线不断回家。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 06 信息 ========== -->
+<section id="information" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT 06 · INFORMATION</div>
+    <h2>信息：被消除的不确定性</h2>
+    <div class="prose">
+      <p>控制论给"信息"下了一个可操作的定义：<strong>信息就是可能性空间的缩小</strong>。掷硬币前有两种可能，得知结果后只剩一种——你获得了 1 比特信息。一条消息消除的不确定性越多，信息量越大；如果听完之后可能性空间纹丝不动（"明天要么下雨要么不下"），信息量为零。</p>
+      <p>这个定义把前两个概念焊在了一起：<em>控制是主动缩小可能性空间，信息是获知可能性空间被缩小</em>——控制与信息是同一枚硬币的两面。这就是为什么维纳的书名把"控制"与"通信"并列，也是为什么反馈回路里流动的东西既可以叫信号，也可以叫信息。</p>
+      <p>由此还引出两个实用推论：① 通道容量有限——任何组织、任何大脑，单位时间能处理的信息量存在上限，超载必然丢包；② 信息在传递中只会衰减不会增加（噪声侵蚀），所以多级转述的组织必然失真，扁平化与"现场有神明"有其信息论根据。</p>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 720 170" role="img" aria-label="通信通道示意：信源、编码、噪声、解码、信宿">
+        <defs>
+          <marker id="arrI" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2b4c9b"/></marker>
+        </defs>
+        <rect x="20" y="60" width="100" height="50" fill="#fff" stroke="#1b1c1e" stroke-width="2"/>
+        <text x="70" y="90" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700">信源</text>
+        <line x1="120" y1="85" x2="165" y2="85" stroke="#2b4c9b" stroke-width="2" marker-end="url(#arrI)"/>
+        <rect x="167" y="60" width="100" height="50" fill="#fff" stroke="#1b1c1e" stroke-width="2"/>
+        <text x="217" y="90" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700">编码</text>
+        <line x1="267" y1="85" x2="312" y2="85" stroke="#2b4c9b" stroke-width="2" marker-end="url(#arrI)"/>
+        <rect x="314" y="60" width="120" height="50" fill="#e8edf7" stroke="#1b1c1e" stroke-width="2"/>
+        <text x="374" y="90" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700" fill="#1e3a75">通道</text>
+        <line x1="374" y1="20" x2="374" y2="58" stroke="#be3b2c" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrI)"/>
+        <text x="374" y="14" text-anchor="middle" font-family="PingFang SC" font-size="12" fill="#be3b2c">噪声 ↯</text>
+        <line x1="434" y1="85" x2="479" y2="85" stroke="#2b4c9b" stroke-width="2" marker-end="url(#arrI)"/>
+        <rect x="481" y="60" width="100" height="50" fill="#fff" stroke="#1b1c1e" stroke-width="2"/>
+        <text x="531" y="90" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700">解码</text>
+        <line x1="581" y1="85" x2="626" y2="85" stroke="#2b4c9b" stroke-width="2" marker-end="url(#arrI)"/>
+        <rect x="628" y="60" width="76" height="50" fill="#fff" stroke="#1b1c1e" stroke-width="2"/>
+        <text x="666" y="90" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700">信宿</text>
+        <text x="360" y="150" text-anchor="middle" font-family="PingFang SC" font-size="13" fill="#5c6470">思维也是这条链：感官编码 → 神经通道 → 大脑解码。通道容量决定认知带宽。</text>
+      </svg>
+      <div class="figcap"><b>FIG. 06</b> 香农—维纳通信模型。组织沟通、教学、写作，全部可套用此链路做"丢包分析"。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 07 黑箱方法 ========== -->
+<section id="blackbox" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT 07 · BLACK BOX</div>
+    <h2>黑箱方法：不拆开，也能认识</h2>
+    <div class="prose">
+      <p>面对一个打不开、拆不了的系统——人脑、经济、一个陌生 API——怎么办？黑箱方法说：<strong>不必打开。系统地改变输入，仔细记录输出，从输入—输出的对应关系中重建系统的模型。</strong></p>
+      <p>中医不解剖而通过望闻问切（输入刺激、观察响应）建立脏腑模型；心理学的行为主义只测"刺激—反应"；工程师用阶跃信号测系统的传递函数——都是黑箱方法。随着认识深入，黑箱逐渐变"灰"（部分结构已知）、变"白"（完全打开）。</p>
+      <p>它的深层含义是认识论式的：<em>我们对世界的一切认识，本质上都是黑箱模型</em>——包括物理定律。模型不必与内部结构"长得一样"，只要输入输出等价，它就是有效的知识。这为今天理解神经网络这类"造出来却看不透"的系统，提前备好了哲学。</p>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 720 180" role="img" aria-label="黑箱方法示意：输入、黑箱、输出、观察者建模">
+        <defs>
+          <marker id="arrB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2b4c9b"/></marker>
+        </defs>
+        <text x="60" y="70" font-family="SF Mono, monospace" font-size="12" fill="#5c6470">输入 x₁ x₂ x₃…</text>
+        <line x1="60" y1="90" x2="230" y2="90" stroke="#2b4c9b" stroke-width="2" marker-end="url(#arrB)"/>
+        <rect x="232" y="45" width="180" height="90" fill="#1b1c1e"/>
+        <text x="322" y="86" text-anchor="middle" font-family="PingFang SC" font-size="16" font-weight="700" fill="#fafaf7">黑 箱</text>
+        <text x="322" y="112" text-anchor="middle" font-family="SF Mono, monospace" font-size="11" fill="#9aa3ad">内部结构不可见</text>
+        <line x1="412" y1="90" x2="580" y2="90" stroke="#2b4c9b" stroke-width="2" marker-end="url(#arrB)"/>
+        <text x="500" y="70" font-family="SF Mono, monospace" font-size="12" fill="#5c6470">输出 y₁ y₂ y₃…</text>
+        <path d="M 140 100 Q 200 165 322 158 Q 450 165 505 100" fill="none" stroke="#be3b2c" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrB)"/>
+        <text x="322" y="178" text-anchor="middle" font-family="PingFang SC" font-size="13" fill="#be3b2c">观察者比较 x→y 的规律，重建等价模型</text>
+      </svg>
+      <div class="figcap"><b>FIG. 07</b> 黑箱认识论：知识 = 与黑箱输入输出等价的模型。黑箱 → 灰箱 → 白箱是认识深化的路径。</div>
+    </div>
+    <div class="keybox prose">
+      <b>SYNTHESIS · 七个概念如何咬合</b>
+      控制 = 缩小可能性空间（01），缩不动就换共轭路径（02）；一次缩不准就用负反馈迭代（03），当心符号反转的失控（04）；无数回路联合值守即稳态（05）；回路中流动的是信息（06）；而当系统内部不可见时，靠黑箱方法建模（07）。——这就是全部骨架。
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 控制论 ⟲ 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-jin.html">金观涛</a> ·
+      <a href="book-wiener.html">维纳</a> ·
+      <a href="cases.html">案例</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const canvas = document.getElementById('simCanvas');
+  const ctx = canvas.getContext('2d');
+  const spInput = document.getElementById('setpoint');
+  const gainInput = document.getElementById('gain');
+  const openLoop = document.getElementById('openLoop');
+  const disturbBtn = document.getElementById('disturb');
+  const spVal = document.getElementById('spVal');
+  const gainVal = document.getElementById('gainVal');
+  const tempVal = document.getElementById('tempVal');
+
+  const AMBIENT = 12;          // 室外温度
+  const DELAY = 24;            // 传感延迟（帧）——延迟是振荡的温床
+  let temp = 16;
+  let history = [];            // 温度轨迹
+  let sensorBuf = [];          // 延迟测量缓冲
+  let ambientNow = AMBIENT;
+  let windowTimer = 0;
+  let lastPower = 0.5;
+
+  function resize() {
+    const r = canvas.parentElement.getBoundingClientRect();
+    if (r.width < 1 || r.height < 1) return;   // 布局尚未就绪时跳过，避免 0 宽画布
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(r.width * dpr);
+    canvas.height = Math.round(r.height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  window.addEventListener('resize', resize);
+  // ResizeObserver 保证首帧布局完成后立即按真实尺寸重建画布，不依赖 load/innerWidth 时序
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(resize).observe(canvas.parentElement);
+  }
+  resize();
+
+  disturbBtn.addEventListener('click', () => { windowTimer = 160; });
+
+  function yOf(t, h) {
+    // 8°C..32°C 映射到画布
+    return h - ((t - 8) / 24) * h;
+  }
+
+  function step() {
+    const setpoint = parseFloat(spInput.value);
+    const gain = parseFloat(gainInput.value);
+    spVal.textContent = setpoint.toFixed(1) + '°C';
+    gainVal.textContent = gain.toFixed(1);
+
+    // 扰动：开窗时室外冷空气涌入
+    ambientNow = windowTimer > 0 ? AMBIENT - 6 : AMBIENT;
+    if (windowTimer > 0) windowTimer--;
+    const leak = windowTimer > 0 ? 0.045 : 0.012;
+
+    // 延迟测量
+    sensorBuf.push(temp);
+    if (sensorBuf.length > DELAY) sensorBuf.shift();
+    const measured = sensorBuf[0];
+
+    // 控制律
+    let power;
+    if (openLoop.checked) {
+      power = lastPower;                   // 开环：定功率，不看偏差
+    } else {
+      const error = setpoint - measured;   // 偏差
+      power = Math.max(0, Math.min(1.6, gain * error * 0.35));
+      lastPower = power;
+    }
+
+    // 房间热力学
+    temp += power * 0.12 - leak * (temp - ambientNow);
+
+    history.push({ t: temp, sp: setpoint, win: windowTimer > 0 });
+    const w = canvas.width / devicePixelRatio;
+    const maxPts = Math.floor(w / 2);
+    if (history.length > maxPts) history.shift();
+
+    draw();
+    requestAnimationFrame(step);
+  }
+
+  function draw() {
+    const w = canvas.width / devicePixelRatio;
+    const h = canvas.height / devicePixelRatio;
+    ctx.clearRect(0, 0, w, h);
+
+    // 扰动区间底色
+    ctx.fillStyle = 'rgba(190,59,44,0.08)';
+    history.forEach((p, i) => { if (p.win) ctx.fillRect(i * 2, 0, 2, h); });
+
+    // 目标线
+    ctx.strokeStyle = '#2b4c9b';
+    ctx.setLineDash([6, 5]);
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    history.forEach((p, i) => {
+      const y = yOf(p.sp, h);
+      i === 0 ? ctx.moveTo(0, y) : ctx.lineTo(i * 2, y);
+    });
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // 温度轨迹
+    ctx.strokeStyle = '#1b1c1e';
+    ctx.lineWidth = 2.2;
+    ctx.beginPath();
+    history.forEach((p, i) => {
+      const y = yOf(p.t, h);
+      i === 0 ? ctx.moveTo(0, y) : ctx.lineTo(i * 2, y);
+    });
+    ctx.stroke();
+
+    tempVal.textContent = temp.toFixed(1) + '°C';
+  }
+
+  requestAnimationFrame(step);
+})();
+</script>
+
+</body>
+</html>

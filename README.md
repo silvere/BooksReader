@@ -1,0 +1,41 @@
+# BooksReader · 书架
+
+一个人的读书系统：**每一个文件夹是一本书**。每读一本，就为它建一座图文并茂、可交互的知识站点——把关键概念、历史背景与真实案例整理清楚。
+
+纯静态站点，无需构建，托管于 GitHub Pages。
+
+## 书架
+
+| # | 书 | 目录 | 说明 |
+|---|----|------|------|
+| 01 | 控制论（维纳《控制论》 + 金观涛/华国凡《控制论与科学方法论》） | [`控制论/`](控制论/) | 7 页联动：总览 / 历史与人物 / 核心概念（含交互式负反馈模拟器）/ 两本书精读导读 / 案例库 / 控制论与 AI 时代 |
+
+## 本地预览
+
+```bash
+python3 -m http.server 8000
+# 打开 http://127.0.0.1:8000/
+```
+
+## 部署
+
+推送到 `main` 分支后由 GitHub Pages 自动发布。根目录的 `.nojekyll` 确保 `assets/` 与中文路径原样服务。
+
+线上地址：https://silvere.github.io/BooksReader/
+
+## 结构
+
+```
+BooksReader/
+├── index.html          # 书架首页（系统入口）
+├── .nojekyll           # 禁用 Jekyll
+└── 控制论/
+    ├── index.html      # 书站总览
+    ├── history.html    # 历史与人物
+    ├── concepts.html   # 核心概念图解 + 交互模拟器
+    ├── book-jin.html   # 《控制论与科学方法论》精读
+    ├── book-wiener.html# 维纳《控制论》逐章导读
+    ├── cases.html      # 案例库
+    ├── ai-era.html     # 控制论与 AI 时代
+    └── assets/style.css
+```

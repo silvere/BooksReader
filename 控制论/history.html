@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>历史与人物 · 控制论读书笔记</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">控制论<span class="loop-mark"> ⟲ </span>READING</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html" class="active">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-jin.html">《控制论与科学方法论》</a>
+      <a href="book-wiener.html">维纳《控制论》</a>
+      <a href="cases.html">案例库</a>
+      <a href="ai-era.html">控制论与 AI</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">HISTORY · 历史与人物</div>
+    <h1>从防空火炮到八十年代书桌</h1>
+    <p class="lede">控制论不是书斋里推演出来的学问。它诞生于二战最紧迫的工程难题，成型于一群跨学科天才的十年聚会，然后在三十年后的中国，变成了一代人打开思维的钥匙。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">ORIGIN · 起点</div>
+    <h2>打不中的飞机，逼出来的新科学</h2>
+    <p>1940 年代初，维纳受命研究<strong>防空火炮的自动瞄准</strong>。问题的本质是：炮弹飞到高空需要十几秒，而飞行员会机动规避——你必须<em>预测</em>飞机未来的位置，并根据每一次脱靶不断修正。</p>
+    <p>维纳和工程师朱利安·毕格罗（Julian Bigelow）发现，这个"根据误差修正行为"的结构，和生理学家罗森布吕特（Arturo Rosenblueth）研究的<strong>人体动作控制</strong>惊人地一致：手伸向杯子时，眼睛持续报告手与杯子的距离偏差，神经系统据此微调肌肉——这就是<strong>负反馈</strong>。而小脑受损的病人伸手会剧烈震颤（意向性震颤），恰好对应反馈回路增益失调时机器的振荡。</p>
+    <p>1943 年，三人合写论文《行为、目的和目的论》，提出一个当时惊世骇俗的论断：<strong>机器和生命体可以用同一套"目的性行为"框架来描述</strong>。这颗种子在 1948 年长成了《控制论》。</p>
+    <blockquote>
+      "控制论"（Cybernetics）一词源于希腊语 κυβερνήτης——舵手。舵手正是最古老的反馈控制者：看船头偏向哪边，就往反方向压舵。
+      <cite>—— 词源即纲领</cite>
+    </blockquote>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">TIMELINE · 时间线</div>
+    <h2>八十年，两次浪潮</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-year">1894 – 1913</div>
+        <h3>神童维纳</h3>
+        <p>维纳生于美国密苏里州，父亲是哈佛斯拉夫语教授，以严苛的家庭教育著称。维纳 11 岁上大学，18 岁拿到哈佛大学数理逻辑方向博士学位，随后游学欧洲，师从罗素、希尔伯特。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1940 – 1945</div>
+        <h3>战时火控研究</h3>
+        <p>在 MIT 参与防空预测器研究，与毕格罗合作，把"预测 + 误差修正"抽象为一般的反馈问题；与罗森布吕特的合作打通了机器与神经生理学。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1943</div>
+        <h3>两篇奠基论文</h3>
+        <p>维纳等人发表《行为、目的和目的论》；同年麦卡洛克（Warren McCulloch）与皮茨（Walter Pitts）发表神经元的逻辑演算模型——今天所有人工神经网络的远祖。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1946 – 1953</div>
+        <h3>梅西会议：跨学科的十年聚会</h3>
+        <p>纽约梅西基金会（Macy Foundation）连续召开十次会议，把数学家（维纳、冯·诺依曼）、神经科学家（麦卡洛克）、人类学家（米德、贝特森）、心理学家聚在一张桌上，主题就叫"生物与社会系统中的循环因果与反馈机制"。控制论作为一场跨学科运动在此成型。</p>
+      </div>
+      <div class="t-item milestone">
+        <div class="t-year">1948</div>
+        <h3>《控制论》出版 · 香农信息论同年问世</h3>
+        <p>维纳的《控制论：或关于在动物和机器中控制和通信的科学》由 MIT 出版社与巴黎 Hermann 出版社出版，出乎所有人意料成为畅销书。同年，香农发表《通信的数学理论》，给"信息"一个可计算的定义。两件事互相成就。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1948 – 1956</div>
+        <h3>英国学派：阿什比</h3>
+        <p>英国精神病学家阿什比（W. Ross Ashby）造出"同态调节器"（Homeostat），并在《控制论导论》中提出<strong>必要多样性定律</strong>：控制者的花样必须不少于扰动的花样，才能实现控制——后来管理学、生态学反复引用。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1954</div>
+        <h3>钱学森《工程控制论》</h3>
+        <p>钱学森在美国用英文出版《Engineering Cybernetics》，把控制论系统化为一门工程科学。归国后，这本书和这门学科深刻影响了中国的导弹航天事业与系统工程学派。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1961 / 1964</div>
+        <h3>《控制论》第二版 · 维纳去世</h3>
+        <p>第二版增补"学习与自增殖机""脑电波与自组织系统"两章——维纳晚年最关心机器学习与自组织。1964 年维纳在斯德哥尔摩讲学途中去世。</p>
+      </div>
+      <div class="t-item milestone">
+        <div class="t-year">1970s – 1983</div>
+        <h3>《控制论与科学方法论》：手抄本到正式出版</h3>
+        <p>金观涛、华国凡在 1970 年代写成此书初稿，先以手抄本、油印本在青年中流传，1983 年正式出版。它把控制论、信息论、系统论（当时并称"老三论"）改写成一套人人可用的科学方法论，成为思想解冻年代的现象级读物。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1984 –</div>
+        <h3>"走向未来丛书"与方法论热</h3>
+        <p>金观涛任主编的"走向未来丛书"陆续出版数十种，掀起 80 年代的"方法论热""三论热"。金观涛并把控制论用于历史研究，与刘青峰合著《兴盛与危机》，提出中国社会"超稳定结构"假说——正是稳态概念的历史学应用。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">今天</div>
+        <h3>无处不在，又无人再提</h3>
+        <p>"控制论"作为学科名淡出了，但它的骨架长进了一切：自动驾驶的控制回路、神经网络的误差反向传播、产品增长的正反馈飞轮、OKR 的目标—偏差—修正循环。读这两本书，是去认领这些工具的源头。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">PEOPLE · 群像</div>
+    <h2>记住这六个人</h2>
+    <div class="grid cols-3" style="margin-top:32px">
+      <div class="card">
+        <span class="tag">奠基人</span>
+        <h3>诺伯特·维纳</h3>
+        <p>1894–1964。数学家，控制论命名者。学术底色是布朗运动与调和分析——所以他眼中的世界本质上是概率的、充满噪声的，控制是在噪声中维持秩序。</p>
+      </div>
+      <div class="card">
+        <span class="tag">同行者</span>
+        <h3>阿图罗·罗森布吕特</h3>
+        <p>墨西哥生理学家，维纳最重要的合作者。《控制论》题献给他。他证明了"目的性行为"可以在生理学层面被反馈机制解释。</p>
+      </div>
+      <div class="card">
+        <span class="tag">并峙者</span>
+        <h3>克劳德·香农</h3>
+        <p>1948 年给出信息的数学定义：信息量 = 被消除的不确定性。维纳与香农各自独立逼近了同一座山峰，信息论与控制论从此互为表里。</p>
+      </div>
+      <div class="card">
+        <span class="tag">英国学派</span>
+        <h3>W. 罗斯·阿什比</h3>
+        <p>精神病学家出身，最擅长把控制论讲清楚。"必要多样性定律"与黑箱方法的系统化多出自他的《控制论导论》。金观涛书中的方法论骨架深受其影响。</p>
+      </div>
+      <div class="card">
+        <span class="tag">中国工程派</span>
+        <h3>钱学森</h3>
+        <p>《工程控制论》作者。他代表控制论在中国的第一条传播路径：进入国防与工程系统。第二条路径才是金观涛式的思想启蒙。</p>
+      </div>
+      <div class="card">
+        <span class="tag red">思想启蒙</span>
+        <h3>金观涛 · 华国凡</h3>
+        <p>金观涛本科学化学，自学控制论并将其锻造成认识历史与社会的方法。华国凡为合著者。这本小书是 80 年代"用科学方法重新看世界"运动的起点之一。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">WHY IT MATTERED · 为什么在中国如此轰动</div>
+    <h2>一本方法论小书的时代回声</h2>
+    <p>1980 年代初，刚刚走出十年动荡的中国知识界渴望一种<strong>不依附于任何教条的思考方式</strong>。控制论恰好提供了这样一套语言：它谈论目标、偏差、调节、稳态，不预设立场，却能解释从生物到经济到历史的广泛现象。</p>
+    <p>《控制论与科学方法论》的魔力在于示范——它当着读者的面，用可能性空间分析打猎，用共轭控制解释曹冲称象，用超稳定结构透视王朝循环。读者第一次看到：<em>原来"方法"本身可以是内容，思维方式本身可以被升级。</em></p>
+    <p>这也是今天重读它的理由。AI 时代的核心议题——目标对齐、奖励反馈、模型的黑箱性、系统的失控风险——维纳在 1948 年几乎全部预言过。控制论没有过时，它只是改了名字。</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 控制论 ⟲ 历史与人物</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-jin.html">金观涛</a> ·
+      <a href="book-wiener.html">维纳</a> ·
+      <a href="cases.html">案例</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

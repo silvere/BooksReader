@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>控制论与 AI 时代 · 控制论读书笔记</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">控制论<span class="loop-mark"> ⟲ </span>READING</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-jin.html">《控制论与科学方法论》</a>
+      <a href="book-wiener.html">维纳《控制论》</a>
+      <a href="cases.html">案例库</a>
+      <a href="ai-era.html" class="active">控制论与 AI</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">EPILOGUE · 控制论与 AI 时代</div>
+    <h1>它没有过时，<br>只是改了名字</h1>
+    <p class="lede">读完两本书，最震动的往往是这个发现：今天 AI 领域最前沿的议题——目标对齐、奖励反馈、模型的黑箱性、系统失控——维纳在 1948 年几乎全部预言过。控制论不是历史，它是理解这个时代的底层语言。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">THESIS · 一句话</div>
+    <h2>今天的 AI，是控制论所有核心概念的一次总集成</h2>
+    <p>把前面七个概念在一台大模型上重新点名，你会发现它们全部到齐：训练是<strong>负反馈</strong>，参数空间是<strong>可能性空间</strong>，损失函数度量<strong>信息</strong>，训练好的网络是<strong>黑箱</strong>，对齐要解决的是<strong>目标与稳态</strong>，而失控风险的数学结构是<strong>正反馈</strong>。下面逐一对上号。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">MAPPING · 概念对照</div>
+    <h2>六组对应</h2>
+
+    <div class="chapter">
+      <div class="ch-no">MAP 01 · 负反馈</div>
+      <h3>梯度下降 = 一台大规模负反馈机器</h3>
+      <p>训练神经网络：前向算出输出 → 与标签比较得到<strong>误差（偏差）</strong> → 误差反向传播 → 按误差方向微调权重 → 再来一轮。这正是维纳第四章的负反馈回路，只不过回路里有上亿个旋钮。连"学习率过大导致振荡发散"都和恒温器增益过大是同一个现象——你在<a class="text-link" href="concepts.html#feedback">概念页的模拟器</a>里已经亲手见过。</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">MAP 02 · 可能性空间</div>
+      <h3>参数空间 · 状态空间 · 搜索空间</h3>
+      <p>金观涛的"可能性空间"就是今天的 state space / parameter space。训练是在亿维参数空间里搜索一个能把损失压到最低的点；推理时的束搜索、强化学习的探索—利用权衡，都是在"如何高效缩小可能性空间"上做文章。<strong>有记忆的控制</strong>（排除已试的失败）对应剪枝与经验回放。</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">MAP 03 · 信息</div>
+      <h3>交叉熵损失 = 香农—维纳信息量的直接后裔</h3>
+      <p>"信息是被消除的不确定性"这句 1948 年的定义，今天写成了每个训练脚本里的 <code>cross_entropy_loss</code>。模型预测的分布与真实分布之间的信息差距，就是要最小化的东西。控制论把控制与信息焊成一体的洞察，在这里变成了一行代码。</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">MAP 04 · 黑箱</div>
+      <h3>可解释性研究 = 对黑箱的系统辨识</h3>
+      <p>一个训练好的大模型，对它的创造者也是<strong>黑箱</strong>——我们造得出它，却看不透它为什么这样答。今天的可解释性（interpretability）研究，方法论上正是维纳与阿什比的黑箱方法：系统地改变输入、记录输出、探测内部激活，一点点把黑箱变灰、变白。当年为理解人脑准备的认识论，如今用来理解人造的"脑"。</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">MAP 05 · 稳态与目标</div>
+      <h3>对齐问题 = 给系统装一个正确的设定点</h3>
+      <p>负反馈只保证系统逼近<em>它被给定的目标</em>——但如果目标本身设错了呢？这就是<strong>对齐（alignment）</strong>问题的控制论表述。经典的"回形针最大化"思想实验，本质是一个设定点错误的负反馈系统：它会无比高效地稳定在一个人类不想要的状态上。控制论早就警告过：<strong>反馈的威力有多大，设定点错误的代价就有多大。</strong></p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">MAP 06 · 正反馈</div>
+      <h3>失控风险 = 缺少刹车的正反馈回路</h3>
+      <p>递归自我改进、算法推荐的极化茧房、AI 生成内容污染训练数据再喂给下一代模型（模型崩溃）——这些被担忧的失控场景，数学结构都是<strong>正反馈</strong>：输出放大自身、没有负反馈接管、直到撞上某个极限。控制论给出的应对思路也一样古老而有效：<strong>给失控的回路装上负反馈刹车</strong>——监控、熔断、人在回路（human-in-the-loop）。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">GLOSSARY · 术语直通车</div>
+    <h2>控制论词汇 ↔ AI 词汇</h2>
+    <table class="terms">
+      <tr><th>控制论（1948 / 1983）</th><th>AI 时代（今天）</th></tr>
+      <tr><td>负反馈调节</td><td>梯度下降 / 误差反向传播</td></tr>
+      <tr><td>可能性空间</td><td>参数空间 / 状态空间 / 搜索空间</td></tr>
+      <tr><td>信息 = 不确定性的消除</td><td>交叉熵 / KL 散度 / 信息增益</td></tr>
+      <tr><td>黑箱方法</td><td>可解释性 / 探针 / 行为评测</td></tr>
+      <tr><td>设定点 / 目标</td><td>目标函数 / 奖励模型 / 对齐</td></tr>
+      <tr><td>有记忆的控制</td><td>经验回放 / 强化学习</td></tr>
+      <tr><td>正反馈失控</td><td>递归自我改进 / 模型崩溃 / 信息茧房</td></tr>
+      <tr><td>稳态</td><td>鲁棒性 / 训练稳定性 / 收敛</td></tr>
+      <tr><td>共轭控制（换个可控的等价问题）</td><td>表示学习 / 嵌入空间 / 问题降维</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">WIENER'S WARNING · 维纳的告诫</div>
+    <h2>1948 年写下的、给 2026 年的话</h2>
+    <p>维纳晚年最挂心的不是技术能做什么，而是它可能带来什么。他在《控制论》第八章与后来的《人有人的用处》中反复警告：当自动化取代人的判断、当信息通道被少数力量垄断，社会的反馈回路会失灵，人会沦为回路里被动的一环。</p>
+    <blockquote>
+      我们改变了环境如此彻底，以至于现在必须改变自己，才能在这个新环境中生存。
+      <cite>—— 诺伯特·维纳（大意）</cite>
+    </blockquote>
+    <p>这不是反技术，而是一种<strong>清醒的 owner 意识</strong>：造出会自我调节的系统的人，有责任为它设对目标、装好刹车、把人留在回路里。两本书最终指向同一个落点——<em>控制论既是造物的科学，也是不被造物反噬的智慧。</em></p>
+    <p style="margin-top:28px"><a class="text-link" href="index.html">← 回到总览</a>　·　<a class="text-link" href="cases.html">重看案例库中的"五问分析清单" →</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 控制论 ⟲ 控制论与 AI 时代</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-jin.html">金观涛</a> ·
+      <a href="book-wiener.html">维纳</a> ·
+      <a href="cases.html">案例</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

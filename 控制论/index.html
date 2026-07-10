@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>控制论 · 读书笔记</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">控制论<span class="loop-mark"> ⟲ </span>READING</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-jin.html">《控制论与科学方法论》</a>
+      <a href="book-wiener.html">维纳《控制论》</a>
+      <a href="cases.html">案例库</a>
+      <a href="ai-era.html">控制论与 AI</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">BOOK 01 · CYBERNETICS · 两本书，一个回路</div>
+      <h1>控制、反馈<br>与秩序的科学</h1>
+      <p class="lede">
+        1948 年，维纳在《控制论》中提出：动物与机器共享同一套"通信与控制"的规律。
+        三十多年后，金观涛、华国凡用《控制论与科学方法论》把这套思想变成了普通人也能上手的思维工具。
+        这个站点是这两本书的阅读伴侣——背景、概念、案例，全部整理在此。
+      </p>
+    </div>
+    <div class="figure" style="margin:0">
+      <svg viewBox="0 0 460 300" role="img" aria-label="负反馈控制回路方块图">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2b4c9b"/>
+          </marker>
+        </defs>
+        <!-- 目标输入 -->
+        <text x="10" y="88" font-family="SF Mono, monospace" font-size="12" fill="#5c6470">目标</text>
+        <line x1="10" y1="100" x2="70" y2="100" stroke="#2b4c9b" stroke-width="2" marker-end="url(#arr)" class="loop-flow"/>
+        <!-- 比较器 -->
+        <circle cx="90" cy="100" r="18" fill="#fff" stroke="#1b1c1e" stroke-width="2"/>
+        <text x="90" y="105" text-anchor="middle" font-family="SF Mono, monospace" font-size="14" fill="#1b1c1e">Σ</text>
+        <text x="66" y="132" font-family="SF Mono, monospace" font-size="11" fill="#be3b2c">− 偏差</text>
+        <!-- 控制器 -->
+        <line x1="108" y1="100" x2="160" y2="100" stroke="#2b4c9b" stroke-width="2" marker-end="url(#arr)" class="loop-flow"/>
+        <rect x="162" y="76" width="110" height="48" fill="#fff" stroke="#1b1c1e" stroke-width="2"/>
+        <text x="217" y="105" text-anchor="middle" font-family="PingFang SC, sans-serif" font-size="15" font-weight="700" fill="#1b1c1e">控制器</text>
+        <!-- 受控对象 -->
+        <line x1="272" y1="100" x2="322" y2="100" stroke="#2b4c9b" stroke-width="2" marker-end="url(#arr)" class="loop-flow"/>
+        <rect x="324" y="76" width="110" height="48" fill="#e8edf7" stroke="#1b1c1e" stroke-width="2"/>
+        <text x="379" y="105" text-anchor="middle" font-family="PingFang SC, sans-serif" font-size="15" font-weight="700" fill="#1e3a75">受控对象</text>
+        <!-- 输出 -->
+        <line x1="379" y1="124" x2="379" y2="170" stroke="#2b4c9b" stroke-width="2" class="loop-flow"/>
+        <text x="392" y="152" font-family="SF Mono, monospace" font-size="12" fill="#5c6470">输出</text>
+        <!-- 传感器 -->
+        <line x1="379" y1="170" x2="379" y2="208" stroke="#2b4c9b" stroke-width="2" marker-end="url(#arr)" class="loop-flow"/>
+        <rect x="324" y="210" width="110" height="44" fill="#fff" stroke="#1b1c1e" stroke-width="2"/>
+        <text x="379" y="237" text-anchor="middle" font-family="PingFang SC, sans-serif" font-size="14" font-weight="700" fill="#1b1c1e">传感器</text>
+        <!-- 反馈回路 -->
+        <line x1="322" y1="232" x2="90" y2="232" stroke="#be3b2c" stroke-width="2" class="loop-flow"/>
+        <line x1="90" y1="232" x2="90" y2="120" stroke="#be3b2c" stroke-width="2" marker-end="url(#arr)" class="loop-flow"/>
+        <text x="170" y="252" font-family="SF Mono, monospace" font-size="12" fill="#be3b2c">反馈（信息回送）</text>
+        <!-- 扰动 -->
+        <line x1="379" y1="20" x2="379" y2="72" stroke="#5c6470" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arr)"/>
+        <text x="392" y="34" font-family="SF Mono, monospace" font-size="11" fill="#5c6470">扰动</text>
+      </svg>
+      <div class="figcap"><b>FIG. 00</b> 负反馈控制回路——贯穿两本书的母图式：输出被测量、回送、与目标比较，偏差驱动下一轮调节。</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">THE TWO BOOKS · 为什么是这两本</div>
+    <h2>一本给你思想的源头，一本给你思维的工具</h2>
+    <div class="grid cols-2" style="margin-top:32px">
+      <a class="card" href="book-wiener.html">
+        <span class="tag">源头 · 1948</span>
+        <h3>《控制论》</h3>
+        <p style="font-family:var(--mono);font-size:12px;color:var(--muted)">诺伯特·维纳 Norbert Wiener · MIT</p>
+        <p>全名《控制论：或关于在动物和机器中控制和通信的科学》。二战防空火控研究催生的奠基之作，宣告"信息"与"反馈"是横跨机器、生命与社会的普遍规律。部分章节数学很重——本站给出了逐章的阅读策略和难度标记。</p>
+        <p style="color:var(--blue);font-weight:700">进入逐章导读 →</p>
+      </a>
+      <a class="card" href="book-jin.html">
+        <span class="tag red">工具 · 1983</span>
+        <h3>《控制论与科学方法论》</h3>
+        <p style="font-family:var(--mono);font-size:12px;color:var(--muted)">金观涛 · 华国凡</p>
+        <p>1970 年代以手抄本流传、1983 年正式出版的中文经典。它不复述维纳的数学，而是把控制论提炼成一套可操作的思维方法：可能性空间、共轭控制、稳态、黑箱……影响了整整一代中国读书人。<strong>建议先读这本。</strong></p>
+        <p style="color:var(--blue);font-weight:700">进入精读笔记 →</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">READING PATH · 建议阅读路径</div>
+    <h2>先拿到工具，再回到源头</h2>
+    <div class="grid cols-3" style="margin-top:32px">
+      <div class="card">
+        <span class="tag">STEP 1</span>
+        <h3>建立直觉</h3>
+        <p>浏览本站<a class="text-link" href="concepts.html">核心概念</a>页：可能性空间、负反馈、稳态、信息、黑箱。每个概念都有图解和生活案例，先让这些词在脑中"有画面"。</p>
+      </div>
+      <div class="card">
+        <span class="tag">STEP 2</span>
+        <h3>通读金观涛</h3>
+        <p>《控制论与科学方法论》按章推进，行文流畅、案例密集，一至两周可读完。对照<a class="text-link" href="book-jin.html">精读笔记</a>检查每章的关键抓手是否真正理解。</p>
+      </div>
+      <div class="card">
+        <span class="tag">STEP 3</span>
+        <h3>选读维纳</h3>
+        <p>回到 1948 年的源头。先读导言与第 4、5、8 章，感受维纳跨学科的雄心；数学重的第 2、3 章可以按<a class="text-link" href="book-wiener.html">导读</a>建议略读或跳过。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT MAP · 六个核心抓手</div>
+    <h2>整个学科，六个概念就能撑起来</h2>
+    <p class="lede">控制论看似庞杂，底层结构其实非常紧凑：一切从"缩小可能性空间"开始，靠"反馈"闭环，用"信息"传递，以"稳态"存续，用"黑箱"认识世界。</p>
+    <div class="grid cols-3" style="margin-top:32px">
+      <a class="card" href="concepts.html#possibility"><span class="tag">01</span><h3>可能性空间</h3><p>控制 = 在事物可能状态的集合中做选择，把不确定压缩成确定。</p></a>
+      <a class="card" href="concepts.html#feedback"><span class="tag">02</span><h3>负反馈</h3><p>用"目标与现状的偏差"驱动纠正，是一切稳定系统的心脏。</p></a>
+      <a class="card" href="concepts.html#positive"><span class="tag red">03</span><h3>正反馈</h3><p>偏差放大偏差：增长飞轮，也是恶性循环与失控的根源。</p></a>
+      <a class="card" href="concepts.html#homeostasis"><span class="tag">04</span><h3>稳态</h3><p>生命体在扰动中维持内环境恒定的能力——组织存续的定义。</p></a>
+      <a class="card" href="concepts.html#information"><span class="tag">05</span><h3>信息</h3><p>信息就是被消除的不确定性。通信、思维、组织由此统一。</p></a>
+      <a class="card" href="concepts.html#blackbox"><span class="tag">06</span><h3>黑箱方法</h3><p>不打开系统，仅凭输入—输出关系认识它——一种普适的认识论。</p></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">CONTEXT · 它从哪里来</div>
+    <h2>一门诞生于战火、燃遍八十年代中国的学科</h2>
+    <div class="grid cols-2" style="margin-top:32px">
+      <a class="card" href="history.html">
+        <span class="tag">历史与人物</span>
+        <h3>从防空火炮到梅西会议</h3>
+        <p>维纳的神童生涯、二战火控难题、与生理学家罗森布吕特的合作、香农与阿什比的同期突破、钱学森的《工程控制论》，直到金观涛与"走向未来丛书"——一条完整的时间线。</p>
+        <p style="color:var(--blue);font-weight:700">查看时间线与群像 →</p>
+      </a>
+      <a class="card" href="cases.html">
+        <span class="tag">案例库</span>
+        <h3>十二个经典案例</h3>
+        <p>曹冲称象为什么是"共轭控制"？瓦特调速器如何自动稳速？军备竞赛为什么是正反馈？体温调节、麦克风啸叫、中医诊脉……每个案例对应一个概念。</p>
+        <p style="color:var(--blue);font-weight:700">进入案例库 →</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 控制论 ⟲ 每一个文件夹是一本书</p>
+    <p>
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-jin.html">金观涛</a> ·
+      <a href="book-wiener.html">维纳</a> ·
+      <a href="cases.html">案例</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
