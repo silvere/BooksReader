@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MDL 入口 · 算法信息论读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">K(x)<span class="mk"> := </span>算法信息论</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-mdl.html" class="active">MDL 入口</a>
+      <a href="book-canon.html">教材与 AIXI</a>
+      <a href="decision.html">压缩与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">GRADUS I · GRÜNWALD · MDL</div>
+    <h1>从能跑的地方进门</h1>
+    <p class="lede">算法信息论的纯理论核心（K 不可计算）会把新手挡在门外。最好的入口是把镜头倒过来：先从<strong>能真正跑在数据上</strong>的最小描述长度（MDL）尝到甜头——它把"理解即压缩"落成统计学家日用的模型选择方法，再回头补严格理论就有了动力。彼得·格林沃尔德是这条路上最好的向导。</p>
+  </div>
+</header>
+
+<main>
+
+<section id="tutorial">
+  <div class="wrap prose">
+    <div class="eyebrow">LIBER I · 《A TUTORIAL INTRODUCTION TO THE MDL PRINCIPLE》 · GRÜNWALD · 2004</div>
+    <h2>教程文章：最平缓的第一级台阶 <span class="difficulty"><i class="on"></i><i></i><i></i></span></h2>
+    <p><strong>是什么：</strong>格林沃尔德 2004 年的 MDL 教程（arXiv 公开，也收入他与 Myung、Pitt 合编的论文集）。篇幅适中、例子扎实，是公认最友好的 MDL 入门读物。它不要求你先懂柯氏复杂度——反而用 MDL 帮你<em>建立</em>对"复杂度即码长"的直觉，再顺势引向背后的深理论。</p>
+
+    <div class="chapter">
+      <div class="ch-no">SKELETON · 骨架</div>
+      <h3>三个层层递进的想法</h3>
+      <ul>
+        <li><strong>两段式编码（crude MDL）：</strong>选模型 = 最小化"编码模型的比特 + 用模型编码数据的比特"。这就是你在<a class="text-link" href="concepts.html#lab">实验台</a>上亲手拖出的那条 U 形曲线——过简则残差大，过繁则模型胖。</li>
+        <li><strong>精炼 MDL（refined MDL）：</strong>用"随机复杂度""归一化最大似然"把两段式的随意性去掉，给出一个更干净、更有理论保证的模型选择准则。这是 MDL 从直觉走向严格的关键一步。</li>
+        <li><strong>与主流的对话：</strong>MDL 与贝叶斯（模型长度≈负对数先验）、与 AIC/BIC、与最大似然的异同——让你看清它在统计学地图上的确切位置，而不是把它当孤立奇技。</li>
+      </ul>
+      <div class="keybox">
+        <b>Signature Idea · 代表思想</b>
+        <strong>"学习就是找到数据里的规律，而规律就是能被用来压缩数据的东西。"</strong>格林沃尔德反复回到这句朴素的信条：一个模型只有当它能帮你把数据编码得更短时，才真正学到了东西。分不清信号与噪声？看能不能压缩——噪声不可压，信号可压。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">READING NOTES · 读法</div>
+      <h3>怎么读</h3>
+      <ul>
+        <li><strong>先在实验台建立肌肉记忆</strong>，再读教程：你会发现文字讲的正是你刚拖出来的那条曲线。</li>
+        <li>粗读两段式部分、精读它与贝叶斯的对照——那是连接<a class="text-link" href="../贝叶斯/index.html">书架贝叶斯站</a>的桥。</li>
+        <li>读完想要严格地基（K、不变性、不可计算性），转<a class="text-link" href="book-canon.html#livitanyi">Li &amp; Vitányi 前四章</a>。</li>
+      </ul>
+    </div>
+
+    <div class="keybox">
+      <b>Route · 进阶路线</b>
+      吃透教程后，想系统学 MDL 的人可读格林沃尔德 2007 年的专著《The Minimum Description Length Principle》（MIT Press）——现代 MDL 的集大成，但那是教材而非入门，按需再上。本站的三级阶梯里，它属于"第一级的加长版"。
+    </div>
+    <p class="inscription">REGULARITY IS COMPRESSIBILITY</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 算法信息论 · MDL 入口</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-canon.html">教材与 AIXI</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

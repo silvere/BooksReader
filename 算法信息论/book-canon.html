@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>教材与 AIXI · 算法信息论读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">K(x)<span class="mk"> := </span>算法信息论</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-mdl.html">MDL 入口</a>
+      <a href="book-canon.html" class="active">教材与 AIXI</a>
+      <a href="decision.html">压缩与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">GRADUS II & III · 正典与极限</div>
+    <h1>严格的地基，<br>与不可计算的高峰</h1>
+    <p class="lede">MDL 让你尝到甜头后，两座大山在前：Li &amp; Vitányi 是柯氏复杂度的标准教科书，把直觉钉成定理（前四章足矣）；Hutter 的 AIXI 则把整套理论推到极限——数学上最优、却不可计算的通用智能。前者给你严格，后者给你眩晕。</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== Li & Vitányi ===== -->
+<section id="livitanyi">
+  <div class="wrap prose">
+    <div class="eyebrow">LIBER II · 《AN INTRODUCTION TO KOLMOGOROV COMPLEXITY AND ITS APPLICATIONS》 · SPRINGER</div>
+    <h2>标准教材：把直觉钉成定理 <span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i></span></h2>
+    <p><strong>是什么：</strong>李明与保罗·维塔尼合著，柯尔莫哥洛夫复杂度几十年不衰的权威教科书（Springer，历经多版修订）。它全面到近乎百科——从纯理论到在物理、生物、学习中的应用无所不包。正因如此，<strong>新手最大的错误是想通读它</strong>。</p>
+
+    <div class="chapter">
+      <div class="ch-no">SKELETON · 骨架</div>
+      <h3>只读前四章：地基就够了</h3>
+      <ul>
+        <li><strong>预备（第 1 章）：</strong>图灵机、可计算性、香农信息论的快速回顾——把工具摆齐。</li>
+        <li><strong>柯氏复杂度（第 2 章）：</strong>K 的正式定义、<a class="text-link" href="concepts.html#invariance">不变性定理</a>（那个让整门学科成立的时刻）、K 的基本性质与<a class="text-link" href="concepts.html#uncomputable">不可计算性</a>的严格证明。<em>全书的心脏。</em></li>
+        <li><strong>算法概率（第 3–4 章）：</strong>通用先验、<a class="text-link" href="concepts.html#solomonoff">Solomonoff 归纳</a>、以及它与柯氏复杂度的深刻联系（"编码定理"）。读到这里，你就理解了贝叶斯先验的终极形态。</li>
+      </ul>
+      <div class="keybox">
+        <b>How To Read · 读法</b>
+        <strong>前四章精读，其余当参考手册。</strong>需要数学成熟度（可计算性、概率论基础），但作者的讲解在同类中已属清晰。配合本站概念页与实验台建立的直觉读，会顺畅很多——先有画面，再看证明。
+      </div>
+    </div>
+
+    <div class="keybox">
+      <b>Caveat · 一点保留</b>
+      厚、硬、以数学证明为主，不是"读物"是"教材"，需要坐下来啃。以及那个贯穿全学科的现实：<strong>它教你的核心量永远算不出来</strong>——本书的价值是让你严格地<em>理解</em>这个不可计算的对象，而不是<em>使用</em>它。想要"能用"，回 MDL；想要"真懂"，读这四章。
+    </div>
+  </div>
+</section>
+
+<!-- ===== Hutter AIXI ===== -->
+<section id="hutter">
+  <div class="wrap prose">
+    <div class="eyebrow">LIBER III · 《UNIVERSAL ARTIFICIAL INTELLIGENCE》 · HUTTER · SPRINGER 2005</div>
+    <h2>AIXI：智能的理论极限 <span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i></span></h2>
+    <p><strong>是什么：</strong>马库斯·胡特的《Universal Artificial Intelligence: Sequential Decisions based on Algorithmic Probability》（Springer 2005）。它回答一个终极问题：<strong>如果不计算力代价，最优的通用智能长什么样？</strong>答案是 AIXI——把 <a class="text-link" href="concepts.html#solomonoff">Solomonoff 归纳</a>（用最短程序为一切可能环境赋概率）与序贯决策论（选期望回报最大的行动）合成的一个方程。</p>
+
+    <div class="chapter">
+      <div class="ch-no">SKELETON · 骨架</div>
+      <h3>两块积木，一个方程</h3>
+      <ul>
+        <li><strong>归纳的一半：</strong>AIXI 同时考虑<em>每一个</em>可计算的环境假设，按其程序长度加权（奥卡姆：越短越可信）——这是 Solomonoff 归纳的直接搬用。</li>
+        <li><strong>决策的一半：</strong>在这个对世界的加权信念上，选那个使未来期望回报最大的行动。归纳 + 决策 = 一个在任意未知环境中都可证明最优的智能体。</li>
+        <li><strong>严格的边界：</strong>全书的技术核心是给 AIXI 的性能证明各种上界与最优性定理——把"通用智能"从口号变成可证明的数学对象。</li>
+      </ul>
+      <div class="keybox">
+        <b>Signature Idea · 代表思想</b>
+        <strong>智能 = 压缩 + 决策。</strong>AIXI 把书架的两条线焊死：<a class="text-link" href="concepts.html">算法信息论</a>提供"如何从经验中学习"（归纳），<a class="text-link" href="../机制设计/index.html">决策论</a>提供"如何行动"（这也是<a class="text-link" href="../贝叶斯/index.html">贝叶斯</a>与<a class="text-link" href="../自由能/index.html">自由能</a>的共同底座）。一个方程，标定了学习型智能的绝对上界。
+      </div>
+    </div>
+
+    <div class="keybox">
+      <b>Caveat · 一点保留</b>
+      两条务必记住的边界：① <strong>AIXI 不可计算</strong>（继承了 K 的诅咒），它是灯塔不是蓝图——别把它当成"造 AGI 的配方"，可计算的近似（AIXItl、MC-AIXI）性能远弱；② 它假设一个固定的、可用图灵机描述的环境，对"智能体改变自身""镜像博弈"等自指情形有已知的理论困难。它回答"最优智能的形状"，不回答"如何在有限算力下逼近它"——后者才是当代 AI 的战场。
+    </div>
+    <p>想要更平缓的入口：胡特与 Quarel、Catt 的新书《An Introduction to Universal Artificial Intelligence》（2024）是面向课堂的现代重写，比 2005 年原著好读不少，可作缓坡。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">SUMMA · 阶梯总览</div>
+    <h2>各就各位</h2>
+    <table class="terms">
+      <tr><th>书</th><th>角色</th><th>怎么读</th><th>拿到什么</th></tr>
+      <tr><td>Grünwald MDL 教程</td><td>入口 · 可操作</td><td>配实验台，先跑起来</td><td>"压缩即学习"的手感与方法</td></tr>
+      <tr><td>Li &amp; Vitányi</td><td>正典 · 严格</td><td>只读前四章</td><td>K、不变性、不可计算、Solomonoff 的地基</td></tr>
+      <tr><td>Hutter《Universal AI》</td><td>极限 · 眩晕</td><td>硬啃或读 2024 新导论版</td><td>智能=压缩+决策的理论天花板</td></tr>
+    </table>
+    <p class="prose">三级读完，你会带走一个统一的世界观：<strong>学习、预测、理解、智能，本质上是同一件事——压缩</strong>。下一步：<a class="text-link" href="decision.html">把这一切接进日常决策 →</a></p>
+    <p class="inscription">INTELLIGENCE = COMPRESSION + DECISION</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 算法信息论 · 教材与 AIXI</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-mdl.html">MDL</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

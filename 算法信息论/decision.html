@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>压缩与决策 · 算法信息论读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">K(x)<span class="mk"> := </span>算法信息论</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-mdl.html">MDL 入口</a>
+      <a href="book-canon.html">教材与 AIXI</a>
+      <a href="decision.html" class="active">压缩与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">EPILOGUE · 压缩与决策</div>
+    <h1>你懂不懂一件事，<br>看你能不能把它说短</h1>
+    <p class="lede">这一页是全站的落点：三本书浓缩成五个决策推论，每个配一个立刻可用的检查动作。核心只有一句——理解就是压缩。你对一件事的掌握程度，精确地等于你能把它无损地说到多短。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 1 · 压缩测试</div>
+    <h2>能说短，才是真懂</h2>
+    <p>算法信息论给"理解"一个可操作的判据：<strong>如果你只能把一个知识一字不差地复述，你没理解它，你记住了它</strong>（K 高，不可压缩）；如果你能用几条原理重新推出全部细节，你理解了它（找到了短程序）。费曼的名言"如果你不能把它讲简单，说明你没真懂"，在这里是一条定理，不是鸡汤。</p>
+    <p>反过来，这也是最好的<strong>检测虚假理解的探针</strong>：一份能压缩成三句话的报告，作者真的懂；一份删一个字都不行、全是并列细节的报告，作者多半在堆砌。会议、文档、汇报同理——<em>可压缩性泄露了理解的深度</em>。</p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      学完任何东西，强制自己做一次"压缩"：不看原material，用最少的话把它的生成规则写下来，再由这几句话推出细节。压不短，就是还没懂——回去找那条你没抓住的规律。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 2 · 两段式记账</div>
+    <h2>好解释 = 模型够简 + 例外够少</h2>
+    <p><a class="text-link" href="concepts.html#mdl">MDL 的两段式编码</a>是评判任何解释、理论、方案的通用天平：<strong>总成本 = 描述规则的复杂度 + 描述例外的复杂度</strong>。一个"简单但漏洞百出"的理论（模型短、例外多）和一个"面面俱到却臃肿不堪"的理论（模型长、例外少）都不是最优——最优的那个让两项之和最小。</p>
+    <p>这把很多争论量化了：一个满是特例补丁的策略（"这种情况除外，那种情况另算……"）在为它的过度拟合付高昂的"例外码长"；一个简洁却总在现实前碰壁的原则，在付高昂的"残差码长"。<em>好的判断力，就是对这两项的总账保持敏感</em>——而不是单独迷恋"简单"或"周全"。</p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      评估一个方案/理论时分两栏记账：它的核心规则多复杂（几条？）？它需要多少"例外条款"来打补丁？某一栏在暴涨，就是它在过简或过繁——最好的那个，两栏之和最小。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 3 · 奥卡姆有刀刃</div>
+    <h2>更简单的解释，不只是更优雅，是更可能对</h2>
+    <p><a class="text-link" href="concepts.html#solomonoff">Solomonoff 归纳</a>把"如无必要勿增实体"从审美升级为概率定律：<strong>能同样解释现有证据的假设中，最短的那个先验概率最高，因此最可能为真</strong>。面对一个现象，"简单机制 + 巧合"和"复杂阴谋 + 精密配合"若都能解释，前者不只是听着舒服——它在数学上就是更可能的那个。</p>
+    <p>这也给"非同寻常的主张需要非同寻常的证据"一个信息论版本（和<a class="text-link" href="../贝叶斯/index.html">贝叶斯站</a>握手）：复杂假设的程序长、先验低，需要成比例更多的证据才能把它的后验抬上来。<em>阴谋论的心理引力，恰恰源于它无视了自己那条长得吓人的程序所要付的先验代价。</em></p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      两个解释都说得通时，数一数各自要假设多少独立的"巧合/前提"。假设更少的那个（程序更短）默认领先——要推翻这个默认，复杂解释必须带来简单解释给不出的、可检验的新预测。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 4 · 分辨信号与噪声</div>
+    <h2>压不动的部分，别硬去解释</h2>
+    <p>算法信息论给了信号与噪声一个硬边界：<strong>信号 = 可压缩的部分（有规律），噪声 = 不可压缩的部分（随机）</strong>。试图为噪声寻找解释，就是<a class="text-link" href="concepts.html#lab">过拟合</a>——用越来越长的模型去记忆本无规律的东西，账面上残差在降，实则在给随机性编故事。市场的每日波动、单次实验的偶然结果、个体的一次异常表现里，有很大一块是压不动的噪声。</p>
+    <p>成熟的判断力包含一种<strong>克制</strong>：识别出哪些是压不动的，然后停止解释它。"这个季度掉了 3%"可能没有故事，就是噪声；非要开个复盘会找出"根因"，往往是在为随机性发明因果——这与<a class="text-link" href="../因果推断/index.html">因果推断站</a>"别给均值回归编故事"是同一课。<em>知道什么不该被解释，和知道什么该被解释，同样重要。</em></p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      面对一个波动或异常，先问："它可压缩吗？"——同样的模式在别处重复出现过吗？只出现一次、无法从其他数据预测的，大概率是噪声，别为它开根因分析会。把解释的力气留给能压缩的信号。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 5 · 敬畏不可计算</div>
+    <h2>最优的标尺，你永远够不到</h2>
+    <p>算法信息论最成熟的一课是关于<a class="text-link" href="concepts.html#uncomputable">极限</a>的：<strong>K、Solomonoff 归纳、AIXI——这些"完美答案"全都不可计算</strong>。它们定义了理解、归纳、智能的绝对上界，然后告诉你这个上界永远够不到手。这不该让你虚无，而该让你校准：你手里的每一个方法（MDL、机器学习、你自己的判断），都是对一个够不着的理想的<em>逼近</em>，永远有改进空间，也永远不是终点。</p>
+    <p>这份"定义清晰却不可完全抵达"的清醒，是整个书架的暗线共鸣：<a class="text-link" href="../贝叶斯/index.html">贝叶斯</a>的完美先验、<a class="text-link" href="../自由能/index.html">自由能</a>的真实生成模型、<a class="text-link" href="../庄子/index.html">庄子</a>的道、<a class="text-link" href="../拉康/index.html">拉康</a>的实在界——都是同一种存在：<strong>作为方向真实无比，作为终点永不抵达</strong>。好的决策者与它们保持的关系，是持续逼近而非宣称抵达。</p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      每当你觉得"这就是最优解/终极答案"，提醒自己：真正的最优是不可计算的，你手里的只是一个逼近。留一个改进的接口，别把当前最好的方案供成不可动摇的教条——这也是<a class="text-link" href="../贝叶斯/index.html">克伦威尔法则</a>在信息论里的回声。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">GLOSSARY · 术语直通车</div>
+    <h2>算法信息论词汇 ↔ 日常决策词汇</h2>
+    <table class="terms">
+      <tr><th>算法信息论（1964 – 今）</th><th>日常决策语境</th></tr>
+      <tr><td>柯氏复杂度 K(x)</td><td>一件事的固有难度：最短能说清它的话</td></tr>
+      <tr><td>可压缩 / 不可压缩</td><td>有规律可学 / 纯噪声无从下手</td></tr>
+      <tr><td>理解 = 压缩</td><td>能说短才是真懂，复述不算</td></tr>
+      <tr><td>两段式编码（MDL）</td><td>规则复杂度 + 例外复杂度，求和最小</td></tr>
+      <tr><td>过拟合</td><td>给噪声编故事 / 特例补丁太多</td></tr>
+      <tr><td>Solomonoff 先验</td><td>更简单的假设，先验更高</td></tr>
+      <tr><td>信号 vs 噪声</td><td>该解释的 vs 不该解释的</td></tr>
+      <tr><td>不可计算</td><td>最优标尺存在但永远够不到</td></tr>
+      <tr><td>Chaitin 的 Ω</td><td>有些真相定义清晰却不可知</td></tr>
+      <tr><td>智能 = 压缩 + 决策</td><td>学到规律，再据此行动</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">FINIS · 收束</div>
+    <h2>书架十二站，压缩成一句话</h2>
+    <p>如果整座书架也要接受它自己的压缩测试，那条最短的生成程序或许就是这一站给的：<strong>每一门学问，都是人类为某类复杂性找到的一个更短的描述。</strong><a class="text-link" href="../控制论/index.html">控制论</a>压缩了"系统如何维持自身"，<a class="text-link" href="../因果推断/index.html">因果推断</a>压缩了"什么导致什么"，<a class="text-link" href="../贝叶斯/index.html">贝叶斯</a>压缩了"信念如何更新"，<a class="text-link" href="../自由能/index.html">自由能</a>压缩了"大脑如何运作"，<a class="text-link" href="../机制设计/index.html">机制设计</a>压缩了"规则如何塑造行为"，<a class="text-link" href="../VSM/index.html">VSM</a>压缩了"组织如何存活"——而算法信息论，压缩了"压缩"本身。</p>
+    <p>它也接住了每一条暗线的极限之问：贝叶斯的先验、自由能的模型、庄子的道、拉康的实在界，都是<em>不可计算的完美</em>——定义清晰，作为方向真实，作为终点永不抵达。<strong>回路、操典、X 光、河流、检验引擎、心智实验室、游刃之刀、刻度盘、收敛的棋盘、预测机、可行系统——现在，一把度量它们全部的绝对标尺，尽管它自己承认永远够不到。</strong></p>
+    <p>读书的最后一步，也是这门学问给你的终身作业：挑一件你自以为懂的事，试着把它压到最短——你能说到多短，你就真的懂到多深。</p>
+    <p class="inscription">TO UNDERSTAND IS TO COMPRESS</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 算法信息论 · 压缩与决策</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-mdl.html">MDL</a> ·
+      <a href="book-canon.html">教材与 AIXI</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

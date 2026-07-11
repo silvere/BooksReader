@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>历史与人物 · 算法信息论读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">K(x)<span class="mk"> := </span>算法信息论</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html" class="active">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-mdl.html">MDL 入口</a>
+      <a href="book-canon.html">教材与 AIXI</a>
+      <a href="decision.html">压缩与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">HISTORIA · 历史与人物</div>
+    <h1>三个人，三个动机，<br>一个最短程序</h1>
+    <p class="lede">算法信息论的诞生是科学史上罕见的"三重独立发现"：一个想解决归纳问题、一个想定义随机性、一个想探测数学的极限——三条毫不相干的路，几乎同时抵达了同一个概念："生成一个对象的最短程序"。这种收敛本身，就是这个概念不可回避的证据。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">CHRONICA · 编年</div>
+    <h2>从归纳问题到 AI 的天花板</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-year">1948</div>
+        <h3>香农：信息论奠基</h3>
+        <p>香农用熵度量一个<strong>信源</strong>的平均信息量——它关心的是概率分布，不是单个对象。"这一条特定的消息本身有多少信息"这个问题，香农框架回答不了。算法信息论正是来补这个缺口的。（书架 <a class="text-link" href="../控制论/index.html">BOOK 01</a> 时代的同代产物。）</p>
+      </div>
+      <div class="t-item milestone">
+        <div class="t-year">1960 – 1964</div>
+        <h3>Solomonoff：为归纳而生</h3>
+        <p>雷·所罗门诺夫想解决哲学最古老的难题——归纳（凭什么从有限观察推断普遍规律）。他的答案惊世骇俗：<strong>给每个可能的解释按其最短程序长度赋概率，越短越可能</strong>。这就是 Solomonoff 归纳与"通用先验"，把奥卡姆剃刀第一次写成了数学。他是三人中最早的，却长期最被埋没。</p>
+      </div>
+      <div class="t-item milestone">
+        <div class="t-year">1965</div>
+        <h3>Kolmogorov：为随机性而生</h3>
+        <p>概率论泰斗柯尔莫哥洛夫从完全不同的动机出发：<strong>什么叫一个单独的序列是"随机"的？</strong>他的定义石破天惊——随机 = 不可压缩 = 没有比它自身更短的描述。这个量后来以他命名（柯氏复杂度 K），学科也因他之名而立。</p>
+      </div>
+      <div class="t-item milestone">
+        <div class="t-year">1966 – 1975</div>
+        <h3>Chaitin：为极限而生</h3>
+        <p>格里高利·蔡廷（发现时还是个少年）第三次独立抵达同一概念，动机是探测数学的边界。他后来构造出<strong>停机概率 Ω</strong>——一个定义完好、却不可计算、且"最大随机"的实数，把哥德尔不完备性翻译成了信息论语言：<em>任何形式系统只能证明有限多的"这串是随机的"</em>。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1960s – 70s</div>
+        <h3>不可计算性：美丽而残酷的定理</h3>
+        <p>三人很快都撞上同一堵墙：<strong>K(x) 是不可计算的</strong>——不存在任何算法，能对任意字符串输出它的最短程序长度（与停机问题同源）。这个理论最深刻的概念，恰恰永远无法被精确算出。整个学科此后的应用史，都是"如何绕过这堵墙"的历史。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1978</div>
+        <h3>Rissanen：MDL——把理论落地</h3>
+        <p>约尔马·里萨宁在 IBM 提出<strong>最小描述长度（MDL）原则</strong>：既然真正的 K 算不出，就用<em>实际的、可计算的压缩</em>来近似它。选模型 = 选那个"模型长度 + 用模型编码数据的长度"之和最短的。理论的幽灵终于落地为统计学家能用的方法。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1997 · 2008 · 2019</div>
+        <h3>Li &amp; Vitányi：写出标准教材</h3>
+        <p>李明与保罗·维塔尼合著《An Introduction to Kolmogorov Complexity and Its Applications》，历经多版修订，成为这门学科几十年不衰的权威教科书——严格、全面，也是本站的第二级台阶。</p>
+      </div>
+      <div class="t-item milestone">
+        <div class="t-year">2005</div>
+        <h3>Hutter：AIXI，智能的理论极限</h3>
+        <p>马库斯·胡特把 Solomonoff 归纳与序贯决策论合成 <strong>AIXI</strong>——一个在数学上对任意未知环境都最优的通用智能体。它不可计算（继承了 K 的诅咒），却像一座灯塔，标定了"通用智能"这件事的绝对上界。《Universal Artificial Intelligence》是它的正典。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">2007</div>
+        <h3>Grünwald：MDL 的现代集大成</h3>
+        <p>彼得·格林沃尔德的《The Minimum Description Length Principle》（MIT Press）系统整理了现代 MDL，把这门"理解即压缩"的手艺打磨成成熟的统计学分支。他 2004 年的教程文章，是本站为你选的第一级入口。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">今天</div>
+        <h3>大模型时代的回响</h3>
+        <p>"预测下一个词"的训练目标本质是无损压缩；缩放定律、"压缩即智能"的论断、用压缩率评估模型——算法信息论 60 年前的洞见，正成为理解当代 AI 的核心语言。Solomonoff 的幽灵，终于住进了数据中心。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">PERSONAE · 群像</div>
+    <h2>五个把信息写成程序长度的人</h2>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="tag">归纳者</div>
+        <h3>雷·所罗门诺夫（1926 – 2009）</h3>
+        <p>算法概率与通用归纳的创立者，三人中最早却最被埋没的一位。他一生只想回答一个问题：一台机器该如何从经验中学习？答案就是宇宙中最简单的假设最可能为真。</p>
+      </div>
+      <div class="card">
+        <div class="tag steel">立名者</div>
+        <h3>安德雷·柯尔莫哥洛夫（1903 – 1987）</h3>
+        <p>二十世纪最伟大的数学家之一，概率论公理化的奠基人。晚年为"什么是随机"给出终极定义——学科以他之名，也因他的权威而被主流数学正式接纳。</p>
+      </div>
+      <div class="card">
+        <div class="tag">探边者</div>
+        <h3>格里高利·蔡廷（1947 – ）</h3>
+        <p>少年成名的数学家。停机概率 Ω 的构造者——一个把哥德尔不完备翻译成信息论的、"知道但算不出"的数。他毕生痴迷于数学中不可约的随机性。</p>
+      </div>
+      <div class="card">
+        <div class="tag steel">落地者</div>
+        <h3>约尔马·里萨宁（1932 – 2020）</h3>
+        <p>IBM 的信息论学家，MDL 原则的提出者。他做了三位先驱没做的事：把不可计算的理论，变成统计学家真能拿去选模型的可操作方法。</p>
+      </div>
+      <div class="card">
+        <div class="tag steel">登顶者</div>
+        <h3>马库斯·胡特（1967 – ）</h3>
+        <p>AIXI 的提出者，DeepMind 高级研究员。他把算法信息论推到最远处：如果不计算力代价，最优的通用智能长什么样？答案是一个美丽而不可计算的方程。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">MORALIS · 这段历史的教训</div>
+    <h2>最深的概念，往往算不出来</h2>
+    <p>算法信息论给了我们一个罕见的哲学礼物：<strong>一个既是终极答案、又永远无法精确取用的概念</strong>。K(x) 定义了信息、随机、简单、理解的绝对标尺——然后告诉你，这把标尺你永远拿不到手（不可计算）。这不是失败，而是一种深刻的诚实：它划出了"可知"的边界，并让整个应用史（压缩、MDL、机器学习）都成为"如何优雅地逼近一个够不着的真理"的艺术。</p>
+    <p>这与书架的暗线深深共鸣：<a class="text-link" href="../贝叶斯/index.html">贝叶斯</a>的完美先验、<a class="text-link" href="../自由能/index.html">自由能</a>的真实生成模型、<a class="text-link" href="../拉康/index.html">拉康</a>的实在界——都是<em>定义清晰却永不可完全抵达</em>的极限。带着这份对边界的敬意，进入<a class="text-link" href="concepts.html">概念页</a>。</p>
+    <p class="inscription">DEFINED YET UNREACHABLE</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 算法信息论 · 历史与人物</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-mdl.html">MDL</a> ·
+      <a href="book-canon.html">教材与 AIXI</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

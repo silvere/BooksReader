@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>算法信息论 · 读书总览</title>
+<meta name="description" content="算法信息论读书站：一个对象的信息量 = 生成它的最短程序长度。它统一了压缩、学习与奥卡姆剃刀，让「理解就是压缩」成为可证明的命题。阶梯：Grünwald MDL → Li & Vitányi → Hutter AIXI。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">K(x)<span class="mk"> := </span>算法信息论</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-mdl.html">MDL 入口</a>
+      <a href="book-canon.html">教材与 AIXI</a>
+      <a href="decision.html">压缩与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">BOOK 12 · ALGORITHMIC INFORMATION THEORY · 1964 –</div>
+      <h1>理解，<br>就是压缩</h1>
+      <p class="lede">香农信息论度量的是"平均"信息量——一个信源长期的不确定性。算法信息论把镜头对准<strong>单个对象</strong>：一个字符串的信息量，等于<strong>能生成它的最短程序的长度</strong>。这个定义看似朴素，却把压缩、学习、归纳、奥卡姆剃刀焊成一体——"理解就是压缩"在这里第一次有了严格证明。它也是<a class="text-link" href="../贝叶斯/index.html">贝叶斯</a>先验的终极形态，和<a class="text-link" href="../自由能/index.html">自由能</a>那句"预测即压缩"的数学底座。</p>
+      <blockquote style="margin-top:28px">
+        一个理论的价值，在于它比它所解释的数据更短。若你的模型和数据一样长，你没有理解，只是记住了。
+        <cite>MDL 原则的一句话概括 · 本站导言</cite>
+      </blockquote>
+    </div>
+    <div class="figure" style="margin:0">
+      <svg viewBox="0 0 560 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="两个等长字符串：规律串可被短程序生成，随机串的最短程序几乎就是它本身">
+        <g font-family="SF Mono,monospace">
+          <text x="20" y="34" font-size="12" letter-spacing="1" fill="#66646a">SAME LENGTH · DIFFERENT COMPLEXITY</text>
+          <!-- 规律串 -->
+          <text x="20" y="76" font-size="15" font-weight="700" fill="#18181c">01010101010101010101010101010101</text>
+          <text x="20" y="98" font-size="12" fill="#66646a">32 bit · 高度规律</text>
+          <!-- 箭头到短程序 -->
+          <path d="M120 112 L 120 138" stroke="#33475a" stroke-width="2" marker-end="url(#a1)"/>
+          <rect x="30" y="140" width="220" height="44" fill="#33475a"/>
+          <text x="140" y="162" font-size="13" fill="#f7f6f4" text-anchor="middle">print "01" × 16</text>
+          <text x="140" y="178" font-size="11" fill="#a9b6c2" text-anchor="middle">K ≈ 小 · 可压缩 · 有结构</text>
+
+          <!-- 随机串 -->
+          <text x="20" y="250" font-size="15" font-weight="700" fill="#18181c">01101000110010100110111101110010</text>
+          <text x="20" y="272" font-size="12" fill="#66646a">32 bit · 无规律</text>
+          <path d="M120 286 L 120 312" stroke="#c0203a" stroke-width="2" marker-end="url(#a2)"/>
+          <rect x="30" y="314" width="330" height="44" fill="#c0203a"/>
+          <text x="195" y="336" font-size="13" fill="#f7f6f4" text-anchor="middle">print "01101000110010100110111101110010"</text>
+          <text x="195" y="352" font-size="11" fill="#f6d5da" text-anchor="middle">K ≈ 串长本身 · 不可压缩 · 即"随机"的定义</text>
+
+          <!-- 结论 -->
+          <text x="20" y="400" font-size="13" fill="#18181c">K(x) := 最短程序长度 = x 的固有信息量</text>
+          <text x="20" y="420" font-size="12" fill="#8f1329">随机 = 不可压缩 = 没有比"照抄"更短的描述</text>
+        </g>
+        <defs>
+          <marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#33475a"/></marker>
+          <marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0203a"/></marker>
+        </defs>
+      </svg>
+      <div class="figcap"><b>FIG. I</b> 柯尔莫哥洛夫复杂度 K(x) —— 两个 32 位串等长，信息量却天差地别：规律串能被一句短程序生成（K 小），随机串的最短程序几乎就是"照抄它自己"（K ≈ 串长）。<b>随机性 = 不可压缩性</b>——这是它最深的定义。</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">CUR LEGERE · 为什么读算法信息论</div>
+    <h2>一个定义，接通四件大事</h2>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="tag">统一</div>
+        <h3>压缩 = 学习 = 预测</h3>
+        <p>能压缩一段数据，就意味着你找到了它的规律；找到规律，就能预测它的续写。<strong>无损压缩率与预测能力在数学上是一回事</strong>——这解释了为什么大语言模型的训练目标（预测下一个词）本质上是一台压缩机。</p>
+      </div>
+      <div class="card">
+        <div class="tag steel">证明</div>
+        <h3>奥卡姆剃刀不再是审美</h3>
+        <p>"如无必要，勿增实体"两千年来是一条哲学格言。Solomonoff 归纳把它变成定理：<strong>给每个假设按其最短程序长度赋先验概率</strong>，最简单的解释在数学上就是最可能对的——剃刀有了刀刃。</p>
+      </div>
+      <div class="card">
+        <div class="tag">极限</div>
+        <h3>智能的理论天花板</h3>
+        <p>把 Solomonoff 归纳装进一个决策智能体，就得到 Hutter 的 AIXI——<strong>在数学上最优的通用人工智能</strong>。它不可计算，却像光速一样标定了"学习"这件事的绝对上界，是一切 AI 的北极星。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">TRES GRADUS · 三级阶梯</div>
+    <h2>先上手 → 再筑基 → 后登顶</h2>
+    <p class="lede" style="margin-bottom:32px">这门学问的纯理论核心（K 不可计算）会劝退新手。正确的进入顺序是反过来的：先从可操作的 MDL 尝到甜头，再回头补严格的柯氏复杂度，最后仰望 AIXI 那座不可计算的高峰。</p>
+    <div class="grid cols-3">
+      <a class="card" href="book-mdl.html">
+        <div class="tag">第一级 · 入口</div>
+        <h3>Grünwald · MDL 导论</h3>
+        <p>最小描述长度原则：把"理解即压缩"做成可真正跑在数据上的统计方法。从 2004 年的教程文章入手，最平缓、最实用的上手点。</p>
+      </a>
+      <a class="card" href="book-canon.html#livitanyi">
+        <div class="tag steel">第二级 · 正典</div>
+        <h3>Li &amp; Vitányi 教材</h3>
+        <p>柯尔莫哥洛夫复杂度的标准教科书，几十年权威。不必通读——<strong>前四章</strong>足以打下不变性定理、不可计算性、Solomonoff 归纳的严格地基。</p>
+      </a>
+      <a class="card" href="book-canon.html#hutter">
+        <div class="tag steel">第三级 · 极限</div>
+        <h3>Hutter《Universal AI》</h3>
+        <p>AIXI：把算法概率与序贯决策合成的通用智能理论极限（2005）。硬核，但有 2024 年更易读的新导论版可作缓坡。</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">MAPPA · 本站地图</div>
+    <h2>六页怎么走</h2>
+    <p><a class="text-link" href="history.html">历史与人物</a>先讲三个人几乎同时发现同一件事：Solomonoff 为了归纳、Kolmogorov 为了随机性、Chaitin 为了极限，殊途同归于"最短程序"。<a class="text-link" href="concepts.html">核心概念</a>是主菜：柯氏复杂度、不变性定理、不可计算性、Solomonoff 归纳、MDL、Chaitin 的 Ω，配签名互动<strong>「MDL 实验台」</strong>——亲手拖动模型复杂度，看总描述长度画出那条 U 形曲线，在过简与过繁之间找到理解的最优点。<a class="text-link" href="book-mdl.html">MDL 入口</a>与<a class="text-link" href="book-canon.html">教材与 AIXI</a>逐本拆骨架、给读法、亮保留意见。<a class="text-link" href="decision.html">压缩与决策</a>收束全站：五个推论、五个检查动作，并与书架诸站的暗线合拢。</p>
+    <p class="inscription">COMPRESSION IS COMPREHENSION</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 算法信息论 · 总览</p>
+    <p>
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-mdl.html">MDL</a> ·
+      <a href="book-canon.html">教材与 AIXI</a> ·
+      <a href="decision.html">决策专题</a> ·
+      <a href="../index.html">← 书架</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
