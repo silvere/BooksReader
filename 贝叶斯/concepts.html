@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 贝叶斯读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">贝叶斯<span class="mk"> ∝ </span>BAYES</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-rethinking.html">Rethinking 精读</a>
+      <a href="book-canon.html">Jaynes 与 Gelman</a>
+      <a href="decision.html">贝叶斯与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPTUS · 核心概念</div>
+    <h1>六个概念，<br>一套信念的力学</h1>
+    <p class="lede">贝叶斯体系的全部零件其实很少：一个世界观（概率是逻辑）、一条定理（更新规则）、一个天敌（基率谬误）、一桩悬案（先验哪来）、一场论战（与频率派）、一件重武器（层级模型）。逐个拆开，最后在「检测悖论实验台」上亲手验证。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="logic">
+      <div class="eyebrow">CONCEPT 1 · 概率即扩展的逻辑</div>
+      <h2>不确定世界里的三段论</h2>
+      <p>经典逻辑只处理真与假：大前提、小前提、结论，铁板钉钉。但现实推理几乎全是"下雨的话路会湿；路湿了——那么<em>多半</em>下过雨"这种不完全推断。Jaynes 沿 Cox 定理证明的结论石破天惊：<strong>只要你要求推理满足几条常识性的一致性要求</strong>（用实数表示信念强度、与常识定性一致、等价问题得出等价答案），<strong>那么你的推理规则在数学上必然就是概率论</strong>——别无分店。</p>
+      <p>这个立场下，概率不是事物的物理属性，而是<strong>推理者信息状态的度量</strong>。同一枚硬币，对知道它两面都是头像的人和不知道的人，概率就是不同的——这不是矛盾，这正是重点。Jaynes 把"把自己的无知当作世界的属性"命名为<em>心灵投射谬误</em>（mind projection fallacy），全书追杀它八百页。</p>
+    </div>
+
+    <div class="concept" id="theorem">
+      <div class="eyebrow">CONCEPT 2 · 贝叶斯定理</div>
+      <h2>更新的算术：后验 ∝ 似然 × 先验</h2>
+      <p>定理本身只是条件概率的一行代数，真正的内容在读法上：P(H|D) ∝ P(D|H) · P(H)——<strong>看到数据 D 之后对假设 H 的信念，等于原有信念乘以"假设 H 对数据 D 的预测力"</strong>。预测得越准的假设，分到的信念增量越大。</p>
+      <p>日常使用最好换成赔率形式：<strong>后验赔率 = 先验赔率 × 似然比</strong>。似然比 P(D|H)/P(D|非H) 是证据强度的纯度量——一条证据支持谁，不看它与 H 多契合，而看它在 H 下比在非 H 下<em>常见多少倍</em>。"凶手是熟人（80% 案件如此）"听着有罪，但如果无辜的熟人同样会留下这些痕迹，似然比就是 1，证据毫无重量。图灵破译密码用的"ban"，就是似然比的对数单位。</p>
+    </div>
+
+    <div class="figure">
+      <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="先验分布乘以似然得到后验分布的示意曲线">
+        <!-- 坐标轴 -->
+        <line x1="50" y1="250" x2="690" y2="250" stroke="#211f1f" stroke-width="1.5"/>
+        <text x="690" y="272" font-family="Songti SC,serif" font-size="13" fill="#6e6862" text-anchor="end">参数 θ（如：真实转化率）</text>
+        <!-- 先验：宽而平（靛青） -->
+        <path d="M60 248 C 160 190 260 190 370 226 C 470 252 580 250 680 250" fill="none" stroke="#2f4858" stroke-width="2.5"/>
+        <text x="120" y="176" font-family="Songti SC,serif" font-size="14" font-weight="700" fill="#2f4858">先验：来之前就知道的</text>
+        <!-- 似然：数据的声音（灰虚线） -->
+        <path d="M60 250 C 300 250 340 70 420 70 C 500 70 540 250 690 250" fill="none" stroke="#a9a294" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="470" y="86" font-family="Songti SC,serif" font-size="14" fill="#6e6862">似然：这批数据在喊什么</text>
+        <!-- 后验：折中偏向数据（绯红实心） -->
+        <path d="M60 250 C 280 244 320 96 396 96 C 474 96 520 246 690 250" fill="rgba(142,59,70,0.13)" stroke="#8e3b46" stroke-width="3"/>
+        <text x="304" y="120" font-family="Songti SC,serif" font-size="15" font-weight="900" fill="#8e3b46">后验：两者的加权和解</text>
+        <!-- 注 -->
+        <text x="60" y="36" font-family="Baskerville,serif" font-size="12" letter-spacing="2" fill="#6e6862">DATA PULL vs PRIOR ANCHOR</text>
+      </svg>
+      <div class="figcap"><b>FIG. II</b> 一次更新的解剖 —— 后验永远落在先验与数据之间：数据少时听先验的，数据多时听数据的。这不是妥协，是<b>按信息量自动分配话语权</b>的精确算术。</div>
+    </div>
+
+    <div class="concept" id="baserate">
+      <div class="eyebrow">CONCEPT 3 · 基率谬误</div>
+      <h2>检测悖论：99% 准确 ≠ 99% 是真的</h2>
+      <p>最著名的贝叶斯陷阱：某病患病率 1%，检测灵敏度 90%，假阳性率 9%。你查出阳性——患病概率多大？直觉喊 90%，正确答案约 <strong>9%</strong>。因为一千人里真病人只有 10 个（查出 9 个），而 990 个健康人里会误报约 89 个：<em>阳性人群里，假警报是真病人的十倍</em>。</p>
+      <p>结构性的教训：<strong>证据的说服力永远要在基率的背景板上衡量</strong>。罕见的假设（罕见病、惊天阴谋、百倍回报）需要成比例罕见的强证据——这就是"非同寻常的主张需要非同寻常的证据"的数学出处。卡尼曼实验反复证明：人类默认忽略基率，只盯证据的生动性。解药是下面这台机器。</p>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap prose">
+    <div class="eyebrow">LUDUS · 签名互动</div>
+    <h2>检测悖论实验台</h2>
+    <p>下面是一千个人。拖动三根滑杆，看<strong>阳性结果到底值几分信</strong>——注意患病率滑到很低时发生的事。</p>
+
+    <div class="lab">
+      <div class="lab-title">BASE RATE LABORATORY · 一千人的真相</div>
+      <div class="controls">
+        <div class="ctl">
+          <label>患病率（基率）：<span class="val" id="vPrev">1.0%</span></label>
+          <input type="range" id="sPrev" min="0.1" max="10" step="0.1" value="1">
+        </div>
+        <div class="ctl">
+          <label>灵敏度（真阳性率）：<span class="val" id="vSens">90%</span></label>
+          <input type="range" id="sSens" min="50" max="100" step="1" value="90">
+        </div>
+        <div class="ctl">
+          <label>假阳性率：<span class="val" id="vFpr">9%</span></label>
+          <input type="range" id="sFpr" min="0.5" max="20" step="0.5" value="9">
+        </div>
+      </div>
+      <canvas id="dots" width="800" height="500"></canvas>
+      <div class="legend">
+        <span><i style="background:#8e3b46"></i>患病且阳性（真警报）</span>
+        <span><i style="background:#2f4858"></i>健康却阳性（假警报）</span>
+        <span><i style="background:#d9d3c7"></i>其余人群</span>
+      </div>
+      <div class="readout" id="readout"></div>
+    </div>
+
+    <p style="font-size:15px;color:var(--muted)">这台机器的正式名字叫<strong>自然频数法</strong>（心理学家吉仁泽的发现）：同一道题，用概率问医生，多数人答错；换成"一千人里几个"来问，多数人答对。贝叶斯直觉是可以借表示法外挂的。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="prior">
+      <div class="eyebrow">CONCEPT 4 · 先验从哪来</div>
+      <h2>两百年悬案的现代答案</h2>
+      <p>"先验是主观的"曾是贝叶斯的原罪，如今是它的成熟工艺。现代工具箱分四层：<strong>无信息 / 客观先验</strong>（杰弗里斯先验、Jaynes 的最大熵——把"我确实一无所知"也表达成数学）；<strong>弱信息先验</strong>（Gelman 学派的日常默认：温和地排除荒谬值，比如"转化率提升一千倍"）；<strong>实质先验</strong>（把领域知识、历史数据正大光明地写进去）；<strong>层级先验</strong>（让数据的其他部分替你估先验——见概念 6）。</p>
+      <p>两条纪律让先验不再可怕：<em>先验必须写出来接受检查</em>（藏在模型选择里的先验才危险——与因果推断站"画 DAG"是同一条纪律）；<em>数据多时先验影响自动消失</em>（FIG. II），真正的分歧只发生在数据本来就少的地方——而那里频率派方法同样在挣扎，只是不承认。</p>
+    </div>
+
+    <div class="concept" id="freq">
+      <div class="eyebrow">CONCEPT 5 · 两派之争</div>
+      <h2>贝叶斯 vs 频率派：问的根本不是一个问题</h2>
+      <p>频率派问：<strong>假设固定，数据会怎样波动？</strong>（p 值：若无效应为真，出现这么极端数据的概率）贝叶斯问：<strong>数据在手，假设该信几分？</strong>（后验：给定这批数据，效应存在的概率）。日常决策需要的几乎总是后者，但 p 值常被当成后者误用——"p&lt;0.05"被读成"95% 是真的"，这是科学界最流行的语法错误。</p>
+      <p>实务对照：置信区间是"这套<em>程序</em>长期有 95% 的命中率"，可信区间是"参数有 95% 的概率<em>在这个区间里</em>"——后者才是人们以为自己买到的东西。另一处分歧在停止规则：频率派检验会被"何时停止实验"污染，贝叶斯更新对此免疫，数据来一条更一条。公平地说：频率派的长期误差控制在监管场景（药审、质检）仍是不可替代的美德——<strong>成熟的从业者两套都懂，按问题选工具</strong>。</p>
+    </div>
+
+    <div class="concept" id="hier">
+      <div class="eyebrow">CONCEPT 6 · 层级模型</div>
+      <h2>部分池化：群体替个体作证</h2>
+      <p>估计一百家门店各自的转化率：单独估（不池化），小店样本太少，估计满天乱飞；全体平均（完全池化），又抹掉了真实差异。层级模型走中道——<strong>让每家店的估计向群体分布收缩，收缩的力度由数据量自动决定</strong>：大店基本听自己的，小店多听群体的。</p>
+      <p>这就是"部分池化"（partial pooling），McElreath 称层级模型该是<em>默认选项而非高级技巧</em>，Gelman 的 BDA 用整卷篇幅展开它。它同时是三件事：过拟合的解药（收缩即正则化）、"小样本上位新闻"的粉碎机（垫底逆袭的多半只是样本小）、以及贝叶斯世界观的缩影——<strong>每个个体都该在群体的先验下被理解</strong>。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 贝叶斯 ∝ 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-rethinking.html">Rethinking</a> ·
+      <a href="book-canon.html">Jaynes / Gelman</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var sPrev = document.getElementById("sPrev");
+  var sSens = document.getElementById("sSens");
+  var sFpr = document.getElementById("sFpr");
+  var vPrev = document.getElementById("vPrev");
+  var vSens = document.getElementById("vSens");
+  var vFpr = document.getElementById("vFpr");
+  var readout = document.getElementById("readout");
+  var canvas = document.getElementById("dots");
+  var ctx = canvas.getContext("2d");
+
+  var N = 1000, COLS = 40, ROWS = 25;
+
+  function render() {
+    var prev = parseFloat(sPrev.value) / 100;
+    var sens = parseFloat(sSens.value) / 100;
+    var fpr = parseFloat(sFpr.value) / 100;
+    vPrev.textContent = (prev * 100).toFixed(1) + "%";
+    vSens.textContent = Math.round(sens * 100) + "%";
+    vFpr.textContent = (fpr * 100).toFixed(1) + "%";
+
+    var sick = Math.max(1, Math.round(N * prev));
+    var tp = Math.round(sick * sens);
+    var fp = Math.round((N - sick) * fpr);
+    var ppv = tp + fp > 0 ? tp / (tp + fp) : 0;
+
+    var w = canvas.width, h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+    var cw = w / COLS, chh = h / ROWS, r = Math.min(cw, chh) * 0.32;
+    for (var i = 0; i < N; i++) {
+      var col = i % COLS, row = Math.floor(i / COLS);
+      var x = cw * (col + 0.5), y = chh * (row + 0.5);
+      var color;
+      if (i < tp) color = "#8e3b46";            // 患病且阳性
+      else if (i < tp + fp) color = "#2f4858";  // 健康却阳性
+      else color = "#d9d3c7";                   // 其余
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+
+    readout.innerHTML =
+      "一千人中：真警报 <b>" + tp + "</b> 人，假警报 <b>" + fp + "</b> 人 → 阳性结果为真的概率 " +
+      '<span class="big">' + (ppv * 100).toFixed(1) + "%</span>";
+  }
+
+  sPrev.addEventListener("input", render);
+  sSens.addEventListener("input", render);
+  sFpr.addEventListener("input", render);
+  render();
+})();
+</script>
+
+</body>
+</html>

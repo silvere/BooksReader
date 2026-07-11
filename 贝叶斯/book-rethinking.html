@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rethinking 精读 · 贝叶斯读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">贝叶斯<span class="mk"> ∝ </span>BAYES</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-rethinking.html" class="active">Rethinking 精读</a>
+      <a href="book-canon.html">Jaynes 与 Gelman</a>
+      <a href="decision.html">贝叶斯与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">GRADUS I · 《STATISTICAL RETHINKING》 · McELREATH</div>
+    <h1>统计学的再教育</h1>
+    <p class="lede">理查德·麦克尔里思是马克斯·普朗克演化人类学研究所所长——一个人类学家写出了这个时代最好的统计教科书，这件事本身就很贝叶斯：他面对的学生不是数学系，而是必须用统计但常年被统计课伤害过的科研人员。这本书的每一页都在替这些人重新发明统计学。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">LIBER I · 2nd EDITION · CRC PRESS · 2020</div>
+    <h2>是什么，凭什么是最好的入门 <span class="difficulty"><i class="on"></i><i class="on"></i><i></i></span></h2>
+    <p><strong>是什么：</strong>《Statistical Rethinking: A Bayesian Course with Examples in R and Stan》第二版（2020）。一本"课程体"教科书：每章即一讲，全程 R + Stan 代码，作者把整套课程的<strong>讲座视频免费放在网上并每年更新</strong>——买不买书都能上完这门课。社区把全书代码移植成了 Python/PyMC、Julia 等平行版本。</p>
+    <p><strong>凭什么：</strong>三个别的教科书不肯做的决定——① <em>从零重建</em>：不假设你记得任何统计课内容，第 2 章用一个地球仪抛接实验徒手造出贝叶斯更新；② <em>代码先于公式</em>：每个概念先让你在代码里摸到，再给数学；③ <em>诚实面对黑暗面</em>：整本书一直在讲"模型是小世界，现实是大世界"，教的是怀疑自己模型的手艺。</p>
+
+    <div class="chapter">
+      <div class="ch-no">SKELETON · 骨架（按主题块）</div>
+      <h3>四个乐章</h3>
+      <ul>
+        <li><strong>造引擎（1–4 章）：</strong>小世界与大世界、地球仪实验、采样即计算、线性回归的贝叶斯重写。金句定调："模型不是真的，但可以是有用的——前提是你永远记得这一点。"</li>
+        <li><strong>因果的闯入（5–6 章）：</strong>全书最大的第二版升级——DAG、混杂、对撞、"多元回归不是把变量都扔进去"。<em>与书架上的因果推断站直接握手：坏控制变量、伯克森悖论在这里全部重演一遍，只是这次带着代码。</em></li>
+        <li><strong>过拟合与信息论（7–9 章）：</strong>WAIC 与交叉验证、正则化先验、MCMC 引擎揭盖（包括著名的"国王与岛屿"的 Metropolis 寓言）。</li>
+        <li><strong>重武器（10 章起）：</strong>广义线性模型、层级模型（<a class="text-link" href="concepts.html#hier">部分池化</a>的正式登场，作者称之为"贝叶斯统计的珍珠"）、测量误差、缺失数据、高斯过程。</li>
+      </ul>
+      <div class="keybox">
+        <b>Signature Idea · 代表思想</b>
+        <strong>黄金机器人（golem）隐喻</strong>：统计检验是一群强大而全盲的机器人——你按下按钮它就执行，绝不问自己该不该被按下。传统统计教育教你"选对机器人"，这本书教你<strong>亲手造机器人</strong>：写下你自己的模型，而不是在检验菜单里点菜。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">READING NOTES · 读法</div>
+      <h3>怎么读</h3>
+      <ul>
+        <li><strong>必须跑代码。</strong>这本书的知识一半在正文，一半在你运行代码后的惊讶里。R 不熟就用社区的 PyMC (Python) 移植版，别用"先学会 R"当拖延借口。</li>
+        <li><strong>配视频服用：</strong>McElreath 的年度讲座（YouTube 免费）比书更新、更口语，书页跟不上时先看对应讲座。</li>
+        <li><strong>练习题别跳：</strong>每章的 Medium 难度题是设计过的理解检查点，Hard 题可选。</li>
+        <li>读完 1–9 章 + 层级模型章，你就有资格向 <a class="text-link" href="book-canon.html">Jaynes 与 Gelman</a> 进发了——这也是三级阶梯的换乘点。</li>
+      </ul>
+    </div>
+
+    <div class="keybox">
+      <b>Caveat · 一点保留</b>
+      正式中文版长期缺位，主要靠英文原版 + 社区资源（豆瓣与论坛流传第一版中译与各语言代码仓）。另外它刻意"重直觉轻推导"：数学系读者可能嫌不严格——严格性配额在阶梯的后两级，别在第一级要求它。
+    </div>
+    <p class="inscription">BUILD YOUR OWN GOLEM</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 贝叶斯 ∝ Rethinking 精读</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-canon.html">Jaynes / Gelman</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaynes 与 Gelman · 贝叶斯读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">贝叶斯<span class="mk"> ∝ </span>BAYES</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-rethinking.html">Rethinking 精读</a>
+      <a href="book-canon.html" class="active">Jaynes 与 Gelman</a>
+      <a href="decision.html">贝叶斯与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">GRADUS II & III · 巅峰与工程</div>
+    <h1>一座圣山，一间军械库</h1>
+    <p class="lede">Jaynes 是用来攀登的：前十章足以永久改变你对"概率"两个字的理解。Gelman 是用来武装的：BDA 不通读，但工位上永远该有一本。两本书气质相反——一个雄辩滔滔的物理学家遗作，一部冷静克制的六人合著手册——合起来正好补全 McElreath 没给你的东西。</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== Jaynes ===== -->
+<section id="jaynes">
+  <div class="wrap prose">
+    <div class="eyebrow">LIBER II · 《PROBABILITY THEORY: THE LOGIC OF SCIENCE》 · JAYNES · 2003</div>
+    <h2>概率论沉思录：改变世界观的前十章 <span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i></span></h2>
+    <p><strong>是什么：</strong>物理学家 E. T. Jaynes 四十年布道的结晶，1998 年去世时未竟，由学生 G. Larry Bretthorst 整理，剑桥大学出版社 2003 年出版。2024 年人民邮电出版社推出中文版《概率论沉思录》（廖海仁译）——中文读者从此没有借口。</p>
+    <p><strong>核心论题一句话：</strong>概率论不是关于随机现象的数学，而是<strong>科学推理本身的逻辑</strong>——亚里士多德逻辑在不确定性下的唯一一致推广。全书从"造一个会推理的机器人需要哪些设计原则"开始，用 Cox 定理推出：这个机器人的推理规则必然是概率论。</p>
+
+    <div class="chapter">
+      <div class="ch-no">SKELETON · 骨架</div>
+      <h3>改变世界观的，是前十章</h3>
+      <ul>
+        <li><strong>第 1–2 章 · 合情推理与定量规则：</strong>机器人思想实验、三条合情条件（desiderata）、Cox 定理的推导——概率的乘法规则与加法规则不是公理，是<em>一致性的必然后果</em>。</li>
+        <li><strong>第 3–4 章 · 初等应用：</strong>抽样推断与假设检验的贝叶斯重写；证据的分贝（dB）计量——图灵战时方法的公开版。</li>
+        <li><strong>第 5–7 章 · 怪象的解剖：</strong>为什么聪明人会对同一证据越吵越远（先验不同时，同一证据可以推着两人反向更新——极化的数学）；测量误差；中心极限定理的重估。</li>
+        <li><strong>第 9–11 章 · 最大熵：</strong>Jaynes 的独门绝技——"我只知道这些约束"时，唯一诚实的分布是熵最大的那个。统计力学与推断在此合流。</li>
+        <li><strong>后半部（选读）：</strong>决策论、假设检验的病理学、对频率派方法的系统清算——火力全开，按需取用。</li>
+      </ul>
+      <div class="keybox">
+        <b>Signature Idea · 代表思想</b>
+        <strong>心灵投射谬误</strong>（mind projection fallacy）：把自己知识状态的属性当成外部世界的属性——"这枚硬币是随机的"其实是"我不知道它会怎么落"。一旦学会识别这个谬误，你会在物理学、统计学和日常争论里到处看见它。这是全书送给读者最锋利的一把刀。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">READING NOTES · 读法</div>
+      <h3>怎么攀登</h3>
+      <ul>
+        <li><strong>目标定在前十章</strong>，世界观的改变在那里完成；后半本是弹药库，按需回来取。</li>
+        <li>数学门槛真实存在（微积分必备），但雄辩的散文会拖着你走——Jaynes 是概率界文笔最好的作者，没有之一。</li>
+        <li>最佳时机：读完 Rethinking 之后。你会不断惊呼"原来 McElreath 那一章的底层依据在这里"。</li>
+      </ul>
+    </div>
+
+    <div class="keybox">
+      <b>Caveat · 一点保留</b>
+      这是一部<strong>论战之书</strong>：Jaynes 对频率派的清算酣畅但不总公允（现代频率派的合理辩护他多半从轻发落）；部分章节因作者去世未及打磨，编者以方括号注明；他对量子力学随机性的立场属于少数派。攀这座山要带的装备是：欣赏雄辩，但保留自己的裁决权——这恰好也是这本书教你的事。
+    </div>
+  </div>
+</section>
+
+<!-- ===== Gelman ===== -->
+<section id="gelman">
+  <div class="wrap prose">
+    <div class="eyebrow">LIBER III · 《BAYESIAN DATA ANALYSIS》 3rd ed. · GELMAN 等六人 · 2013</div>
+    <h2>BDA3：贝叶斯工程的军械库 <span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i></span></h2>
+    <p><strong>是什么：</strong>Gelman、Carlin、Stern、Dunson、Vehtari、Rubin 六位作者的《Bayesian Data Analysis》第三版（2013）——业内直呼"BDA3"，应用贝叶斯统计的事实标准参考书，<strong>作者在哥伦比亚官网免费公开全书 PDF</strong>。风格与 Jaynes 相反：不布道，不论战，直接给你能用的东西。</p>
+
+    <div class="chapter">
+      <div class="ch-no">SKELETON · 骨架</div>
+      <h3>五个武器架</h3>
+      <ul>
+        <li><strong>基础（1–5 章）：</strong>单参数与多参数模型、共轭先验的完整武器谱、<strong>层级模型</strong>——著名的"八校问题"（eight schools）是部分池化的标准教具。</li>
+        <li><strong>模型检验（6–7 章）：</strong>全书的灵魂，也是 Gelman 学派的招牌——<strong>后验预测检查</strong>：让拟合好的模型生成假数据，与真数据对照，看模型在哪里露馅。贝叶斯不是"信了模型"，是"不断为难模型"。</li>
+        <li><strong>计算（10–13 章）：</strong>MCMC 完整工程学——Gibbs、Metropolis、哈密顿蒙特卡洛（Stan 的引擎）、收敛诊断（R-hat 就出自 Gelman）。</li>
+        <li><strong>回归大厦（14–17 章）：</strong>线性模型、层级回归、广义线性模型的贝叶斯全套。</li>
+        <li><strong>进阶专题（18 章起）：</strong>缺失数据（Rubin 的地盘）、非参数、高斯过程、狄利克雷过程。</li>
+      </ul>
+      <div class="keybox">
+        <b>Signature Idea · 代表思想</b>
+        <strong>贝叶斯工作流</strong>：建模不是"设先验 → 算后验 → 汇报"的单行道，而是"拟合 → 检查 → 扩展模型 → 再拟合"的循环。模型本身也要被更新——这把贝叶斯精神用到了贝叶斯实践自己身上。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">HOW TO USE · 用法</div>
+      <h3>参考书就要按参考书用</h3>
+      <ul>
+        <li><strong>别从第一页读。</strong>正确姿势：遇到具体问题（层级模型怎么设超先验？R-hat 多少算收敛？）→ 查目录 → 精读那一节 → 顺手做该节习题。</li>
+        <li>必精读的三处例外：第 5 章（层级模型）、第 6 章（模型检验）、第 11 章（MCMC 基础）——这三章是 Rethinking 对应主题的"成人版"。</li>
+        <li>配套生态：Stan 官方文档与案例库、Gelman 高产的博客（统计打假日常）都是这本书的活页补丁。</li>
+      </ul>
+    </div>
+
+    <div class="keybox">
+      <b>Caveat · 一点保留</b>
+      对自学者密度偏高：例子多来自社会科学与公卫，叙事节奏是"手册式"的——没有 McElreath 的段子，也没有 Jaynes 的檄文。把它当《辞海》而不是小说，失望就不会发生。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">SUMMA · 三书阵型</div>
+    <h2>各就各位</h2>
+    <table class="terms">
+      <tr><th>书</th><th>角色</th><th>怎么读</th><th>拿到什么</th></tr>
+      <tr><td>Rethinking</td><td>课堂 · 教练</td><td>顺读 + 跑代码 + 免费视频</td><td>动手能力与建模直觉</td></tr>
+      <tr><td>Jaynes</td><td>圣山 · 世界观</td><td>精读前十章，后半按需</td><td>概率即逻辑的认识论</td></tr>
+      <tr><td>BDA3</td><td>军械库 · 手册</td><td>按需查阅，三章例外精读</td><td>工程细节与权威出处</td></tr>
+    </table>
+    <p class="prose">三本读完的隐藏奖励：McElreath 的 golem、Jaynes 的机器人、Gelman 的工作流，说的其实是同一件事——<strong>模型是你造的仆人，不是你信的神</strong>。下一步：<a class="text-link" href="decision.html">把这一切接进日常决策 →</a></p>
+    <p class="inscription">CLIMB ONCE · CONSULT FOREVER</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 贝叶斯 ∝ Jaynes 与 Gelman</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-rethinking.html">Rethinking</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

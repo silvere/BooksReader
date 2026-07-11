@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>贝叶斯与决策 · 贝叶斯读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">贝叶斯<span class="mk"> ∝ </span>BAYES</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-rethinking.html">Rethinking 精读</a>
+      <a href="book-canon.html">Jaynes 与 Gelman</a>
+      <a href="decision.html" class="active">贝叶斯与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">EPILOGUE · 贝叶斯与决策</div>
+    <h1>做一个体面的<br>改主意的人</h1>
+    <p class="lede">这一页是全站的落点：把三本书浓缩成五个决策推论，每个配一个立刻可用的检查动作。核心只有一句——观点不是阵地，是当前后验；捍卫它的唯一体面方式，是允许它被证据挪动。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 1 · 信念要有刻度</div>
+    <h2>把"我觉得会"换成一个数</h2>
+    <p>"这项目能成"和"这项目七成能成"是两种完全不同的认知装备：前者无法被检验、无法被更新、事后怎么都能自圆其说；后者可以复盘校准——你说七成的事，长期该有七成发生。<strong>给信念标数不是伪精确，是把自己的判断暴露给纠错机制</strong>。超级预测者与普通专家的核心差距，正是这种"用 63% 而不是 60%"的刻度习惯。</p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      重要判断出口前加一道工序：写下百分数 + 一句"什么证据会让我下调它"。答不出后半句的，那不是判断，是站队。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 2 · 基率优先</div>
+    <h2>先问"这类事通常怎样"，再看"这件事有多特别"</h2>
+    <p><a class="text-link" href="concepts.html#lab">检测悖论实验台</a>的教训直接搬进会议室：新项目的激动人心程度（证据的生动性）必须打在基率的背景板上——同类项目历史成功率多少？行业平均周期多长？卡尼曼把这叫<strong>外部视角</strong>：先取参考类的基率当先验，再用本案的特殊性做有限修正。顺序反了，就是用故事碾压统计。</p>
+    <p>这也是"非同寻常的主张需要非同寻常的证据"的日常版：越是罕见的好事（十倍股、天降人才、百倍增长），越要求似然比惊人的证据——<em>不是因为悲观，是因为算术</em>。</p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      评估任何提案，先强制回答："把它扔回它所属的参考类，基率是多少？"没人知道基率的，先去查基率——这一步的信息价值几乎总是最高的。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 3 · 证据的重量在似然比</div>
+    <h2>"与我的假设一致"不等于"支持我的假设"</h2>
+    <p>确认偏误的数学解剖：一条证据支持 H 的程度，不看 P(D|H) 有多高，而看 <strong>P(D|H) 比 P(D|非H) 高多少倍</strong>。"用户说想要这个功能"与"功能会成功"高度一致——但用户对注定失败的功能也常这么说，似然比接近 1，证据近乎无重量。真正值钱的是<strong>判别性证据</strong>：在两个假设下出现概率差异巨大的观察（比如：肯不肯预付费）。</p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      每拿到一条"利好"，追问一句 Jaynes 式的问题："如果我的假设是错的，这条证据出现的概率有多大？"两个概率差不多的，从证据清单里划掉。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 4 · 永不 0，永不 1</div>
+    <h2>给每个确信留一条更新的活路</h2>
+    <p>贝叶斯定理有个冷酷的性质：先验一旦取 0 或 1，任何证据都无法再挪动它——乘法里的零永远是零。这就是<strong>克伦威尔法则</strong>（林德利命名，出自克伦威尔那句"我以基督的名义恳求你们，想一想你们也许错了"）：<em>除逻辑真理外，别给任何命题 0% 或 100%</em>。教条主义不是性格缺陷，是先验取了极值的数学事故。</p>
+    <p>同一条数学也解释了阴谋论者为何"刀枪不入"：当 P(阴谋) = 1，一切反驳证据都会被解读为"阴谋的一部分"——模型总能吸收数据，更新已经死了。检查一个人（包括自己）是否还在理性状态，就看还有没有<strong>能挪动他的证据存在</strong>。</p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      对你最确信的三个判断各问一遍："我给它留的概率是多少？如果是 100%，什么样的世界会让我降到 90%？"描绘不出那个世界的，立刻手动降到 97%——给未来的自己留一扇门。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 5 · 小样本听群体的</div>
+    <h2>部分池化是组织的清醒剂</h2>
+    <p><a class="text-link" href="concepts.html#hier">层级模型</a>的管理学版本：新员工第一个项目搞砸了、某门店本月数据爆表、某渠道三天 ROI 惊人——<strong>样本越小的个体表现，越应该向群体均值收缩后再解读</strong>。"垫底逆袭"与"新星陨落"的新闻，大部分只是均值回归穿着故事的外衣。</p>
+    <p>这不是抹杀个体，恰恰相反：收缩的力度由数据量自动决定——证据攒够了，个体自然挣脱群体先验。<em>层级模型给了"疑人要用，用人要疑"一个精确的数学形式：疑的程度随数据递减。</em></p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      看到任何"惊人"的个体数据，先问两个数：样本量多大？群体基线多少？然后心算收缩：样本越小，把它往基线拽得越狠。拽完还惊人的，才值得开会。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">GLOSSARY · 术语直通车</div>
+    <h2>贝叶斯词汇 ↔ 日常决策词汇</h2>
+    <table class="terms">
+      <tr><th>贝叶斯（1763 – 今）</th><th>日常决策语境</th></tr>
+      <tr><td>先验 / 后验</td><td>进门时的判断 / 出门时的判断</td></tr>
+      <tr><td>似然比</td><td>证据的真实分量："对立假设下它多常见？"</td></tr>
+      <tr><td>基率 / 外部视角</td><td>"这类事通常怎样" / 参考类预测</td></tr>
+      <tr><td>检测悖论</td><td>警报很准 ≠ 警报响了就是真的</td></tr>
+      <tr><td>克伦威尔法则</td><td>永远留一扇改主意的门</td></tr>
+      <tr><td>共轭 / 弱信息先验</td><td>默认假设要温和且写在明处</td></tr>
+      <tr><td>部分池化 / 收缩</td><td>小样本表现向群体基线打折</td></tr>
+      <tr><td>后验预测检查</td><td>让方案自己生成预言，拿去对账</td></tr>
+      <tr><td>心灵投射谬误</td><td>把"我不知道"说成"这事随机"</td></tr>
+      <tr><td>贝叶斯工作流</td><td>方案也要迭代：拟合 → 找茬 → 改</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">FINIS · 收束</div>
+    <h2>书架八站，环上加环</h2>
+    <p>贝叶斯给前七站的暗线装上了共同的度量衡：<a class="text-link" href="../控制论/index.html">控制论</a>的反馈回路，在认知世界的名字就是更新之环——先验进，后验出，误差信号是似然；<a class="text-link" href="../因果推断/index.html">因果推断</a>的因果之梯负责"该更新什么"，贝叶斯负责"该更新多少"，珀尔本人正是从贝叶斯网络走向因果革命的；<a class="text-link" href="../斯多葛/index.html">斯多葛</a>要你不被表象裹挟，贝叶斯给出表象该打的折扣；<a class="text-link" href="../拉康/index.html">拉康</a>与<a class="text-link" href="../庄子/index.html">庄子</a>警告一切模型必有外部、一切成心皆可疑，贝叶斯的回应最谦卑也最实干——<em>那就永远别把任何模型的概率设成 1</em>；<a class="text-link" href="../怀特海/index.html">怀特海</a>说现实是过程，贝叶斯说信念也是——没有终点，只有下一轮更新；<a class="text-link" href="../佛学/index.html">佛学</a>观呼吸，贝叶斯观先验，观的都是那个自动运行、从不出庭受审的默认值。</p>
+    <p><strong>回路、操典、X 光、河流、检验引擎、心智实验室、游刃之刀——现在加上一只信念的刻度盘。</strong>读书的最后一步照旧：挑一个你最确信的判断，写下它的百分数，和能挪动它的那条证据。</p>
+    <p class="inscription">YESTERDAY'S POSTERIOR · TOMORROW'S PRIOR</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 贝叶斯 ∝ 贝叶斯与决策</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-rethinking.html">Rethinking</a> ·
+      <a href="book-canon.html">Jaynes / Gelman</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>历史与人物 · 贝叶斯读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">贝叶斯<span class="mk"> ∝ </span>BAYES</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html" class="active">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-rethinking.html">Rethinking 精读</a>
+      <a href="book-canon.html">Jaynes 与 Gelman</a>
+      <a href="decision.html">贝叶斯与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">HISTORIA · 历史与人物</div>
+    <h1>一条被封杀两百年、<br>又赢回一切的思想线</h1>
+    <p class="lede">贝叶斯定理的历史比公式本身精彩：牧师的遗稿、天文学家的独立重造、统计学教皇们的世纪围剿、战争年代的秘密武功，直到一台便宜的计算机把它送上王座。知道这段历史，你才明白为什么今天的教科书读起来像战场遗址。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">CHRONICA · 编年</div>
+    <h2>从遗稿到王座</h2>
+    <div class="timeline">
+      <div class="t-item milestone">
+        <div class="t-year">1763</div>
+        <h3>一篇死后发表的论文</h3>
+        <p>英国长老会牧师托马斯·贝叶斯生前从未发表这项工作。挚友理查德·普莱斯整理遗稿，以《机会学说中一个问题的解》提交皇家学会——"逆概率"问题（由结果反推原因）第一次有了解。</p>
+      </div>
+      <div class="t-item milestone">
+        <div class="t-year">1774 –</div>
+        <h3>拉普拉斯：真正的建造者</h3>
+        <p>法国天文学家拉普拉斯独立重新发现同一原理，并把它锻造成完整的方法论——用它估算土星质量、分析出生性别比。今天所谓"贝叶斯方法"的大厦，大半是拉普拉斯盖的；很长时间里它就叫"逆概率"。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1920s – 1950s</div>
+        <h3>频率派的世纪封杀</h3>
+        <p>费雪与内曼-皮尔逊学派统治统计学，"先验是主观的"成为原罪，逆概率被逐出正统教科书。孤军奉守的哈罗德·杰弗里斯（《概率论》1939）与费雪的论战，是科学史上最持久的骂战之一。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1939 – 1945</div>
+        <h3>战时的秘密武功</h3>
+        <p>图灵在布莱切利园用贝叶斯推断（Banburismus 程序，以"ban"为单位累积证据权重）破译德军 Enigma 密码——同期香农的信息论也在酝酿。这些应用被列为机密，战后多年无人知晓贝叶斯立过什么功。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1946 / 1954</div>
+        <h3>公理地基：Cox 与 Savage</h3>
+        <p>物理学家 R. T. Cox 证明：满足几条常识性一致性要求的"合情推理"，在数学上必然同构于概率论——这是 Jaynes 全书的地基。萨维奇《统计学基础》则从决策论公理出发，殊途同归。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1957 –</div>
+        <h3>Jaynes：概率即逻辑</h3>
+        <p>物理学家 E. T. Jaynes 提出最大熵原理，此后四十年孤高地布道"概率论是科学的逻辑"。他 1998 年去世时巨著未竟，学生 Bretthorst 整理出版（2003）——即本站第二级阶梯。</p>
+      </div>
+      <div class="t-item milestone">
+        <div class="t-year">1990</div>
+        <h3>MCMC 革命：计算解放了信仰</h3>
+        <p>Gelfand 与 Smith 的论文让统计界突然看清：吉布斯采样（源自物理学的蒙特卡洛方法）能算出以前"算不动"的后验分布。贝叶斯两百年的软肋——积分——被计算机一夜抹平，复兴全面引爆。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">1990s – 2010s</div>
+        <h3>工具链成熟：BUGS → Stan</h3>
+        <p>BUGS 让应用者第一次"写下模型就能采样"；2012 年起 Stan（以乌拉姆的合作者、氢弹设计者 Stanislaw Ulam 命名，Gelman 团队主导）以哈密顿蒙特卡洛成为新标准——McElreath 与 Gelman 两本书的代码底座。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">今天</div>
+        <h3>无处不在，且仍在争论</h3>
+        <p>垃圾邮件过滤、临床试验、Kalman 滤波、大模型的不确定性校准——贝叶斯方法成了默认基础设施。而"先验哪来的"这场两百年的哲学争论，仍然健康地活着（见概念页第四节）。</p>
+      </div>
+    </div>
+    <div class="keybox">
+      <b>Extra Reading · 编外一册</b>
+      想把这段历史当侦探小说读：麦格雷恩《The Theory That Would Not Die》（中译《不会死的定理》）——从贝叶斯遗稿到猎潜艇、破密码、找失踪核弹的全程八卦，是本站时间线最好的扩展包。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">PERSONAE · 群像</div>
+    <h2>六个改写概率的人</h2>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="tag red">起点</div>
+        <h3>托马斯·贝叶斯（1701? – 1761）</h3>
+        <p>长老会牧师、业余数学家。生前只发表过两篇东西，那条改变世界的定理躺在抽屉里——由挚友普莱斯死后两年整理面世。</p>
+      </div>
+      <div class="card">
+        <div class="tag">建造者</div>
+        <h3>拉普拉斯（1749 – 1827）</h3>
+        <p>法国天文学家与数学家。独立发现并系统化"逆概率"，用它做出第一批严肃的科学推断。若按贡献命名，这门学问该叫拉普拉斯主义。</p>
+      </div>
+      <div class="card">
+        <div class="tag">孤守者</div>
+        <h3>哈罗德·杰弗里斯（1891 – 1989）</h3>
+        <p>剑桥地球物理学家。在频率派最盛的年代独力维系贝叶斯香火，《概率论》（1939）给出无信息先验与贝叶斯因子——Jaynes 最敬重的前辈。</p>
+      </div>
+      <div class="card">
+        <div class="tag">密用者</div>
+        <h3>阿兰·图灵（1912 – 1954）</h3>
+        <p>在布莱切利园以贝叶斯证据权重破解 Enigma，"ban"是史上第一个证据计量单位。他证明了这套方法能赢战争，只是当时没人被允许知道。</p>
+      </div>
+      <div class="card">
+        <div class="tag red">布道者</div>
+        <h3>E. T. Jaynes（1922 – 1998）</h3>
+        <p>物理学家，最大熵原理提出者。四十年如一日论证"概率是扩展的逻辑"，锋利、雄辩、好战——他的遗作是本站的巅峰一级。</p>
+      </div>
+      <div class="card">
+        <div class="tag">工程师</div>
+        <h3>安德鲁·盖尔曼（1955 – ）</h3>
+        <p>哥伦比亚大学统计学家，BDA 首席作者、Stan 项目推手，统计学界最高产的博主与打假者。把贝叶斯从信仰变成了日常工程实践。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">MORALIS · 这段历史的教训</div>
+    <h2>范式战争里没有中立的教科书</h2>
+    <p>你在大学统计课上学的 p 值、显著性检验、置信区间，不是"统计学本身"，而是<strong>频率派在特定历史时期的胜利成果</strong>——这场胜利靠的不全是数学优劣，还有性格、门派与期刊政治。而贝叶斯的复兴也不是靠说服了谁：<em>是计算成本的崩塌改变了哪一派"可用"</em>。方法论的兴衰，常常是基础设施史，不是真理史。</p>
+    <p>带着这个视角进入<a class="text-link" href="concepts.html">概念页</a>，两派之争那一节你会看得格外清楚。</p>
+    <p class="inscription">PARADIGMS RIDE ON INFRASTRUCTURE</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 贝叶斯 ∝ 历史与人物</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-rethinking.html">Rethinking</a> ·
+      <a href="book-canon.html">Jaynes / Gelman</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
