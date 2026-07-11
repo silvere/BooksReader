@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 组织权力读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">组织权力<span class="mk"> · </span>POWER</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-pfeffer.html">Pfeffer 精读</a>
+      <a href="book-canon.html">结构洞与组织</a>
+      <a href="decision.html">权力与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPTUS · 核心概念</div>
+    <h1>六个概念，<br>读懂组织的暗线</h1>
+    <p class="lede">从"权力从哪来"到"位置如何产生优势"，这一页拆开组织社会学最有解释力的六个概念：资源依赖、结构洞、可见性、有限理性、非正式网络、以及它们背后共同的冷峻前提。中间放一台「结构洞沙盘」，把"你"放进网络的不同位置，看权力如何随位置而非努力剧变。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="dependence">
+      <div class="eyebrow">CONCEPT 1 · 依赖与权力</div>
+      <h2>权力是依赖关系的函数</h2>
+      <p>资源依赖理论给"权力"一个不带道德色彩的定义：<strong>A 对 B 的权力，等于 B 对 A 所控制资源的依赖程度</strong>。而依赖由三件事决定——这个资源有多重要、有多稀缺、有多难从别处得到。谁掌握了组织最离不开、最难替代的东西（关键客户、核心技术、稀缺审批），谁就有权力，哪怕职级不高。</p>
+      <p>这解释了大量"职级与实权不符"的现象：那个谁都得求他的运维、握着关键关系的老销售、唯一懂遗留系统的工程师——他们的权力不来自头衔，来自别人对他们的依赖。<strong>反过来，提升自己权力的正道，是让自己掌握更重要、更稀缺、更难替代的能力或关系</strong>，而不是争一个虚衔。</p>
+    </div>
+
+    <div class="concept" id="holes">
+      <div class="eyebrow">CONCEPT 2 · 结构洞</div>
+      <h2>位置本身就是权力</h2>
+      <p>Burt 的核心洞见：网络里存在很多"<strong>结构洞</strong>"——两个群体之间没有直接联系的缺口。<strong>跨越结构洞、连接起两个原本不相往来群体的人（经纪人），获得两种红利</strong>：<em>信息红利</em>（他同时看到两边的信息，且这些信息互不重复，所以更早、更全）；<em>控制红利</em>（两边要往来，得经过他，他能选择传递什么、撮合谁）。</p>
+      <p>这颠覆了"人脉=认识很多人"的直觉。伯特证明：<strong>一个网络里，你的优势不取决于你有多少联系人，而取决于你连接了多少个原本不相通的世界。</strong>认识一个部门里的二十个人（信息高度重复），远不如分别认识五个不同部门的关键人（每个都带来非冗余的信息）。质量在于跨越了多少洞，不在数量。（下面就让你亲手把"你"放到洞上。）</p>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap prose">
+    <div class="eyebrow">LUDUS · 签名互动</div>
+    <h2>结构洞沙盘</h2>
+    <p>三个互不往来的小圈子（研发、销售、财务）。把<strong>「你」</strong>放到三种不同位置，看你的信息与控制优势如何剧变——同样的努力，位置不同，权力天差地别。</p>
+
+    <div class="lab">
+      <div class="lab-title">STRUCTURAL HOLES SANDBOX · 把你放到网络里</div>
+      <div class="pos-btns">
+        <button id="p0" class="on" type="button">① 深嵌一个小圈子</button>
+        <button id="p1" type="button">② 当自己圈子的核心</button>
+        <button id="p2" type="button">③ 跨三个圈子的经纪人</button>
+      </div>
+      <canvas id="net" width="800" height="360"></canvas>
+      <div class="meters">
+        <div class="meter">信息红利（非冗余信息源）<div class="track"><div class="fill" id="mInfo" style="width:20%"></div></div></div>
+        <div class="meter">控制红利（撮合与把关）<div class="track"><div class="fill" id="mCtrl" style="width:10%"></div></div></div>
+      </div>
+      <div class="readout" id="readout"></div>
+    </div>
+
+    <p style="font-size:15px;color:var(--muted)">三个位置的对比就是 Burt 全书的缩影：<strong>深嵌小圈子</strong>——人缘也许好，但信息高度重复、无控制力；<strong>圈子核心</strong>——在本圈有权，但仍被困在一个信息世界里；<strong>跨圈经纪人</strong>——连接了三个不相通的世界，信息最全、且所有跨圈往来都得经过你。位置没变多努力，权力却翻了几倍——<em>这就是"社会资本"的结构，不是玄学</em>。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="visibility">
+      <div class="eyebrow">CONCEPT 3 · 可见性</div>
+      <h2>贡献必须被感知，才成为权力</h2>
+      <p>Pfeffer 反复强调的、也最刺痛人的一条：<strong>组织奖励的不是贡献本身，而是被感知到的贡献</strong>。这不是号召你去邀功，而是承认一个结构事实——决策者的注意力有限，他们据以评价你的，只能是他们<em>看得见</em>的部分。默默做出色的工作然后指望被发现，是把自己评价的主动权，全部交给了别人恰好注意到的运气。</p>
+      <p>健康的应对不是表演，而是<strong>让真实的贡献变得可见</strong>：主动同步进展、在关键场合讲清你解决了什么问题、让你的工作与组织关心的目标显式挂钩。可见性经营与实质贡献不是对立的——<em>最坏的组合是"贡献大 + 可见性低"（默默受委屈），最好的是"贡献大 + 可见性匹配"（贡献被正确定价）。</em>你在做的自我探索里那次绩效事件，本质就是前一种结构性错配。</p>
+    </div>
+
+    <div class="concept" id="boundedrationality">
+      <div class="eyebrow">CONCEPT 4 · 有限理性</div>
+      <h2>组织不优化，只找"够好"</h2>
+      <p>西蒙的<strong>有限理性</strong>：人（和由人组成的组织）没有能力穷尽所有选项做最优决策，只能在认知与信息的限制下，找到第一个"<strong>满意即止</strong>"（satisficing）的方案。这解释了组织大量看似"不理性"的行为——沿用旧流程、抄同行、依赖惯例、被第一个提案锚定——它们不是愚蠢，是有限理性下的正常节能。</p>
+      <p>对个人的实用推论：既然决策者在满意即止，那么<strong>成为那个"第一个够好的方案"的提出者，往往胜过做那个"最优但姗姗来迟"的方案</strong>；既然组织靠惯例运行，那么改变一个默认、设一个新先例，其影响力常被低估。理解组织的认知节能模式，你就知道劲该往哪使。</p>
+    </div>
+
+    <div class="concept" id="informal">
+      <div class="eyebrow">CONCEPT 5 · 非正式网络</div>
+      <h2>真正的决策，常在会议之前做完</h2>
+      <p>正式流程（会议、审批、汇报）是组织的<em>前台</em>，但大量真实决策发生在<strong>非正式网络</strong>的<em>后台</em>——走廊对话、私下通气、饭局上的默契。一个议案能否通过，常常在正式会议之前就已经通过关键人的私下沟通决定了；会议只是盖章。看不见这层暗网的人，会困惑于"明明我方案更好，怎么没通过"。</p>
+      <p>这不是叫你去搞小圈子，而是提醒：<strong>如果你只在正式渠道里活动，你就把后台完全让给了别人</strong>。健康的做法是——重要提案在正式提出前，先与关键相关方私下对齐（预沟通），既降低会上的意外，也让别人感到被尊重。<em>把"会前的功课"当成决策的一部分，而非走关系。</em></p>
+    </div>
+
+    <div class="concept" id="realism">
+      <div class="eyebrow">CONCEPT 6 · 冷峻的现实主义</div>
+      <h2>这门学科的伦理边界</h2>
+      <p>组织社会学的力量与危险是同一件事：它<strong>描述</strong>权力如何真实运作，而描述极易被读成<strong>处方</strong>。看清"可见性 &gt; 沉默的贡献""位置产生权力""后台先于前台"，可以用于自保与争取正当认可，也可以用于纯粹的钻营。区别不在知识，在你用它做什么。</p>
+      <div class="keybox">
+        <b>Caveat · 一点保留</b>
+        三条必须挂在心里的边界：① <strong>这些是关于"平均而言组织如何运作"的社会学规律，不是每个具体情境的铁律</strong>——健康的团队里贡献与认可的错配会小得多，别用最犬儒的模型去解读每一件事；② <strong>纯操纵在重复博弈里会反噬</strong>（同事记仇、名声受损），可持续的权力来自真实的能力与可信度 + 恰当的可见性，而非空心的政治手腕；③ <strong>看清规则后，"离开一个病态系统"永远是选项之一</strong>——不是所有游戏都值得赢。把这门学科当护身的清醒，而非蚀心的犬儒。
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 组织权力 · 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-pfeffer.html">Pfeffer</a> ·
+      <a href="book-canon.html">结构洞与组织</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var canvas = document.getElementById("net");
+  var ctx = canvas.getContext("2d");
+  var mInfo = document.getElementById("mInfo");
+  var mCtrl = document.getElementById("mCtrl");
+  var readout = document.getElementById("readout");
+  var btns = [document.getElementById("p0"), document.getElementById("p1"), document.getElementById("p2")];
+
+  // 三个圈子的中心
+  var groups = [
+    { cx: 170, cy: 120, color: "#3a3f4a", label: "研发" },
+    { cx: 630, cy: 120, color: "#3a3f4a", label: "销售" },
+    { cx: 400, cy: 300, color: "#3a3f4a", label: "财务" }
+  ];
+  // 每个圈子的成员点（相对偏移）
+  var offs = [[-46, -8], [-20, -44], [22, -40], [46, 6], [12, 40], [-30, 34]];
+
+  function nodes(g) {
+    return offs.map(function (o) { return { x: g.cx + o[0], y: g.cy + o[1] }; });
+  }
+
+  function draw(pos) {
+    var W = 800, H = 360;
+    ctx.clearRect(0, 0, W, H);
+    // 画每个圈子内部的稠密连线 + 成员
+    var allNodes = groups.map(nodes);
+    groups.forEach(function (g, gi) {
+      var ns = allNodes[gi];
+      ctx.strokeStyle = "#d0cec6"; ctx.lineWidth = 1;
+      for (var a = 0; a < ns.length; a++) for (var b = a + 1; b < ns.length; b++) {
+        ctx.beginPath(); ctx.moveTo(ns[a].x, ns[a].y); ctx.lineTo(ns[b].x, ns[b].y); ctx.stroke();
+      }
+      ns.forEach(function (n) { ctx.fillStyle = "#9a9ca2"; ctx.beginPath(); ctx.arc(n.x, n.y, 6, 0, Math.PI * 2); ctx.fill(); });
+      ctx.fillStyle = "#63646b"; ctx.font = "13px 'Songti SC', serif";
+      ctx.fillText(g.label, g.cx - 14, g.cy - 58);
+    });
+
+    // "你"的位置与连线
+    var youX, youY, links = [], info, ctrl, v, msg;
+    if (pos === 0) { // 深嵌一个圈子
+      youX = groups[0].cx + 12; youY = groups[0].cy + 6;
+      allNodes[0].forEach(function (n) { links.push(n); });
+      info = 0.22; ctrl = 0.08;
+      v = "① 深嵌小圈子：忙碌，但被困在一个世界";
+      msg = "你和研发的所有人都很熟——可惜信息高度重复（大家看到的差不多），你既没接触到别的圈子的消息，也无人需要经你转手。人缘 ≠ 权力。";
+    } else if (pos === 1) { // 圈子核心
+      youX = groups[0].cx; youY = groups[0].cy;
+      allNodes[0].forEach(function (n) { links.push(n); });
+      info = 0.4; ctrl = 0.32;
+      v = "② 本圈核心：在自己的地盘有权";
+      msg = "你是研发圈的枢纽，圈内信息与协调都过你——真实的局部权力。但你仍只活在一个信息世界里，销售与财务在想什么，你依然看不见。";
+    } else { // 跨三圈经纪人
+      youX = 400; youY = 175;
+      links.push(allNodes[0][3]); links.push(allNodes[1][0]); links.push(allNodes[2][1]);
+      links.push(allNodes[0][4]); links.push(allNodes[1][4]);
+      info = 0.95; ctrl = 0.9;
+      v = "③ 跨圈经纪人：坐在三个洞上";
+      msg = "你分别连着研发、销售、财务的关键人——三个不相通世界的信息都汇到你这里（非冗余、更早），而它们之间的往来也得经过你（你能撮合、能把关）。位置没让你更累，却让你权力翻倍。这就是结构洞。";
+    }
+    // 连线
+    ctx.strokeStyle = pos === 2 ? "#8f2d2d" : "#6e1f1f"; ctx.lineWidth = 2;
+    links.forEach(function (n) { ctx.beginPath(); ctx.moveTo(youX, youY); ctx.lineTo(n.x, n.y); ctx.stroke(); });
+    // 你
+    ctx.fillStyle = "#8f2d2d"; ctx.beginPath(); ctx.arc(youX, youY, 15, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#fff"; ctx.font = "bold 13px 'PingFang SC', sans-serif"; ctx.textAlign = "center";
+    ctx.fillText("你", youX, youY + 5); ctx.textAlign = "left";
+
+    mInfo.style.width = Math.round(info * 100) + "%";
+    mCtrl.style.width = Math.round(ctrl * 100) + "%";
+    readout.innerHTML = '<span class="verdict">' + v + "</span>" + msg;
+  }
+
+  btns.forEach(function (b, i) {
+    b.addEventListener("click", function () {
+      btns.forEach(function (x) { x.classList.remove("on"); });
+      b.classList.add("on"); draw(i);
+    });
+  });
+  draw(0);
+})();
+</script>
+
+</body>
+</html>

@@ -22,6 +22,7 @@
 | 12 | 算法信息论（Grünwald MDL 导论 + Li & Vitányi《An Introduction to Kolmogorov Complexity》 + Hutter《Universal Artificial Intelligence》AIXI） | [`算法信息论/`](算法信息论/) | 6 页联动：总览（柯氏复杂度 K(x)）/ 历史与人物（三重独立发现）/ 核心概念（含 MDL 两段式编码实验台互动）/ MDL 入口 / 教材与 AIXI / 压缩与决策专题（理解即压缩） |
 | 13 | 决策理论（Peterson《An Introduction to Decision Theory》 + MacLean/Thorp/Ziemba《Kelly Capital Growth Investment Criterion》 + Ole Peters 遍历性经济学） | [`决策理论/`](决策理论/) | 6 页联动：总览（遍历性陷阱）/ 历史与人物 / 核心概念（含遍历性赌局模拟器互动）/ Peterson 精读 / Kelly 与遍历性 / 下注与决策专题（校准+下注） |
 | 14 | 谈判理论（Fisher & Ury《Getting to Yes》 + Lax & Sebenius《3-D Negotiation》 + Voss《Never Split the Difference》） | [`谈判理论/`](谈判理论/) | 6 页联动：总览（ZOPA 与保留价）/ 历史与人物 / 核心概念（含 ZOPA 沙盘互动）/ 原理框架 / 桌外与战术 / 谈判与决策专题（BATNA/ZOPA/整合式） |
+| 15 | 组织社会学与权力结构（Pfeffer《Power》 + Burt《Structural Holes》 + March & Simon《Organizations》） | [`组织权力/`](组织权力/) | 6 页联动：总览（组织图 vs 影响力网络）/ 历史与人物 / 核心概念（含结构洞沙盘互动）/ Pfeffer 精读 / 结构洞与组织 / 权力与决策专题（可见性/结构洞/资源依赖） |
 
 ## 本地预览
 
