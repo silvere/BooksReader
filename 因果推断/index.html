@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>因果推断 · 读书笔记</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">因果推断<span class="dag-mark"> → </span>CAUSA</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-pearl.html">珀尔两书</a>
+      <a href="book-schools.html">三派三书</a>
+      <a href="decision.html">因果与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">BOOK 05 · CAUSAL INFERENCE · 五本书，一架梯子</div>
+      <h1>因果推断：<br>从"看见"到"想象"</h1>
+      <p class="lede">
+        统计学被"相关不等于因果"这句话困了一百年——直到珀尔、鲁宾、赫尔南们把因果变成了可以计算的数学。
+        这五本书回答同一个问题：<strong>没有做实验，如何从数据中合法地得出"是什么导致了什么"</strong>。
+        这是数据时代做决策的人最值得补的一课。
+      </p>
+    </div>
+    <div class="figure" style="margin:0">
+      <svg viewBox="0 0 560 350" role="img" aria-label="因果之梯：关联、干预、反事实三层">
+        <defs>
+          <marker id="arrH" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9c6b1c"/></marker>
+        </defs>
+        <!-- 梯子侧杆 -->
+        <line x1="120" y1="330" x2="230" y2="20" stroke="#24211b" stroke-width="3.5"/>
+        <line x1="330" y1="330" x2="440" y2="20" stroke="#24211b" stroke-width="3.5"/>
+        <!-- 第一层 -->
+        <line x1="152" y1="240" x2="362" y2="240" stroke="#24211b" stroke-width="3"/>
+        <text x="392" y="232" font-family="PingFang SC" font-size="15" font-weight="700" fill="#6e6759">① 关联 · 看见</text>
+        <text x="392" y="252" font-family="SF Mono, monospace" font-size="12" fill="#6e6759">P(Y | X)</text>
+        <text x="392" y="271" font-family="PingFang SC" font-size="11.5" fill="#6e6759">买尿布的人也买啤酒吗？</text>
+        <!-- 第二层 -->
+        <line x1="185" y1="148" x2="395" y2="148" stroke="#9c6b1c" stroke-width="3"/>
+        <text x="425" y="140" font-family="PingFang SC" font-size="15" font-weight="700" fill="#9c6b1c">② 干预 · 行动</text>
+        <text x="425" y="160" font-family="SF Mono, monospace" font-size="12" fill="#9c6b1c">P(Y | do(X))</text>
+        <text x="425" y="179" font-family="PingFang SC" font-size="11.5" fill="#6e6759">涨价，销量会怎样？</text>
+        <!-- 第三层 -->
+        <line x1="216" y1="58" x2="426" y2="58" stroke="#b03535" stroke-width="3"/>
+        <text x="240" y="40" font-family="PingFang SC" font-size="15" font-weight="700" fill="#b03535">③ 反事实 · 想象</text>
+        <text x="240" y="20" font-family="SF Mono, monospace" font-size="12" fill="#b03535" opacity="0">.</text>
+        <text x="120" y="40" font-family="SF Mono, monospace" font-size="12" fill="#b03535">P(Y′ | X, Y)</text>
+        <text x="60" y="20" font-family="PingFang SC" font-size="11.5" fill="#6e6759">如果当时没吃药，他还会好吗？</text>
+        <!-- 攀登箭头 -->
+        <path d="M 250 236 C 265 205 275 185 292 152" fill="none" stroke="#9c6b1c" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrH)"/>
+        <path d="M 300 144 C 315 113 322 95 338 64" fill="none" stroke="#b03535" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrH)"/>
+        <text x="150" y="320" font-family="PingFang SC" font-size="12" fill="#6e6759">大多数统计与机器学习停在第一层</text>
+      </svg>
+      <div class="figcap"><b>FIG. 00</b> 珀尔的因果之梯：看见（关联）→ 行动（干预）→ 想象（反事实）。每上一层，需要的假设与工具都换代。</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">THE FIVE BOOKS · 为什么是这五本</div>
+    <h2>一个故事、三个学派、一个工程手册</h2>
+    <p class="lede">因果推断有三大传统：珀尔的图模型派、鲁宾-赫尔南的潜在结果派、经济学的自然实验派——三派互相翻译、互相补刀。五本书刚好把三派与实战全部覆盖。</p>
+    <div class="grid cols-3" style="margin-top:32px">
+      <a class="card" href="book-pearl.html#why">
+        <span class="tag">叙事 · 2018</span>
+        <h3>《为什么》</h3>
+        <p style="font-family:var(--latin);font-size:12px;color:var(--muted)">Judea Pearl · The Book of Why</p>
+        <p>图灵奖得主写给大众的因果革命史：因果之梯、do-算子、辛普森悖论、吸烟-肺癌之战。<strong>建议从这本读起。</strong></p>
+      </a>
+      <a class="card" href="book-pearl.html#primer">
+        <span class="tag">技术 · 薄册</span>
+        <h3>《统计因果推理入门》</h3>
+        <p style="font-family:var(--latin);font-size:12px;color:var(--muted)">Pearl 等 · Causal Inference in Statistics: A Primer</p>
+        <p>珀尔学派的正式教材，只有一百多页：DAG、d-分离、后门/前门准则、反事实——《为什么》的数学补全。</p>
+      </a>
+      <a class="card" href="book-schools.html#whatif">
+        <span class="tag red">正典 · 免费</span>
+        <h3>Causal Inference: What If</h3>
+        <p style="font-family:var(--latin);font-size:12px;color:var(--muted)">Hernán & Robins · 哈佛官网免费 PDF</p>
+        <p>潜在结果派 + 流行病学派的当代正典：从随机试验讲到 g-方法与目标试验模拟。行业内简称"What If"。</p>
+      </a>
+      <a class="card" href="book-schools.html#harmless">
+        <span class="tag">经济派 · 2009</span>
+        <h3>《基本无害的计量经济学》</h3>
+        <p style="font-family:var(--latin);font-size:12px;color:var(--muted)">Angrist & Pischke · Mostly Harmless Econometrics</p>
+        <p>"信度革命"的战地手册：工具变量、双重差分、断点回归——没有实验时，去哪里找"天然的随机化"。</p>
+      </a>
+      <a class="card" href="book-schools.html#brave">
+        <span class="tag">实战 · 免费</span>
+        <h3>Causal Inference for the Brave and True</h3>
+        <p style="font-family:var(--latin);font-size:12px;color:var(--muted)">Matheus Facure · 在线免费 + Python</p>
+        <p>把三派工具全部落成 Python 代码的业界手册：A/B 实验、元学习器、uplift 建模。程序员的因果推断入口。</p>
+      </a>
+      <a class="card" href="decision.html">
+        <span class="tag red">附 · 专题</span>
+        <h3>因果与决策</h3>
+        <p style="font-family:var(--latin);font-size:12px;color:var(--muted)">CAUSA ET CONSILIUM</p>
+        <p>本站落点：五个推论把因果思维接进日常决策——你的证据在梯子第几层？控制变量为何不是越多越好？</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">READING PATH · 建议阅读路径</div>
+    <h2>先听故事，再学画图，最后动手</h2>
+    <div class="grid cols-3" style="margin-top:32px">
+      <div class="card">
+        <span class="tag">STEP 1</span>
+        <h3>建立直觉</h3>
+        <p>读《为什么》通览全局，同时用本站<a class="text-link" href="concepts.html">核心概念</a>页把混杂/对撞/中介练成条件反射——"控制变量判官"等你。</p>
+      </div>
+      <div class="card">
+        <span class="tag">STEP 2</span>
+        <h3>选一派深入</h3>
+        <p>偏理论选《统计因果推理入门》+ What If 前半；偏应用选《基本无害》。三派语言互通（<a class="text-link" href="book-schools.html">对照表</a>），先精一门再串讲。</p>
+      </div>
+      <div class="card">
+        <span class="tag">STEP 3</span>
+        <h3>写代码验证</h3>
+        <p>Brave and True 全书可跑。给自己一个真实问题（业务指标、健康习惯），画 DAG、选方法、跑一遍——因果推断是手艺，不是理论。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">CORE IDEAS · 六个核心抓手</div>
+    <h2>整个学科，六个概念就能撑起来</h2>
+    <div class="grid cols-3" style="margin-top:32px">
+      <a class="card" href="concepts.html#ladder"><span class="tag">I</span><h3>因果之梯</h3><p>关联、干预、反事实——三层问题，三套工具，不可混用。</p></a>
+      <a class="card" href="concepts.html#confounder"><span class="tag">II</span><h3>混杂与后门</h3><p>共同原因制造假相关。后门准则告诉你调整哪些变量能堵住它。</p></a>
+      <a class="card" href="concepts.html#do"><span class="tag">III</span><h3>do-算子</h3><p>"看到 X" 与 "把 X 设成某值" 是两个世界——一个符号劈开它们。</p></a>
+      <a class="card" href="concepts.html#collider"><span class="tag red">IV</span><h3>对撞与选择偏差</h3><p>控制错变量比不控制更糟：对撞一被调整，假相关凭空诞生。</p></a>
+      <a class="card" href="concepts.html#potential"><span class="tag">V</span><h3>潜在结果</h3><p>因果效应 = 两个平行世界之差，而你永远只能看到一个——根本问题及其出路。</p></a>
+      <a class="card" href="concepts.html#simpson"><span class="tag red">VI</span><h3>辛普森悖论</h3><p>分组看药有效，合并看药有害——数据不回答，因果图才回答。</p></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">CONTEXT · 它从哪里来，往哪里去</div>
+    <h2>从休谟的怀疑到 2021 年的诺贝尔奖</h2>
+    <div class="grid cols-2" style="margin-top:32px">
+      <a class="card" href="history.html">
+        <span class="tag">历史与人物</span>
+        <h3>被禁言一百年的问题</h3>
+        <p>皮尔逊把"因果"逐出统计学，费雪用随机化立下金标准又在烟草战争中站错队，被遗忘的赖特、迟到的珀尔与鲁宾——一部科学史的悬疑剧。</p>
+        <p style="color:var(--accent-deep);font-weight:700">查看时间线与群像 →</p>
+      </a>
+      <a class="card" href="decision.html">
+        <span class="tag red">因果与决策</span>
+        <h3>数据越多的时代，越需要它</h3>
+        <p>机器学习为何停在梯子第一层、A/B 实验为何是金标准、"多控制变量"为何是迷信——因果思维是大数据时代的防身术。</p>
+        <p style="color:var(--accent-deep);font-weight:700">进入专题 →</p>
+      </a>
+    </div>
+    <p class="inscription">SEEING · DOING · IMAGINING</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 因果推断 → 每一个文件夹是一本书</p>
+    <p>
+      <a href="../index.html">← 书架</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-pearl.html">珀尔</a> ·
+      <a href="book-schools.html">三派</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

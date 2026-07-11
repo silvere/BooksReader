@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="无需信仰前提的七天佛学观察实验：呼吸、感受、欲望、无常、无我、慈悲与复盘。"><title>七天观察练习 · 佛学</title><link rel="stylesheet" href="assets/style.css"></head>
+<body>
+  <nav class="nav"><div class="wrap nav-inner"><a class="nav-brand" href="index.html"><span>○</span> 佛学 · 看见</a><div class="nav-links"><a href="index.html">总览</a><a href="history.html">历史</a><a href="concepts.html">核心概念</a><a href="book-wright.html">主书精读</a><a href="book-classics.html">四书对读</a><a class="active" href="practice.html">日常练习</a></div></div></nav>
+  <header class="page-head"><div class="wrap"><div class="eyebrow">SEVEN DAYS · DIRECT OBSERVATION</div><h1>先别相信。<br>观察七天。</h1><p class="lede">每天十分钟，把佛学当作工作假说。你的任务不是获得神秘体验，而是更准确地看见一次感受如何变成故事和行动。</p></div></header>
+  <main>
+    <section><div class="wrap chapter"><aside class="chapter-label">START<br>HERE</aside><div class="chapter-content"><h2>三条实验规则</h2><div class="grid cols-3"><article class="card"><span class="tag">不追求空白</span><h3>走神是数据</h3><p>发现走神的那一刻，就是觉察发生的那一刻。轻轻标记，再回来。</p></article><article class="card"><span class="tag">不压制情绪</span><h3>允许它被看见</h3><p>观察身体感受、强度和变化，不急着证明情绪合理或不合理。</p></article><article class="card"><span class="tag">不夸大结论</span><h3>记录实际变化</h3><p>“今天少冲动一次”比“我已经无我”更诚实，也更有用。</p></article></div></div></div></section>
+    <section><div class="wrap chapter"><aside class="chapter-label">10 MIN<br>TIMER</aside><div class="chapter-content"><div class="timer"><div class="eyebrow">BREATH PRACTICE</div><h3>十分钟呼吸观察</h3><div class="timer-display" id="timer" aria-live="polite">10:00</div><button id="start">开始</button><button id="reset">重置</button><p id="timer-note">坐稳，感受一次自然呼吸。走神时，在心里说“想”，然后回来。</p></div></div></div></section>
+    <section><div class="wrap chapter"><aside class="chapter-label">7 DAYS<br>7 LENSES</aside><div class="chapter-content"><h2>七天观察清单</h2><div class="practice-list">
+      <article class="practice"><div><h3>只数呼吸</h3><p>从 1 数到 10，再重新开始。每次走神只做一个标记：“想”“听”“痒”。记录十分钟内你回来多少次。</p></div></article>
+      <article class="practice"><div><h3>拆开一个情绪</h3><p>选今天最明显的情绪，分别写下身体感觉、脑中句子、行动冲动。不要用“我就是焦虑”概括整个经验。</p></div></article>
+      <article class="practice"><div><h3>看一次欲望的波形</h3><p>想刷手机、吃零食或反驳时，延迟九十秒。每三十秒给强度打 0–10 分，观察它是否始终相同。</p></div></article>
+      <article class="practice"><div><h3>寻找无常</h3><p>选一个持续的感受，例如疼痛或无聊。仔细看它的位置、边缘和强度，找出至少三次细微变化。</p></div></article>
+      <article class="practice"><div><h3>寻找“决定者”</h3><p>安静坐下，等待下一个念头。你能提前知道它是什么吗？它出现前，谁决定了它？只记录现象，不急着宣布“没有自我”。</p></div></article>
+      <article class="practice"><div><h3>换一个人的条件</h3><p>想到一位令你不快的人，列出可能塑造其行为的三个条件。理解条件不等于免除责任，它让回应少一点本质化。</p></div></article>
+      <article class="practice"><div><h3>做一次诚实复盘</h3><p>哪种练习真正改变了反应？哪种只是让你感觉良好？写下一个观察、一个怀疑和下周要继续的一项练习。</p></div></article>
+    </div></div></div></section>
+    <section><div class="wrap chapter"><aside class="chapter-label">SAFETY<br>&amp; CARE</aside><div class="chapter-content"><h2>温和练习，不硬闯</h2><p>冥想并非对所有人、所有状态都同样合适。如果练习引发强烈恐慌、解离、创伤回闪或持续失眠，请停止并寻求合格的心理健康专业支持。你可以改为睁眼、走路、感受脚底或观察外部声音。</p><div class="note">这套练习用于自我观察，不替代医疗或心理治疗。佛学的“不执著”也不意味着容忍伤害、压抑需求或放弃现实行动。</div></div></div></section>
+  </main>
+  <footer class="footer"><div class="wrap footer-inner"><span>愿你看清，而不苛责自己</span><span><a href="index.html">回到总览 ○</a></span></div></footer>
+  <script>
+    let remaining = 600;
+    let interval;
+    const display = document.getElementById("timer");
+    const start = document.getElementById("start");
+    const note = document.getElementById("timer-note");
+    function render() { const minutes = Math.floor(remaining / 60); const seconds = remaining % 60; display.textContent = String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0"); }
+    start.addEventListener("click", () => {
+      if (interval) { clearInterval(interval); interval = null; start.textContent = "继续"; return; }
+      start.textContent = "暂停";
+      interval = setInterval(() => { remaining -= 1; render(); if (remaining <= 0) { clearInterval(interval); interval = null; start.textContent = "完成"; start.disabled = true; note.textContent = "练习结束。先感受此刻，再评价这十分钟。"; } }, 1000);
+    });
+    document.getElementById("reset").addEventListener("click", () => { clearInterval(interval); interval = null; remaining = 600; render(); start.disabled = false; start.textContent = "开始"; note.textContent = "坐稳，感受一次自然呼吸。走神时，在心里说“想”，然后回来。"; });
+  </script>
+</body></html>

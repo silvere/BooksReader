@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>珀尔两书 · 因果推断读书笔记</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">因果推断<span class="dag-mark"> → </span>CAUSA</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-pearl.html" class="active">珀尔两书</a>
+      <a href="book-schools.html">三派三书</a>
+      <a href="decision.html">因果与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">PEARL · 珀尔两书</div>
+    <h1>图派宗师：一本讲故事，一本给公式</h1>
+    <p class="lede">同一个作者、同一套思想、两种剂型：《为什么》负责让你想读下去并记住直觉，《统计因果推理入门》负责把直觉换算成可执行的数学。先糖衣，后药片。</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== 为什么 ===== -->
+<section id="why">
+  <div class="wrap prose">
+    <div class="eyebrow">LIBER I · THE BOOK OF WHY · 2018</div>
+    <h2>《为什么：关于因果关系的新科学》 <span class="difficulty"><i class="on"></i><i></i><i></i></span></h2>
+    <p><strong>是什么：</strong>珀尔与科学作家麦肯齐合写的大众书（中文版中信出版）。表面是科普，骨子里是一篇战斗檄文：控诉统计学百年"因果失语"，宣告因果革命的到来。读它同时收获一部学科史和一套思维语言。</p>
+
+    <div class="chapter">
+      <div class="ch-no">SKELETON · 骨架</div>
+      <h3>沿因果之梯爬三层</h3>
+      <ul>
+        <li><strong>开局立梯</strong>：因果之梯（关联/干预/反事实）+ "迷你图灵测试"——机器要回答因果问题，需要什么装备？</li>
+        <li><strong>历史清算</strong>：高尔顿-皮尔逊如何驱逐因果、赖特的路径分析如何被埋没、贝叶斯网络如何成为珀尔自己登梯的第一级。</li>
+        <li><strong>第二层工具</strong>：混杂的正式定义、后门准则、do-演算，以及著名的<strong>吸烟-肺癌之战</strong>整章重演（本书最精彩的历史章节）。</li>
+        <li><strong>前门与悖论</strong>：前门准则（混杂测不到也能识别的魔术）、辛普森悖论、伯克森悖论的图解全解。</li>
+        <li><strong>第三层</strong>：反事实的结构方程语义、中介分析（"为什么"的为什么——拆解直接与间接效应）。</li>
+        <li><strong>终章</strong>：大数据与强 AI 的因果盲区——没有因果模型的学习者，再大也停在第一层。写于 2018，恰成大模型时代的预言。</li>
+      </ul>
+      <div class="keybox">
+        <b>Caveat · 一点保留</b>
+        珀尔的叙事有强烈的"我派史观"：统计学与潜在结果派的贡献被他写得偏低（鲁宾派对此颇有意见）。当作一位革命者的回忆录读，激情满分；学科的公允全貌，靠 What If 和《基本无害》补齐。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">READING NOTES · 读法</div>
+      <h3>怎么读</h3>
+      <ul>
+        <li>顺读即可，两周完成。数学出现时不必死磕——所有公式在 Primer 里会再见面。</li>
+        <li>读完的自测不是复述概念，而是：<strong>给你最近看到的一条"研究显示 X 与 Y 相关"的新闻画出至少两张能解释它的因果图</strong>。画得出来，第一本就毕业了。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Primer ===== -->
+<section id="primer">
+  <div class="wrap prose">
+    <div class="eyebrow">LIBER II · CAUSAL INFERENCE IN STATISTICS: A PRIMER · 2016</div>
+    <h2>《统计因果推理入门》：一百多页的正式装备 <span class="difficulty"><i class="on"></i><i class="on"></i><i></i></span></h2>
+    <p><strong>是什么：</strong>珀尔与格利穆尔、朱厄尔合写的过渡教材（中文版高等教育出版社），专为学过一点统计的读者设计——是《为什么》与九百页天书《Causality》之间那块最重要的踏脚石。</p>
+
+    <div class="chapter">
+      <div class="ch-no">SKELETON · 骨架</div>
+      <h3>四章，刚好一套完整武器</h3>
+      <ul>
+        <li><strong>第一章 预备</strong>：概率复习 + 图的语法 + 结构因果模型（SCM）——"每个因果模型都是一组方程 + 一张图"。</li>
+        <li><strong>第二章 图的语言</strong>：链、叉、对撞三种基本结构；<strong>d-分离</strong>——判断任意两变量在图上是否独立的机械规则（本书最核心的技术）。</li>
+        <li><strong>第三章 干预</strong>：do-算子、调整公式、后门与前门准则、工具变量的图解——第二层的完整工具箱。</li>
+        <li><strong>第四章 反事实</strong>：三步法（溯因-干预-预测）计算反事实、必要因/充分因概率、中介分析——第三层的入场券。</li>
+      </ul>
+      <div class="keybox">
+        <b>How To Use · 用法</b>
+        每章末的习题必须做（数量不多）——d-分离不动手判过十个图，等于没学。配合在线工具（如 DAGitty，浏览器里画图自动判后门）练习，效率翻倍。一个月拿下，你就拥有了图派的全部日常装备。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">BEYOND · 更远处</div>
+      <h3>还想登顶？</h3>
+      <ul>
+        <li>珀尔《Causality》（2009 第二版）是图派圣经，也是真正的天书——除非做研究，Primer 足够用。</li>
+        <li>横向扩展优于纵向死磕：Primer 读完直接去 <a class="text-link" href="book-schools.html#whatif">What If</a>，看同一批问题在潜在结果语言里如何表述——双语能力比单派深度更值钱。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">COMPARISON · 两书对照</div>
+    <h2>同一思想的两种剂型</h2>
+    <table class="terms">
+      <tr><th>维度</th><th>《为什么》</th><th>《统计因果推理入门》</th></tr>
+      <tr><td>文体</td><td>叙事科普 + 学科史</td><td>正式教材 + 习题</td></tr>
+      <tr><td>数学门槛</td><td>几乎为零</td><td>初等概率即可</td></tr>
+      <tr><td>核心收获</td><td>因果之梯直觉 + 革命史观</td><td>d-分离、后门/前门、反事实三步法</td></tr>
+      <tr><td>建议投入</td><td>两周顺读</td><td>一个月带习题</td></tr>
+      <tr><td>毕业标准</td><td>能给新闻画因果图</td><td>能机械判定该调整哪些变量</td></tr>
+    </table>
+    <p class="prose">图派装备齐了，去见另外两派：<a class="text-link" href="book-schools.html">三派三书 →</a></p>
+    <p class="inscription">DEEP UNDERSTANDING MEANS KNOWING WHY</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 因果推断 → 珀尔两书</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-schools.html">三派</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

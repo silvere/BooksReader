@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 因果推断读书笔记</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">因果推断<span class="dag-mark"> → </span>CAUSA</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-pearl.html">珀尔两书</a>
+      <a href="book-schools.html">三派三书</a>
+      <a href="decision.html">因果与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPTS · 核心概念图解</div>
+    <h1>六个概念，一副透视镜</h1>
+    <p class="lede">按依赖顺序排列：先分清三层问题（因果之梯），再认识两大陷阱（混杂与对撞），学会一个符号（do），理解一个定义（潜在结果），最后用辛普森悖论做毕业考试。</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== I 因果之梯 ===== -->
+<section id="ladder" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT I · THE LADDER OF CAUSATION</div>
+    <h2>因果之梯：先问你的问题在第几层</h2>
+    <div class="prose">
+      <p>珀尔把一切与因果沾边的问题分成三层，这是全学科的地基（图见<a class="text-link" href="index.html">总览页</a>）：</p>
+      <p><strong>第一层 · 关联（看见）</strong>：<code>P(Y|X)</code>——观察到 X 的场合，Y 长什么样？买尿布的人也买啤酒吗？<em>全部传统统计与几乎全部机器学习都住在这一层。</em></p>
+      <p><strong>第二层 · 干预（行动）</strong>：<code>P(Y|do(X))</code>——如果我出手把 X 设成某值，Y 会怎样？涨价后销量如何？这需要超越数据的因果假设，或一场实验。</p>
+      <p><strong>第三层 · 反事实（想象）</strong>：已知事实之后回望平行世界——病人吃了药并且好了，<em>如果当时没吃药，他还会好吗？</em>归因、复盘、责任判定全在这一层。</p>
+      <p>最重要的纪律是<strong>不越层作答</strong>：用第一层的证据（相关性）回答第二层的问题（该不该做 X），是数据时代最流行的错误——从"喝红酒的人更长寿"到"用了我们产品的客户增长更快"，全是把"看见"冒充"行动"。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== II 混杂 ===== -->
+<section id="confounder" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT II · CONFOUNDING & BACKDOOR</div>
+    <h2>混杂与后门：假相关的第一工厂</h2>
+    <div class="prose">
+      <p>冰淇淋销量与溺水人数高度相关——因为<strong>夏天</strong>同时推高两者。这类"共同原因"叫<strong>混杂因子</strong>：它在 X 与 Y 之间开了一条<strong>后门路径</strong>（X ← Z → Y），让没有因果关系的两者看起来携手同行。</p>
+      <p>珀尔的<strong>后门准则</strong>把"该控制什么变量"从玄学变成图上的机械操作：找到一组变量 Z，堵住所有后门路径、且不含 X 的后代——对 Z 分层或回归调整后，剩下的关联才是因果。随机化实验之所以是金标准，就是因为随机分组<em>一刀剪断所有指向 X 的箭头</em>——已知未知的后门同时关闭。</p>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 720 220" role="img" aria-label="混杂结构与对撞结构的 DAG 对比">
+        <defs>
+          <marker id="arrD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#24211b"/></marker>
+        </defs>
+        <!-- 混杂 -->
+        <text x="170" y="30" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700" fill="#9c6b1c">混杂：共同原因（该调整）</text>
+        <circle cx="170" cy="70" r="24" fill="#f2e8d5" stroke="#9c6b1c" stroke-width="2.5"/>
+        <text x="170" y="76" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700">夏天</text>
+        <circle cx="80" cy="170" r="24" fill="#fff" stroke="#24211b" stroke-width="2"/>
+        <text x="80" y="176" text-anchor="middle" font-family="PingFang SC" font-size="12">冰淇淋</text>
+        <circle cx="260" cy="170" r="24" fill="#fff" stroke="#24211b" stroke-width="2"/>
+        <text x="260" y="176" text-anchor="middle" font-family="PingFang SC" font-size="14">溺水</text>
+        <line x1="152" y1="88" x2="98" y2="150" stroke="#24211b" stroke-width="2" marker-end="url(#arrD)"/>
+        <line x1="188" y1="88" x2="242" y2="150" stroke="#24211b" stroke-width="2" marker-end="url(#arrD)"/>
+        <line x1="106" y1="170" x2="234" y2="170" stroke="#b03535" stroke-width="2" stroke-dasharray="5 5"/>
+        <text x="170" y="196" text-anchor="middle" font-family="PingFang SC" font-size="11.5" fill="#b03535">虚假相关（后门未堵）</text>
+        <!-- 对撞 -->
+        <text x="545" y="30" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700" fill="#b03535">对撞：共同结果（别调整）</text>
+        <circle cx="545" cy="170" r="24" fill="#fde3e3" stroke="#b03535" stroke-width="2.5"/>
+        <text x="545" y="176" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700">成名</text>
+        <circle cx="455" cy="70" r="24" fill="#fff" stroke="#24211b" stroke-width="2"/>
+        <text x="455" y="76" text-anchor="middle" font-family="PingFang SC" font-size="14">颜值</text>
+        <circle cx="635" cy="70" r="24" fill="#fff" stroke="#24211b" stroke-width="2"/>
+        <text x="635" y="76" text-anchor="middle" font-family="PingFang SC" font-size="14">演技</text>
+        <line x1="473" y1="88" x2="527" y2="150" stroke="#24211b" stroke-width="2" marker-end="url(#arrD)"/>
+        <line x1="617" y1="88" x2="563" y2="150" stroke="#24211b" stroke-width="2" marker-end="url(#arrD)"/>
+        <line x1="481" y1="70" x2="609" y2="70" stroke="#b03535" stroke-width="2" stroke-dasharray="5 5"/>
+        <text x="545" y="52" text-anchor="middle" font-family="PingFang SC" font-size="11.5" fill="#b03535">调整"成名"后凭空出现的假相关</text>
+      </svg>
+      <div class="figcap"><b>FIG. II</b> 两种三角，方向相反：箭头从 Z 出发（混杂）→ 调整 Z 消除假相关；箭头指向 Z（对撞）→ 调整 Z 制造假相关。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== III do 算子 ===== -->
+<section id="do" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT III · THE DO-OPERATOR</div>
+    <h2>do-算子：一个符号劈开两个世界</h2>
+    <div class="prose">
+      <p>统计学百年"因果失语"的技术原因：<strong>它的语言里没有区分"看到"与"做到"的符号</strong>。<code>P(Y|X)</code> 说的是"在观察到 X 的子人群里 Y 的分布"——这个子人群是自选的（吃保健品的人本来就更注重健康）。珀尔发明 <code>P(Y|do(X))</code>：<em>强行把所有人的 X 设为某值</em>后 Y 的分布——想象把指向 X 的箭头全部剪断，X 不再由任何原因决定，只由你的手决定。</p>
+      <p>两者的差，就是"混杂"的精确定义：<code>P(Y|X) ≠ P(Y|do(X))</code> 时，观察数据在说谎。而 <strong>do-演算</strong>的全部使命是：在给定因果图下，把带 do 的表达式（第二层，做不了实验时无法直接测）机械地改写成不带 do 的表达式（第一层，可从观察数据算）——改写成功即"可识别"，后门/前门准则都是它的特例。</p>
+      <p>这就是因果革命的引擎室：<strong>假设画进图里，演算给出结论，数据填入数字</strong>——三步分工，每一步都可检查、可辩论。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IV 对撞 ===== -->
+<section id="collider" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT IV · COLLIDER & SELECTION BIAS</div>
+    <h2>对撞与选择偏差：控制错变量，比不控制更糟</h2>
+    <div class="prose">
+      <p>混杂教会人们"多控制变量"，于是诞生了新迷信：变量控制得越多越干净。对撞结构专治这个迷信。<strong>对撞是共同结果</strong>：X → Z ← Y。此时 X 与 Y 本无关联，但一旦你对 Z 分层/调整/筛选样本，<em>假关联凭空诞生</em>。</p>
+      <p>直觉版：假设成名 = 颜值高 或 演技好（二者有其一即可）。在"已成名演员"这个样本里，颜值平平者必然演技过人——于是你"发现"颜值与演技负相关。这不是世界的规律，是你的样本选择制造的幻影（伯克森悖论）。流行病学的"低出生体重悖论"、"名校录取后分数与特长负相关"，都是同一结构。</p>
+      <p>杀伤力最大的推论：<strong>选择样本 = 隐性地调整变量</strong>。只研究幸存者、只统计填了问卷的人、只看还在职的员工——每一次筛选都可能在你看不见的地方打开一条对撞路径。这是"幸存者偏差"的因果图解释。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== V 潜在结果 ===== -->
+<section id="potential" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT V · POTENTIAL OUTCOMES</div>
+    <h2>潜在结果：因果效应的官方定义</h2>
+    <div class="prose">
+      <p>珀尔用图回答"如何识别"，鲁宾-赫尔南一派先回答更基本的问题：<strong>"因果效应"三个字到底指什么？</strong>定义：每个个体都有两个潜在结果——接受处理时的 Y(1) 与不接受时的 Y(0)；个体因果效应 = Y(1) − Y(0)。</p>
+      <p>随之而来的是<strong>因果推断的根本问题</strong>：同一个体，你永远只能观测到其中一个——另一个世界的你没吃这片药、没上这所学校、没做这个决定，而那条世界线已不可访问。因果推断的全部技术，都是在这个"数据永远缺一半"的困境下的聪明补救：随机化让两组人在统计上可交换（平均效应可估）；匹配、加权、工具变量各自用不同假设去逼近同一目标。</p>
+      <p>What If 全书就建立在这套语言上，并给出流行病学的当代心法——<strong>目标试验模拟</strong>：分析任何观察数据前，先写下"如果能做实验，那个理想试验长什么样"，再检查你的数据分析在哪些环节偏离了它。这一个习惯能消灭一半的分析错误。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VI 辛普森悖论 ===== -->
+<section id="simpson" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPT VI · SIMPSON'S PARADOX</div>
+    <h2>辛普森悖论：毕业考试</h2>
+    <div class="prose">
+      <p>一种药：男性亚组里有效，女性亚组里也有效，全体合并后<em>有害</em>——数学上完全可能（各组比例与基线不同所致），且真实数据中反复出现（伯克利录取案是最著名的实例）。</p>
+      <p>真正的问题不是"数字为什么会这样"（初等算术），而是：<strong>该信分组的结论，还是合并的结论？</strong>珀尔的答案是本页所有概念的总复习：<em>数据本身永远无法回答，答案取决于因果图。</em>若分组变量（性别）是混杂（影响用药与预后），该看分组结果；若它是处理的下游（如药物引起的血压变化），分层反而堵死因果路径，该看合并结果。同样的数字，不同的图，相反的正确答案。</p>
+      <p>这就是这门学科的一句话总结：<strong>数据 + 因果假设 → 因果结论；没有假设，再大的数据也只能在梯子第一层打转。</strong></p>
+    </div>
+
+    <div class="sorter" id="sorter">
+      <div class="sorter-title">INTERACTIVE · 控制变量判官</div>
+      <div class="statement" id="stText">加载中……</div>
+      <div class="verdict" id="stVerdict">判断：分析这个因果问题时，该不该调整题中的变量？</div>
+      <div class="sorter-btns">
+        <button class="btn-yes" id="btnYes" type="button">该调整 ✓</button>
+        <button class="btn-no" id="btnNo" type="button">不该调整 ✗</button>
+      </div>
+      <div class="progress" id="stProgress"></div>
+    </div>
+
+    <div class="keybox prose">
+      <b>SYNTHESIS · 六个概念如何咬合</b>
+      先定位问题在梯子第几层（I）；第二层问题要堵后门（II），用 do 与观察区分开（III），同时提防把对撞当后门堵（IV）；效应的定义与估计靠潜在结果（V）；而辛普森悖论（VI）证明：以上任何一步都绕不开一张明确画出的因果图。
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 因果推断 → 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-pearl.html">珀尔</a> ·
+      <a href="book-schools.html">三派</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // 控制变量判官：yes=该调整（混杂），no=不该调整（对撞/中介/已随机化）
+  const items = [
+    { s: "研究「运动 → 心脏病」，要不要调整「年龄」？", a: true, why: "混杂：年龄既影响运动习惯，又影响心脏病风险（年龄→运动，年龄→心脏病）。不调整，'运动有益'会被年龄结构污染。" },
+    { s: "研究「母亲吸烟 → 婴儿死亡率」，要不要按「出生体重」分层？", a: false, why: "著名的低出生体重悖论：体重是吸烟下游的中介，且与未观测因素构成对撞。分层后会得出'吸烟保护低体重婴儿'的荒谬结论。" },
+    { s: "研究「咖啡 → 肺癌」，要不要调整「吸烟」？", a: true, why: "混杂：爱喝咖啡的人更可能吸烟，而吸烟致癌（吸烟→咖啡偏好，吸烟→肺癌）。不调整，咖啡会替吸烟背锅。" },
+    { s: "研究「颜值 → 演技」，把样本限定在「已成名演员」里，妥不妥？", a: false, why: "选择即调整：成名是颜值与演技的共同结果（对撞）。在成名者内部，两者会呈现凭空捏造的负相关——伯克森悖论。" },
+    { s: "研究「药物 → 康复」，要不要调整「服药后的血压变化」？", a: false, why: "中介：血压变化正是药物起效的路径之一（药物→血压→康复）。调整它等于把因果路堵掉，效应被低估。（除非你明确想估计'绕开血压的直接效应'。）" },
+    { s: "研究「教育年限 → 收入」，要不要调整「入学前的能力测验分数」？", a: true, why: "混杂：先天能力既影响受教育机会，又直接影响收入。注意关键词'入学前'——若是毕业后测的，就可能混入教育的效果，性质改变。" },
+    { s: "研究「广告投放 → 销量」，要不要调整「季节与历史销量」？", a: true, why: "混杂：投放预算常按旺季和历史表现分配，而它们本身就推动销量。不调整，广告会把旺季的功劳记在自己账上。" },
+    { s: "A/B 实验里流量已随机分组，分析「新功能 → 留存」还必须调整用户属性吗？", a: false, why: "随机化已剪断所有指向'是否用新功能'的箭头，后门天然全关——不调整也无偏。（调整协变量可以减小方差，但那是锦上添花，不是必须。）" }
+  ];
+  let idx = 0, score = 0, done = false;
+  const stText = document.getElementById('stText');
+  const stVerdict = document.getElementById('stVerdict');
+  const stProgress = document.getElementById('stProgress');
+  const btnYes = document.getElementById('btnYes');
+  const btnNo = document.getElementById('btnNo');
+
+  function show() {
+    stText.textContent = items[idx].s;
+    stVerdict.textContent = "判断：该不该调整题中的变量？";
+    stVerdict.className = "verdict";
+    stProgress.textContent = "CASE " + (idx + 1) + " / " + items.length + " · 已答对 " + score;
+  }
+  function answer(c) {
+    if (done) return;
+    const it = items[idx];
+    const right = (c === it.a);
+    if (right) score++;
+    stVerdict.className = "verdict " + (right ? "good" : "bad");
+    stVerdict.textContent = (right ? "✓ 正确。" : "✗ 相反。") + " " + it.why;
+    idx++;
+    if (idx >= items.length) {
+      done = true;
+      stProgress.textContent = "FINIS · 共答对 " + score + " / " + items.length;
+      stText.textContent = score >= 7 ? "「你已经会画后门了。」" : "「回到 FIG. II 再看一眼两种三角的箭头方向。」";
+      btnYes.textContent = "重新开始 ↻";
+      btnNo.style.display = "none";
+      btnYes.onclick = function () {
+        idx = 0; score = 0; done = false;
+        btnYes.textContent = "该调整 ✓";
+        btnNo.style.display = "";
+        btnYes.onclick = function () { answer(true); };
+        show();
+      };
+      return;
+    }
+    setTimeout(show, 4600);
+    stProgress.textContent = "CASE " + (idx + 1) + " / " + items.length + " · 已答对 " + score;
+  }
+  btnYes.onclick = function () { answer(true); };
+  btnNo.onclick = function () { answer(false); };
+  show();
+})();
+</script>
+
+</body>
+</html>

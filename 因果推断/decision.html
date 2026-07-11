@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>因果与决策 · 因果推断读书笔记</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">因果推断<span class="dag-mark"> → </span>CAUSA</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-pearl.html">珀尔两书</a>
+      <a href="book-schools.html">三派三书</a>
+      <a href="decision.html" class="active">因果与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">EPILOGUE · 因果与决策</div>
+    <h1>数据越多的时代，<br>越需要因果思维</h1>
+    <p class="lede">这一页是全站的落点：五本书浓缩成五个决策推论，每个配一个立刻可用的检查动作。核心只有一句——决策就是干预，而干预问题永远不能只靠观察数据回答。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 1 · 先问第几层</div>
+    <h2>预测模型答不了干预问题</h2>
+    <p>机器学习的绝大多数产出——推荐、评分、预测——住在<a class="text-link" href="concepts.html#ladder">梯子第一层</a>：它们精确回答"这样的人通常会怎样"，但决策问的是第二层："<strong>如果我出手改变 X，会怎样</strong>"。预测流失最准的特征（如"最近登录变少"）常常是结果不是原因——给登录变少的人发优惠券，可能毫无用处。</p>
+    <p>珀尔 2018 年对强 AI 的批评，在大模型时代反而更锋利：在海量文本上学到的相关结构再惊人，"理解一个系统"的判据仍是<em>能否正确预测对它的干预</em>。这既是给 AI 的考题，也是给每个数据驱动团队的考题。</p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      任何"数据支持"的建议先分类：这是第一层证据（观察到相关）还是第二层证据（实验或可信识别）？只有后者能直接支撑行动；前者只配生成假设。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 2 · 画图先于跑数</div>
+    <h2>因果图是假设的 X 光片</h2>
+    <p>因果结论 = 数据 + 因果假设。假设不会因为不写出来就不存在——只会以"默认所有变量都该控制"之类的隐形形式偷偷生效。<strong>画 DAG 的最大价值不是数学，是把团队里每个人心中不同的世界模型逼到同一张纸上</strong>：箭头一画，分歧立刻从"感觉不对"变成"你认为广告影响口碑，我认为口碑影响广告预算"。</p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      重要分析开始前，用五分钟画出 X、Y 与所有你能想到的第三变量，给每条箭头标方向。画不出方向的地方，就是你们最该讨论的地方。（工具：DAGitty，浏览器即用。）
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 3 · 控制变量不是多多益善</div>
+    <h2>调整对撞比不调整更糟</h2>
+    <p>"我们控制了三十个变量"听起来严谨，实际可能是三十次掷骰子：<a class="text-link" href="concepts.html#collider">对撞</a>一旦被调整，假关联凭空诞生；<a class="text-link" href="concepts.html#confounder">中介</a>一旦被调整，真效应被堵死。变量该不该进模型，唯一的裁判是因果图上的后门准则——不是"有就放进去"。</p>
+    <p>同一把刀也砍向样本筛选：<strong>只分析幸存者、活跃用户、填了问卷的人，等于隐性调整了一个对撞</strong>。二战轰炸机装甲的传奇（沃尔德：该加固的是返航飞机上没有弹孔的地方）就是这个结构的最好寓言。</p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      审查任何回归/分析，逐个变量问："它在图上是混杂、中介还是对撞？"答不出的变量先拿出来。再问一句："我的样本是被什么条件筛出来的？"
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 4 · 做不了实验，就找自然实验</div>
+    <h2>随机化的替身无处不在</h2>
+    <p>能做 A/B 就做 A/B——随机化是唯一能同时关闭已知与未知后门的机器，这是它成为业界金标准的全部理由。做不了的时候（定价太贵、伦理不允许、历史已成），<a class="text-link" href="book-schools.html#harmless">信度革命工具箱</a>登场：政策在两地先后实施（DID）、资格线上下的人近似可比（RDD）、抽签与规则制造的外生变化（IV）。</p>
+    <p>关键的思维转变：<strong>识别策略优先于估计方法</strong>——先问"什么样的偶然性替我随机化了"，再问用什么模型。顺序反了，就是用复杂模型精确地算错。</p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      面对"X 有没有用"的问题，按优先级过一遍：能实验吗？→ 有自然实验吗（政策断点/先后/抽签）？→ 至少能做目标试验模拟吗？三个都不能，就诚实地说"目前只有相关性证据"。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">INFERENCE 5 · 反事实是复盘的语法</div>
+    <h2>没有对照的复盘，只是叙事</h2>
+    <p>"上了新策略，季度收入涨了 12%"——这句话在因果上是空的：<strong>没上会怎样？</strong>也许会涨 20%。复盘、归因、评功论过，全是<a class="text-link" href="concepts.html#potential">第三层问题</a>，语法必须是反事实的：明确的对照（同期可比对象、合成控制、预测基线），否则每次复盘都只是在给已发生的事写颂词或檄文——<em>事后叙事是人类最自动化的技能，也是学习最大的敌人</em>。</p>
+    <div class="keybox">
+      <b>Check · 检查动作</b>
+      任何复盘文档强制加一节"反事实对照"：不做这件事，最可能的世界线是什么？依据是什么？写不出依据的归因，降级为猜想。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">GLOSSARY · 术语直通车</div>
+    <h2>因果词汇 ↔ 日常决策词汇</h2>
+    <table class="terms">
+      <tr><th>因果推断（1923 – 今）</th><th>日常决策语境</th></tr>
+      <tr><td>梯子第一层 / 第二层</td><td>"数据洞察" vs "行动依据"</td></tr>
+      <tr><td>混杂 / 后门</td><td>"其实是别的原因"——归因错位</td></tr>
+      <tr><td>对撞 / 选择偏差</td><td>幸存者偏差 / 样本被筛过</td></tr>
+      <tr><td>随机对照试验</td><td>A/B 实验 / 灰度发布</td></tr>
+      <tr><td>自然实验（IV/DID/RDD）</td><td>"借政策与规则的东风"做评估</td></tr>
+      <tr><td>目标试验模拟</td><td>"如果能重来，理想实验长什么样"</td></tr>
+      <tr><td>反事实</td><td>复盘的对照组 / "不做会怎样"</td></tr>
+      <tr><td>异质效应 / uplift</td><td>"对谁有效"而非"平均有效吗"</td></tr>
+      <tr><td>坏控制变量</td><td>"指标控制过头，结论反而失真"</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">FINIS · 收束</div>
+    <h2>书架五站，闭环合拢</h2>
+    <p>因果推断给整个书架装上了检验引擎：<a class="text-link" href="../控制论/index.html">控制论</a>的"控制"本质上就是 do 算子——干预系统并读取反馈；<a class="text-link" href="../斯多葛/index.html">斯多葛</a>的控制二分法问哪些变量在你手里，因果推断补上后半句——<em>你的干预到底改变了什么，得有识别策略才知道</em>；<a class="text-link" href="../拉康/index.html">拉康</a>的实在界警告一切模型必有外部，因果推断给出工程版本——未观测混杂永远可能存在，所以敏感性分析与谦逊是标配；<a class="text-link" href="../怀特海/index.html">怀特海</a>的误置具体性谬误，正是把第一层证据当第二层用的哲学名字。</p>
+    <p><strong>回路、操典、X 光、河流，现在加上一台检验引擎。</strong>读书的最后一步照旧：本周找一个你正要拍板的决定，画一张 DAG。</p>
+    <p class="inscription">NO CAUSES IN, NO CAUSES OUT</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 因果推断 → 因果与决策</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-pearl.html">珀尔</a> ·
+      <a href="book-schools.html">三派</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

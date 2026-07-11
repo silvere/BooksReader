@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三派三书 · 因果推断读书笔记</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">因果推断<span class="dag-mark"> → </span>CAUSA</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-pearl.html">珀尔两书</a>
+      <a href="book-schools.html" class="active">三派三书</a>
+      <a href="decision.html">因果与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">SCHOLAE · 三派三书</div>
+    <h1>潜在结果、自然实验与工程实战</h1>
+    <p class="lede">图派之外的三本：What If 给你最严格的定义与流行病学武器库，《基本无害》给你经济学的自然实验工具箱，Brave and True 把一切落成可运行的 Python。三本都以免费或半免费方式在线可得——这个学科慷慨得罕见。</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== What If ===== -->
+<section id="whatif">
+  <div class="wrap prose">
+    <div class="eyebrow">LIBER III · CAUSAL INFERENCE: WHAT IF · HERNÁN & ROBINS</div>
+    <h2>What If：潜在结果派的当代正典 <span class="difficulty"><i class="on"></i><i class="on"></i><i></i></span></h2>
+    <p><strong>是什么：</strong>哈佛流行病学家赫尔南与罗宾斯的教科书，作者在哈佛官网<strong>免费公开全书 PDF</strong>。业内直呼"What If"。特点：定义严格到苛刻、例子全部来自真实医学问题、每章都短——它相信清晰的概念比花哨的方法重要一百倍。</p>
+
+    <div class="chapter">
+      <div class="ch-no">SKELETON · 骨架</div>
+      <h3>三部曲：无模型 → 有模型 → 时变处理</h3>
+      <ul>
+        <li><strong>第一部（1–10 章）无模型的因果推断</strong>：全书精华。潜在结果与个体/平均效应、随机化为何有效（可交换性）、观察研究的三大威胁——混杂、选择偏差、测量偏差——各给一章 + 因果图统一表述。<em>只读这一部，已值回全部时间。</em></li>
+        <li><strong>第二部（11–17 章）有模型的因果推断</strong>：IP 加权、标准化、g-公式、倾向得分、工具变量——把第一部的概念接上统计模型。</li>
+        <li><strong>第三部（18 章起）时变处理</strong>：罗宾斯的成名绝技 g-方法——处理随时间变化且与混杂互为因果时（慢性病长期治疗的常态），传统回归全军覆没，这里是唯一的正规军。</li>
+      </ul>
+      <div class="keybox">
+        <b>Signature Idea · 代表思想</b>
+        <strong>目标试验模拟（target trial emulation）</strong>：分析任何观察数据前，先写下"如果不受伦理与预算约束，我该做一个什么样的随机试验"——入组标准、处理定义、随访起点、结局——然后让数据分析逐项模仿它。观察性研究的大量错误（如永生时间偏差）在这道工序前无所遁形。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">READING NOTES · 读法</div>
+      <h3>怎么读</h3>
+      <ul>
+        <li>第一部精读（约两周），第二部按需查阅，第三部等真的遇到时变处理再来。</li>
+        <li>没有中文正式版；英文平实，术语密集处配合本站<a class="text-link" href="concepts.html">概念页</a>与 Primer 对照读。</li>
+        <li>与珀尔对照最有趣的一点：同样的问题，What If 用"可交换性"表述，珀尔用"后门"表述——读到第 7 章你会亲眼看到两派语言互译。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Mostly Harmless ===== -->
+<section id="harmless">
+  <div class="wrap prose">
+    <div class="eyebrow">LIBER IV · MOSTLY HARMLESS ECONOMETRICS · 2009</div>
+    <h2>《基本无害的计量经济学》：自然实验的战地手册 <span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i></span></h2>
+    <p><strong>是什么：</strong>安格里斯特（2021 诺奖）与皮施克的名作（中文版格致出版社），书名致敬《银河系漫游指南》。核心信念：<strong>与其构建宏大模型，不如找到一次"制度替你随机化"的机会</strong>——征兵抽签、入学分数线、政策在两地的先后实施。</p>
+
+    <div class="chapter">
+      <div class="ch-no">SKELETON · 骨架</div>
+      <h3>四件大杀器</h3>
+      <ul>
+        <li><strong>回归的因果地位</strong>：什么条件下回归系数可以当因果效应读（条件独立假设），以及"坏控制变量"的著名警告——与对撞/中介一脉相通。</li>
+        <li><strong>工具变量（IV）</strong>：找一个只通过 X 影响 Y 的"杠杆"（征兵抽签号之于服役）；LATE 定理——IV 估计的其实是"依从者"的效应。</li>
+        <li><strong>双重差分（DID）</strong>：政策前后 × 实施与否两个差相减，扣掉共同趋势——卡德-克鲁格最低工资研究的方法骨架。</li>
+        <li><strong>断点回归（RDD）</strong>：分数线上下、门槛内外，命运一线之隔的人近似随机可比——制度的不连续就是天然实验室。</li>
+      </ul>
+      <div class="keybox">
+        <b>Caveat · 一点保留</b>
+        本书假设读者受过研究生计量训练，推导密度大。非经济学背景可先读同作者的通俗版《精通计量：从原因到结果的探寻之旅》（Mastering 'Metrics），或直接在 Brave and True 里学这些方法的代码版，再回头补理论。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Brave and True ===== -->
+<section id="brave">
+  <div class="wrap prose">
+    <div class="eyebrow">LIBER V · CAUSAL INFERENCE FOR THE BRAVE AND TRUE · FACURE</div>
+    <h2>Brave and True：程序员的因果推断 <span class="difficulty"><i class="on"></i><i class="on"></i><i></i></span></h2>
+    <p><strong>是什么：</strong>巴西数据科学家法库雷的开源在线书（全书免费 + Jupyter 笔记本可跑），后扩展为 O'Reilly 的《Causal Inference in Python》。业界视角：怎么用因果推断给公司挣钱——定价、营销、增长实验。</p>
+
+    <div class="chapter">
+      <div class="ch-no">SKELETON · 骨架</div>
+      <h3>两部曲：经典方法 + 机器学习时代</h3>
+      <ul>
+        <li><strong>上半部</strong>：潜在结果、回归、倾向得分、IV、DID、RDD——三派经典方法全部配 Python 实现与业务案例（每章一个梗图，读感极佳）。</li>
+        <li><strong>下半部（Causal ML）</strong>：异质效应估计与 <strong>uplift 建模</strong>——不问"平均有没有效"，问"对谁最有效"：优惠券该发给谁、挽留电话该打给谁；元学习器（S/T/X-learner）、双重机器学习（DML）。</li>
+        <li>贯穿的业界心法：<strong>偏差 vs 方差的因果版</strong>——方法再花哨，识别假设不成立就是精确地错。</li>
+      </ul>
+      <div class="keybox">
+        <b>How To Use · 用法</b>
+        边读边跑代码，然后立刻迁移：把书里的案例换成你自己的业务问题重跑一遍。这本书的正确打开方式不是"读完"，是<strong>抄作业</strong>。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">ROSETTA STONE · 三派罗塞塔石碑</div>
+    <h2>同一个问题，三种方言</h2>
+    <table class="terms">
+      <tr><th>概念</th><th>珀尔图派</th><th>潜在结果派（What If）</th><th>自然实验派（经济学）</th></tr>
+      <tr><td>因果效应</td><td>P(Y|do(X)) 之差</td><td>E[Y(1)] − E[Y(0)]</td><td>处理组与对照组的可信对比</td></tr>
+      <tr><td>无混杂</td><td>后门路径全部关闭</td><td>可交换性 / 可忽略性</td><td>条件独立假设（CIA）</td></tr>
+      <tr><td>该控制什么</td><td>后门准则（图上机械判定）</td><td>按混杂结构逐类讨论</td><td>"坏控制变量"警告</td></tr>
+      <tr><td>没有实验怎么办</td><td>do-演算改写 / 前门</td><td>g-方法 + 目标试验模拟</td><td>IV / DID / RDD 找自然实验</td></tr>
+      <tr><td>招牌工具</td><td>DAG · d-分离 · do-演算</td><td>IP 加权 · g-公式 · MSM</td><td>LATE · 平行趋势 · 断点</td></tr>
+      <tr><td>大本营</td><td>计算机科学 / AI</td><td>流行病学 / 生物统计</td><td>经济学 / 政策评估</td></tr>
+    </table>
+    <p class="prose">三派方言互译能力，是这个领域真正的高阶技能——面试与论文评审里一眼分出内行外行的地方。下一步：<a class="text-link" href="decision.html">把这一切接进日常决策 →</a></p>
+    <p class="inscription">ONE QUESTION · THREE DIALECTS</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 因果推断 → 三派三书</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-pearl.html">珀尔</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
