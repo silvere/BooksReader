@@ -23,6 +23,7 @@
 | 13 | 决策理论（Peterson《An Introduction to Decision Theory》 + MacLean/Thorp/Ziemba《Kelly Capital Growth Investment Criterion》 + Ole Peters 遍历性经济学） | [`决策理论/`](决策理论/) | 6 页联动：总览（遍历性陷阱）/ 历史与人物 / 核心概念（含遍历性赌局模拟器互动）/ Peterson 精读 / Kelly 与遍历性 / 下注与决策专题（校准+下注） |
 | 14 | 谈判理论（Fisher & Ury《Getting to Yes》 + Lax & Sebenius《3-D Negotiation》 + Voss《Never Split the Difference》） | [`谈判理论/`](谈判理论/) | 6 页联动：总览（ZOPA 与保留价）/ 历史与人物 / 核心概念（含 ZOPA 沙盘互动）/ 原理框架 / 桌外与战术 / 谈判与决策专题（BATNA/ZOPA/整合式） |
 | 15 | 组织社会学与权力结构（Pfeffer《Power》 + Burt《Structural Holes》 + March & Simon《Organizations》） | [`组织权力/`](组织权力/) | 6 页联动：总览（组织图 vs 影响力网络）/ 历史与人物 / 核心概念（含结构洞沙盘互动）/ Pfeffer 精读 / 结构洞与组织 / 权力与决策专题（可见性/结构洞/资源依赖） |
+| 16 | 精力与压力生理学（Sapolsky《Why Zebras Don't Get Ulcers》 + Walker《Why We Sleep》 + Lieberman《Exercised》） | [`压力生理学/`](压力生理学/) | 6 页联动：总览（急性 vs 慢性皮质醇）/ 历史与人物 / 核心概念（含皮质醇节律+异稳态负荷模拟器）/ Sapolsky 精读 / 睡眠与运动 / 身体与决策专题（自律=系统调参） |
 
 ## 本地预览
 

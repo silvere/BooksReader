@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 压力生理学读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">精力<span class="mk"> ~ </span>PHYSIOLOGY</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-sapolsky.html">Sapolsky 精读</a>
+      <a href="book-sleep-move.html">睡眠与运动</a>
+      <a href="decision.html">身体与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPTUS · 核心概念</div>
+    <h1>六个概念，<br>把身体读成一个控制回路</h1>
+    <p class="lede">从压力如何在体内传导，到它如何累积成折旧、又如何被修复：HPA 轴、皮质醇节律、异稳态负荷、睡眠架构、超量补偿、压力的双面性。中间放一台「皮质醇节律台」，让你拖动睡眠、压力、恢复三个旋钮，看一天的激素曲线从健康滑向病态，负荷随之累积。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="hpa">
+      <div class="eyebrow">CONCEPT 1 · HPA 轴</div>
+      <h2>大脑与身体之间的压力专线</h2>
+      <p>身体有两条压力通路。快的一条是交感神经—肾上腺素（<strong>战或逃</strong>，秒级，心跳加速、瞳孔放大）；慢而持久的一条是 <strong>HPA 轴</strong>：下丘脑感知威胁 → 促垂体 → 肾上腺分泌<strong>皮质醇</strong>（分钟到小时级）。皮质醇动员葡萄糖、抑制"非紧急"功能（消化、生殖、免疫、长期修复），把全身调成"应急模式"。</p>
+      <p>关键在于：<strong>这套系统是为"几分钟的真实危险"设计的，不是为"几个月的持续担忧"</strong>。狮子来了，它救你的命；房贷、绩效、明年的不确定性——这些无法通过奔跑或战斗解决的威胁，让 HPA 轴长期开着，皮质醇下不来。<em>为解决不了的威胁持续动员应急系统，正是慢性压力伤身的机制核心。</em></p>
+    </div>
+
+    <div class="concept" id="rhythm">
+      <div class="eyebrow">CONCEPT 2 · 皮质醇节律</div>
+      <h2>健康的曲线：陡峰陡谷</h2>
+      <p>皮质醇不该是一条平线，而该有强烈的<strong>昼夜节律</strong>：清晨醒来时急剧升高（皮质醇觉醒反应，帮你起床、进入状态），随后一路下降，深夜降到最低（让你能入睡与修复）。<strong>一条健康的皮质醇曲线是"陡峰陡谷"——早高晚低、起伏分明。</strong></p>
+      <p>慢性压力、睡眠不足、昼夜颠倒会把这条曲线<strong>压平</strong>：早晨该高时起不来（觉醒反应迟钝），夜里该低时降不下去（基线抬高、难以入睡）。曲线越平，说明系统越失调——这是异稳态负荷的一个直接可见的信号。<em>"起床困难 + 晚上精神"往往不是作息偏好，是皮质醇节律紊乱的表现。</em>（下面就让你亲手把它拖平。）</p>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap prose">
+    <div class="eyebrow">LUDUS · 签名互动</div>
+    <h2>皮质醇节律台</h2>
+    <p>下面是你一天 24 小时的皮质醇曲线。拖动三个旋钮——<span style="color:#3f6683;font-weight:700">睡眠质量</span>、<span style="color:#c85a3c;font-weight:700">慢性压力</span>、<span style="color:#4a7a6a;font-weight:700">恢复（运动+放松）</span>，看曲线在"健康的陡峰陡谷"和"病态的高位平坦"之间移动，异稳态负荷随之累积。</p>
+
+    <div class="lab">
+      <div class="lab-title">CORTISOL RHYTHM BENCH · 你的一天</div>
+      <div class="controls">
+        <div class="ctl sleep">
+          <label>睡眠质量：<span class="val" id="vSleep">良好</span></label>
+          <input type="range" id="sSleep" min="0" max="100" step="1" value="80">
+        </div>
+        <div class="ctl stress">
+          <label>慢性压力：<span class="val" id="vStress">低</span></label>
+          <input type="range" id="sStress" min="0" max="100" step="1" value="20">
+        </div>
+        <div class="ctl recover">
+          <label>恢复（运动+放松）：<span class="val" id="vRec">充足</span></label>
+          <input type="range" id="sRec" min="0" max="100" step="1" value="70">
+        </div>
+      </div>
+      <canvas id="curve" width="800" height="300"></canvas>
+      <div class="load">异稳态负荷（身体的折旧账单）<div class="track"><div class="fill" id="loadFill" style="width:15%"></div></div></div>
+      <div class="readout" id="readout"></div>
+    </div>
+
+    <p style="font-size:15px;color:var(--muted)">三个旋钮不是独立的：<strong>它们是同一个控制回路的三个参数</strong>。慢性压力抬高基线、压平曲线；好睡眠让夜间皮质醇降到底、完成修复；运动与放松激活副交感、给系统"关机"的机会。把慢性压力拉满、睡眠拉低，你会看到曲线彻底平掉、负荷冲顶——这正是"明明很累却睡不着、白天又没精神"的生理画像。<em>而它是可调的：这就是"自律 = 系统调参"的字面意思。</em></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="load">
+      <div class="eyebrow">CONCEPT 3 · 异稳态负荷</div>
+      <h2>身体替你的长期压力记的账</h2>
+      <p><strong>异稳态</strong>（allostasis）是"通过改变来维持稳定"——身体主动预测并调节以应对压力，这本身是健康的适应。但<strong>异稳态负荷</strong>（allostatic load）是这种调节长期反复累积下来的<em>磨损</em>：持续升高的血压、堆积的腹部脂肪、被抑制的免疫、受损的海马体、慢性炎症。它是"压力折旧身体"的可测量总账——不是某一次压力，而是常年累积的总和。</p>
+      <p>这个概念的力量在于它把"压力大"从一句抱怨，变成一张有具体条目的账单：<strong>你感受不到它在记账，但每一个"扛过去"的高压期，都在往这本账上加数字</strong>。理解它，你就明白为什么"年轻时透支身体，中年集中还债"是有生理机制的，也明白为什么"恢复"不是偷懒，是主动还账、防止负荷失控。</p>
+    </div>
+
+    <div class="concept" id="sleep">
+      <div class="eyebrow">CONCEPT 4 · 睡眠架构</div>
+      <h2>不可谈判的夜间修复</h2>
+      <p>睡眠不是"关机待命"，是身体最密集的<strong>修复与整理工程</strong>。它有<strong>架构</strong>：深睡（慢波睡眠）负责身体修复、生长激素分泌、大脑的"清洗"（类淋巴系统冲走代谢废物）；REM 睡眠负责情绪调节与记忆的创造性整合。两者在夜里循环交替，缺任何一段都有代价。</p>
+      <p>关键认知：<strong>睡眠债无法真正补偿</strong>——周末补觉只能还一部分，长期不足造成的认知、情绪、代谢损害会累积。而睡眠又深受皮质醇节律影响：夜间皮质醇降不下来（慢性压力），就睡不深；睡不深，第二天皮质醇节律更乱——<em>一个恶性回路</em>。这也是为什么它是精力管理里回报最高、却最常被牺牲的一环。（书架<a class="text-link" href="../贝叶斯/index.html">贝叶斯站</a>提醒：Walker 那本有学界争议，见书页。）</p>
+    </div>
+
+    <div class="concept" id="supercompensation">
+      <div class="eyebrow">CONCEPT 5 · 超量补偿</div>
+      <h2>压力 + 恢复 = 变强；压力 − 恢复 = 崩坏</h2>
+      <p>训练的生理学是一个漂亮的控制回路：<strong>运动施加可控的压力（微损伤、消耗）→ 恢复期身体不只修复到原状，还"超量补偿"到略高的水平</strong>——这就是变强。但公式的另一半常被忽略：<strong>没有足够恢复，压力只累积不补偿，结果是过度训练、免疫下降、表现倒退</strong>。同样的训练量，配够恢复是进步，缺恢复是自毁。</p>
+      <p>这把"训练""睡眠""压力"统一成一件事：<strong>它们都是同一个回路里的"施压"与"修复"</strong>。工作压力 + 训练压力 + 睡眠不足，三个"施压"叠加而"修复"不足，身体就在净消耗。所以精力管理的核心不是"更努力地施压"，而是<em>让施压与恢复保持正的净平衡</em>——这需要把恢复当成和训练同等重要的主动安排，而非剩下的时间。</p>
+    </div>
+
+    <div class="concept" id="doubleedge">
+      <div class="eyebrow">CONCEPT 6 · 压力的双面性</div>
+      <h2>不是消灭压力，是让它有开有关</h2>
+      <p>一个常见误读：把压力当纯粹的敌人，追求"零压力"。生理学的真相更微妙：<strong>急性、可控、有恢复跟随的压力是有益的</strong>（hormesis，毒物兴奋效应）——运动、冷暴露、间歇性禁食、适度的挑战，都是"施加可控压力 + 充分恢复"从而让系统变强的例子。压力本身不是问题，<strong>压力关不掉才是问题</strong>。</p>
+      <div class="keybox">
+        <b>Caveat · 一点保留</b>
+        三条务实边界：① <strong>本站是生理学框架，不是医疗建议</strong>——具体的睡眠障碍、慢性疲劳、内分泌问题请找医生，别拿科普自诊；② <strong>个体差异巨大</strong>（基因、年龄、处境），可穿戴设备的数字是参考不是判决，别为一个偏低的 HRV 焦虑（焦虑本身又升皮质醇）；③ <strong>三本书各有争议</strong>——尤其 Walker 的部分具体数据被学界质疑（见书页），把握"睡眠很重要"的大方向，对惊悚的具体断言保持一点<a class="text-link" href="../贝叶斯/index.html">贝叶斯式</a>的怀疑。目标是把身体当可调系统来善待，不是把自己吓进新的压力源。
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 压力生理学 · 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-sapolsky.html">Sapolsky</a> ·
+      <a href="book-sleep-move.html">睡眠与运动</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var sSleep = document.getElementById("sSleep");
+  var sStress = document.getElementById("sStress");
+  var sRec = document.getElementById("sRec");
+  var vSleep = document.getElementById("vSleep");
+  var vStress = document.getElementById("vStress");
+  var vRec = document.getElementById("vRec");
+  var loadFill = document.getElementById("loadFill");
+  var readout = document.getElementById("readout");
+  var ctx = document.getElementById("curve").getContext("2d");
+
+  function label(v, arr) { return arr[Math.min(arr.length - 1, Math.floor(v / 100 * arr.length))]; }
+
+  function cortisol(hour, baseline, amplitude) {
+    // 健康：清晨(~7-8h)峰，夜间(~2-3h)谷。用相位偏移的余弦近似觉醒反应。
+    // peak at h=8, trough at h=2 (次日)
+    var phase = (hour - 8) / 24 * 2 * Math.PI;
+    var wave = Math.cos(phase); // 1 at h=8, -1 at h=20... 需要谷在深夜，微调
+    // 用更贴近的：峰在 8，快速上升自 4，缓降至 24
+    var v;
+    if (hour < 4) v = 0.15 + 0.1 * (hour / 4);
+    else if (hour < 8) v = 0.25 + 0.75 * ((hour - 4) / 4); // 上升到峰
+    else v = 1.0 * Math.exp(-(hour - 8) / 9); // 从峰指数衰减
+    return baseline + amplitude * v;
+  }
+
+  function render() {
+    var sleep = parseInt(sSleep.value, 10) / 100;
+    var stress = parseInt(sStress.value, 10) / 100;
+    var rec = parseInt(sRec.value, 10) / 100;
+    vSleep.textContent = label(parseInt(sSleep.value,10), ["很差","较差","一般","良好","优秀"]);
+    vStress.textContent = label(parseInt(sStress.value,10), ["低","偏低","中等","偏高","很高"]);
+    vRec.textContent = label(parseInt(sRec.value,10), ["缺乏","不足","一般","充足","充分"]);
+
+    // baseline 抬高 = 慢性压力高、睡眠差、恢复少
+    var baseline = 0.05 + stress * 0.55 + (1 - sleep) * 0.25 - rec * 0.15;
+    baseline = Math.max(0.02, baseline);
+    // amplitude（陡峰陡谷）= 睡眠好、恢复足、压力低 → 高振幅
+    var amplitude = 0.9 * sleep * (1 - stress * 0.6) * (0.5 + rec * 0.5);
+    amplitude = Math.max(0.08, amplitude);
+
+    var W = 800, H = 300, padL = 46, padB = 40, padT = 16, padR = 14;
+    ctx.clearRect(0, 0, W, H);
+    // 健康参照曲线（淡绿）
+    function sx(h) { return padL + (W - padL - padR) * h / 24; }
+    function sy(v) { return H - padB - (H - padB - padT) * Math.min(v, 1.15) / 1.15; }
+    ctx.strokeStyle = "#dcd6cd"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(padL, H - padB); ctx.lineTo(W - padR, H - padB); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(padL, padT); ctx.lineTo(padL, H - padB); ctx.stroke();
+    ctx.fillStyle = "#6a6460"; ctx.font = "11px Charter, serif";
+    [0,6,12,18,24].forEach(function(h){ ctx.fillText(h+"h", sx(h)-8, H-padB+18); });
+    ctx.fillText("皮质醇", padL-38, padT+30);
+    // 健康参照（绿虚线）
+    ctx.strokeStyle = "#4a7a6a"; ctx.lineWidth = 1.4; ctx.setLineDash([5,4]); ctx.beginPath();
+    for (var h = 0; h <= 24; h += 0.5) { var X = sx(h), Y = sy(cortisol(h, 0.06, 0.85)); if (h===0) ctx.moveTo(X,Y); else ctx.lineTo(X,Y); }
+    ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = "#4a7a6a"; ctx.fillText("健康参照", sx(9), sy(cortisol(9,0.06,0.85))-8);
+    // 当前曲线（橙实线）
+    ctx.strokeStyle = "#c85a3c"; ctx.lineWidth = 3; ctx.beginPath();
+    for (var h2 = 0; h2 <= 24; h2 += 0.5) { var X2 = sx(h2), Y2 = sy(cortisol(h2, baseline, amplitude)); if (h2===0) ctx.moveTo(X2,Y2); else ctx.lineTo(X2,Y2); }
+    ctx.stroke();
+
+    // 异稳态负荷 = 基线抬高 + 振幅压平 + 睡眠差
+    var flatness = 1 - amplitude / 0.9;
+    var load = Math.min(1, 0.45 * (baseline / 0.6) + 0.35 * flatness + 0.2 * (1 - sleep));
+    loadFill.style.width = Math.round(load * 100) + "%";
+
+    var v, cls, msg;
+    if (load < 0.3) {
+      v = "✓ 健康：陡峰陡谷，负荷低"; cls = "ok";
+      msg = "曲线早高晚低、起伏分明——皮质醇该升时升、该降时降，夜间充分修复。异稳态负荷很低，身体在良性循环里。";
+    } else if (load < 0.6) {
+      v = "△ 亚健康：曲线开始变平"; cls = "bad";
+      msg = "基线在抬高、峰谷在收窄——起床没那么利落、夜里没那么好睡。负荷在累积，还可逆：调一个旋钮（先补睡眠或加恢复）就能把曲线拉回来。";
+    } else {
+      v = "✗ 失调：高位平坦，负荷冲顶"; cls = "bad";
+      msg = "曲线几乎压平、基线高企——这是慢性压力的生理画像：累却睡不着、白天没精神、身体在净消耗。此时最该做的不是'更努力'，是先把一个施压源关掉、把恢复补上。";
+    }
+    readout.innerHTML = '<span class="verdict ' + cls + '">' + v + "</span>" + msg;
+  }
+
+  sSleep.addEventListener("input", render);
+  sStress.addEventListener("input", render);
+  sRec.addEventListener("input", render);
+  render();
+})();
+</script>
+
+</body>
+</html>
