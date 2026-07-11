@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 修辞学读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">修辞<span class="mk"> · </span>RHETORIC</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-heinrichs.html">Heinrichs 精读</a>
+      <a href="book-canon.html">亚里士多德与 Toulmin</a>
+      <a href="decision.html">说服与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPTUS · 核心概念</div>
+    <h1>六个概念，<br>把说服拆成可操作的技艺</h1>
+    <p class="lede">从三诉求到时机、从论证结构到叙事：ethos/pathos/logos、kairos、Toulmin 模型、叙事说服、修辞谬误、以及它的伦理边界。中间放一台「三诉求调音台」，给你一个真实说服场景，让你调配三味诉求，看你的配方是否贴合听众与时机。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="appeals">
+      <div class="eyebrow">CONCEPT 1 · 三诉求</div>
+      <h2>ethos / pathos / logos：说服的三味药</h2>
+      <p>亚里士多德的永恒发现：一切说服都在调配三种诉求。<strong>ethos（信誉）</strong>——听众凭什么信<em>你</em>？你的品格、专业、可信度、与他们的共同立场。<strong>pathos（情感）</strong>——听众<em>为何在乎</em>？你能不能触动他们的情绪、价值、切身利益。<strong>logos（逻辑）</strong>——你凭什么<em>对</em>？证据、推理、数据、结构。三者不是可选项，而是每一次说服里都在场的三个维度。</p>
+      <p>关键洞见是<strong>配比取决于听众，而非取决于你</strong>：怀疑的专家小组需要高 logos + 高 ethos；士气低落的团队需要高 pathos + ethos；陌生的大众需要先用 ethos 建立信任。<em>只有 logos 是冷的（正确但没人被打动），只有 pathos 是空的（煽情但立不住），缺 ethos 则根本没人听你说</em>——大多数"方案很好却推不动"的困境，都是三味失衡。（下面就让你亲手调。）</p>
+    </div>
+
+    <div class="concept" id="kairos">
+      <div class="eyebrow">CONCEPT 2 · kairos（时机）</div>
+      <h2>对的话，也要在对的时刻说</h2>
+      <p>希腊人有两个"时间"的词：chronos（钟表时间）和 <strong>kairos（恰当的时机）</strong>。修辞的 kairos 指<strong>说某句话、提某个议题的"最佳窗口"</strong>——同样的话，在对的时刻说是智慧，在错的时刻说是灾难。向一个刚遭遇失败、情绪激动的团队谈"我们要理性分析"，逻辑再对也会被抵触；等情绪平复、复盘的窗口打开时，同样的话就成了引导。</p>
+      <p>kairos 是修辞学最被低估、也最像"高手直觉"的部分：<strong>它包括时机（什么时刻）、场合（什么情境）、和分寸（说到什么程度）</strong>。它无法完全公式化，但可以训练——读空气、感知情绪的温度、判断议题的成熟度。很多说服的失败不是内容错，是 kairos 错：对的话，说早了或说晚了。<em>"该说什么"之外，永远还有"何时说"这个维度。</em></p>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap prose">
+    <div class="eyebrow">LUDUS · 签名互动</div>
+    <h2>三诉求调音台</h2>
+    <p>选一个说服场景，调配你的 <span style="color:var(--gold);font-weight:700">ethos（信誉）</span>、<span style="color:var(--red);font-weight:700">pathos（情感）</span>、<span style="color:var(--accent-deep);font-weight:700">logos（逻辑）</span>三味的比重，看你的配方是否贴合这群听众与这个时机。不同的场景需要完全不同的配方——这正是修辞的精髓。</p>
+
+    <div class="lab">
+      <div class="lab-title">THE THREE APPEALS MIXER · 按听众配比</div>
+      <div class="scene-btns">
+        <button id="s0" class="on" type="button">① 说服怀疑的高管评审</button>
+        <button id="s1" type="button">② 激励士气低落的团队</button>
+        <button id="s2" type="button">③ 面向陌生大众演讲</button>
+      </div>
+      <div class="scene-desc" id="sceneDesc"></div>
+      <div class="controls">
+        <div class="ctl ethos">
+          <label>ethos 信誉：<span class="val" id="vE">33</span></label>
+          <input type="range" id="sE" min="0" max="100" step="1" value="33">
+        </div>
+        <div class="ctl pathos">
+          <label>pathos 情感：<span class="val" id="vP">33</span></label>
+          <input type="range" id="sP" min="0" max="100" step="1" value="33">
+        </div>
+        <div class="ctl logos">
+          <label>logos 逻辑：<span class="val" id="vL">34</span></label>
+          <input type="range" id="sL" min="0" max="100" step="1" value="34">
+        </div>
+      </div>
+      <canvas id="tri" width="320" height="280"></canvas>
+      <div class="readout" id="readout"></div>
+    </div>
+
+    <p style="font-size:15px;color:var(--muted)">三种场景的最佳配方截然不同：<strong>怀疑的高管</strong>要 logos + ethos（先证明你可信、再拿硬证据），pathos 过多会显得煽情不专业；<strong>低落的团队</strong>要 pathos + ethos（先共情、再用你的信誉给希望），干巴巴的逻辑打动不了情绪；<strong>陌生大众</strong>要先用 ethos 建立信任、再用 pathos 引发共鸣。<em>说服不是"我想怎么说"，而是"这群人、这个时刻，需要哪一味"——这就是 FIG.I 那句"mix by audience"。</em></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="toulmin">
+      <div class="eyebrow">CONCEPT 3 · Toulmin 模型</div>
+      <h2>论证的六个零件</h2>
+      <p>Toulmin 给"一个论证如何成立"一套精确的解剖图，比"前提→结论"的形式逻辑更贴近真实说理：</p>
+      <table class="terms">
+        <tr><th>零件</th><th>作用</th><th>例子</th></tr>
+        <tr><td>主张 Claim</td><td>你要人接受的结论</td><td>"我们该投资这个新方向"</td></tr>
+        <tr><td>依据 Grounds</td><td>支撑主张的事实/数据</td><td>"该市场三年增长了 3 倍"</td></tr>
+        <tr><td>正当理由 Warrant</td><td>连接依据与主张的桥（常隐含）</td><td>"高增长市场值得早进入"</td></tr>
+        <tr><td>支撑 Backing</td><td>为正当理由本身背书</td><td>"多个案例证明先发优势成立"</td></tr>
+        <tr><td>限定 Qualifier</td><td>主张的适用范围/强度</td><td>"在资源允许的前提下"</td></tr>
+        <tr><td>反驳 Rebuttal</td><td>主动承认例外与反例</td><td>"除非监管突变"</td></tr>
+      </table>
+      <p>这个模型的实战价值在于<strong>诊断论证的薄弱环节</strong>：一个论证被反驳，往往不是"依据"错（数据是真的），而是"<strong>正当理由</strong>"站不住（那个隐含的桥有漏洞）——"高增长就该早进入"这个 warrant，对方可能根本不认。<em>把论证拆成六个零件，你就能精确定位它在哪里漏气，而不是笼统地感到"哪里不对"。</em>它也提醒你：主动加上限定与反驳，会让论证更可信，而非更软弱。</p>
+    </div>
+
+    <div class="concept" id="narrative">
+      <div class="eyebrow">CONCEPT 4 · 叙事说服</div>
+      <h2>人不被数据说服，被故事说服</h2>
+      <p>一个反复被验证的事实：<strong>同样的信息，包装成故事比列成要点更能改变人的信念与行为</strong>。故事绕过了人的防御——面对论点，人会本能地反驳；面对故事，人会不自觉地代入。数据说服"头脑"，叙事说服"整个人"。这也是为什么伟大的演讲、成功的品牌、有影响力的领导，都是讲故事的高手。</p>
+      <p>叙事说服的机制是<strong>让听众在你的故事里认出自己、走完一段情感旅程、并在结尾抵达你想要的信念</strong>。为团队争取资源时，"我们缺人手，效率低了 20%"是数据；"上周为了赶上线，小张连着三天睡在公司，而这本可以避免"是故事——后者让决策者<em>感受</em>到问题，而非仅仅<em>知道</em>问题。<strong>把你的核心主张，找一个能让人代入的具体故事来承载</strong>，是修辞学最实用的一课。（与书架<a class="text-link" href="../贝叶斯/index.html">贝叶斯站</a>提醒的"生动性会压过基率"是同一现象的两面——用它，也要警惕被它。）</p>
+    </div>
+
+    <div class="concept" id="fallacies">
+      <div class="eyebrow">CONCEPT 5 · 修辞谬误</div>
+      <h2>既是攻防清单，也是防身术</h2>
+      <p>修辞谬误是那些<strong>看似有说服力、实则站不住的招数</strong>：稻草人（歪曲对方立场再攻击）、诉诸人身（攻击说话者而非论点）、滑坡（夸大连锁后果）、虚假两分（把选项人为压缩成两个）、诉诸权威/众人（"专家/大家都说"）。学它有双重价值——<strong>识别别人在对你用哪一招（防身），也检查自己有没有不自觉地用（自律）</strong>。</p>
+      <p>但要注意一个微妙之处：<strong>有些"谬误"在逻辑上无效，在修辞上却有效</strong>——这正是修辞与逻辑的张力所在。诉诸情感在严格逻辑里是"谬误"，但适度的 pathos 是正当且必要的说服；诉诸信誉（ethos）在纯逻辑里"不相关"，但现实中我们本就该考虑信源的可靠度。<em>关键是区分"正当的诉求"与"操纵性的谬误"：前者帮听众更好地判断，后者阻碍他们判断。</em>这条线，通向下一个概念——伦理。</p>
+    </div>
+
+    <div class="concept" id="ethics">
+      <div class="eyebrow">CONCEPT 6 · 修辞的伦理</div>
+      <h2>好人，善言</h2>
+      <p>修辞从诞生起就背着一个指控：它能"把弱的说成强的"，是操纵的工具。昆体良的回应至今是最好的答案——<strong>"好人善言"（the good man speaking well）</strong>：真正的雄辩，前提是说者的品格与真诚。修辞是放大器，它放大的是你本来的意图：用在真相上，它让真相被听见；用在谎言上，它让谎言更有害。技艺本身中性，善恶在于用它的人。</p>
+      <div class="keybox">
+        <b>Caveat · 一点保留</b>
+        三条务实的伦理边界：① <strong>说服 vs 操纵的分界</strong>——正当的修辞帮听众<em>更好地</em>看清与判断（哪怕用了情感与故事），操纵则<em>阻碍</em>他们判断（靠欺骗、制造虚假紧迫、隐瞒关键信息）。问自己：如果听众看穿了我的手法，还会同意吗？会，就是说服；不会，就是操纵。② <strong>重复博弈里，操纵会反噬</strong>——同事、团队、长期受众会记住被套路的感觉，你的 ethos（最宝贵的资产）会崩塌。③ <strong>最强的长期修辞是真实</strong>——把力气花在"让真实的价值被清晰有力地传达"，而非"把空洞的东西包装得动人"。前者可持续，后者早晚穿帮。
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 修辞学 · 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-heinrichs.html">Heinrichs</a> ·
+      <a href="book-canon.html">亚里士多德与 Toulmin</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var scenes = [
+    {
+      name: "① 说服怀疑的高管评审",
+      desc: "一群经验丰富、时间紧张、对新提案本能怀疑的高管。他们最在意：这靠不靠谱、你懂不懂、证据硬不硬。煽情会让你显得不专业。",
+      target: { e: 35, p: 10, l: 55 },
+      overP: "pathos 太重：对怀疑的高管煽情，会显得不专业、像在掩盖证据不足。把力气挪到硬证据（logos）和你的可信度（ethos）上。",
+      lowL: "logos 不足：这群人要的是证据和严密推理。没有硬 logos，再好的信誉也撑不住一个'凭感觉'的提案。",
+      lowE: "ethos 不足：他们得先相信'你'有资格提这个案。补上你的专业背景、过往战绩、或引用他们信服的来源。"
+    },
+    {
+      name: "② 激励士气低落的团队",
+      desc: "一支刚经历挫折、疲惫、需要重新点燃的团队。他们此刻最需要：被看见情绪、感到有希望、相信带头人。这时堆数据是冷的。",
+      target: { e: 30, p: 50, l: 20 },
+      overP: "",
+      lowP: "pathos 不足：低落的团队需要先被共情、被点燃。干巴巴的逻辑和指标此刻打动不了情绪——先处理心情，再处理事情。",
+      lowE: "ethos 不足：他们要相信'你'能带他们走出去。真诚、与他们站在一起、以身作则，比任何口号都重要。",
+      overL: "logos 太重：此刻堆数据和分析是冷的。团队缺的不是信息，是情绪的动员和希望——把 pathos 加上来。"
+    },
+    {
+      name: "③ 面向陌生大众演讲",
+      desc: "一群不认识你、注意力有限的大众听众（比如那场 300 人的演讲）。他们先问'你是谁、凭什么听你'，再问'这跟我有什么关系'。",
+      target: { e: 38, p: 37, l: 25 },
+      lowE: "ethos 不足：陌生听众开场几分钟就在判断'凭什么信你'。先用故事、资历或共同立场建立信任，否则后面说什么都进不去。",
+      lowP: "pathos 不足：大众听众需要感到'这跟我有关'。缺了情感与共鸣，再正确的内容也会被当成'与我无关'而滑走。",
+      overL: "logos 太重：对陌生大众堆砌论证和数据，注意力会流失。大众演讲靠故事和情感承载观点，逻辑点到为止即可。"
+    }
+  ];
+  var i = 0;
+  var sE = document.getElementById("sE"), sP = document.getElementById("sP"), sL = document.getElementById("sL");
+  var vE = document.getElementById("vE"), vP = document.getElementById("vP"), vL = document.getElementById("vL");
+  var sceneDesc = document.getElementById("sceneDesc");
+  var readout = document.getElementById("readout");
+  var ctx = document.getElementById("tri").getContext("2d");
+  var sBtns = [document.getElementById("s0"), document.getElementById("s1"), document.getElementById("s2")];
+
+  function drawTri(e, p, l, sum) {
+    var W = 320, H = 280;
+    ctx.clearRect(0, 0, W, H);
+    var A = { x: 160, y: 30 }, B = { x: 290, y: 250 }, C = { x: 30, y: 250 }; // ethos顶, pathos右, logos左
+    ctx.strokeStyle = "#2b2620"; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.closePath(); ctx.stroke();
+    // 重心点（按比例）
+    var te = e / sum, tp = p / sum, tl = l / sum;
+    var px = A.x * te + B.x * tp + C.x * tl;
+    var py = A.y * te + B.y * tp + C.y * tl;
+    ctx.fillStyle = "#a8432f"; ctx.beginPath(); ctx.arc(px, py, 8, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#9a7b2e"; ctx.font = "bold 13px Optima, serif"; ctx.fillText("ethos", A.x - 20, A.y - 8);
+    ctx.fillStyle = "#a8432f"; ctx.fillText("pathos", B.x - 18, B.y + 20);
+    ctx.fillStyle = "#3a3229"; ctx.fillText("logos", C.x - 8, C.y + 20);
+  }
+
+  function render() {
+    var e = parseInt(sE.value, 10), p = parseInt(sP.value, 10), l = parseInt(sL.value, 10);
+    vE.textContent = e; vP.textContent = p; vL.textContent = l;
+    var sum = e + p + l || 1;
+    drawTri(e, p, l, sum);
+    var sc = scenes[i];
+    // 归一化后与 target 比较
+    var ne = e / sum * 100, np = p / sum * 100, nl = l / sum * 100;
+    var diff = Math.abs(ne - sc.target.e) + Math.abs(np - sc.target.p) + Math.abs(nl - sc.target.l);
+    var msg, cls, v;
+    if (diff < 26) {
+      v = "✓ 贴合：配方对了这群听众"; cls = "ok";
+      msg = "你的三味比例贴合了这个场景的听众与时机。他们会觉得'这个人懂我们、也说得在理'——这就是修辞的目标：不是我想怎么说，是他们需要哪一味。";
+    } else {
+      // 找最大偏差给诊断
+      var probs = [];
+      if (np - sc.target.p > 18 && sc.overP) probs.push(sc.overP);
+      if (nl - sc.target.l > 18 && sc.overL) probs.push(sc.overL);
+      if (sc.target.l - nl > 18 && sc.lowL) probs.push(sc.lowL);
+      if (sc.target.p - np > 18 && sc.lowP) probs.push(sc.lowP);
+      if (sc.target.e - ne > 18 && sc.lowE) probs.push(sc.lowE);
+      cls = "bad"; v = "△ 失衡：配方不合这群听众";
+      msg = probs.length ? probs[0] : "比例偏离了这个场景的最佳配方。想想：这群人此刻最需要哪一味（凭什么信你 / 为何在乎 / 凭什么对）？";
+    }
+    readout.innerHTML = '<span class="verdict ' + cls + '">' + v + "</span>" + msg;
+  }
+
+  sBtns.forEach(function (b, idx) {
+    b.addEventListener("click", function () {
+      sBtns.forEach(function (x) { x.classList.remove("on"); });
+      b.classList.add("on"); i = idx; sceneDesc.textContent = scenes[idx].desc; render();
+    });
+  });
+  [sE, sP, sL].forEach(function (s) { s.addEventListener("input", render); });
+  sceneDesc.textContent = scenes[0].desc;
+  render();
+})();
+</script>
+
+</body>
+</html>
