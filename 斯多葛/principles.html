@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心原则 · 斯多葛读书笔记</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">斯多葛<span class="stoa-mark"> ‖ </span>STOA</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="principles.html" class="active">核心原则</a>
+      <a href="book-ancient.html">古典三书</a>
+      <a href="book-modern.html">现代两书</a>
+      <a href="practice.html">练习库</a>
+      <a href="today.html">斯多葛与现代</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">PRINCIPIA · 核心原则图解</div>
+    <h1>六个原则，一套操作系统</h1>
+    <p class="lede">按依赖顺序排列：控制二分法是根指令，四美德是价值函数，"判断在我"是运行机制，后三个是日常操练的心法。理解了咬合关系，五本书读的就是同一件事。</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ========== I 控制二分法 ========== -->
+<section id="dichotomy" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">PRINCIPIUM I · DICHOTOMY OF CONTROL</div>
+    <h2>控制二分法：全部哲学的第一课</h2>
+    <div class="prose">
+      <p>《手册》开篇第一条就是它：<strong>有些事情取决于我们，有些事情不取决于我们。</strong>取决于我们的：判断、意愿、欲望、行动——一句话，我们自己的心智活动。不取决于我们的：身体、财产、名声、地位——一句话，一切非我们自己行动的东西。</p>
+      <p>斯多葛的诊断是：人类几乎全部的痛苦，都来自<em>把幸福押在第二类事物上</em>。你无法命令别人尊重你、市场奖励你、身体不生病；把自我价值绑在这些上面，等于把心情的遥控器塞进别人手里。</p>
+      <p>而解药同样清晰：把全部力气收回到第一类——你如何判断、如何选择、如何行动。欧文在《像哲学家一样生活》中给出著名的改良版<strong>三分法</strong>：完全可控（我的目标与价值观）、完全不可控（明天的天气）、部分可控（比赛的胜负）。对第三类，策略是<strong>目标内化</strong>——把"赢得比赛"换成"打出我能打出的最好水平"。</p>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 720 250" role="img" aria-label="控制二分法示意图">
+        <line x1="360" y1="20" x2="360" y2="200" stroke="#262419" stroke-width="2"/>
+        <text x="360" y="234" text-anchor="middle" font-family="PingFang SC" font-size="13" fill="#6b675c">力气只花在左边，右边交还命运</text>
+        <text x="180" y="45" text-anchor="middle" font-family="PingFang SC" font-size="16" font-weight="700" fill="#3c452b">取决于我 ✓</text>
+        <g font-family="PingFang SC" font-size="14" fill="#45423a">
+          <text x="180" y="85" text-anchor="middle">我的判断与看法</text>
+          <text x="180" y="115" text-anchor="middle">我的欲望与选择</text>
+          <text x="180" y="145" text-anchor="middle">我的行动与回应</text>
+          <text x="180" y="175" text-anchor="middle">我如何对待他人</text>
+        </g>
+        <rect x="60" y="60" width="240" height="130" fill="none" stroke="#55603f" stroke-width="2.5"/>
+        <text x="540" y="45" text-anchor="middle" font-family="PingFang SC" font-size="16" font-weight="700" fill="#8e3b2f">不取决于我 ✗</text>
+        <g font-family="PingFang SC" font-size="14" fill="#6b675c">
+          <text x="540" y="85" text-anchor="middle">他人的看法与行为</text>
+          <text x="540" y="115" text-anchor="middle">名声、地位、结果</text>
+          <text x="540" y="145" text-anchor="middle">过去与未来</text>
+          <text x="540" y="175" text-anchor="middle">健康、寿命、外境（大部分）</text>
+        </g>
+        <rect x="420" y="60" width="240" height="130" fill="none" stroke="#8e3b2f" stroke-width="2.5" stroke-dasharray="7 5"/>
+      </svg>
+      <div class="figcap"><b>FIG. I</b> 《手册》第 1 条。实线框内是你的主权领土；虚线框内的一切，只能影响，不能掌控。</div>
+    </div>
+
+    <div class="sorter" id="sorter">
+      <div class="sorter-title">INTERACTIVE · 控制二分法分类器</div>
+      <div class="statement" id="stText">加载中……</div>
+      <div class="verdict" id="stVerdict">凭直觉判断：这件事取决于你吗？</div>
+      <div class="sorter-btns">
+        <button class="btn-up" id="btnUp" type="button">取决于我 ✓</button>
+        <button class="btn-not" id="btnNot" type="button">不取决于我 ✗</button>
+      </div>
+      <div class="progress" id="stProgress"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== II 美德 ========== -->
+<section id="virtue" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">PRINCIPIUM II · VIRTUS</div>
+    <h2>美德是唯一的善，外物只是材料</h2>
+    <div class="prose">
+      <p>如果幸福不在外物，在哪里？斯多葛的回答斩钉截铁：在<strong>品格的卓越</strong>（希腊语 aretē，译作"美德"）。四种枢德：<strong>智慧</strong>（看清什么真正重要）、<strong>正义</strong>（公平待人、尽社会之责）、<strong>勇气</strong>（做对的事，不计代价）、<strong>节制</strong>（欲望服从理性）。</p>
+      <p>那财富、健康、名誉呢？斯多葛称之为<strong>"无关善恶之物"（indifferents）</strong>——其中健康、财富属"可取的"，疾病、贫穷属"不可取的"，你可以合理地追求前者；但它们本身不构成幸福，<em>它们只是你施展品格的材料</em>。同一笔财富，慷慨者用它行善，挥霍者用它自毁——善恶在用法，不在财富。</p>
+      <p>这个立场把斯多葛和"佛系躺平"彻底区分开：斯多葛并不劝你放弃行动与追求，塞涅卡富可敌国、马可·奥勒留治理帝国——它只要求你<strong>在乎的顺序不能错</strong>：品格第一，外物第二，永不倒置。</p>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 720 210" role="img" aria-label="四枢德支撑幸福的柱式结构图">
+        <rect x="120" y="30" width="480" height="34" fill="#55603f"/>
+        <text x="360" y="53" text-anchor="middle" font-family="PingFang SC" font-size="16" font-weight="700" fill="#f4f3ee">幸　福（eudaimonia · 生命的兴盛）</text>
+        <g>
+          <rect x="140" y="80" width="90" height="90" fill="#faf9f5" stroke="#262419" stroke-width="2"/>
+          <rect x="270" y="80" width="90" height="90" fill="#faf9f5" stroke="#262419" stroke-width="2"/>
+          <rect x="400" y="80" width="90" height="90" fill="#faf9f5" stroke="#262419" stroke-width="2"/>
+          <rect x="530" y="80" width="90" height="90" fill="#faf9f5" stroke="#262419" stroke-width="2"/>
+          <g stroke="#d9d5c9" stroke-width="1.5">
+            <line x1="155" y1="86" x2="155" y2="164"/><line x1="170" y1="86" x2="170" y2="164"/><line x1="200" y1="86" x2="200" y2="164"/><line x1="215" y1="86" x2="215" y2="164"/>
+            <line x1="285" y1="86" x2="285" y2="164"/><line x1="300" y1="86" x2="300" y2="164"/><line x1="330" y1="86" x2="330" y2="164"/><line x1="345" y1="86" x2="345" y2="164"/>
+            <line x1="415" y1="86" x2="415" y2="164"/><line x1="430" y1="86" x2="430" y2="164"/><line x1="460" y1="86" x2="460" y2="164"/><line x1="475" y1="86" x2="475" y2="164"/>
+            <line x1="545" y1="86" x2="545" y2="164"/><line x1="560" y1="86" x2="560" y2="164"/><line x1="590" y1="86" x2="590" y2="164"/><line x1="605" y1="86" x2="605" y2="164"/>
+          </g>
+          <text x="185" y="132" text-anchor="middle" font-family="PingFang SC" font-size="16" font-weight="700" fill="#262419">智慧</text>
+          <text x="315" y="132" text-anchor="middle" font-family="PingFang SC" font-size="16" font-weight="700" fill="#262419">正义</text>
+          <text x="445" y="132" text-anchor="middle" font-family="PingFang SC" font-size="16" font-weight="700" fill="#262419">勇气</text>
+          <text x="575" y="132" text-anchor="middle" font-family="PingFang SC" font-size="16" font-weight="700" fill="#262419">节制</text>
+        </g>
+        <rect x="100" y="176" width="520" height="14" fill="#ebe9e2" stroke="#262419" stroke-width="1.5"/>
+        <text x="360" y="207" text-anchor="middle" font-family="PingFang SC" font-size="12" fill="#6b675c">基座：外物（健康 · 财富 · 名誉）——可取，但只是材料，不是柱子</text>
+      </svg>
+      <div class="figcap"><b>FIG. II</b> 四根柱子撑起幸福；外物只是地面。柱子塌了，地面再好也无济于事。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== III 判断在我 ========== -->
+<section id="judgment" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">PRINCIPIUM III · IUDICIUM</div>
+    <h2>判断在我：情绪的装配线</h2>
+    <div class="prose">
+      <p>"扰乱人们的不是事物本身，而是他们对事物的看法。"（《手册》第 5 条）这句被认知行为疗法奉为源头的话，描述了一条情绪装配线：<strong>事件 → 印象（第一感觉）→ 判断（同意或拒绝这个印象）→ 情绪与行动</strong>。</p>
+      <p>关键在中间那一步。印象会自动涌来（被人插队时的火气苗头），这不由你；但<em>是否在印象上签字</em>——把"他插了队"升级成"他在羞辱我、我必须发作"——这一步由你。斯多葛训练的全部内容，就是在印象与同意之间<strong>撑开一条缝隙</strong>，在缝隙里完成检验：这个判断为真吗？它涉及我能控制的部分吗？</p>
+      <p>马可·奥勒留的版本更简洁："去掉'我受到了伤害'这个判断，'受到伤害'本身就消失了。"（大意）注意这不是自我欺骗——事件照旧发生，损失照旧存在；被移除的只是那层<em>额外附加的</em>灾难化解读。</p>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 720 190" role="img" aria-label="事件到情绪的装配线：判断是可控的一环">
+        <defs>
+          <marker id="arrJ" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#55603f"/></marker>
+        </defs>
+        <rect x="20" y="60" width="130" height="54" fill="#faf9f5" stroke="#262419" stroke-width="2"/>
+        <text x="85" y="83" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700">事件</text>
+        <text x="85" y="103" text-anchor="middle" font-family="PingFang SC" font-size="11" fill="#6b675c">不可控</text>
+        <line x1="150" y1="87" x2="192" y2="87" stroke="#55603f" stroke-width="2" marker-end="url(#arrJ)"/>
+        <rect x="194" y="60" width="130" height="54" fill="#faf9f5" stroke="#262419" stroke-width="2"/>
+        <text x="259" y="83" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700">印象</text>
+        <text x="259" y="103" text-anchor="middle" font-family="PingFang SC" font-size="11" fill="#6b675c">自动涌现</text>
+        <line x1="324" y1="87" x2="366" y2="87" stroke="#55603f" stroke-width="2" marker-end="url(#arrJ)"/>
+        <rect x="368" y="48" width="150" height="78" fill="#e6e8db" stroke="#55603f" stroke-width="3"/>
+        <text x="443" y="78" text-anchor="middle" font-family="PingFang SC" font-size="15" font-weight="700" fill="#3c452b">判断（签字）</text>
+        <text x="443" y="100" text-anchor="middle" font-family="PingFang SC" font-size="11" fill="#3c452b">★ 唯一可控的一环</text>
+        <line x1="518" y1="87" x2="560" y2="87" stroke="#55603f" stroke-width="2" marker-end="url(#arrJ)"/>
+        <rect x="562" y="60" width="138" height="54" fill="#faf9f5" stroke="#262419" stroke-width="2"/>
+        <text x="631" y="83" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700">情绪 · 行动</text>
+        <text x="631" y="103" text-anchor="middle" font-family="PingFang SC" font-size="11" fill="#6b675c">判断的产物</text>
+        <path d="M 443 132 Q 443 165 300 165 Q 180 165 120 165" fill="none" stroke="#8e3b2f" stroke-width="2" stroke-dasharray="5 5"/>
+        <text x="330" y="182" text-anchor="middle" font-family="PingFang SC" font-size="12" fill="#8e3b2f">训练：在这里暂停，检验印象，再决定是否签字</text>
+      </svg>
+      <div class="figcap"><b>FIG. III</b> 情绪装配线。CBT 的 ABC 模型（事件—信念—后果）是它的现代重制版。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== IV 消极想象 ========== -->
+<section id="negative" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">PRINCIPIUM IV · PREMEDITATIO MALORUM</div>
+    <h2>消极想象：给幸福做压力测试</h2>
+    <div class="prose">
+      <p>斯多葛日课中最反直觉的一项：<strong>定期想象失去你所拥有的</strong>——工作、健康、所爱之人。塞涅卡建议每天清晨预演可能的逆境；这练习的拉丁名 premeditatio malorum，意为"对恶的预先沉思"。</p>
+      <p>它一箭双雕。其一，<strong>解除享乐适应</strong>：人对拥有之物会迅速麻木（新车三周变旧车），而想象失去能把它"重新变新"——欧文认为这是斯多葛对幸福科学最大的贡献，一种不需要获得任何新东西的欲望管理术。其二，<strong>削弱打击的突然性</strong>：预演过的逆境来临时，你接住的是"演练过的已知"，不是"晴天霹雳"。</p>
+      <p>注意它与焦虑的区别：焦虑是被动地反刍"万一……怎么办"，消极想象是<em>主动、限时、带出口</em>的沙盘推演——想清楚"如果发生，我将如何回应"，然后放下，回到当下的感激里。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== V Memento Mori ========== -->
+<section id="memento" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">PRINCIPIUM V · MEMENTO MORI</div>
+    <h2>记得你会死：最强的优先级排序器</h2>
+    <div class="prose">
+      <p>消极想象的极限形态：想象生命本身的有限。塞涅卡《论生命之短暂》的论证至今无人反驳：<strong>生命不是太短，而是我们把大部分都浪费在了不重要的事上</strong>——为不喜欢的人经营形象，为不需要的东西奔忙，把"真正想过的生活"永远推迟到"以后"。</p>
+      <p>马可·奥勒留在《沉思录》里一遍遍提醒自己：你可能此刻就离开人生，让这个可能性决定你说什么、想什么、做什么。这不是死亡崇拜，而是一个<strong>过滤器</strong>：拿任何一件让你焦虑的事去问"在生命有限这个事实面前，它配得到我多少注意力？"——大多数烦恼会当场缩水。</p>
+      <blockquote>
+        对必然之事，最好的态度不是恐惧也不是回避，而是把它当作丈量今日的尺子。
+        <cite>MEMENTO MORI · 记得你会死，所以记得去活</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ========== VI Amor Fati ========== -->
+<section id="amor" class="concept">
+  <div class="wrap">
+    <div class="eyebrow">PRINCIPIUM VI · AMOR FATI</div>
+    <h2>爱命运：障碍即道路</h2>
+    <div class="prose">
+      <p>二分法教你把不可控之事"交还命运"，但斯多葛的终点比接受更进一步：<strong>拥抱它，把它当作练习的材料</strong>。马可·奥勒留写道：阻碍行动的会推进行动，挡在路上的会成为道路（大意）——火焰把扔进来的东西都变成自己的燃料。</p>
+      <p>操作上这是一个<strong>重新取景</strong>动作：项目失败了？这是练习"从头再来"的器械。被人中伤了？这是练习公正与克制的陪练。生病了？这是练习勇气的战场。爱比克泰德说，每一个处境都是一位陪练员，问题只有一个：<em>你打算用它练什么？</em></p>
+      <p>霍利迪的畅销书《障碍即道路》整本都在展开这一条。它也是斯多葛与"消极忍受"的分界线：忍受是咬牙挺过去，爱命运是把逆境变成原料——前者消耗你，后者喂养你。</p>
+    </div>
+    <div class="keybox prose">
+      <b>SYNTHESIS · 六个原则如何咬合</b>
+      二分法（I）先划定主权边界；四美德（II）定义边界之内什么算"好"；判断装配线（III）是边界的日常巡逻机制；消极想象（IV）与 Memento Mori（V）是防御工事的例行演习；爱命运（VI）则把一切来犯之敌转化为补给。——这就是全部骨架，五本书都是它的展开。
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 斯多葛 ‖ 核心原则</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-ancient.html">古典</a> ·
+      <a href="book-modern.html">现代</a> ·
+      <a href="practice.html">练习</a> ·
+      <a href="today.html">现代专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // 控制二分法分类器
+  const items = [
+    { s: "同事在会上批评了你的方案", up: false, why: "他说什么由他决定。你能控制的是：方案质量，以及听到批评后的回应。" },
+    { s: "你如何回应这次批评", up: true, why: "回应完全是你的行动——冷静复盘还是当场反击，主权在你。" },
+    { s: "明天航班是否延误", up: false, why: "天气与航司不归你管。你能控制的是：留出余量、带本好书。" },
+    { s: "出发前是否留足时间", up: true, why: "这是你的计划与行动，典型的'取决于我'。" },
+    { s: "别人是否喜欢你", up: false, why: "他人的好恶属于他人。你能控制的是：待人是否真诚公正。" },
+    { s: "你是否真诚公正地待人", up: true, why: "这是四美德里的'正义'——永远在你手里。" },
+    { s: "投资组合明天的涨跌", up: false, why: "市场不听任何人的。你能控制的是：仓位、纪律与研究质量。" },
+    { s: "身体是否会生病", up: false, why: "严格说不取决于你——你能控制的是锻炼、作息这些'输入'，但结果只能影响，不能保证。这类事用欧文的目标内化：把目标从'不生病'换成'把能做的养护都做到'。" },
+    { s: "你今晚是否复盘今天的言行", up: true, why: "塞涅卡每晚必做的功课，纯粹的自主行动。" },
+    { s: "过去已经发生的那次失败", up: false, why: "过去不可更改。你能控制的是：从中提取什么教训。" }
+  ];
+  let idx = 0, score = 0, done = false;
+  const stText = document.getElementById('stText');
+  const stVerdict = document.getElementById('stVerdict');
+  const stProgress = document.getElementById('stProgress');
+  const btnUp = document.getElementById('btnUp');
+  const btnNot = document.getElementById('btnNot');
+
+  function show() {
+    stText.textContent = "「" + items[idx].s + "」";
+    stVerdict.textContent = "凭直觉判断：这件事取决于你吗？";
+    stVerdict.className = "verdict";
+    stProgress.textContent = "QUAESTIO " + (idx + 1) + " / " + items.length + " · 已答对 " + score;
+  }
+  function answer(choice) {
+    if (done) return;
+    const it = items[idx];
+    const right = (choice === it.up);
+    if (right) score++;
+    stVerdict.className = "verdict " + (right ? "good" : "bad");
+    stVerdict.textContent = (right ? "✓ 正确。" : "✗ 再想想。") + " " + it.why;
+    idx++;
+    if (idx >= items.length) {
+      done = true;
+      stProgress.textContent = "FINIS · 共答对 " + score + " / " + items.length;
+      stText.textContent = score >= 8
+        ? "「你已经站在门廊下了。」"
+        : "「值得再读一遍《手册》第 1 条。」";
+      btnUp.textContent = "重新开始 ↻";
+      btnNot.style.display = "none";
+      btnUp.onclick = function () {
+        idx = 0; score = 0; done = false;
+        btnUp.textContent = "取决于我 ✓";
+        btnNot.style.display = "";
+        btnUp.onclick = function () { answer(true); };
+        show();
+      };
+      return;
+    }
+    setTimeout(show, 3400);
+    stProgress.textContent = "QUAESTIO " + (idx + 1) + " / " + items.length + " · 已答对 " + score;
+  }
+  btnUp.onclick = function () { answer(true); };
+  btnNot.onclick = function () { answer(false); };
+  show();
+})();
+</script>
+
+</body>
+</html>

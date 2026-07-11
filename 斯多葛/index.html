@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>斯多葛 · 读书笔记</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">斯多葛<span class="stoa-mark"> ‖ </span>STOA</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="principles.html">核心原则</a>
+      <a href="book-ancient.html">古典三书</a>
+      <a href="book-modern.html">现代两书</a>
+      <a href="practice.html">练习库</a>
+      <a href="today.html">斯多葛与现代</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">BOOK 02 · STOICISM · 五本书，一座门廊</div>
+      <h1>斯多葛：<br>不被扰动的生活艺术</h1>
+      <p class="lede">
+        两千三百年前，芝诺在雅典一条彩绘门廊（Stoa）下开讲；今天，认知行为疗法、硅谷创业者和特种部队都在引用他的传人。
+        斯多葛不是忍耐的哲学，而是一套精确区分"什么归我管、什么不归我管"的操作系统。
+        这个站点是五本经典的阅读伴侣。
+      </p>
+    </div>
+    <div class="quote-wheel">
+      <div>
+        <div class="q-text" id="qText">扰乱人们的不是事物本身，而是他们对事物的看法。</div>
+        <div class="q-src" id="qSrc">—— 爱比克泰德《手册》第 5 条</div>
+      </div>
+      <button id="qNext" type="button">下一句 →</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">THE FIVE BOOKS · 为什么是这五本</div>
+    <h2>三位古人给你原文，两位今人给你入口</h2>
+    <div class="grid cols-3" style="margin-top:32px">
+      <a class="card" href="book-ancient.html#aurelius">
+        <span class="tag">帝王 · 约 170 年</span>
+        <h3>《沉思录》</h3>
+        <p style="font-family:var(--latin);font-size:12px;color:var(--muted)">马可·奥勒留 Marcus Aurelius</p>
+        <p>罗马皇帝在战地帐篷里写给自己的笔记，从未打算出版。权力顶点上的自我训诫，斯多葛最动人的样本。</p>
+      </a>
+      <a class="card" href="book-ancient.html#seneca">
+        <span class="tag">导师 · 约 65 年</span>
+        <h3>《道德书简》</h3>
+        <p style="font-family:var(--latin);font-size:12px;color:var(--muted)">塞涅卡 Seneca</p>
+        <p>写给友人卢基里乌斯的 124 封信，谈时间、死亡、财富与友谊。文笔最好、最亲切的斯多葛。</p>
+      </a>
+      <a class="card" href="book-ancient.html#epictetus">
+        <span class="tag">奴隶 · 约 125 年</span>
+        <h3>《手册》《谈话录》</h3>
+        <p style="font-family:var(--latin);font-size:12px;color:var(--muted)">爱比克泰德 Epictetus</p>
+        <p>生而为奴、瘸腿、被流放——却教出了整个学派最锋利的教义。控制二分法的源头，53 条的随身武器。</p>
+      </a>
+      <a class="card" href="book-modern.html#irvine">
+        <span class="tag gold">入门 · 2009</span>
+        <h3>《像哲学家一样生活》</h3>
+        <p style="font-family:var(--latin);font-size:12px;color:var(--muted)">威廉·欧文 William B. Irvine</p>
+        <p>公认最好的现代入门：把古代教义整理成一套可练习的"人生哲学"，含著名的控制三分法改良。<strong>建议从这本读起。</strong></p>
+      </a>
+      <a class="card" href="book-modern.html#holiday">
+        <span class="tag gold">日课 · 2016</span>
+        <h3>《每日斯多葛》</h3>
+        <p style="font-family:var(--latin);font-size:12px;color:var(--muted)">瑞安·霍利迪 Ryan Holiday</p>
+        <p>366 天，每天一段原文引文加一页解读。不适合"读完"，适合放在床头读一年——把哲学变成习惯的工具书。</p>
+      </a>
+      <a class="card" href="practice.html">
+        <span class="tag red">附 · 练习库</span>
+        <h3>十二个练习</h3>
+        <p style="font-family:var(--latin);font-size:12px;color:var(--muted)">EXERCITIA STOICA</p>
+        <p>晨间预演、消极想象、自愿不适、晚间复盘……斯多葛是练出来的，不是读出来的。每个练习给出出处与做法。</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">READING PATH · 建议阅读路径</div>
+    <h2>由今入古，由读入练</h2>
+    <div class="grid cols-3" style="margin-top:32px">
+      <div class="card">
+        <span class="tag">STEP 1</span>
+        <h3>建立地图</h3>
+        <p>先读欧文《像哲学家一样生活》通览全局，同时浏览本站<a class="text-link" href="principles.html">核心原则</a>页，在互动分类器里把"控制二分法"练到条件反射。</p>
+      </div>
+      <div class="card">
+        <span class="tag">STEP 2</span>
+        <h3>进入原典</h3>
+        <p>《手册》只有 53 条，一小时读完、一辈子消化；然后是《沉思录》与《道德书简》——对照<a class="text-link" href="book-ancient.html">古典三书精读</a>抓每本的骨架。</p>
+      </div>
+      <div class="card">
+        <span class="tag">STEP 3</span>
+        <h3>落进日常</h3>
+        <p>《每日斯多葛》当日课常伴，配合<a class="text-link" href="practice.html">练习库</a>的十二个练习。检验标准只有一个：堵车、被批评、丢东西时，你的第一反应变了没有。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">CORE IDEAS · 六个核心抓手</div>
+    <h2>整个学派，六个观念就能撑起来</h2>
+    <p class="lede">斯多葛的体系惊人地紧凑：一条二分法立骨，四种美德定向，几个心法反复操练——其余都是注脚。</p>
+    <div class="grid cols-3" style="margin-top:32px">
+      <a class="card" href="principles.html#dichotomy"><span class="tag">I</span><h3>控制二分法</h3><p>有些事取决于我们，有些不。把力气只花在前者上——全部哲学的第一课。</p></a>
+      <a class="card" href="principles.html#virtue"><span class="tag">II</span><h3>美德是唯一的善</h3><p>智慧、正义、勇气、节制。外物只是"无关善恶的材料"，用得好坏才分高下。</p></a>
+      <a class="card" href="principles.html#judgment"><span class="tag">III</span><h3>判断在我</h3><p>扰乱你的不是事，是你对事的判断——认知行为疗法的两千年前源代码。</p></a>
+      <a class="card" href="principles.html#negative"><span class="tag red">IV</span><h3>消极想象</h3><p>预演失去，才能珍视拥有；预演逆境，才不会被它击溃。</p></a>
+      <a class="card" href="principles.html#memento"><span class="tag red">V</span><h3>Memento Mori</h3><p>记得你会死。不是丧，是最强的优先级排序器。</p></a>
+      <a class="card" href="principles.html#amor"><span class="tag">VI</span><h3>爱命运</h3><p>不只接受发生的一切，而是把它当作练习的材料——障碍即道路。</p></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">CONTEXT · 它从哪里来，到哪里去</div>
+    <h2>从雅典门廊到今天的诊疗室</h2>
+    <div class="grid cols-2" style="margin-top:32px">
+      <a class="card" href="history.html">
+        <span class="tag">历史与人物</span>
+        <h3>门廊五百年，复兴五十年</h3>
+        <p>芝诺海难开宗、克吕西波立骨架、罗马三贤各自登场——奴隶、权臣与皇帝殊途同归；沉寂千年后，它在认知疗法与现代斯多葛运动中归来。</p>
+        <p style="color:var(--accent-deep);font-weight:700">查看时间线与群像 →</p>
+      </a>
+      <a class="card" href="today.html">
+        <span class="tag">斯多葛与现代</span>
+        <h3>为什么此刻全世界都在重读它</h3>
+        <p>CBT 的哲学源头、斯托克代尔悖论、创业圈的座右铭，以及信息过载时代最稀缺的能力——注意力主权。老哲学，新战场。</p>
+        <p style="color:var(--accent-deep);font-weight:700">进入专题 →</p>
+      </a>
+    </div>
+    <p class="inscription">MEMENTO MORI · AMOR FATI · SUSTINE ET ABSTINE</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 斯多葛 ‖ 每一个文件夹是一本书</p>
+    <p>
+      <a href="../index.html">← 书架</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="principles.html">原则</a> ·
+      <a href="book-ancient.html">古典</a> ·
+      <a href="book-modern.html">现代</a> ·
+      <a href="practice.html">练习</a> ·
+      <a href="today.html">现代专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const quotes = [
+    ["扰乱人们的不是事物本身，而是他们对事物的看法。", "—— 爱比克泰德《手册》第 5 条"],
+    ["你对自己心灵的关注，应当胜过对别人怎么看你的关注。", "—— 马可·奥勒留《沉思录》（大意）"],
+    ["我们受苦于想象，多过受苦于现实。", "—— 塞涅卡《道德书简》（大意）"],
+    ["有些事情取决于我们，有些事情不取决于我们。", "—— 爱比克泰德《手册》第 1 条"],
+    ["不要再争论好人应当是什么样，去成为一个好人。", "—— 马可·奥勒留《沉思录》（大意）"],
+    ["人生不是太短，而是我们浪费得太多。", "—— 塞涅卡《论生命之短暂》（大意）"],
+    ["阻碍行动的会推进行动，挡在路上的会成为道路。", "—— 马可·奥勒留《沉思录》（大意）"],
+    ["先对自己说你要成为什么样的人，然后再做你该做的事。", "—— 爱比克泰德《谈话录》（大意）"]
+  ];
+  let i = 0;
+  const t = document.getElementById('qText');
+  const s = document.getElementById('qSrc');
+  document.getElementById('qNext').addEventListener('click', () => {
+    i = (i + 1) % quotes.length;
+    t.textContent = quotes[i][0];
+    s.textContent = quotes[i][1];
+  });
+})();
+</script>
+
+</body>
+</html>
