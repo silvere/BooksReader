@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 机制设计读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">机制设计<span class="mk"> ⇄ </span>MECHANISM</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-schelling.html">谢林精读</a>
+      <a href="book-ladder.html">教材与落地</a>
+      <a href="decision.html">机制与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPTUS · 核心概念</div>
+    <h1>六件工具，<br>一门搬运均衡的手艺</h1>
+    <p class="lede">先学会读均衡（它是预测的单位），再学谢林的两件软兵器（聚焦点与承诺），然后是机制设计的心脏——激励相容，最后进两间车间：拍卖与匹配。页中有「维克里实验台」，让你亲手撞见"说真话是占优策略"。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="equilibrium">
+      <div class="eyebrow">CONCEPT 1 · 纳什均衡</div>
+      <h2>系统会滑向哪里：预测的单位</h2>
+      <p>纳什均衡是这样一种状态：<strong>给定别人的做法，没有任何人愿意单方面改变自己的做法</strong>。它未必是好结局——囚徒困境里两人都背叛就是均衡，尽管两人都合作对彼此更好。这正是全站第一课：<em>均衡回答"会发生什么"，不回答"什么是好的"</em>。个体理性与集体最优之间的裂缝，就是机制设计的全部工作面。</p>
+      <p>读均衡的实战姿势：看到一个反复出现、屡教不改的行为模式（会议没人先发言、渠道集体刷单、报价一律灌水），先假设<strong>它是某个博弈的均衡</strong>——然后找出支撑它的支付结构，而不是谴责玩家的品格。</p>
+    </div>
+
+    <div class="figure">
+      <svg viewBox="0 0 720 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="囚徒困境支付矩阵：改动支付后均衡从双背叛移动到双合作">
+        <defs>
+          <marker id="arrM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#9d4a2f"/>
+          </marker>
+        </defs>
+        <!-- 左：原始困境 -->
+        <text x="140" y="30" font-family="Songti SC,serif" font-size="15" font-weight="900" fill="#2b3a4a" text-anchor="middle">改规则前：背叛是均衡</text>
+        <g transform="translate(60 50)">
+          <text x="105" y="16" font-family="Songti SC,serif" font-size="12" fill="#6d675e" text-anchor="middle">对方合作　　对方背叛</text>
+          <g transform="translate(30 26)">
+            <rect x="0" y="0" width="75" height="60" fill="#fff" stroke="#201f1d"/>
+            <rect x="75" y="0" width="75" height="60" fill="#fff" stroke="#201f1d"/>
+            <rect x="0" y="60" width="75" height="60" fill="#fff" stroke="#201f1d"/>
+            <rect x="75" y="60" width="75" height="60" fill="rgba(43,58,74,0.16)" stroke="#2b3a4a" stroke-width="2.5"/>
+            <text x="37" y="26" font-family="Songti SC,serif" font-size="12" text-anchor="middle" fill="#46423b">双赢</text>
+            <text x="37" y="44" font-family="American Typewriter,monospace" font-size="12" text-anchor="middle" fill="#46423b">3 , 3</text>
+            <text x="112" y="26" font-family="Songti SC,serif" font-size="12" text-anchor="middle" fill="#46423b">被坑</text>
+            <text x="112" y="44" font-family="American Typewriter,monospace" font-size="12" text-anchor="middle" fill="#46423b">0 , 5</text>
+            <text x="37" y="86" font-family="Songti SC,serif" font-size="12" text-anchor="middle" fill="#46423b">坑人</text>
+            <text x="37" y="104" font-family="American Typewriter,monospace" font-size="12" text-anchor="middle" fill="#46423b">5 , 0</text>
+            <text x="112" y="86" font-family="Songti SC,serif" font-size="12" font-weight="700" text-anchor="middle" fill="#2b3a4a">双输 ◉</text>
+            <text x="112" y="104" font-family="American Typewriter,monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#2b3a4a">1 , 1</text>
+            <text x="-14" y="34" font-family="Songti SC,serif" font-size="12" fill="#6d675e" text-anchor="middle" transform="rotate(-90 -14 34)">我合作</text>
+            <text x="-14" y="94" font-family="Songti SC,serif" font-size="12" fill="#6d675e" text-anchor="middle" transform="rotate(-90 -14 94)">我背叛</text>
+          </g>
+        </g>
+        <!-- 中间箭头 -->
+        <path d="M310 170 L 400 170" stroke="#9d4a2f" stroke-width="2.5" marker-end="url(#arrM)"/>
+        <text x="355" y="152" font-family="Songti SC,serif" font-size="13" font-weight="700" fill="#9d4a2f" text-anchor="middle">机制师出手：</text>
+        <text x="355" y="192" font-family="Songti SC,serif" font-size="12" fill="#9d4a2f" text-anchor="middle">背叛罚 3</text>
+        <!-- 右：改造后 -->
+        <text x="560" y="30" font-family="Songti SC,serif" font-size="15" font-weight="900" fill="#9d4a2f" text-anchor="middle">改规则后：合作成均衡</text>
+        <g transform="translate(480 50)">
+          <text x="105" y="16" font-family="Songti SC,serif" font-size="12" fill="#6d675e" text-anchor="middle">对方合作　　对方背叛</text>
+          <g transform="translate(30 26)">
+            <rect x="0" y="0" width="75" height="60" fill="rgba(157,74,47,0.14)" stroke="#9d4a2f" stroke-width="2.5"/>
+            <rect x="75" y="0" width="75" height="60" fill="#fff" stroke="#201f1d"/>
+            <rect x="0" y="60" width="75" height="60" fill="#fff" stroke="#201f1d"/>
+            <rect x="75" y="60" width="75" height="60" fill="#fff" stroke="#201f1d"/>
+            <text x="37" y="26" font-family="Songti SC,serif" font-size="12" font-weight="700" text-anchor="middle" fill="#9d4a2f">双赢 ◉</text>
+            <text x="37" y="44" font-family="American Typewriter,monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#9d4a2f">3 , 3</text>
+            <text x="112" y="26" font-family="Songti SC,serif" font-size="12" text-anchor="middle" fill="#46423b">被坑</text>
+            <text x="112" y="44" font-family="American Typewriter,monospace" font-size="12" text-anchor="middle" fill="#46423b">0 , 2</text>
+            <text x="37" y="86" font-family="Songti SC,serif" font-size="12" text-anchor="middle" fill="#46423b">坑人</text>
+            <text x="37" y="104" font-family="American Typewriter,monospace" font-size="12" text-anchor="middle" fill="#46423b">2 , 0</text>
+            <text x="112" y="86" font-family="Songti SC,serif" font-size="12" text-anchor="middle" fill="#46423b">双输</text>
+            <text x="112" y="104" font-family="American Typewriter,monospace" font-size="12" text-anchor="middle" fill="#46423b">-2 , -2</text>
+            <text x="-14" y="34" font-family="Songti SC,serif" font-size="12" fill="#6d675e" text-anchor="middle" transform="rotate(-90 -14 34)">我合作</text>
+            <text x="-14" y="94" font-family="Songti SC,serif" font-size="12" fill="#6d675e" text-anchor="middle" transform="rotate(-90 -14 94)">我背叛</text>
+          </g>
+        </g>
+        <text x="360" y="312" font-family="American Typewriter,monospace" font-size="10.5" letter-spacing="2.5" fill="#6d675e" text-anchor="middle">SAME PLAYERS · NEW PAYOFFS · NEW EQUILIBRIUM</text>
+      </svg>
+      <div class="figcap"><b>FIG. II</b> 搬运均衡的最小案例 —— 玩家没换、道德没变，只是给背叛加了罚金（押金、合同、声誉抵押），均衡（◉）就从双输格搬进了双赢格。这一页图就是机制设计的全部纲领。</div>
+    </div>
+
+    <div class="concept" id="focal">
+      <div class="eyebrow">CONCEPT 2 · 聚焦点与可信承诺</div>
+      <h2>谢林的两件软兵器</h2>
+      <p><strong>聚焦点（focal point）：</strong>没有沟通时，人们靠"显著性"协调。谢林的著名实验：明天在纽约见一个无法联系的人，你去哪？多数人答"正午的中央车站"——没有任何规则规定，但<em>大家都预期大家会这么想</em>。先例、整数、默认选项、"惯例"之所以强大，是因为协调博弈里显著性本身就是引力。</p>
+      <p><strong>可信承诺（credible commitment）：</strong>谢林最反直觉的洞见——<strong>砍掉自己的选项反而增强谈判力</strong>。烧掉退路的军队、公开立下的军令状、写进合同的违约金，都是在让"我不会退让"从空话变成物理事实。威胁与许诺的价值不取决于狠不狠，取决于<em>对方是否相信你事到临头真的会执行</em>——所以理性的策略家会主动给自己戴上镣铐。</p>
+    </div>
+
+    <div class="concept" id="ic">
+      <div class="eyebrow">CONCEPT 3 · 激励相容</div>
+      <h2>让说真话成为最优策略</h2>
+      <p>机制设计的核心困难只有一个：<strong>你需要的信息（估值、成本、偏好）在玩家肚子里，而玩家会撒谎谋利</strong>。激励相容（IC）是对规则的要求：在这套规则下，如实申报恰好是每个玩家的最优选择——不靠觉悟，靠算术。</p>
+      <p>维克里拍卖是教科书样本：出价最高者得，<strong>但只付第二高价</strong>。你的出价只决定"是否赢"，不决定"付多少"，于是虚报毫无收益：报高了可能亏本买下，报低了可能错失本可赚的交易——<em>如实出价是占优策略</em>（去下面的实验台亲手验证）。迈尔森的显示原理进一步说：任何机制能实现的结果，都存在一个等价的"直接说真话"机制——所以设计时只需在 IC 机制里找，搜索空间瞬间可控。</p>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap prose">
+    <div class="eyebrow">LUDUS · 签名互动</div>
+    <h2>维克里实验台</h2>
+    <p>一件古董要拍卖。你的真实估值是 <strong>70</strong>（只有你知道），对手是三位估值随机（0–100 均匀分布）的竞拍者。选一种拍卖制，定一个出价，模拟一万场，看平均利润——然后点「扫描全部出价」，找出真正的最优出价在哪。</p>
+
+    <div class="lab">
+      <div class="lab-title">VICKREY LABORATORY · 你的估值 = 70</div>
+      <div class="controls">
+        <div class="ctl">
+          <label>拍卖规则</label>
+          <div class="fmt">
+            <button id="fmt2" class="on" type="button">二价拍卖（付第二高价）</button>
+            <button id="fmt1" type="button">一价拍卖（付你的出价）</button>
+          </div>
+        </div>
+        <div class="ctl">
+          <label>你的出价：<span class="val" id="vBid">70</span></label>
+          <input type="range" id="sBid" min="0" max="100" step="1" value="70">
+        </div>
+      </div>
+      <div class="actions">
+        <button id="btnRun" type="button">模拟一万场</button>
+        <button id="btnSweep" class="ghost" type="button">扫描全部出价 →</button>
+      </div>
+      <canvas id="plot" width="800" height="360"></canvas>
+      <div class="readout" id="readout">先模拟当前出价，或直接扫描。</div>
+    </div>
+
+    <p style="font-size:15px;color:var(--muted)">你会看到：<strong>二价拍卖里利润曲线的顶点恰好在 70——你的真实估值</strong>，多报少报都亏；一价拍卖的顶点在 70 之下（约 52），必须"藏价"，而藏多少取决于你对对手的猜测。这就是激励相容的手感：好机制把"算计"这道工序从玩家肩上卸掉了。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="design">
+      <div class="eyebrow">CONCEPT 4 · 机制设计</div>
+      <h2>逆向的博弈论：边界与突破口</h2>
+      <p>赫维茨的框架把设计问题标准化：设计者定规则（谁能做什么、结果怎么定、钱怎么转），玩家带着私人信息入场博弈，<strong>设计目标是让均衡结果满足你要的性质</strong>（效率、收入、公平、真话）。但这门手艺有铁栅栏——Gibbard–Satterthwaite 定理：足够一般的投票场景里，不可操纵的规则只剩独裁。<em>不可能性定理不是丧钟，是地图</em>：它标出哪些性质不能兼得，逼你诚实地选择放弃哪个（就像 CAP 定理之于分布式系统）。</p>
+      <p>突破口在于收窄场景：允许转移支付（拍卖）、限制偏好结构（匹配）、允许近似最优——三条路各自长出了成熟的工程学。</p>
+    </div>
+
+    <div class="concept" id="auction">
+      <div class="eyebrow">CONCEPT 5 · 拍卖理论</div>
+      <h2>有价格的机制车间</h2>
+      <p>四种经典拍卖（英式升价、荷兰式降价、一价密封、二价密封）表面迥异，<strong>收入等价定理</strong>却说：在基准假设下（风险中性、独立私人估值），它们给卖家的期望收入一样。Milgrom 的落地经验全在<em>基准假设失效的地方</em>：估值相关时升价拍卖更能释放信息；竞拍者怕的是<strong>赢者诅咒</strong>——共同价值拍卖里，赢的那个往往是估计最乐观的那个，赢本身就是坏消息，理性玩家必须为此折价。</p>
+      <p>现代变体已是基础设施：频谱的同时多轮拍卖、广告位的 GSP 与 VCG、Google 2019 年整体切换到一价制引发的行业震动——每次改制都是一次真金白银的机制实验。</p>
+    </div>
+
+    <div class="concept" id="matching">
+      <div class="eyebrow">CONCEPT 6 · 匹配市场</div>
+      <h2>不许谈钱的机制车间</h2>
+      <p>器官、学位、住院医师职位——社会不允许价格出清这些市场（Roth 称此为"厌恶性交易"约束），但它们仍是市场，仍会失灵。Gale–Shapley <strong>延迟接受算法</strong>是这里的维克里拍卖：申请方逐轮求偶、接收方"暂收不定"，收敛到<strong>稳定匹配</strong>——不存在一对彼此都更想私奔的组合，市场因此不会解体。对申请方，它还是防策略的：如实排序志愿是最优。</p>
+      <p>Roth 的诊断三件套适用于一切市场（包括你的招聘流程与平台）：市场要<strong>厚</strong>（参与者足够多）、要<strong>快</strong>（不拥堵，交易来得及处理）、要<strong>安全</strong>（说真话不吃亏、参与不后悔）。三者缺一，玩家就会抢跑、场外交易、策略性报价——市场自己拆自己的台。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 机制设计 ⇄ 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-schelling.html">谢林</a> ·
+      <a href="book-ladder.html">教材与落地</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var V = 70;                 // 你的真实估值
+  var RIVALS = 3;             // 对手数
+  var SHADE = 0.75;           // 一价均衡下对手的藏价系数（4 人均匀估值：b = 3/4 v）
+  var format = 2;             // 2 = 二价, 1 = 一价
+
+  var sBid = document.getElementById("sBid");
+  var vBid = document.getElementById("vBid");
+  var fmt1 = document.getElementById("fmt1");
+  var fmt2 = document.getElementById("fmt2");
+  var readout = document.getElementById("readout");
+  var canvas = document.getElementById("plot");
+  var ctx = canvas.getContext("2d");
+  var sweepData = null;
+
+  sBid.addEventListener("input", function () { vBid.textContent = sBid.value; });
+  fmt1.addEventListener("click", function () { format = 1; fmt1.classList.add("on"); fmt2.classList.remove("on"); sweepData = null; drawBase(); readout.textContent = "已切到一价拍卖：赢家付自己的出价。再扫描一次看看顶点挪去了哪。"; });
+  fmt2.addEventListener("click", function () { format = 2; fmt2.classList.add("on"); fmt1.classList.remove("on"); sweepData = null; drawBase(); readout.textContent = "已切到二价拍卖：赢家只付第二高价。扫描一次，看顶点在哪。"; });
+
+  function simulate(bid, runs) {
+    var profit = 0, wins = 0;
+    for (var r = 0; r < runs; r++) {
+      var maxRival = 0;
+      for (var i = 0; i < RIVALS; i++) {
+        var v = Math.random() * 100;
+        var b = format === 2 ? v : v * SHADE;   // 二价：对手说真话；一价：对手藏价
+        if (b > maxRival) maxRival = b;
+      }
+      if (bid > maxRival) {
+        wins++;
+        profit += format === 2 ? (V - maxRival) : (V - bid);
+      }
+    }
+    return { avg: profit / runs, winRate: wins / runs };
+  }
+
+  function drawBase() {
+    var w = canvas.width, h = canvas.height, padL = 56, padB = 44, padT = 20, padR = 20;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = "#201f1d"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(padL, padT); ctx.lineTo(padL, h - padB); ctx.lineTo(w - padR, h - padB); ctx.stroke();
+    ctx.fillStyle = "#6d675e"; ctx.font = "13px 'PingFang SC', sans-serif";
+    ctx.fillText("出价 →", w - padR - 52, h - padB + 32);
+    ctx.save(); ctx.translate(16, padT + 90); ctx.rotate(-Math.PI / 2); ctx.fillText("平均利润", 0, 0); ctx.restore();
+    for (var x = 0; x <= 100; x += 20) {
+      var px = padL + (w - padL - padR) * x / 100;
+      ctx.fillText(String(x), px - 8, h - padB + 18);
+    }
+    // 真实估值参考线
+    var vx = padL + (w - padL - padR) * V / 100;
+    ctx.strokeStyle = "#2b3a4a"; ctx.setLineDash([5, 5]);
+    ctx.beginPath(); ctx.moveTo(vx, padT); ctx.lineTo(vx, h - padB); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = "#2b3a4a"; ctx.fillText("真实估值 70", vx + 6, padT + 16);
+    return { w: w, h: h, padL: padL, padB: padB, padT: padT, padR: padR };
+  }
+
+  function drawSweep() {
+    var g = drawBase();
+    if (!sweepData) return;
+    var maxY = 0;
+    sweepData.forEach(function (d) { if (d.avg > maxY) maxY = d.avg; });
+    if (maxY <= 0) maxY = 1;
+    ctx.strokeStyle = "#9d4a2f"; ctx.lineWidth = 3; ctx.beginPath();
+    sweepData.forEach(function (d, i) {
+      var px = g.padL + (g.w - g.padL - g.padR) * d.bid / 100;
+      var py = g.h - g.padB - (g.h - g.padB - g.padT) * Math.max(0, d.avg) / (maxY * 1.15);
+      if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    });
+    ctx.stroke();
+    // 顶点标记
+    var best = sweepData.reduce(function (a, b) { return b.avg > a.avg ? b : a; });
+    var bx = g.padL + (g.w - g.padL - g.padR) * best.bid / 100;
+    var by = g.h - g.padB - (g.h - g.padB - g.padT) * best.avg / (maxY * 1.15);
+    ctx.fillStyle = "#9d4a2f";
+    ctx.beginPath(); ctx.arc(bx, by, 7, 0, Math.PI * 2); ctx.fill();
+    ctx.font = "bold 14px 'PingFang SC', sans-serif";
+    ctx.fillText("最优出价 ≈ " + best.bid, Math.min(bx + 10, g.w - 150), by - 10);
+    return best;
+  }
+
+  document.getElementById("btnRun").addEventListener("click", function () {
+    var bid = parseInt(sBid.value, 10);
+    var r = simulate(bid, 10000);
+    readout.innerHTML = (format === 2 ? "二价拍卖" : "一价拍卖") + " · 出价 " + bid +
+      " ：中标率 " + (r.winRate * 100).toFixed(1) + "%，平均利润 " +
+      '<span class="big">' + r.avg.toFixed(2) + "</span>" +
+      "<br>换个出价再试，或直接扫描找顶点。";
+  });
+
+  document.getElementById("btnSweep").addEventListener("click", function () {
+    sweepData = [];
+    for (var b = 0; b <= 100; b += 2) sweepData.push({ bid: b, avg: simulate(b, 4000).avg });
+    var best = drawSweep();
+    if (format === 2) {
+      readout.innerHTML = "二价拍卖的利润顶点落在 <span class=\"big\">" + best.bid + "</span> —— 就是你的真实估值。" +
+        "<br><strong>如实出价是占优策略</strong>：这个机制把撒谎的收益归零了。";
+    } else {
+      readout.innerHTML = "一价拍卖的利润顶点落在 <span class=\"big\">" + best.bid + "</span> —— 低于真实估值 70。" +
+        "<br><strong>一价制逼你藏价</strong>：出价多少取决于你对对手的猜测，算计回到了你肩上。";
+    }
+  });
+
+  drawBase();
+})();
+</script>
+
+</body>
+</html>
