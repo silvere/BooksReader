@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 学习科学读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">学习科学<span class="mk"> · </span>LEARNING</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-stick.html">Make It Stick 精读</a>
+      <a href="book-peak-ohlsson.html">刻意练习与深层学习</a>
+      <a href="decision.html">学习与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPTUS · 核心概念</div>
+    <h1>六个概念，<br>一套经实验验证的学法</h1>
+    <p class="lede">从"为什么费力才有效"到"专家是怎么练成的"：提取练习、间隔效应、交错、合意困难、认知负荷、刻意练习。中间放一台「遗忘曲线实验室」，让你切换临时突击与间隔提取，亲眼看同样的时间投入下，记忆留存的天壤之别。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="retrieval">
+      <div class="eyebrow">CONCEPT 1 · 提取练习</div>
+      <h2>回想，比重读强十倍</h2>
+      <p>学习科学证据最扎实的一条：<strong>主动从记忆里把知识"提取"出来（自测、回想、默写），比被动地重读、复习有效得多。</strong>这被称为"测试效应"——测试不只是检验你会不会，测试的动作<em>本身</em>就在强化记忆。实验反复显示：读一遍再自测一次的人，远比读四遍的人记得牢，尽管后者"感觉"学得更熟。</p>
+      <p>机制在于：<strong>每一次成功的提取，都在加固通往那段记忆的神经通路</strong>，让下次更容易调用。而重读只是让信息在眼前流畅地滑过，制造"我已经会了"的错觉，却几乎不强化提取能力——考试时你需要的正是提取，而重读从不练习它。<em>合上书，逼自己回想，即使想得吃力、想得不全——那份吃力，正是学习在发生。</em>（下面就让你亲眼看到它的威力。）</p>
+    </div>
+
+    <div class="concept" id="spacing">
+      <div class="eyebrow">CONCEPT 2 · 间隔效应</div>
+      <h2>分散着学，胜过集中突击</h2>
+      <p>艾宾浩斯就发现的、至今最稳健的效应之一：<strong>把同样的学习时间分散到多个时段，比集中在一次，记得牢得多。</strong>学 3 小时，分成三天每天 1 小时，远胜于一次性突击 3 小时——尽管后者当下感觉"学了好多"。原因与提取相关：每次间隔后再学，记忆已经开始遗忘，此时的"重新提取"比记忆still新鲜时更费力，也因此更有效（又一个<a class="text-link" href="#difficulty">合意困难</a>）。</p>
+      <p>这直接判了"临时抱佛脚"的死刑：突击能让你勉强通过明天的考试，但一周后几乎全忘——<strong>它优化的是短期的"考完就扔",而非真正的掌握</strong>。对于你想长期留住的知识（这个书架的每一本），间隔复习是唯一有效的策略。实践工具是"间隔重复"（如 Anki 之类的卡片系统），按遗忘规律在恰当的时间点提醒你复习。</p>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap prose">
+    <div class="eyebrow">LUDUS · 签名互动</div>
+    <h2>遗忘曲线实验室</h2>
+    <p>同样的学习时间，两种用法。切换<strong>临时突击</strong>（一次学完）与<strong>间隔提取</strong>（分散 + 主动回想），拖动复习次数，看 30 天后你还记得多少。你会看到两条曲线的命运彻底分开。</p>
+
+    <div class="lab">
+      <div class="lab-title">FORGETTING CURVE LAB · 30 天后你还记得多少</div>
+      <div class="mode-btns">
+        <button id="mCram" class="on" type="button">临时突击（集中一次）</button>
+        <button id="mSpace" type="button">间隔提取（分散+回想）</button>
+      </div>
+      <div class="ctl">
+        <label>复习/提取次数：<span class="val" id="vN">0</span></label>
+        <input type="range" id="sN" min="0" max="6" step="1" value="0">
+      </div>
+      <canvas id="curve" width="800" height="300"></canvas>
+      <div class="readout" id="readout"></div>
+    </div>
+
+    <p style="font-size:15px;color:var(--muted)">规律一目了然：<strong>临时突击</strong>就算加复习，也都挤在开头，曲线开局很高却迅速衰减，30 天所剩无几；<strong>间隔提取</strong>把每次复习放到记忆开始遗忘的时间点，且用<em>主动回想</em>而非重读——每次都把曲线重新推高、衰减也更慢，30 天后留存高出数倍。<em>同样的努力，方法不同，结果天差地别。这就是为什么"怎么学"比"学多久"更重要。</em></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="interleaving">
+      <div class="eyebrow">CONCEPT 3 · 交错</div>
+      <h2>混着练，别一类练到底</h2>
+      <p>反直觉的一条：学习多个相关主题或题型时，<strong>把它们交错混合着练，比一类练透了再练下一类（区块化）更有效</strong>——尽管交错当下感觉更乱、更慢、正确率更低。集中练一类题时，你其实在重复同一个已经激活的解法，很流畅但没在练"判断该用哪个方法"；而现实（考试、实际问题）从不告诉你该用哪招——<strong>交错练习正是在训练那个最关键的能力：识别问题属于哪一类、该调用哪个方法。</strong></p>
+      <p>经典实验：学画几种画风、算几类体积题，交错组当下表现更差、感觉更糟，但最终测验远超区块组。这对你的意义：学一个领域的多个概念时，别"学完一章测一章就翻篇",而要不断把新旧、不同类型混合起来自测——那份"混乱感"正是深层掌握在形成。</p>
+    </div>
+
+    <div class="concept" id="difficulty">
+      <div class="eyebrow">CONCEPT 4 · 合意困难</div>
+      <h2>费力，是学习在发生的信号</h2>
+      <p>比约克的核心洞见，统领了前三个概念：<strong>那些让学习当下变慢、变难、感觉更差的条件（提取、间隔、交错），恰恰产生更牢固、更可迁移的长期记忆。</strong>关键词是"合意"（desirable）——不是所有困难都好（超出能力的困难只会挫败），而是<em>那种迫使你更深加工、更用力提取的困难</em>。它把学习科学最反直觉的真相凝成一句：<strong>感觉流畅 ≠ 学得好；感觉吃力，往往才是学得好。</strong></p>
+      <p>这解释了为什么无效方法如此流行：重读、划线、看讲解让你感觉流畅、有掌控、有进展——这种"流畅错觉"（fluency illusion）让人误以为学会了，于是停止了真正有效的费力提取。<strong>学习科学要你做的，是在感觉上"忍受低效"，去换取实质上的高效</strong>——相信证据，不信那份让人上瘾的顺畅感。这与书架<a class="text-link" href="../贝叶斯/index.html">贝叶斯站</a>"别信直觉、信证据"完全同构。</p>
+      <div class="keybox">
+        <b>Key Insight · 关键洞见</b>
+        当学习让你感觉"太顺了、毫不费力"，要警惕——你可能只是在制造熟悉感，而非真正的记忆。当学习让你感觉"有点吃力、想不太起来、有点乱"（但没到崩溃），恰恰是它在起效。<strong>把"舒适的低效"换成"不适的高效"，是这门学科要你做的最重要的一次习惯改造。</strong>
+      </div>
+    </div>
+
+    <div class="concept" id="cognitiveload">
+      <div class="eyebrow">CONCEPT 5 · 认知负荷</div>
+      <h2>工作记忆是学习的瓶颈</h2>
+      <p>斯威勒的认知负荷理论：<strong>人的工作记忆容量极小（一次只能处理几个信息块），它是学习的瓶颈。</strong>学习新东西时，工作记忆同时要处理"内容本身的难度"（内在负荷）和"呈现方式带来的额外负担"（外在负荷）。如果呈现方式糟糕（信息零散、无关干扰多、要同时看图又看别处的字），外在负荷会挤占本该用于理解的容量，学习就变慢甚至失败。</p>
+      <p>实践推论：① <strong>降低外在负荷</strong>——好的材料、清晰的结构、一次聚焦一件事，别让糟糕的呈现浪费你有限的工作记忆；② <strong>把知识"组块化"</strong>——把零散信息组织成有意义的模块（专家之所以能处理复杂问题，是因为他们把大量信息压缩成了少数几个组块，绕过了工作记忆的瓶颈，这与<a class="text-link" href="../算法信息论/index.html">算法信息论</a>的压缩深深相通）；③ <strong>先打基础再上难度</strong>——基础知识自动化后，工作记忆才腾得出空间处理更复杂的东西。</p>
+    </div>
+
+    <div class="concept" id="deliberate">
+      <div class="eyebrow">CONCEPT 6 · 刻意练习</div>
+      <h2>专家不是练得久，是练得对</h2>
+      <p>埃里克森的<strong>刻意练习</strong>纠正了一个流行的误解（尤其"一万小时法则"的讹传）：<strong>专家水平不是单纯累积时长的结果，而是特定方式练习的结果。</strong>刻意练习有几个要素——① 在你能力的<em>边缘</em>练习（不是舒适区的重复，也不是崩溃区的挫败）；② 有<em>明确的、可改进的目标</em>（针对具体的薄弱环节）；③ 有<em>即时的反馈</em>（知道对错才能修正）；④ 高度<em>专注</em>（不是分心地混时长）。开车三十年不会让你成为赛车手，因为那是无反馈的重复，不是刻意练习。</p>
+      <div class="keybox">
+        <b>Caveat · 一点保留</b>
+        三条务实边界：① <strong>"一万小时"是被讹传的口号</strong>——埃里克森本人反对它，时长不是关键，练习的<em>质量与方式</em>才是；② <strong>刻意练习的适用范围有争议</strong>——在规则清晰、反馈明确的领域（棋、乐器、运动）它作用最大，在开放、混沌的领域（创业、领导）它的边界更模糊，别把它当万能公式；③ <strong>天赋、机遇、环境仍然重要</strong>——刻意练习是必要的强力杠杆，但不是唯一变量，别把它读成"只要方法对，人人都能成大师"的励志神话。把它当"如何有效地变强"的可靠方法，而非决定论。
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 学习科学 · 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-stick.html">Make It Stick</a> ·
+      <a href="book-peak-ohlsson.html">刻意练习与深层学习</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var mode = "cram";
+  var sN = document.getElementById("sN"), vN = document.getElementById("vN");
+  var readout = document.getElementById("readout");
+  var ctx = document.getElementById("curve").getContext("2d");
+  var mCram = document.getElementById("mCram"), mSpace = document.getElementById("mSpace");
+  var DAYS = 30;
+
+  // 记忆强度模型：每次学习/复习把强度拉到 1，之后按 exp(-t/tau) 衰减；
+  // tau 随复习次数增大（记得更久）；提取(间隔)的 tau 增益 > 重读(突击)
+  function simulate(n, spaced) {
+    // 复习时间点
+    var times = [0];
+    if (spaced) {
+      // 分散到 0..20 天
+      for (var i = 1; i <= n; i++) times.push(Math.round(20 * i / (n + 0.0)));
+    } else {
+      // 突击：全挤在头两天
+      for (var j = 1; j <= n; j++) times.push(Math.min(2, j * 0.4));
+    }
+    var strengthAtReview = [];
+    var series = [];
+    for (var d = 0; d <= DAYS; d += 0.5) {
+      // 找最近一次不晚于 d 的复习
+      var lastIdx = -1;
+      for (var k = 0; k < times.length; k++) if (times[k] <= d) lastIdx = k; else break;
+      if (lastIdx < 0) { series.push({ d: d, s: 0 }); continue; }
+      // tau 随复习次数增长；spaced 每次增益更大
+      var reviewsDone = lastIdx; // 0-based：第0次是初学
+      var tau = spaced ? (2 + reviewsDone * 4.2) : (1.6 + reviewsDone * 1.1);
+      var since = d - times[lastIdx];
+      var s = Math.exp(-since / tau);
+      series.push({ d: d, s: s });
+    }
+    return { series: series, times: times };
+  }
+
+  function render() {
+    var n = parseInt(sN.value, 10);
+    vN.textContent = n;
+    var spaced = mode === "space";
+    var res = simulate(n, spaced);
+    var comp = simulate(n, !spaced); // 对照
+    var W = 800, H = 300, padL = 46, padB = 40, padT = 16, padR = 14;
+    ctx.clearRect(0, 0, W, H);
+    function sx(d) { return padL + (W - padL - padR) * d / DAYS; }
+    function sy(s) { return H - padB - (H - padB - padT) * s; }
+    ctx.strokeStyle = "#d8d6cc"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(padL, H - padB); ctx.lineTo(W - padR, H - padB); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(padL, padT); ctx.lineTo(padL, H - padB); ctx.stroke();
+    ctx.fillStyle = "#64646e"; ctx.font = "11px Charter, serif";
+    [0,10,20,30].forEach(function(d){ ctx.fillText(d + "天", sx(d) - 8, H - padB + 18); });
+    ctx.fillText("记得", padL - 38, padT + 20);
+    function line(series, color, w, dash) {
+      ctx.strokeStyle = color; ctx.lineWidth = w; ctx.setLineDash(dash || []);
+      ctx.beginPath();
+      series.forEach(function (p, i) { var X = sx(p.d), Y = sy(p.s); if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y); });
+      ctx.stroke(); ctx.setLineDash([]);
+    }
+    // 对照（淡）
+    line(comp.series, spaced ? "#e0a999" : "#a9cfc9", 1.4, [5, 4]);
+    // 当前（浓）
+    line(res.series, spaced ? "#2e7d74" : "#cf5f3f", 3);
+    // 复习点
+    ctx.fillStyle = spaced ? "#2e7d74" : "#cf5f3f";
+    res.times.forEach(function (t) { ctx.beginPath(); ctx.arc(sx(t), sy(1), 4, 0, Math.PI * 2); ctx.fill(); });
+
+    var finalS = res.series[res.series.length - 1].s;
+    var pct = Math.round(finalS * 100);
+    var v, cls, msg;
+    if (spaced) {
+      cls = "ok"; v = "间隔提取：30 天后还记得 " + pct + "%";
+      msg = n === 0 ? "还没安排复习。把复习次数拉上来，看间隔提取如何把曲线一次次推高、并让它衰减得更慢。" :
+        "把 " + n + " 次复习分散到三周、且每次靠主动回想（而非重读）——每次都在记忆开始遗忘时重新加固，30 天后留存 " + pct + "%，远高于同样次数的临时突击（虚线）。";
+    } else {
+      cls = "bad"; v = "临时突击：30 天后只剩 " + pct + "%";
+      msg = n === 0 ? "一次性学完、不复习——典型的考前突击。曲线开局高，但迅速衰减。试试增加复习、或切到'间隔提取'看差别。" :
+        "就算加了 " + n + " 次复习，也都挤在开头两天——曲线开局很高却快速衰减，30 天只剩 " + pct + "%。同样的努力，换成间隔提取（虚线）能好几倍。";
+    }
+    readout.innerHTML = '<span class="verdict ' + cls + '">' + v + "</span>" + msg;
+  }
+
+  mCram.addEventListener("click", function () { mode = "cram"; mCram.classList.add("on"); mSpace.classList.remove("on"); render(); });
+  mSpace.addEventListener("click", function () { mode = "space"; mSpace.classList.add("on"); mCram.classList.remove("on"); render(); });
+  sN.addEventListener("input", render);
+  render();
+})();
+</script>
+
+</body>
+</html>
