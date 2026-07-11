@@ -20,6 +20,7 @@
 | 10 | 自由能原理（Clark《预测算法》 + Seth《Being You》 + Hohwy《The Predictive Mind》 + Parr/Pezzulo/Friston《Active Inference》 + Friston 2010 纲领论文） | [`自由能/`](自由能/) | 6 页联动：总览（预测加工环路 + 四线焊接）/ 历史与人物 / 六大概念（含受控幻觉实验台互动）/ Clark 精读 / 深入四册 / 预测与决策专题（书架拱顶石，焊接全部十站暗线） |
 | 11 | 可行系统模型 VSM（Beer《Brain of the Firm》《The Heart of Enterprise》 + Espejo & Reyes《Organizational Systems》） | [`VSM/`](VSM/) | 6 页联动：总览（五系统递归图）/ 历史与人物（含 Cybersyn）/ 核心概念（含多样性工程台互动）/ 比尔两部曲 / 现代整理版 / VSM 与决策专题（书架回到 BOOK 01 控制论，圆环合拢） |
 | 12 | 算法信息论（Grünwald MDL 导论 + Li & Vitányi《An Introduction to Kolmogorov Complexity》 + Hutter《Universal Artificial Intelligence》AIXI） | [`算法信息论/`](算法信息论/) | 6 页联动：总览（柯氏复杂度 K(x)）/ 历史与人物（三重独立发现）/ 核心概念（含 MDL 两段式编码实验台互动）/ MDL 入口 / 教材与 AIXI / 压缩与决策专题（理解即压缩） |
+| 13 | 决策理论（Peterson《An Introduction to Decision Theory》 + MacLean/Thorp/Ziemba《Kelly Capital Growth Investment Criterion》 + Ole Peters 遍历性经济学） | [`决策理论/`](决策理论/) | 6 页联动：总览（遍历性陷阱）/ 历史与人物 / 核心概念（含遍历性赌局模拟器互动）/ Peterson 精读 / Kelly 与遍历性 / 下注与决策专题（校准+下注） |
 
 ## 本地预览
 

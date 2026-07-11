@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 决策理论读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">决策理论<span class="mk"> · </span>DECISION</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-peterson.html">Peterson 精读</a>
+      <a href="book-kelly.html">Kelly 与遍历性</a>
+      <a href="decision.html">下注与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPTUS · 核心概念</div>
+    <h1>六个概念，<br>把风险的直觉重装一遍</h1>
+    <p class="lede">从公理化的理性出发，一路走到那个颠覆一切的问题——你在对谁平均？预期效用、风险厌恶、Kelly 准则、遍历性、破产的不可逆。中间放一台「遍历性赌局模拟器」，让你亲手拖动下注比例，看着系综平均一路上扬，而你这条时间线走向归零。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="eu">
+      <div class="eyebrow">CONCEPT 1 · 预期效用</div>
+      <h2>理性 = 最大化效用的期望</h2>
+      <p>vN-M 定理说：只要你的偏好满足几条常识公理（完备性、传递性、连续性、独立性），那么<strong>你的选择必然等价于在最大化某个效用函数 u 的期望值</strong>。注意这是一条"表示定理"——它不规定你该喜欢什么，只说如果你的偏好自洽，就一定存在一把内在的效用尺子在背后。</p>
+      <p>关键在于 u 通常是<strong>凹的</strong>（钱越多，每一块的效用越小），这直接推出风险厌恶：一个期望值为零的公平赌局，理性人会拒绝，因为可能输掉的效用大于可能赢到的效用。伯努利的洞见在这里被公理化——<em>但效用凹性到底是心理事实，还是别的东西的伪装？遍历性会给出惊人的回答。</em></p>
+    </div>
+
+    <div class="concept" id="riskaversion">
+      <div class="eyebrow">CONCEPT 2 · 风险厌恶的两种解释</div>
+      <h2>是心理，还是数学？</h2>
+      <p>主流解释（伯努利—vN-M）：风险厌恶源于<strong>效用函数的凹性</strong>——一个关于心理的假设，你天生觉得损失比等量收益更痛。前景理论进一步刻画了它的非理性细节（损失厌恶约 2 倍、参照点依赖）。这一层已是大众认知的天花板。</p>
+      <p>但彼得斯给出第二种解释，且不需要任何心理假设：<strong>风险厌恶可以纯粹是"正确处理时间"的数学后果</strong>。因为财富是乘法性地增长的（涨跌是百分比），一次大亏损会永久压低你未来所有的复利基数——回避它不是因为你"厌恶"，而是因为在你唯一的时间线上，它真的会拖垮长期增长率。<em>同一个行为，两套完全不同的底层解释</em>——这就是下一个概念的战场。</p>
+    </div>
+
+    <div class="concept" id="ergodicity">
+      <div class="eyebrow">CONCEPT 3 · 遍历性问题</div>
+      <h2>你在对谁平均？</h2>
+      <p>一个系统是"遍历的"，如果<strong>时间平均（一个个体走很久）等于系综平均（很多个体各走一步的均值）</strong>。掷骰子的点数是遍历的——你掷一万次的平均，约等于一万个人各掷一次的平均。<strong>但乘法性的财富不是。</strong></p>
+      <p>看那个经典赌局：抛硬币，正面财富 ×1.5，反面 ×0.6。系综平均每轮 +5%（(1.5+0.6)/2=1.05），看起来该玩。但你这一条时间线呢？长期看，正反各半，你的财富每两轮乘以 1.5×0.6=0.9——<strong>每轮实际以约 −5% 的速度衰减，几乎必然归零</strong>。期望值指向"玩"，时间增长率指向"别碰"。经济学两百年一直用系综平均给个人建议，而个人活在时间平均里——<em>这个错配，就是遍历性问题</em>。（下面就让你亲手看它发生。）</p>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap prose">
+    <div class="eyebrow">LUDUS · 签名互动</div>
+    <h2>遍历性赌局模拟器</h2>
+    <p>经典的 Peters 赌局：每轮抛硬币，你押上财富的一个比例 f。正面这部分 ×1.5，反面 ×0.6。拖动 f，看两条线的命运分道扬镳——蓝色<strong>系综平均</strong>（很多平行世界的均值）和红色<strong>中位数时间线</strong>（你最可能的那一条）。全押（f=100%）时期望值最高，你却几乎必然归零；最优在别处。</p>
+
+    <div class="lab">
+      <div class="lab-title">ERGODICITY GAMBLE · +50% / −40% 抛硬币</div>
+      <div class="ctl">
+        <label>下注比例 f（每轮押上财富的百分之几）：<span class="val" id="vF">100%</span></label>
+        <input type="range" id="sF" min="0" max="100" step="1" value="100">
+      </div>
+      <div class="actions">
+        <button id="btnRun" type="button">模拟 500 条人生 · 100 轮</button>
+      </div>
+      <canvas id="plot" width="800" height="360"></canvas>
+      <div class="readout" id="readout"></div>
+    </div>
+
+    <p style="font-size:15px;color:var(--muted)">你会发现两件事同时为真：<strong>下注越多，系综平均（期望值）增长越快</strong>——因为极少数暴富的世界把均值拉得很高；<strong>但你这条中位数时间线的增长率，在 f = 25% 处触顶，之后转负</strong>。那个 25%，就是这个赌局的 <strong>Kelly 最优比例</strong>。期望值最大化会怂恿你全押，然后送你去归零——决策理论最贵的一课，就画在这两条线的裂缝里。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="kelly">
+      <div class="eyebrow">CONCEPT 4 · Kelly 准则</div>
+      <h2>下注多少：最大化的是增长率，不是期望值</h2>
+      <p>Kelly 准则回答"押多大"：<strong>选那个能最大化财富对数的期望的下注比例</strong>——等价于最大化你这条时间线的长期几何增长率。对一个赔率 b、胜率 p 的赌局，Kelly 比例 f* = p − (1−p)/b。它有两个近乎神奇的性质：长期看，任何别的策略的财富，最终都会被 Kelly 甩开任意倍；同时它<strong>永不下注到破产</strong>（因为对数在零处是负无穷，它对归零无限厌恶）。</p>
+      <p>实践中人们常用"半 Kelly"（押一半），因为全 Kelly 的波动大到令人生理不适，且对胜率估计的误差极其敏感——<strong>高估了自己的优势，全 Kelly 会放大成灾难</strong>。这与遍历性是同一枚硬币：Kelly 最大化的正是时间平均增长率，它天然就活在"你只有一条命"的世界里。</p>
+    </div>
+
+    <div class="concept" id="ruin">
+      <div class="eyebrow">CONCEPT 5 · 破产的不可逆</div>
+      <h2>−100% 是一堵墙，不是一个数</h2>
+      <p>算术直觉把 +100% 和 −100% 当成对称的两个数，这是致命错觉。<strong>亏 50% 需要赚 100% 才能回本；亏到 0，则永远出局，再高的期望值也与你无关。</strong>在乘法性的世界里，零是一个吸收壁——一旦碰到，游戏结束，你退出了所有未来的复利。</p>
+      <p>这给出决策理论最实用的一条铁律：<strong>先保证活着，再谈优化</strong>。任何有非零破产概率的策略，只要重复足够多次，破产概率就趋于 1——这就是"赌徒破产"定理。塔勒布把它讲成一句话：<em>为了成功你首先必须活下来</em>。避免归零不是保守，是让复利有机会发生的前提。</p>
+      <div class="keybox">
+        <b>Caveat · 一点保留</b>
+        决策理论的漂亮公式都假设你<strong>知道</strong>概率与赔率。真实决策里最难的恰恰是这个前提——胜率是估出来的，且常被高估。所以：① Kelly 对参数误差极敏感，实务用半 Kelly 留安全边际；② 遍历性框架同样依赖"你知道过程的动力学"，现实中未必；③ 这些理论校准的是<em>方向</em>（别全押、护住下行、想时间平均），而非可直接代入的数值。把它们当罗盘，不当计算器。
+      </div>
+    </div>
+
+    <div class="concept" id="calibration">
+      <div class="eyebrow">CONCEPT 6 · 校准 + 下注</div>
+      <h2>预测日记的下一层</h2>
+      <p>把概率标出来（<a class="text-link" href="../贝叶斯/index.html">贝叶斯站</a>的"给信念标刻度"）只是决策的上半场。下半场是 Kelly 的问题：<strong>基于这个概率，该投入多少资源？</strong>一个校准良好的预测者，若还懂下注纪律，才算完成了从"判断对错"到"配置资源"的闭环。</p>
+      <p>这对现实决策的迁移是直接的：新项目该投多少预算、某个机会该压上多少声誉、一个不确定的方向该分配多少时间——都是"押多大"的问题。<strong>Kelly 的精神是：优势越大、越确定，押越多；但永远不押上会让你出局的那一注。</strong>把预测日记升级成"预测 + 下注日记"，你就同时练了校准与配置两块肌肉。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 决策理论 · 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-peterson.html">Peterson</a> ·
+      <a href="book-kelly.html">Kelly 与遍历性</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // 确定式伪随机（不用 Math.random，保证可复现）
+  function makeRng(seed) {
+    var s = seed >>> 0;
+    return function () { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; };
+  }
+  var UP = 1.5, DN = 0.6, ROUNDS = 100, PATHS = 500;
+
+  var sF = document.getElementById("sF");
+  var vF = document.getElementById("vF");
+  var readout = document.getElementById("readout");
+  var ctx = document.getElementById("plot").getContext("2d");
+
+  function simulate(f) {
+    // 返回每轮的：系综均值、中位数（对数域绘制）
+    var wealth = new Array(PATHS).fill(1);
+    var rng = makeRng(20240711);
+    var ensemble = [1], median = [1];
+    for (var r = 1; r <= ROUNDS; r++) {
+      for (var p = 0; p < PATHS; p++) {
+        var mult = rng() < 0.5 ? (1 - f + f * UP) : (1 - f + f * DN);
+        wealth[p] *= mult;
+      }
+      var sum = 0; for (var i = 0; i < PATHS; i++) sum += wealth[i];
+      ensemble.push(sum / PATHS);
+      var sorted = wealth.slice().sort(function (a, b) { return a - b; });
+      median.push(sorted[Math.floor(PATHS / 2)]);
+    }
+    return { ensemble: ensemble, median: median, wealth: wealth };
+  }
+
+  function growthRate(f) {
+    // 时间平均对数增长率 g(f) = 0.5 ln(1-f+1.5f) + 0.5 ln(1-f+0.6f)
+    var a = 1 - f + UP * f, b = 1 - f + DN * f;
+    if (a <= 0 || b <= 0) return -Infinity;
+    return 0.5 * Math.log(a) + 0.5 * Math.log(b);
+  }
+
+  function draw(f) {
+    var res = simulate(f);
+    var W = 800, H = 360, padL = 56, padB = 40, padT = 20, padR = 14;
+    ctx.clearRect(0, 0, W, H);
+    // 对数刻度范围
+    var allLog = res.ensemble.concat(res.median).map(function (v) { return Math.log10(Math.max(v, 1e-9)); });
+    var maxL = Math.max.apply(null, allLog), minL = Math.min.apply(null, allLog);
+    maxL = Math.max(maxL, 0.5); minL = Math.min(minL, -2);
+    function sx(t) { return padL + (W - padL - padR) * t / ROUNDS; }
+    function sy(v) { var l = Math.log10(Math.max(v, 1e-9)); return H - padB - (H - padB - padT) * (l - minL) / (maxL - minL); }
+    // 基准线（财富=1）
+    ctx.strokeStyle = "#dad7cd"; ctx.lineWidth = 1; ctx.setLineDash([4, 4]);
+    ctx.beginPath(); ctx.moveTo(padL, sy(1)); ctx.lineTo(W - padR, sy(1)); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = "#64656e"; ctx.font = "12px Palatino, serif";
+    ctx.fillText("本金 (对数轴)", padL + 4, sy(1) - 6);
+    ctx.fillText("轮次 →", W - 60, H - 12);
+    function line(arr, color, w) {
+      ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath();
+      for (var t = 0; t < arr.length; t++) { var X = sx(t), Y = sy(arr[t]); if (t === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y); }
+      ctx.stroke();
+    }
+    line(res.ensemble, "#24406b", 3);
+    line(res.median, "#b23a2e", 3);
+    ctx.font = "bold 13px Palatino, serif";
+    ctx.fillStyle = "#24406b"; ctx.fillText("系综平均（期望值）", sx(ROUNDS) - 140, sy(res.ensemble[ROUNDS]) - 8);
+    ctx.fillStyle = "#b23a2e"; ctx.fillText("中位数时间线（你）", sx(ROUNDS) - 140, Math.min(sy(res.median[ROUNDS]) + 16, H - padB - 4));
+
+    var g = growthRate(f);
+    var medFinal = res.median[ROUNDS];
+    var v, cls, msg;
+    if (f === 0) {
+      v = "不下注：原地踏步"; cls = "ok";
+      msg = "财富纹丝不动。安全，但零增长——决策不是只有'不玩'一个选项。";
+    } else if (Math.abs(f - 0.25) < 0.03) {
+      v = "✓ Kelly 最优：时间增长率触顶"; cls = "ok";
+      msg = "f ≈ 25% 是这个赌局的 Kelly 比例：你这条时间线的长期几何增长率在这里最大。押更多，期望值更高，但你的中位命运开始变差。";
+    } else if (f > 0.5) {
+      v = "过度下注：正在奔向归零"; cls = "bad";
+      msg = "系综平均还在涨（少数暴富世界拉高了均值），但你的中位时间线增长率已是负的（每轮约 " + (g*100).toFixed(1) + "%）——绝大多数真实人生在破产。期望值骗了你。";
+    } else if (f > 0.25) {
+      v = "偏多：越过了 Kelly 峰"; cls = "bad";
+      msg = "已过 25% 的最优点，时间增长率开始下滑。多押的每一分，都在拿长期命运换账面期望。";
+    } else {
+      v = "偏保守：还没吃满优势"; cls = "ok";
+      msg = "低于 Kelly 比例，增长率尚未触顶（每轮约 " + (g*100).toFixed(2) + "%）。可以再押一点——但永远别越过 25%。";
+    }
+    readout.innerHTML = '<span class="verdict ' + cls + '">' + v + "</span>" + msg;
+  }
+
+  sF.addEventListener("input", function () { vF.textContent = sF.value + "%"; draw(parseInt(sF.value, 10) / 100); });
+  document.getElementById("btnRun").addEventListener("click", function () { draw(parseInt(sF.value, 10) / 100); });
+  draw(1.0);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelly 与遍历性 · 决策理论读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">决策理论<span class="mk"> · </span>DECISION</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-peterson.html">Peterson 精读</a>
+      <a href="book-kelly.html" class="active">Kelly 与遍历性</a>
+      <a href="decision.html">下注与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">GRADUS II & III · 下注与重构</div>
+    <h1>把框架捅穿的<br>两个洞见</h1>
+    <p class="lede">教材给你地基，但决策理论真正改变直觉的两块，在教材之外：Kelly 准则回答"该押多大"，遍历性回答"你该对谁的平均负责"。前者有一本权威论文集，后者只需一篇论文——短，但会重装你对风险的操作系统。</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== Kelly ===== -->
+<section id="kelly">
+  <div class="wrap prose">
+    <div class="eyebrow">LIBER II · 《THE KELLY CAPITAL GROWTH INVESTMENT CRITERION》 · MacLEAN · THORP · ZIEMBA · 2011</div>
+    <h2>Kelly 准则：财富公式的定本 <span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i></span></h2>
+    <p><strong>是什么：</strong>麦克莱恩、索普、齐姆巴合编的 Kelly 准则权威论文集（World Scientific，2011），从凯利 1956 年原始论文到半个世纪的理论与实践尽收其中。它是"财富公式"（Fortune's Formula）这一主题上最完整的学术汇编——由把 Kelly 真正用出业绩的索普亲自参与编纂。</p>
+
+    <div class="chapter">
+      <div class="ch-no">SKELETON · 骨架</div>
+      <h3>三个层次的证明</h3>
+      <ul>
+        <li><strong>为什么是对数：</strong>数学定理证明，只有对数效用（等价于最大化几何增长率）能在长期让财富渐近最大、并最小化达到任意目标的期望时间。Kelly 不是众多效用函数里的一个选择，它在"长期增长"这个目标下是<strong>唯一</strong>最优。</li>
+        <li><strong>它的双重保护：</strong>长期看跑赢任何本质不同的策略；同时因为 ln(0) = −∞，它对破产无限厌恶——<em>永不押到出局</em>。增长与生存，一个公式同时给。</li>
+        <li><strong>为什么实务用半 Kelly：</strong>全 Kelly 的路径波动巨大、且对胜率估计误差极度敏感（高估优势会被放大成灾难）。论文集里大量篇幅讨论"分数 Kelly"如何用一点增长率换回可承受的波动。</li>
+      </ul>
+      <div class="keybox">
+        <b>Signature Idea · 代表思想</b>
+        <strong>知道押哪边，只是决策的一半；押多大，是被严重低估的另一半。</strong>大多数人把所有精力花在"判断对错"上，却随手决定投入多少——而长期财富的方差，主要由后者决定。Kelly 把"仓位"从直觉变成了可计算的纪律。
+      </div>
+    </div>
+
+    <div class="keybox">
+      <b>Caveat · 一点保留</b>
+      这是论文集而非教科书，密度高、门槛硬（需要概率与随机过程基础），不适合从头顺读。<strong>务实读法：</strong>先读凯利原始论文与索普的实践综述章，理解直觉；数学证明按需查。想要更好读的入门，Poundstone 的通俗史《Fortune's Formula》（财富公式）是极佳的伴读。核心那条纪律——<em>优势越大越确定押越多，但永不押上会让你出局的那一注</em>——不需要读完全书就能带走。
+    </div>
+  </div>
+</section>
+
+<!-- ===== Ergodicity ===== -->
+<section id="ergodicity">
+  <div class="wrap prose">
+    <div class="eyebrow">LIBER III · 《THE ERGODICITY PROBLEM IN ECONOMICS》 · OLE PETERS · NATURE PHYSICS 2019</div>
+    <h2>遍历性经济学：重装风险直觉 <span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i></span></h2>
+    <p><strong>是什么：</strong>奥勒·彼得斯发表于《Nature Physics》(vol 15, 2019) 的纲领论文，也是遍历性经济学最好的入口。它的论点可以一句话概括：<strong>主流经济学在用系综平均给个体建议，但个体活在时间平均里，而财富过程不遍历——两者根本不相等。</strong></p>
+
+    <div class="chapter">
+      <div class="ch-no">SKELETON · 骨架</div>
+      <h3>一个视角，三重回报</h3>
+      <ul>
+        <li><strong>诊断：</strong>期望效用理论用"效用凹性"这个心理假设来修补期望值的失败。彼得斯指出，如果你一开始就用时间平均（对乘法过程取对数增长率），<strong>根本不需要任何心理假设，风险厌恶自然涌现</strong>——它是数学，不是偏好。</li>
+        <li><strong>统一：</strong>同一个视角自然解释了保险为何对买卖双方都理性（各自的时间增长率都提高）、为何该拒绝正期望值的赌局、为何贫富差距会在乘法动力学下自发扩大。一把钥匙开多把锁。</li>
+        <li><strong>与 Kelly 的关系：</strong>时间平均增长率最大化，正是 Kelly 准则的另一种表述。遍历性给了 Kelly 一个更深的"为什么"——不是因为对数效用碰巧好，而是因为你只有一条时间线。</li>
+      </ul>
+      <div class="keybox">
+        <b>Signature Idea · 代表思想</b>
+        <strong>"期望值"这个词里藏着一个你从未同意过的选择：对谁平均。</strong>对能重开无数次的系综，用系综平均；对只有一条命的你，用时间平均。两百年的经济学默认了前者，而你的人生是后者——认清这一点，风险、增长、保险的直觉全部需要重装。
+      </div>
+    </div>
+
+    <div class="keybox">
+      <b>Caveat · 一点保留</b>
+      遍历性经济学有真实的争议：批评者（包括一些经济学家）认为它在数学上等价于早已存在的 Kelly / 对数效用 / 增长最优理论，"革命性"被夸大了；支持者则强调它的<em>概念澄清</em>价值——把一个隐藏的假设摆到台面上。<strong>务实的态度：</strong>无论它是不是全新，"你活在时间平均里，别用系综平均给自己建议"这个提醒本身极其有用。当作一副校准直觉的强力眼镜，而非要你选边的教派。配合<a class="text-link" href="concepts.html#lab">实验台</a>亲手看一遍，胜过读十篇论战。
+    </div>
+    <p class="inscription">TIME AVERAGE IS YOUR AVERAGE</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">SUMMA · 阶梯总览</div>
+    <h2>各就各位</h2>
+    <table class="terms">
+      <tr><th>读物</th><th>角色</th><th>怎么读</th><th>拿到什么</th></tr>
+      <tr><td>Peterson 教材</td><td>地基 · 全景</td><td>顺读 + 做习题</td><td>规范决策理论的完整框架</td></tr>
+      <tr><td>Kelly 论文集</td><td>下注 · 纪律</td><td>读原始论文 + 索普综述</td><td>"押多大"的最优解</td></tr>
+      <tr><td>Peters 论文</td><td>重构 · 视角</td><td>配实验台读一遍</td><td>时间平均对风险直觉的重装</td></tr>
+    </table>
+    <p class="prose">三级读完，你会带走一个操作系统级的升级：决策不止是"选哪个"，而是"在唯一的时间线上，如何配置资源以最大化长期增长、同时永不出局"。下一步：<a class="text-link" href="decision.html">把这一切接进日常决策 →</a></p>
+    <p class="inscription">SURVIVE FIRST · THEN COMPOUND</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 决策理论 · Kelly 与遍历性</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-peterson.html">Peterson</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
