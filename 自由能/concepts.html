@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 自由能原理读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">自由能<span class="mk"> ≈ </span>FRISTON</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-clark.html">Clark 精读</a>
+      <a href="book-canon.html">深入四册</a>
+      <a href="decision.html">预测与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPTUS · 核心概念</div>
+    <h1>六个概念，<br>一台预测世界的机器</h1>
+    <p class="lede">自由能原理的零件不多，但每个都会重写你对"感知""注意""行动"的理解：预测编码、预测误差、精度加权（就是注意力）、主动推理、四线焊接、以及那个最要命的漏洞——暗房问题。中间放一台「受控幻觉实验台」，让你亲手转动先验的旋钮。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="pp">
+      <div class="eyebrow">CONCEPT 1 · 预测编码</div>
+      <h2>大脑是层级预测机，不是感官记录仪</h2>
+      <p>传统观念：信息从感官自下而上流入，大脑逐层加工成认识。预测加工把箭头倒过来：<strong>每一层皮层都在向下预测下一层的活动，只有"没预测中"的部分（预测误差）才被允许向上传</strong>。你的视觉体验主要是自上而下的猜测构成的，感官输入只负责纠错。这解释了盲点为何看不见（那里没有需要纠正的误差）、为何熟悉的路能"自动"走完（预测太准，几乎无误差上行）。</p>
+      <p>一句可携带的话：<strong>知觉是"大脑的最佳猜测"与"感官的纠错"之间达成的均衡</strong>。你以为你在看世界，其实你在看自己的模型，被世界修剪过的版本。</p>
+    </div>
+
+    <div class="figure">
+      <svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="四层皮层预测编码：每层向下发预测，向上传误差">
+        <defs>
+          <marker id="dn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4a3d8f"/></marker>
+          <marker id="up" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b45536"/></marker>
+        </defs>
+        <!-- 四层 -->
+        <g font-family="Songti SC,serif" font-size="14" font-weight="700">
+          <rect x="250" y="20" width="220" height="46" fill="#4a3d8f"/><text x="360" y="49" fill="#f7f6f2" text-anchor="middle">高层：抽象成因（"这是一张脸"）</text>
+          <rect x="250" y="100" width="220" height="46" fill="#5a4da0"/><text x="360" y="129" fill="#f7f6f2" text-anchor="middle">中层：部件（眼、鼻、轮廓）</text>
+          <rect x="250" y="180" width="220" height="46" fill="#6f63b3"/><text x="360" y="209" fill="#f7f6f2" text-anchor="middle">低层：边缘、明暗</text>
+          <rect x="250" y="260" width="220" height="42" fill="none" stroke="#201f24" stroke-width="2"/><text x="360" y="287" fill="#201f24" text-anchor="middle">感官输入（视网膜）</text>
+        </g>
+        <!-- 向下预测 -->
+        <path d="M300 66 L 300 100" stroke="#4a3d8f" stroke-width="2.4" marker-end="url(#dn)"/>
+        <path d="M300 146 L 300 180" stroke="#4a3d8f" stroke-width="2.4" marker-end="url(#dn)"/>
+        <path d="M300 226 L 300 260" stroke="#4a3d8f" stroke-width="2.4" marker-end="url(#dn)"/>
+        <!-- 向上误差 -->
+        <path d="M420 260 L 420 226" stroke="#b45536" stroke-width="2.4" stroke-dasharray="6 4" marker-end="url(#up)"/>
+        <path d="M420 180 L 420 146" stroke="#b45536" stroke-width="2.4" stroke-dasharray="6 4" marker-end="url(#up)"/>
+        <path d="M420 100 L 420 66" stroke="#b45536" stroke-width="2.4" stroke-dasharray="6 4" marker-end="url(#up)"/>
+        <!-- 标注 -->
+        <text x="150" y="90" font-family="Songti SC,serif" font-size="13" font-weight="700" fill="#4a3d8f">预测 ↓</text>
+        <text x="150" y="110" font-family="Songti SC,serif" font-size="11.5" fill="#6b6871">高层猜低层</text>
+        <text x="540" y="90" font-family="Songti SC,serif" font-size="13" font-weight="700" fill="#b45536">↑ 误差</text>
+        <text x="540" y="110" font-family="Songti SC,serif" font-size="11.5" fill="#6b6871">只传没猜中的</text>
+        <text x="360" y="315" font-family="Helvetica Neue,sans-serif" font-size="10" letter-spacing="2" fill="#6b6871" text-anchor="middle">TOP-DOWN GUESS · BOTTOM-UP CORRECTION</text>
+      </svg>
+      <div class="figcap"><b>FIG. II</b> 层级预测编码 —— 两股流反向而行：靛紫的预测自上而下逐层展开，烧橙的误差自下而上层层上报。学习改的是连接权重，感知改的是当前猜测，注意力改的是"误差的音量"（下一节）。</div>
+    </div>
+
+    <div class="concept" id="error">
+      <div class="eyebrow">CONCEPT 2 · 预测误差</div>
+      <h2>唯一的货币：惊异（surprise）</h2>
+      <p>整个系统只优化一个量——<strong>预测误差</strong>，也就是感官输入让模型"意外"的程度（信息论里叫惊异/自信息）。自由能是这个惊异的一个数学上界，最小化自由能≈最小化长期的意外。大脑不喜欢惊讶，它一辈子都在把世界预测到"毫不意外"。</p>
+      <p>这一条直接连上<a class="text-link" href="../贝叶斯/index.html">贝叶斯站</a>：最小化预测误差在数学上等价于<strong>贝叶斯推断</strong>——预测是先验，感官是似然，更新后的感知是后验。弗里斯顿的贡献是指出：大脑近似执行的正是变分贝叶斯，而"自由能"就是那个可优化的替代目标。<em>你的每一次"看清一个东西"，都是一次微型的贝叶斯更新。</em></p>
+    </div>
+
+    <div class="concept" id="precision">
+      <div class="eyebrow">CONCEPT 3 · 精度加权</div>
+      <h2>注意力，就是给误差调音量</h2>
+      <p>不是所有预测误差都同等重要：雾里的视觉不可靠，同样的误差该少信一点；关键仪表的读数极可靠，一点误差就该高度重视。<strong>精度（precision）</strong>就是大脑对某路误差的信任度（信噪比的倒数），而<strong>调节精度这件事，本身就是注意力</strong>——把某路误差的音量调大，它就更能推动感知与学习。</p>
+      <p>这个小旋钮的解释力惊人地大：<strong>幻觉</strong>＝先验精度过高（脑补压过了感官纠错，模型自说自话）；<strong>某些自闭谱系特征</strong>的一种假说＝感官误差精度过高（世界过于"吵闹"、难以被先验平滑，细节淹没整体）；<strong>安慰剂镇痛</strong>＝"会好起来"的高精度先验压低了疼痛误差的权重。<em>一个旋钮，转一转就在正常、幻觉与失能之间移动。</em>（下面就让你亲手转它。）</p>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap prose">
+    <div class="eyebrow">LUDUS · 签名互动</div>
+    <h2>受控幻觉实验台</h2>
+    <p>左边是"感官输入"：一个若隐若现的信号泡在噪声里。右边是"大脑的感知"＝先验预测 × 精度 + 感官纠错。<strong>把先验精度旋钮往上拧</strong>，看感知如何从依赖感官，滑向无视感官、自说自话——幻觉不是故障，是同一台机器的旋钮拧过了头。</p>
+
+    <div class="lab">
+      <div class="lab-title">CONTROLLED HALLUCINATION LAB · 转动先验的旋钮</div>
+      <div class="controls">
+        <div class="ctl">
+          <label>感官信号强度：<span class="val" id="vSig">50%</span></label>
+          <input type="range" id="sSig" min="0" max="100" step="1" value="50">
+        </div>
+        <div class="ctl">
+          <label>感官噪声：<span class="val" id="vNoise">40%</span></label>
+          <input type="range" id="sNoise" min="0" max="100" step="1" value="40">
+        </div>
+        <div class="ctl">
+          <label>先验精度（信念强度）：<span class="val" id="vPrec">30%</span></label>
+          <input type="range" id="sPrec" min="0" max="100" step="1" value="30">
+        </div>
+      </div>
+      <canvas id="wave" width="800" height="320"></canvas>
+      <div class="legend">
+        <span><i style="background:#b45536"></i>感官输入（信号+噪声）</span>
+        <span><i style="background:#9b95c9"></i>先验预测（脑中的期望模式）</span>
+        <span><i style="background:#4a3d8f"></i>最终感知（精度加权的后验）</span>
+      </div>
+      <div class="readout" id="readout"></div>
+    </div>
+
+    <p style="font-size:15px;color:var(--muted)">注意两个极端：先验精度拧到 0，感知完全跟着噪声乱抖（<strong>纯感官、无模型</strong>）；拧到满格，感知无视输入、锁死在期望的正弦波上（<strong>纯幻觉、无纠错</strong>）。健康的知觉是中间那段动态平衡——而调这个平衡点的旋钮，就叫注意力。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="active">
+      <div class="eyebrow">CONCEPT 4 · 主动推理</div>
+      <h2>行动是另一种消误差的方式</h2>
+      <p>预测误差有两条消法（见<a class="text-link" href="index.html">首页 FIG. I</a>）：改模型去符合世界（感知），或<strong>改世界去符合模型（行动）</strong>。渴了预测"手边有水杯"，与感官不符——你可以修正预测（承认没水），也可以伸手把水杯拿到该在的位置。<strong>主动推理</strong>说：运动系统就是这样工作的——你不是先决定再运动，而是先预测本体感觉"手臂已在目标位"，反射弧为消掉这个误差而收缩肌肉。<em>意图即高精度的预言，动作是它的自我实现。</em></p>
+      <p>这一步把<a class="text-link" href="../控制论/index.html">控制论</a>整个吸收了进来：负反馈调节 = 消除"目标状态"与"当前状态"的误差，恒温器就是最简单的主动推理体。规划则被重述为"想象各种行动会带来的预测误差，选那条通向最小惊异未来的路"——决策变成了对未来的预测。</p>
+    </div>
+
+    <div class="concept" id="weld">
+      <div class="eyebrow">CONCEPT 5 · 四线焊接</div>
+      <h2>为什么四门学科在这里合流</h2>
+      <p>这是本站存在的理由，也是这个框架最令人眩晕的地方。同一个"最小化自由能"，在四门学科里各有名字：</p>
+      <table class="terms">
+        <tr><th>学科</th><th>它管的事</th><th>在自由能里的角色</th></tr>
+        <tr><td>贝叶斯推断</td><td>信念如何随证据更新</td><td>感知＝近似贝叶斯后验；预测=先验</td></tr>
+        <tr><td>信息论</td><td>"意外"的度量（惊异/熵）</td><td>自由能是长期惊异的可优化上界</td></tr>
+        <tr><td>控制论</td><td>反馈维持稳态</td><td>行动＝消除目标与现状的误差</td></tr>
+        <tr><td>热力学</td><td>系统为何抵抗熵增</td><td>活着＝把自己维持在低熵的可存活状态</td></tr>
+      </table>
+      <p>弗里斯顿的大胆断言：这四件事<strong>不是类比，是同一个数学对象的四张脸</strong>。生命之所以能在耗散的宇宙里维持有序，正因为它是一台不断最小化自身状态惊异的推理机——推断与生存，在这里是一回事。<em>（这是全书最激动人心、也最该保持警惕的一句——见下节暗房问题。）</em></p>
+    </div>
+
+    <div class="concept" id="darkroom">
+      <div class="eyebrow">CONCEPT 6 · 暗房问题</div>
+      <h2>框架的自我拷问</h2>
+      <p>最有名的反驳：如果生命就为了最小化预测误差、避免惊异，那最优策略岂不是<strong>躲进一间黑暗安静的房间</strong>，什么都不看不动——世界完全可预测，惊异归零？可没有生物这么做。这个"暗房问题"是检验你是否真懂这个框架的试金石。</p>
+      <p>标准回应：① 你的<strong>生成模型是进化写好的</strong>，其中就包含"我应当进食、探索、社交"等先验期望——待在暗房恰恰会持续产生"我饿了/我该动"的大误差；② 主动推理里有<strong>认识论驱力</strong>（好奇心）：为降低对世界的长期不确定性，你会主动去采样信息、探索未知，短期找"惊异"是为长期减"惊异"。<strong>但批评者仍不满意</strong>：这些回应是否只是给理论打补丁？"避免惊异"与"寻求信息"能否被同一个量同时驱动而不循环？——这类争论至今没有共识，也正是这个理论有生命力（而非教条）的证明。</p>
+      <div class="keybox">
+        <b>Caveat · 一点保留</b>
+        暗房问题的更深一层，是<strong>可证伪性</strong>之问：一个总能为反例找到补丁的理论，还算科学理论吗？读这个框架时请始终带着<a class="text-link" href="../贝叶斯/index.html">贝叶斯站</a>的克伦威尔法则——给"它是对的"也留一个不是 100% 的概率。
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 自由能 ≈ 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-clark.html">Clark</a> ·
+      <a href="book-canon.html">深入四册</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var sSig = document.getElementById("sSig");
+  var sNoise = document.getElementById("sNoise");
+  var sPrec = document.getElementById("sPrec");
+  var vSig = document.getElementById("vSig");
+  var vNoise = document.getElementById("vNoise");
+  var vPrec = document.getElementById("vPrec");
+  var readout = document.getElementById("readout");
+  var canvas = document.getElementById("wave");
+  var ctx = canvas.getContext("2d");
+
+  // 固定的伪随机噪声序列（避免 Math.random 每帧跳变，用确定式噪声）
+  var noiseSeq = [];
+  var seed = 1337;
+  for (var k = 0; k < 400; k++) {
+    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+    noiseSeq.push((seed / 0x7fffffff) * 2 - 1);
+  }
+
+  function render() {
+    var sig = parseFloat(sSig.value) / 100;
+    var noise = parseFloat(sNoise.value) / 100;
+    var prec = parseFloat(sPrec.value) / 100;
+    vSig.textContent = Math.round(sig * 100) + "%";
+    vNoise.textContent = Math.round(noise * 100) + "%";
+    vPrec.textContent = Math.round(prec * 100) + "%";
+
+    var w = canvas.width, h = canvas.height, mid = h / 2, amp = h * 0.32, N = 400;
+    ctx.clearRect(0, 0, w, h);
+    // 中线
+    ctx.strokeStyle = "#ddd9cf"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(w, mid); ctx.stroke();
+
+    var sensory = [], prior = [], percept = [];
+    for (var i = 0; i < N; i++) {
+      var x = i / N * Math.PI * 6;               // 3 个周期
+      var trueWave = Math.sin(x);
+      var s = sig * trueWave + noise * noiseSeq[i];   // 感官 = 信号*真波 + 噪声
+      var p = trueWave;                                // 先验 = 干净的期望正弦
+      // 后验 = 精度加权：先验权重 prec，感官权重 (1-prec) 但受信号可靠度调制
+      var wPrior = prec;
+      var wSensory = (1 - prec);
+      var post = (wPrior * p + wSensory * s) / (wPrior + wSensory + 1e-6);
+      sensory.push(s); prior.push(p); percept.push(post);
+    }
+
+    function draw(arr, color, width, dash) {
+      ctx.strokeStyle = color; ctx.lineWidth = width;
+      ctx.setLineDash(dash || []);
+      ctx.beginPath();
+      for (var i = 0; i < N; i++) {
+        var px = i / (N - 1) * w;
+        var py = mid - arr[i] * amp;
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    draw(sensory, "#b45536", 1.3);          // 感官（抖）
+    draw(prior, "#9b95c9", 1.6, [7, 5]);    // 先验（虚线）
+    draw(percept, "#4a3d8f", 3);            // 感知（粗）
+
+    var msg;
+    if (prec < 0.15) msg = "先验几乎关闭：感知<b>跟着噪声乱抖</b>——纯感官、无模型，世界成了一团无法解析的嗡鸣。";
+    else if (prec > 0.85) msg = "先验精度拉满：感知<b>锁死在期望的正弦波上</b>，无视真实输入——这就是幻觉，模型自说自话。";
+    else msg = "先验与感官动态平衡：感知<b>比原始感官更平滑、又仍跟随世界</b>——这就是健康知觉，也是&ldquo;受控的&rdquo;幻觉。";
+    readout.innerHTML = msg;
+  }
+
+  sSig.addEventListener("input", render);
+  sNoise.addEventListener("input", render);
+  sPrec.addEventListener("input", render);
+  render();
+})();
+</script>
+
+</body>
+</html>

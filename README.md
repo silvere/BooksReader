@@ -17,6 +17,7 @@
 | 07 | 庄子（《庄子》内七篇 + 傅佩荣《逍遥之乐》《解读庄子》 + 陈鼓应《庄子今注今译》 + 刘笑敢《庄子哲学及其演变》） | [`庄子/`](庄子/) | 6 页联动：总览（鲲鹏之变）/ 历史与流传 / 六大概念（含无用之用判官互动）/ 傅佩荣两书 / 原典与考证 / 庄子与决策专题 |
 | 08 | 贝叶斯（McElreath《Statistical Rethinking》 + Jaynes《概率论沉思录》 + Gelman 等《Bayesian Data Analysis》） | [`贝叶斯/`](贝叶斯/) | 6 页联动：总览（更新之环）/ 历史与人物 / 六大概念（含检测悖论实验台互动）/ Rethinking 精读 / Jaynes 与 Gelman / 贝叶斯与决策专题 |
 | 09 | 机制设计（谢林《冲突的战略》 + Osborne《博弈论导论》 + Milgrom《Putting Auction Theory to Work》 + Roth《Who Gets What — and Why》） | [`机制设计/`](机制设计/) | 6 页联动：总览（逆向博弈论）/ 历史与人物 / 六大概念（含维克里拍卖实验台互动）/ 谢林精读 / 教材与落地 / 机制与决策专题 |
+| 10 | 自由能原理（Clark《预测算法》 + Seth《Being You》 + Hohwy《The Predictive Mind》 + Parr/Pezzulo/Friston《Active Inference》 + Friston 2010 纲领论文） | [`自由能/`](自由能/) | 6 页联动：总览（预测加工环路 + 四线焊接）/ 历史与人物 / 六大概念（含受控幻觉实验台互动）/ Clark 精读 / 深入四册 / 预测与决策专题（书架拱顶石，焊接全部十站暗线） |
 
 ## 本地预览
 
