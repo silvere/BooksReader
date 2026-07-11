@@ -18,6 +18,7 @@
 | 08 | 贝叶斯（McElreath《Statistical Rethinking》 + Jaynes《概率论沉思录》 + Gelman 等《Bayesian Data Analysis》） | [`贝叶斯/`](贝叶斯/) | 6 页联动：总览（更新之环）/ 历史与人物 / 六大概念（含检测悖论实验台互动）/ Rethinking 精读 / Jaynes 与 Gelman / 贝叶斯与决策专题 |
 | 09 | 机制设计（谢林《冲突的战略》 + Osborne《博弈论导论》 + Milgrom《Putting Auction Theory to Work》 + Roth《Who Gets What — and Why》） | [`机制设计/`](机制设计/) | 6 页联动：总览（逆向博弈论）/ 历史与人物 / 六大概念（含维克里拍卖实验台互动）/ 谢林精读 / 教材与落地 / 机制与决策专题 |
 | 10 | 自由能原理（Clark《预测算法》 + Seth《Being You》 + Hohwy《The Predictive Mind》 + Parr/Pezzulo/Friston《Active Inference》 + Friston 2010 纲领论文） | [`自由能/`](自由能/) | 6 页联动：总览（预测加工环路 + 四线焊接）/ 历史与人物 / 六大概念（含受控幻觉实验台互动）/ Clark 精读 / 深入四册 / 预测与决策专题（书架拱顶石，焊接全部十站暗线） |
+| 11 | 可行系统模型 VSM（Beer《Brain of the Firm》《The Heart of Enterprise》 + Espejo & Reyes《Organizational Systems》） | [`VSM/`](VSM/) | 6 页联动：总览（五系统递归图）/ 历史与人物（含 Cybersyn）/ 核心概念（含多样性工程台互动）/ 比尔两部曲 / 现代整理版 / VSM 与决策专题（书架回到 BOOK 01 控制论，圆环合拢） |
 
 ## 本地预览
 
