@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>财富的数学 · 读书总览</title>
+<meta name="description" content="财富的数学读书站：不是投资技巧，而是理论层。Merton 生命周期模型——人力资本与金融资本的统一资产负债表；安全提取率；遍历性视角下的保险。你的人生现金流是一个随机过程，如何对它做最优控制。阶梯：Bernstein → Bodie & Merton → Milevsky。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">财富的数学<span class="mk"> · </span>WEALTH</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-bernstein.html">Bernstein 精读</a>
+      <a href="book-lifecycle.html">生命周期理论</a>
+      <a href="decision.html">财富与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">BOOK 19 · MATHEMATICS OF WEALTH · 1969 –</div>
+      <h1>你的人生现金流，<br>是一个随机过程</h1>
+      <p class="lede">大众理财书都在讲"术"——买什么、何时买。这一站讲的是"道"：<strong>Merton 生命周期模型</strong>把人力资本（未来工资的贴现值）与金融资本合进一张<strong>统一的资产负债表</strong>——你 35 岁前最大的资产，不是存款，是你未来收入的现值，这从根本上改变了配置逻辑。加上安全提取率、遍历性视角下的保险，它把个人理财变成一个字面意义上的<a class="text-link" href="../控制论/index.html">控制论</a>问题：<strong>你的一生现金流是随机过程，如何对它做最优控制。</strong></p>
+      <blockquote style="margin-top:28px">
+        年轻时，你几乎全部的财富是"人力资本"——一份还没兑现的、债券般稳定的未来工资流。理财的第一课，是把这项看不见的巨额资产，放进你的资产负债表。
+        <cite>生命周期理论的核心洞见 · 本站导言</cite>
+      </blockquote>
+    </div>
+    <div class="figure" style="margin:0">
+      <svg viewBox="0 0 560 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="人力资本随年龄下降、金融资本上升，总财富的生命周期图">
+        <g font-family="Hoefler Text,Georgia,serif">
+          <text x="20" y="28" font-size="12" letter-spacing="1" fill="#616660">财富构成 · 随年龄变化</text>
+        </g>
+        <line x1="50" y1="40" x2="50" y2="360" stroke="#1f2420" stroke-width="1.5"/>
+        <line x1="50" y1="360" x2="540" y2="360" stroke="#1f2420" stroke-width="1.5"/>
+        <text x="56" y="54" font-size="11" fill="#616660">财富</text>
+        <text x="500" y="380" font-size="11" fill="#616660">25 → 65 岁</text>
+        <!-- 人力资本：高起点，下降（黄铜面积） -->
+        <path d="M50 90 C 200 130 380 300 540 350 L 540 360 L 50 360 Z" fill="#9e7838" opacity="0.28"/>
+        <path d="M50 90 C 200 130 380 300 540 350" fill="none" stroke="#9e7838" stroke-width="2.5"/>
+        <text x="120" y="128" font-size="13" font-weight="900" fill="#7a5c26" font-family="Songti SC,serif">人力资本 ↘</text>
+        <text x="120" y="146" font-size="11" fill="#7a5c26" font-family="Songti SC,serif">未来工资的现值</text>
+        <!-- 金融资本：低起点，上升（绿面积，叠在上方） -->
+        <path d="M50 360 C 200 356 380 250 540 130 L 540 360 Z" fill="#235141" opacity="0.18"/>
+        <path d="M50 360 C 200 356 380 250 540 130" fill="none" stroke="#235141" stroke-width="2.5"/>
+        <text x="400" y="180" font-size="13" font-weight="900" fill="#163a2e" font-family="Songti SC,serif">金融资本 ↗</text>
+        <text x="400" y="198" font-size="11" fill="#163a2e" font-family="Songti SC,serif">储蓄与投资</text>
+        <!-- 年轻端标注 -->
+        <line x1="90" y1="90" x2="90" y2="360" stroke="#a5402f" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="96" y="80" font-size="11" fill="#a5402f" font-family="Songti SC,serif">30 岁：财富几乎全是人力资本</text>
+        <text x="50" y="404" font-size="11.5" font-family="Hoefler Text,serif" letter-spacing="1" fill="#9e7838">HUMAN CAPITAL DECLINES · FINANCIAL CAPITAL GROWS · TOTAL SHIFTS</text>
+      </svg>
+      <div class="figcap"><b>FIG. I</b> 生命周期资产负债表 —— 黄铜是人力资本（未来工资的现值，年轻时最高、随年龄兑现而下降），绿色是金融资本（储蓄投资，随年龄累积而上升）。<b>年轻时你几乎全部的财富是那笔看不见的人力资本</b>——认清它，你的储蓄、保险、投资配置逻辑会全部改变。</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">CUR LEGERE · 为什么读财富的数学</div>
+    <h2>理论层，比技巧层稳一百倍</h2>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="tag brass">视角</div>
+        <h3>把人力资本上表</h3>
+        <p>你最大的资产，多半是你未来几十年工资的现值——一笔隐形的巨款。<strong>把它放进资产负债表</strong>，你会重新理解该存多少、买什么保险、金融资产该多激进：年轻时人力资本这只"大债券"托着底，金融资本才敢冒险。</p>
+      </div>
+      <div class="card">
+        <div class="tag">控制</div>
+        <h3>一生现金流的最优控制</h3>
+        <p>Merton 的洞见：个人理财本质是<strong>对一个跨越几十年的随机现金流做动态最优控制</strong>——什么阶段承担多少风险、消费多少、储蓄多少。这不是选股技巧，是<a class="text-link" href="../控制论/index.html">控制论</a>与<a class="text-link" href="../决策理论/index.html">决策理论</a>在你人生上的直接应用。</p>
+      </div>
+      <div class="card">
+        <div class="tag">解毒</div>
+        <h3>抵御理财营销</h3>
+        <p>理财产业靠制造焦虑与复杂性赚钱。理论层给你一副免疫系统：理解<strong>为什么低成本指数化 + 恰当的生命周期配置</strong>，长期胜过绝大多数"聪明"操作——从此不被择时、选股、热门产品的噪声牵着走。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">TRES LIBRI · 三书阶梯</div>
+    <h2>通俗理论 → 生命周期 → 人力资本</h2>
+    <p class="lede" style="margin-bottom:32px">三本书从三个角度给你财富的数学：Bernstein 打下最扎实的通俗理论地基，Bodie & Merton 讲清如何在保住底线的前提下追求增长，Milevsky 直接用"你是股票还是债券"对准你的处境。都是"道"，不是"术"。</p>
+    <div class="grid cols-3">
+      <a class="card" href="book-bernstein.html">
+        <div class="tag">第一级 · 理论地基</div>
+        <h3>Bernstein《The Four Pillars of Investing》</h3>
+        <p>理论最扎实的投资通俗书（《投资的四大支柱》）：理论、历史、心理、行业——四根柱子撑起一套不靠运气的投资观。祛魅择时与选股，最好的入门。</p>
+      </a>
+      <a class="card" href="book-lifecycle.html#bodie">
+        <div class="tag brass">第二级 · 生命周期</div>
+        <h3>Bodie & Merton《Risk Less and Prosper》</h3>
+        <p>诺奖得主 Merton 参与的个人理财书：以"先保住你不能失去的，再追求增长"为纲，把生命周期与安全底线讲成一套可操作的框架。</p>
+      </a>
+      <a class="card" href="book-lifecycle.html#milevsky">
+        <div class="tag brass">第三级 · 人力资本</div>
+        <h3>Milevsky《Are You a Stock or a Bond?》</h3>
+        <p>直接对准你的处境：<strong>你的收入是股票型（波动、与市场绑定）还是债券型（稳定）</strong>？答案决定你的金融资产该多激进——人力资本视角最锋利的一本。</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">MAPPA · 本站地图</div>
+    <h2>六页怎么走</h2>
+    <p><a class="text-link" href="history.html">历史与人物</a>先讲现代金融如何从马科维茨的组合理论、经默顿的连续时间金融、到生命周期理论一路成形。<a class="text-link" href="concepts.html">核心概念</a>是主菜：人力资本、生命周期配置、你是股票还是债券、安全提取率、序列风险，配签名互动<strong>「生命周期资产台」</strong>——拖动年龄与收入类型，看人力资本与金融资本的此消彼长如何决定你的最优风险配置。<a class="text-link" href="book-bernstein.html">Bernstein 精读</a>与<a class="text-link" href="book-lifecycle.html">生命周期理论</a>逐本拆骨架、给读法、亮重要边界。<a class="text-link" href="decision.html">财富与决策</a>收束全站，对准你此刻的人生阶段。</p>
+    <div class="keybox" style="margin-top:24px">
+      <b>重要 · 一句在先的话</b>
+      本站是<strong>理论框架，不是个性化投资建议</strong>。它帮你建立正确的思维方式（把人力资本上表、按生命周期配置、护住不能失去的），但具体到你该买什么、配多少，取决于你的完整处境，且投资有风险。把它当"看懂财富的地图"，重大决策请结合自身情况审慎判断、或咨询合格的专业人士。
+    </div>
+    <p class="inscription">YOUR LIFE IS A CASH-FLOW PROCESS</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 财富的数学 · 总览</p>
+    <p>
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-bernstein.html">Bernstein</a> ·
+      <a href="book-lifecycle.html">生命周期理论</a> ·
+      <a href="decision.html">决策专题</a> ·
+      <a href="../index.html">← 书架</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

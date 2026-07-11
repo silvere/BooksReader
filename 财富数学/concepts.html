@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 财富的数学读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">财富的数学<span class="mk"> · </span>WEALTH</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-bernstein.html">Bernstein 精读</a>
+      <a href="book-lifecycle.html">生命周期理论</a>
+      <a href="decision.html">财富与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPTUS · 核心概念</div>
+    <h1>六个概念，<br>把人生现金流看成资产</h1>
+    <p class="lede">从"你最大的资产是什么"到"退休头几年为何最危险"：人力资本、生命周期配置、你是股票还是债券、分散化、安全提取率、序列风险。中间放一台「生命周期资产台」，让你拖动年龄与收入类型，看人力资本与金融资本的此消彼长，如何决定你此刻的最优风险配置。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="humancapital">
+      <div class="eyebrow">CONCEPT 1 · 人力资本</div>
+      <h2>你最大的资产，不在银行账户里</h2>
+      <p>生命周期理论的第一课，是把一项看不见的巨额资产放进你的资产负债表：<strong>人力资本 = 你未来所有工资收入的现值</strong>。一个 30 岁、年入几十万、还有三十多年职业生涯的人，其人力资本可能是数千万——远超他此刻的任何存款。<strong>你 35 岁前最大的资产，是这笔尚未兑现的未来工资流，而不是你的账户余额。</strong></p>
+      <p>这个视角一旦建立，很多理财决策会重新排序：① <strong>投资自己（技能、健康、职业选择）常常是回报最高的"投资"</strong>，因为它提升的是你最大的那项资产；② <strong>保险的本质，是保护人力资本</strong>——寿险保护的是"如果你的工资流突然中断，家庭怎么办"；③ 年轻时人力资本这只巨大的"底仓"托着你，金融资产才敢承担更多波动。<em>不把人力资本上表，你的资产负债表就少了最大的一项，一切配置都算错了。</em></p>
+    </div>
+
+    <div class="concept" id="lifecycle">
+      <div class="eyebrow">CONCEPT 2 · 生命周期配置</div>
+      <h2>随年龄，让总风险保持恰当</h2>
+      <p>Merton 模型的核心结论：<strong>你金融资产的风险配置，应该考虑你人力资本的性质与规模。</strong>年轻时人力资本巨大且相对稳定（像一只大债券），它已经给你的总资产提供了厚实的"安全底仓"——所以金融资产可以更激进（多配股票），因为即使股市大跌，你还有几十年工资流来复原。随着年龄增长、人力资本兑现减少，这只"债券底仓"缩水，金融资产就该逐步转向保守，保护已经积累的财富。</p>
+      <p>这就是"目标日期基金"随年龄自动降低股票比例的理论依据，也修正了很多人的直觉：<strong>年轻不是"输得起所以赌",而是"人力资本的安全垫厚，所以能理性地承担更多波动以换取长期增长"</strong>。关键的限定是下一条——这个结论强烈依赖于你的人力资本到底像债券还是像股票。（下面就让你亲手调。）</p>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap prose">
+    <div class="eyebrow">LUDUS · 签名互动</div>
+    <h2>生命周期资产台</h2>
+    <p>拖动你的<span style="color:var(--accent);font-weight:700">年龄</span>和<span style="color:var(--brass);font-weight:700">收入类型</span>（债券型=稳定如公务员/教师；股票型=波动、与市场绑定如销售/创业/金融），看人力资本与金融资本的此消彼长，以及它们如何决定一个大致合理的股票配置方向。</p>
+
+    <div class="lab">
+      <div class="lab-title">LIFE-CYCLE BALANCE SHEET · 人力资本 × 金融资本</div>
+      <div class="controls">
+        <div class="ctl age">
+          <label>年龄：<span class="val" id="vAge">30 岁</span></label>
+          <input type="range" id="sAge" min="25" max="65" step="1" value="30">
+        </div>
+        <div class="ctl type">
+          <label>收入类型：<span class="val" id="vType">偏债券型（稳定）</span></label>
+          <input type="range" id="sType" min="0" max="100" step="1" value="25">
+        </div>
+      </div>
+      <canvas id="chart" width="800" height="300"></canvas>
+      <div class="bignum"><span class="eq" id="eqPct">—</span> <span style="font-size:15px;color:var(--muted)">建议股票配置方向</span></div>
+      <div class="readout" id="readout"></div>
+    </div>
+
+    <p style="font-size:15px;color:var(--muted)">两条规律浮现：<strong>越年轻，人力资本这只"债券底仓"越大，金融资产越能承担波动</strong>（所以年轻+稳定收入 → 股票配置可以很高）；<strong>但如果你的收入本身像股票</strong>（销售、创业、金融——收入随市场大起大落），那你的人力资本已经"含股"了，金融资产就该<em>调低</em>股票比例来平衡总风险。这就是 Milevsky 那个问题的答案：<strong>先搞清你是股票还是债券，再决定钱怎么配</strong>。<em>（这是教学性的方向示意，非精确投资建议。）</em></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="stockbond">
+      <div class="eyebrow">CONCEPT 3 · 你是股票还是债券</div>
+      <h2>收入的性质，决定金融资产的配置</h2>
+      <p>Milevsky 的绝妙提问：<strong>把你自己当成一项资产——你的收入流像股票（波动大、与市场高度相关）还是像债券（稳定、与市场无关）？</strong>公务员、教师、有稳定编制的人，人力资本是"债券型"；销售、创业者、金融从业者、佣金制的人，收入随经济与市场起伏，人力资本是"股票型"。</p>
+      <p>推论直接而重要：<strong>你的金融资产配置，应该对冲你人力资本的性质，而非叠加它。</strong>如果你是"债券型"人（稳定收入），你的总资产已经有厚实的安全部分，金融资产可以多配股票；如果你是"股票型"人（收入本就随市场波动），你已经"重仓"了股票风险，金融资产就该多配债券来平衡——否则市场一崩，你的工资和投资会<em>同时</em>暴跌，这是最危险的组合。<em>尤其提醒：别重仓自己雇主的股票——那等于把人力资本和金融资本压在同一个篮子里，双重暴露。</em></p>
+    </div>
+
+    <div class="concept" id="diversify">
+      <div class="eyebrow">CONCEPT 4 · 分散化</div>
+      <h2>唯一的"免费午餐"</h2>
+      <p>马科维茨证明的、金融学里罕见的"免费午餐"：<strong>把相关性不完全的资产组合起来，能在不降低预期收益的前提下降低风险。</strong>因为它们不会同时涨跌，一部分的下跌被另一部分抵消，组合的波动小于各部分波动的简单平均。这是唯一一个"不用付出更多、就能改善风险收益比"的操作——其他一切超额收益，都要以承担某种风险为代价。</p>
+      <p>实践推论：① <strong>广泛分散（持有整个市场，甚至全球市场）几乎总是优于集中押注少数股票</strong>——集中的额外风险是"可分散的"，市场不会为它付你额外回报（<a class="text-link" href="../决策理论/index.html">决策理论</a>的护住下行在此呼应）；② 低成本指数基金是分散化最省力的实现；③ 分散不仅在资产内（多只股票），也在资产间（股/债/房产）和时间上（定投）。<strong>不分散地重仓，是白白承担了不被补偿的风险。</strong></p>
+    </div>
+
+    <div class="concept" id="withdrawal">
+      <div class="eyebrow">CONCEPT 5 · 安全提取率与序列风险</div>
+      <h2>退休后，顺序比平均更致命</h2>
+      <p>积累了财富之后，还有一个反直觉的难题：<strong>退休后每年能安全取出多少而不至于耗尽？</strong>经典的研究（如"4% 法则"的讨论）给出量级参考，但真正的杀手是<strong>序列风险</strong>——退休头几年若遇上熊市，一边下跌一边取钱，本金被永久性地掏空，即使之后市场反弹也回不来了。<em>同样的平均收益，坏年份来得早还是晚，结局天差地别。</em></p>
+      <p>这正是书架<a class="text-link" href="../决策理论/index.html">决策理论站</a>遍历性问题的直接体现：<strong>你活在一条特定的时间序列里，收益到来的顺序（而非其平均）决定你的命运。</strong>应对之道：退休临近时降低风险（避免开局暴跌）、保留几年的现金/债券缓冲（熊市时取它而非割肉卖股）、或用年金锁定基础开支——都是在管理"顺序"这个隐形风险。</p>
+      <div class="keybox">
+        <b>Caveat · 一点保留（重要）</b>
+        这门学科给你的是<strong>正确的思维框架，不是精确的个性化处方</strong>。三条边界：① <strong>所有具体数字（4% 法则、某个股债比）都是特定假设下的历史参考，未来未必成立</strong>，且强烈依赖你的国别、税制、寿命、支出——别当铁律照搬；② <strong>本站不构成投资建议</strong>，重大财务决策请结合完整的个人情况审慎判断，或咨询合格的、收费透明（避免利益冲突）的专业人士；③ 理论校准的是<em>方向</em>（尽早储蓄、按生命周期配置、广泛分散、护住底线、警惕序列风险），而非可直接代入的数值。把它当罗盘，不当计算器。
+      </div>
+    </div>
+
+    <div class="concept" id="cost">
+      <div class="eyebrow">CONCEPT 6 · 成本与复利</div>
+      <h2>费用是复利的反向复利</h2>
+      <p>最后一个朴素却被严重低估的数学：<strong>成本以复利的方式反向侵蚀你的财富。</strong>每年 1% 的管理费听起来微不足道，但在几十年复利下，它可能吃掉你最终财富的四分之一甚至更多——因为被费用拿走的每一块钱，都失去了未来几十年的复利增长。这是理财里少数"确定"的事：<strong>你无法确定收益，但你能确定成本，而降低成本是直接、无风险地提高长期回报。</strong></p>
+      <p>这条与复利本身是一体两面：复利让时间成为你最大的盟友（尽早开始储蓄的价值，远超之后更努力地投资），也让成本成为最隐蔽的敌人。<em>控制你能控制的——尽早开始、压低成本、广泛分散、按生命周期配置——把不能控制的（市场短期涨跌）交给时间。</em>这几乎就是<a class="text-link" href="../斯多葛/index.html">斯多葛</a>控制二分法的财务版。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 财富的数学 · 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-bernstein.html">Bernstein</a> ·
+      <a href="book-lifecycle.html">生命周期理论</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var sAge = document.getElementById("sAge");
+  var sType = document.getElementById("sType");
+  var vAge = document.getElementById("vAge");
+  var vType = document.getElementById("vType");
+  var eqPct = document.getElementById("eqPct");
+  var readout = document.getElementById("readout");
+  var ctx = document.getElementById("chart").getContext("2d");
+
+  function typeLabel(t) {
+    if (t < 20) return "债券型（很稳定）";
+    if (t < 40) return "偏债券型（稳定）";
+    if (t < 60) return "混合型";
+    if (t < 80) return "偏股票型（波动）";
+    return "股票型（高波动）";
+  }
+
+  // 人力资本：某年龄的未来工资现值（简化：随年龄线性/凸性下降，65 岁归零）
+  function humanCapital(age) {
+    var yearsLeft = Math.max(0, 65 - age);
+    // 现值近似：年限的凹函数（越远的工资折现越多）
+    return 40 * (1 - Math.pow(1 - yearsLeft / 40, 1.6));
+  }
+  // 金融资本：随年龄累积（简化上升曲线）
+  function financialCapital(age) {
+    var t = (age - 25) / 40;
+    return 40 * Math.pow(t, 1.5);
+  }
+
+  function render() {
+    var age = parseInt(sAge.value, 10);
+    var type = parseInt(sType.value, 10) / 100; // 0=债券型, 1=股票型
+    vAge.textContent = age + " 岁";
+    vType.textContent = typeLabel(parseInt(sType.value, 10));
+
+    // 建议股票配置方向：年轻+债券型 → 高；年老或股票型 → 低
+    var ageFactor = Math.max(0, (65 - age) / 40); // 1 at 25, 0 at 65
+    var base = 40 + ageFactor * 60;               // 40~100
+    var typeAdj = (1 - type) * 1.0 + type * 0.55; // 债券型不打折，股票型打到 0.55
+    var equity = Math.round(Math.max(20, Math.min(100, base * typeAdj)) / 5) * 5;
+    eqPct.textContent = equity + "%";
+
+    // 画图：人力资本(黄铜) + 金融资本(绿) 面积
+    var W = 800, H = 300, padL = 46, padB = 40, padT = 18, padR = 14;
+    ctx.clearRect(0, 0, W, H);
+    function sx(a) { return padL + (W - padL - padR) * (a - 25) / 40; }
+    var maxV = 80;
+    function sy(v) { return H - padB - (H - padB - padT) * v / maxV; }
+    ctx.strokeStyle = "#d6d4c8"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(padL, H - padB); ctx.lineTo(W - padR, H - padB); ctx.stroke();
+    ctx.fillStyle = "#616660"; ctx.font = "11px Hoefler Text, serif";
+    [25,35,45,55,65].forEach(function(a){ ctx.fillText(a, sx(a) - 6, H - padB + 18); });
+    ctx.fillText("岁", W - padR - 8, H - padB + 18);
+    // 人力资本面积
+    ctx.fillStyle = "rgba(158,120,56,0.26)"; ctx.beginPath(); ctx.moveTo(sx(25), H - padB);
+    for (var a1 = 25; a1 <= 65; a1++) ctx.lineTo(sx(a1), sy(humanCapital(a1)));
+    ctx.lineTo(sx(65), H - padB); ctx.closePath(); ctx.fill();
+    // 金融资本面积
+    ctx.fillStyle = "rgba(35,81,65,0.20)"; ctx.beginPath(); ctx.moveTo(sx(25), H - padB);
+    for (var a2 = 25; a2 <= 65; a2++) ctx.lineTo(sx(a2), sy(financialCapital(a2)));
+    ctx.lineTo(sx(65), H - padB); ctx.closePath(); ctx.fill();
+    // 当前年龄竖线
+    ctx.strokeStyle = "#a5402f"; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.moveTo(sx(age), padT); ctx.lineTo(sx(age), H - padB); ctx.stroke(); ctx.setLineDash([]);
+    // 标注
+    ctx.fillStyle = "#7a5c26"; ctx.font = "bold 13px 'PingFang SC', sans-serif"; ctx.fillText("人力资本", sx(29), sy(humanCapital(30)) - 6);
+    ctx.fillStyle = "#163a2e"; ctx.fillText("金融资本", sx(55), sy(financialCapital(58)) - 6);
+    var hc = humanCapital(age), fc = financialCapital(age);
+    ctx.fillStyle = "#a5402f"; ctx.font = "12px 'PingFang SC', sans-serif";
+    ctx.fillText(age + "岁：人力资本占总财富 " + Math.round(hc / (hc + fc) * 100) + "%", sx(age) + 6, padT + 14);
+
+    var msg;
+    if (age < 40 && type < 0.4) {
+      msg = "年轻 + 稳定收入：你的人力资本是一只巨大的'债券底仓'，它托着底，所以金融资产可以偏进取（多配股票），用波动换长期增长——即使股市大跌，你还有几十年工资流复原。";
+    } else if (type >= 0.6) {
+      msg = "股票型收入：你的人力资本本身就'含股'（收入随市场波动）。金融资产应<strong>调低</strong>股票比例来平衡，否则市场一崩，工资和投资会同时暴跌——最危险的组合。尤其别重仓自己雇主的股票。";
+    } else if (age >= 55) {
+      msg = "临近退休：人力资本这只'债券底仓'已大幅兑现缩水，金融资产该转向保守，保护已积累的财富，并警惕退休头几年的<strong>序列风险</strong>（开局熊市最伤）。";
+    } else {
+      msg = "中间阶段：人力资本仍可观但在下降，配置该从进取逐步转向均衡——随着你最大的那只'底仓'缩水，金融资产的风险也该同步收敛。";
+    }
+    readout.innerHTML = msg;
+  }
+
+  sAge.addEventListener("input", render);
+  sType.addEventListener("input", render);
+  render();
+})();
+</script>
+
+</body>
+</html>

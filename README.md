@@ -26,6 +26,7 @@
 | 16 | 精力与压力生理学（Sapolsky《Why Zebras Don't Get Ulcers》 + Walker《Why We Sleep》 + Lieberman《Exercised》） | [`压力生理学/`](压力生理学/) | 6 页联动：总览（急性 vs 慢性皮质醇）/ 历史与人物 / 核心概念（含皮质醇节律+异稳态负荷模拟器）/ Sapolsky 精读 / 睡眠与运动 / 身体与决策专题（自律=系统调参） |
 | 17 | 依恋理论与成人发展（Wallin《Attachment in Psychotherapy》 + Kegan《The Evolving Self》/《Immunity to Change》 + Schwartz《No Bad Parts》IFS） | [`依恋与成人发展/`](依恋与成人发展/) | 6 页联动：总览（主体→客体）/ 历史与人物 / 核心概念（含主体→客体转化器互动）/ 依恋精读 / 发展与内在系统 / 成长与决策专题（含"知识非治疗"边界） |
 | 18 | 修辞学（Heinrichs《Thank You for Arguing》 + 亚里士多德《修辞学》 + Toulmin《The Uses of Argument》） | [`修辞学/`](修辞学/) | 6 页联动：总览（三诉求三角+kairos）/ 历史与人物 / 核心概念（含三诉求调音台互动）/ Heinrichs 精读 / 亚里士多德与 Toulmin / 说服与决策专题（ethos/pathos/logos） |
+| 19 | 财富的数学 / 生命周期理论（Bernstein《The Four Pillars of Investing》 + Bodie & Merton《Risk Less and Prosper》 + Milevsky《Are You a Stock or a Bond?》） | [`财富数学/`](财富数学/) | 6 页联动：总览（生命周期资产负债表）/ 历史与人物 / 核心概念（含生命周期资产台互动）/ Bernstein 精读 / 生命周期理论 / 财富与决策专题（人力资本上表，非投资建议） |
 
 ## 本地预览
 
