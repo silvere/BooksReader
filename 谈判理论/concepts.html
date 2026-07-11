@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 谈判理论读书站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">谈判<span class="mk"> ⇌ </span>NEGOTIATION</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-yes.html">原理框架</a>
+      <a href="book-tactics.html">桌外与战术</a>
+      <a href="decision.html">谈判与决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPTUS · 核心概念</div>
+    <h1>六个概念，<br>把谈判拆成可分析的结构</h1>
+    <p class="lede">谈判看似靠临场，其实骨架清晰：BATNA 定筹码、ZOPA 定空间、利益 vs 立场定方法、整合式 vs 分配式定格局、锚定定起点、共情定桌上的人。中间放一台「ZOPA 沙盘」，让你拖动双方保留价，亲眼看成交区间如何出现、消失与被分配。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="batna">
+      <div class="eyebrow">CONCEPT 1 · BATNA</div>
+      <h2>你真正的筹码：谈崩了还剩什么</h2>
+      <p><strong>BATNA</strong>（Best Alternative To a Negotiated Agreement，最佳替代方案）是整个谈判理论最重要的一个词。它回答：如果这场谈判彻底破裂，你能退回到的最好选择是什么？<strong>你的谈判力，几乎完全由 BATNA 的强弱决定</strong>——不是由你多会说、多强硬。手握另外三个 offer 的求职者，和只有这一个机会的求职者，气场的差别不来自性格，来自退路。</p>
+      <p>三条实操推论：① <strong>谈判前先把自己的 BATNA 做硬</strong>（多拿一个 offer、多备一个供应商），这比练任何话术都有用；② <strong>估计对方的 BATNA</strong>——他有多需要成交？③ <strong>别在 BATNA 弱时假装强硬</strong>，那是表演，容易被看穿；真正的强硬来自你真的可以走开。<em>"我可以不成交"是谈判桌上最有力的姿态，但只有当它是真的时候。</em></p>
+    </div>
+
+    <div class="concept" id="zopa">
+      <div class="eyebrow">CONCEPT 2 · ZOPA 与保留价</div>
+      <h2>成交区间：有没有得谈</h2>
+      <p>每个人有一个<strong>保留价</strong>（walkaway point）——由 BATNA 决定的、能接受的底线。卖方只接受高于其保留价的，买方只接受低于其保留价的。两者若有重叠，重叠部分就是 <strong>ZOPA（成交可能区间）</strong>：谈判的实质就是在 ZOPA 里分配那块剩余价值。没有重叠，则无论多高明的技巧都谈不成——<em>该做的不是继续谈，是去改变某一方的 BATNA，或另找交易结构</em>。</p>
+      <p>这个框架瞬间澄清了很多困局：谈不拢，先问"到底有没有 ZOPA"。有，那是分配问题（技巧能帮上忙）；没有，那是结构问题（技巧没用，得改局）。<strong>把"谈判失败"分成这两类，是新手和高手的分水岭。</strong>（下面就让你亲手拖出 ZOPA 的出现与消失。）</p>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap prose">
+    <div class="eyebrow">LUDUS · 签名互动</div>
+    <h2>ZOPA 沙盘</h2>
+    <p>一场买卖谈判。拖动<span style="color:var(--other);font-weight:700">卖方的最低要价</span>和<span style="color:var(--accent);font-weight:700">买方的最高心理价</span>，看两条保留价之间是否出现重叠——那就是 ZOPA。有重叠才有得谈；重叠越大，双方越有回旋余地。试试把它们拖到不重叠，看会发生什么。</p>
+
+    <div class="lab">
+      <div class="lab-title">ZOPA SANDBOX · 成交区间沙盘</div>
+      <div class="ctl theirs">
+        <label style="color:#8a5c1e">卖方保留价（能接受的最低价）：<span class="val" id="vSell" style="color:#8a5c1e">40 万</span></label>
+        <input type="range" id="sSell" min="0" max="100" step="1" value="40">
+      </div>
+      <div class="ctl mine">
+        <label style="color:#223a53">买方保留价（愿付的最高价）：<span class="val" id="vBuy" style="color:#223a53">70 万</span></label>
+        <input type="range" id="sBuy" min="0" max="100" step="1" value="70">
+      </div>
+      <canvas id="plot" width="800" height="220"></canvas>
+      <div class="readout" id="readout"></div>
+    </div>
+
+    <p style="font-size:15px;color:var(--muted)">两个教训藏在拖动里：<strong>只要买方愿付 ≥ 卖方最低要，就存在成交区间</strong>——剩下的是分这块蛋糕（谁的锚定、谁的耐心、谁的 BATNA 更硬，决定成交点落在区间的哪一端）；<strong>一旦买方最高价 &lt; 卖方最低价，ZOPA 消失</strong>，此时任何话术都无效，唯一出路是改变某方的 BATNA（给卖方一个更差的外部选项，或给买方一个更好的），或改变交易结构（加入其他议题做交换）。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="interests">
+      <div class="eyebrow">CONCEPT 3 · 利益 vs 立场</div>
+      <h2>别在立场上讨价还价</h2>
+      <p><em>Getting to Yes</em> 最著名的区分：<strong>立场</strong>是你嘴上要的（"我要这个窗边的橙子"），<strong>利益</strong>是你背后真正想要的（你要果肉榨汁，对方要果皮做蛋糕）。经典的橙子寓言：两人争一个橙子，僵持不下最后劈成两半，其实一个只要皮、一个只要肉——如果早问一句"你要它做什么"，两人本可各得全部。</p>
+      <p>立场是零和的（一个橙子分两半），利益常常不是（皮和肉可以都满足）。<strong>把谈判从"我们的立场怎么妥协"转向"我们各自的利益是什么，怎么同时满足"，是从分配式走向整合式的钥匙。</strong>多数看似无解的僵局，是因为双方都锁在立场上，没人问对方"为什么要这个"。</p>
+    </div>
+
+    <div class="concept" id="integrative">
+      <div class="eyebrow">CONCEPT 4 · 整合式 vs 分配式</div>
+      <h2>先把饼做大，再分饼</h2>
+      <p><strong>分配式谈判</strong>是零和的切饼：一块固定的饼，你多我少。<strong>整合式谈判</strong>先做大饼：因为双方对不同议题的重视程度不同，就能<em>交换</em>——我把我不太在乎、你很在乎的让给你，换取你把你不在乎、我很在乎的让给我，双方都觉得赚了。薪资谈判里，公司也许现金紧但股权松，你也许更看重成长而非当下现金，那就有交换空间。</p>
+      <p>关键动作是<strong>增加议题</strong>：单一议题（只谈价格）必然零和；多议题（价格 + 交付时间 + 售后 + 独家条款）才有做大的余地。新手把谈判压缩成一个数字的拉锯，高手把它展开成多个维度的组合优化。<strong>谈不拢时，往往不是让步不够，是议题太少。</strong></p>
+    </div>
+
+    <div class="concept" id="anchor">
+      <div class="eyebrow">CONCEPT 5 · 锚定</div>
+      <h2>第一个数字的引力</h2>
+      <p>心理学最稳健的效应之一：<strong>第一个被抛出的数字，会像锚一样把整场谈判拽向它附近</strong>，即使双方都知道它有点离谱。先开价的一方，往往能把成交点拉向对自己有利的一端——这与"先开价暴露信息、处于劣势"的老直觉相反，在信息相对对称时，<em>合理进取的首次报价通常占优</em>。</p>
+      <p>但锚定是双刃剑：锚得太狠会激怒对方、破坏关系甚至逼走 ZOPA 内本可成交的对手。成熟的用法是<strong>有依据的锚</strong>——用客观标准（市场行情、可比交易）支撑你的首次报价，既拉锚又立住"这不是漫天要价"。防守方也要警惕：意识到自己在被锚，主动用自己的锚和客观标准把参照点拉回来。</p>
+    </div>
+
+    <div class="concept" id="empathy">
+      <div class="eyebrow">CONCEPT 6 · 战术性共情</div>
+      <h2>先处理情绪，再处理问题</h2>
+      <p>沃斯从人质谈判带回的核心：<strong>人先是感性的，后才是理性的</strong>。在对方情绪没被看见之前，任何逻辑都推不动。战术性共情不是同意对方，而是<em>让对方感到被理解</em>——通过<strong>标注情绪</strong>（"听起来你觉得这事被摆了一道"）、<strong>镜像</strong>（重复对方最后几个词让他多说）、<strong>校准提问</strong>（"我们怎样才能做到……"把难题抛回给对方一起解）。</p>
+      <p>它与理性框架不是对立而是互补：BATNA、ZOPA 决定了<em>有没有得谈、谈的空间多大</em>，共情技巧决定了<em>在这个空间里，能不能让对方愿意和你一起走到成交点</em>。<strong>结构管上限，情绪管能否兑现。</strong></p>
+      <div class="keybox">
+        <b>Caveat · 一点保留</b>
+        谈判技巧有其伦理与适用边界：① <strong>操纵性技巧会反噬长期关系</strong>——同事、上级、长期伙伴之间，一次得逞的套路可能换来永久的戒备，重复博弈里"真诚 + 硬 BATNA"往往胜过话术；② 沃斯的技巧生于对抗性、一次性的极端场景，搬到协作性的职场需要调低强度；③ 所有框架都假设你对局面有相对清醒的认知，而真实谈判里信息是模糊的、情绪是会失控的。把这些当准备工具和事后复盘的语言，而非临场的操纵剧本。
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 谈判理论 · 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-yes.html">原理框架</a> ·
+      <a href="book-tactics.html">桌外与战术</a> ·
+      <a href="decision.html">决策专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var sSell = document.getElementById("sSell");
+  var sBuy = document.getElementById("sBuy");
+  var vSell = document.getElementById("vSell");
+  var vBuy = document.getElementById("vBuy");
+  var readout = document.getElementById("readout");
+  var ctx = document.getElementById("plot").getContext("2d");
+
+  function draw() {
+    var sell = parseInt(sSell.value, 10);   // 卖方最低要价
+    var buy = parseInt(sBuy.value, 10);      // 买方最高愿付
+    vSell.textContent = sell + " 万";
+    vBuy.textContent = buy + " 万";
+
+    var W = 800, H = 220, padL = 40, padR = 40, axisY = 150;
+    ctx.clearRect(0, 0, W, H);
+    function sx(v) { return padL + (W - padL - padR) * v / 100; }
+    // 轴
+    ctx.strokeStyle = "#1f2126"; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(padL, axisY); ctx.lineTo(W - padR, axisY); ctx.stroke();
+    ctx.fillStyle = "#64656e"; ctx.font = "12px Georgia, serif";
+    ctx.fillText("低", padL, axisY + 24); ctx.fillText("高 →", W - padR - 20, axisY + 24);
+
+    // 卖方接受区（≥ sell）赭黄，上方
+    ctx.fillStyle = "rgba(176,118,42,0.20)";
+    ctx.fillRect(sx(sell), axisY - 46, sx(100) - sx(sell), 40);
+    ctx.strokeStyle = "#b0762a"; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(sx(sell), axisY - 52); ctx.lineTo(sx(sell), axisY - 2); ctx.stroke();
+    ctx.fillStyle = "#8a5c1e"; ctx.font = "bold 12px 'PingFang SC', sans-serif";
+    ctx.fillText("卖方要 ≥ " + sell, sx(sell) + 6, axisY - 30);
+
+    // 买方接受区（≤ buy）石蓝，下方
+    ctx.fillStyle = "rgba(53,80,110,0.20)";
+    ctx.fillRect(sx(0), axisY + 6, sx(buy) - sx(0), 40);
+    ctx.strokeStyle = "#35506e"; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(sx(buy), axisY + 2); ctx.lineTo(sx(buy), axisY + 52); ctx.stroke();
+    ctx.fillStyle = "#223a53";
+    ctx.textAlign = "right"; ctx.fillText("买方付 ≤ " + buy, sx(buy) - 6, axisY + 34); ctx.textAlign = "left";
+
+    var v, cls, msg;
+    if (buy >= sell) {
+      // ZOPA = [sell, buy]
+      ctx.fillStyle = "rgba(46,107,60,0.22)";
+      ctx.fillRect(sx(sell), axisY - 6, sx(buy) - sx(sell), 12);
+      ctx.strokeStyle = "#2e6b3c"; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.strokeRect(sx(sell), axisY - 46, sx(buy) - sx(sell), 92); ctx.setLineDash([]);
+      ctx.fillStyle = "#2e6b3c"; ctx.font = "bold 13px 'PingFang SC', sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("ZOPA " + sell + "~" + buy, (sx(sell) + sx(buy)) / 2, axisY - 60);
+      ctx.textAlign = "left";
+      var span = buy - sell;
+      v = "✓ 有 ZOPA：成交区间 " + sell + "~" + buy + " 万（宽 " + span + "）"; cls = "ok";
+      msg = "存在成交空间，剩下的是分这 " + span + " 万的剩余价值——谁的 BATNA 更硬、锚定更准、更沉得住气，成交点就越靠向对他有利的一端。这是分配问题，技巧用得上。";
+    } else {
+      var gap = sell - buy;
+      v = "✗ 无 ZOPA：缺口 " + gap + " 万"; cls = "bad";
+      msg = "卖方最低要价高于买方最高心理价，重叠为零——再高明的话术也谈不成。唯一出路：改变某方 BATNA（给卖方更差的外部选项 / 给买方更好的替代），或加入其他议题做整合式交换，重新创造出重叠。";
+    }
+    readout.innerHTML = '<span class="verdict ' + cls + '">' + v + "</span>" + msg;
+  }
+
+  sSell.addEventListener("input", draw);
+  sBuy.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+</body>
+</html>
