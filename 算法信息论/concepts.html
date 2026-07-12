@@ -74,7 +74,7 @@
       <div class="lab-title">MDL BENCH · 两段式编码：模型 + 残差</div>
       <div class="ctl">
         <label>模型复杂度（多项式次数）：<span class="val" id="vDeg">0</span></label>
-        <input type="range" id="sDeg" min="0" max="11" step="1" value="0">
+        <input type="range" id="sDeg" min="0" max="9" step="1" value="0">
       </div>
       <div class="row">
         <canvas id="fit" width="440" height="360"></canvas>
@@ -86,7 +86,7 @@
       <div class="readout" id="readout"></div>
     </div>
 
-    <p style="font-size:15px;color:var(--muted)">两种失败你都能亲手制造：次数太低 → 模型很短但<strong>残差巨大</strong>（欠拟合，没抓住规律）；次数太高 → 残差趋零但<strong>模型本身臃肿</strong>（过拟合，把噪声也当成了规律去记忆）。总长度触底的那个次数，就是数据真正的复杂度——<strong>这就是奥卡姆剃刀的可计算版本</strong>，也是"泛化"的信息论定义。</p>
+    <p style="font-size:15px;color:var(--muted)">两种失败你都能亲手制造：次数太低 → 模型很短但<strong>数据码长巨大</strong>（欠拟合，连真相的起伏都描不出）；次数太高 → 样本内残差趋零，但模型开始<strong>记忆噪声</strong>、对新数据的泛化误差回升，加上模型本身臃肿（过拟合）。总长度触底的那个次数，就是数据真正的复杂度——<strong>这就是奥卡姆剃刀的可计算版本</strong>，也是"泛化"的信息论定义。</p>
   </div>
 </section>
 
@@ -134,27 +134,28 @@
   var noise = [0.34,-0.55,0.21,0.66,-0.42,-0.13,0.51,-0.71,0.28,0.09,
                -0.38,0.62,-0.24,0.44,-0.61,0.17,0.53,-0.29,-0.48,0.36,
                0.12,-0.66,0.41,-0.19];
-  // 真相 f(t) = 1.6 t^3 - 0.4 t^2 - 1.1 t + 0.2 , t ∈ [-1,1]
+  // 真相 f(t) = 4.2 t^3 - 3.6 t , t ∈ [-1,1]（强三次信号：欠拟合明显）
   var xs = [], ys = [];
   for (var i = 0; i < N; i++) {
     var t = -1 + 2 * i / (N - 1);
-    var truth = 1.6*t*t*t - 0.4*t*t - 1.1*t + 0.2;
+    var truth = 4.2*t*t*t - 3.6*t;
     xs.push(t);
     ys.push(truth + 0.45 * noise[i]);
   }
+  var MAXDEG = 9;
 
-  // ---- 多项式最小二乘（正规方程 + 高斯消元），x 已在 [-1,1] ----
-  function fitPoly(deg) {
-    var m = deg + 1;
+  // ---- 多项式最小二乘（正规方程 + 高斯消元）；可作用于任意子样本（供交叉验证用） ----
+  function fitPolyOn(xa, ya, deg) {
+    var m = deg + 1, na = xa.length;
     var A = [], b = [];
     for (var r = 0; r < m; r++) { A.push(new Array(m).fill(0)); b.push(0); }
-    for (var k = 0; k < N; k++) {
+    for (var k = 0; k < na; k++) {
       var pw = [];
       pw[0] = 1;
-      for (var p = 1; p < 2*m; p++) pw[p] = pw[p-1] * xs[k];
+      for (var p = 1; p < 2*m; p++) pw[p] = pw[p-1] * xa[k];
       for (var r2 = 0; r2 < m; r2++) {
         for (var c = 0; c < m; c++) A[r2][c] += pw[r2 + c];
-        b[r2] += pw[r2] * ys[k];
+        b[r2] += pw[r2] * ya[k];
       }
     }
     // 轻微岭正则，保证高次数值稳定
@@ -178,6 +179,7 @@
     }
     return b; // 系数
   }
+  function fitPoly(deg) { return fitPolyOn(xs, ys, deg); }
   function evalPoly(coef, t) {
     var v = 0, p = 1;
     for (var i = 0; i < coef.length; i++) { v += coef[i] * p; p *= t; }
@@ -191,18 +193,27 @@
   var fitC = document.getElementById("fit").getContext("2d");
   var curveC = document.getElementById("curve").getContext("2d");
 
-  // 预计算每个次数的两段式码长
-  var BITS_PER_COEF = 6;         // 描述一个系数的比特（量化精度）
+  // 预计算每个次数的两段式码长。
+  // 关键：数据码长用「留一交叉验证误差」而非样本内残差——样本内残差在过拟合时
+  // 必然趋零，画不出 U 形；交叉验证误差才如实体现泛化，随过拟合回升。
+  var BITS_PER_COEF = 4.5;       // 描述一个系数的比特（量化精度）
+  var FLOOR = 0.05, OFF = 4.0;   // 噪声底 + 偏移，保证码长为正
   var stats = [];
-  for (var dg = 0; dg <= 11; dg++) {
-    var coef = fitPoly(dg);
-    var sse = 0;
-    for (var k = 0; k < N; k++) { var e = ys[k] - evalPoly(coef, xs[k]); sse += e*e; }
-    var mse = sse / N;
-    // 残差码长 ≈ (N/2) log2(mse) + 常数（高斯编码）；加偏移避免负值/负无穷
-    var dataBits = Math.max(0, (N/2) * (Math.log2(mse) + 4.5));
+  for (var dg = 0; dg <= MAXDEG; dg++) {
+    var coef = fitPoly(dg);      // 全样本拟合，仅用于画拟合曲线
+    // 留一交叉验证：逐个留出一点、用其余点拟合、预测被留点
+    var cvsse = 0;
+    for (var j = 0; j < N; j++) {
+      var xa = [], ya = [];
+      for (var q = 0; q < N; q++) if (q !== j) { xa.push(xs[q]); ya.push(ys[q]); }
+      var cc = fitPolyOn(xa, ya, dg);
+      var er = ys[j] - evalPoly(cc, xs[j]);
+      cvsse += er * er;
+    }
+    var cvmse = Math.min(cvsse / N, 6.0);   // clamp 高次外推的爆炸值
+    var dataBits = (N/2) * (Math.log2(cvmse + FLOOR) + OFF);
     var modelBits = (dg + 1) * BITS_PER_COEF;
-    stats.push({ deg: dg, coef: coef, mse: mse, dataBits: dataBits, modelBits: modelBits, total: dataBits + modelBits });
+    stats.push({ deg: dg, coef: coef, mse: cvmse, dataBits: dataBits, modelBits: modelBits, total: dataBits + modelBits });
   }
   var best = stats.reduce(function (a, b) { return b.total < a.total ? b : a; });
 
@@ -235,7 +246,7 @@
     var ctx = curveC, W = 440, H = 200, padL = 34, padB = 26, padT = 14;
     ctx.clearRect(0, 0, W, H);
     var maxT = 0; stats.forEach(function (s) { if (s.total > maxT) maxT = s.total; });
-    function px(dg) { return padL + (W - padL - 14) * dg / 11; }
+    function px(dg) { return padL + (W - padL - 14) * dg / MAXDEG; }
     function py(v) { return H - padB - (H - padB - padT) * v / (maxT * 1.05); }
     // 轴
     ctx.strokeStyle = "#dad7d0"; ctx.lineWidth = 1;
@@ -265,10 +276,10 @@
         '<span class="bar-track" style="width:' + w + 'px;background:' + color + '"></span> ' +
         Math.round(val) + ' bit</div>';
     }
-    var maxBar = Math.max(stats[11].modelBits, stats[0].dataBits, 1);
+    var maxBar = Math.max(stats[MAXDEG].modelBits, stats[0].dataBits, 1);
     bars.innerHTML =
       bar("模型码长", s.modelBits, maxBar, "#33475a") +
-      bar("残差码长", s.dataBits, maxBar, "#c0203a") +
+      bar("数据码长", s.dataBits, maxBar, "#c0203a") +
       '<div class="bar-line" style="border-top:1px solid #dad7d0;padding-top:8px;margin-top:10px"><span class="lab-name"><b>总码长</b></span>' +
       '<span class="bar-track" style="width:' + Math.round(180 * s.total / maxBar) + 'px;background:#18181c"></span> <b>' + Math.round(s.total) + ' bit</b></div>';
   }
@@ -280,14 +291,14 @@
     drawFit(s); drawBars(s); drawCurve();
     var v, cls, msg;
     if (dg < best.deg) {
-      v = "欠拟合：残差在报警"; cls = "warn";
-      msg = "模型太简单，没抓住规律——残差码长高达 " + Math.round(s.dataBits) + " bit。加次数，总长还会降。";
+      v = "欠拟合：没抓住规律"; cls = "warn";
+      msg = "模型太简单，连真相的三次起伏都描不出——数据码长高达 " + Math.round(s.dataBits) + " bit。加次数，总长还会降。";
     } else if (dg === best.deg) {
       v = "✓ 最优：总码长触底"; cls = "ok";
       msg = "次数 " + dg + " 恰好是数据的真实复杂度：模型够用又不臃肿，总码长最短——这就是奥卡姆剃刀的可计算版本。";
     } else {
       v = "过拟合：在记忆噪声"; cls = "warn";
-      msg = "残差几乎压到零，但模型自己胖到 " + s.modelBits + " bit——你在花比特记忆噪声。总码长反而回升了。";
+      msg = "样本内残差看似更小，但它开始拟合噪声——对新数据的泛化误差反而回升，加上模型自己胖到 " + s.modelBits + " bit，总码长掉头向上。";
     }
     readout.innerHTML = '<span class="verdict ' + cls + '">' + v + "</span>" + msg;
   }
