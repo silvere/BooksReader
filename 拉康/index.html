@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>拉康 · 读书笔记</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%235c3a72'/%3E%3Ctext x='32' y='44' font-size='34' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E6%8B%89%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -34,10 +35,15 @@
     </div>
     <div class="figure" style="margin:0">
       <svg viewBox="0 0 560 360" role="img" aria-label="博洛米结：想象界、象征界、实在界三环互扣，中心为对象a">
+        <defs>
+          <mask id="bmA"><rect x="0" y="0" width="560" height="360" fill="#fff"/><path d="M 300.2 223.4 A 98 98 0 0 1 262.3 200.9" stroke="#000" stroke-width="11" fill="none"/><path d="M 184.6 237.5 A 98 98 0 0 1 184.4 193.4" stroke="#000" stroke-width="11" fill="none"/></mask>
+          <mask id="bmB"><rect x="0" y="0" width="560" height="360" fill="#fff"/><path d="M 259.8 36.6 A 98 98 0 0 1 297.7 59.1" stroke="#000" stroke-width="11" fill="none"/><path d="M 214.0 142.5 A 98 98 0 0 1 252.5 121.0" stroke="#000" stroke-width="11" fill="none"/></mask>
+          <mask id="bmC"><rect x="0" y="0" width="560" height="360" fill="#fff"/><path d="M 396.0 202.5 A 98 98 0 0 1 357.5 224.0" stroke="#000" stroke-width="11" fill="none"/><path d="M 325.4 107.5 A 98 98 0 0 1 325.6 151.6" stroke="#000" stroke-width="11" fill="none"/></mask>
+        </defs>
         <g fill="none" stroke-width="3.5">
-          <circle cx="230" cy="130" r="98" stroke="#7d67a0" opacity="0.9"/>
-          <circle cx="330" cy="130" r="98" stroke="#402a50" opacity="0.9"/>
-          <circle cx="280" cy="215" r="98" stroke="#b0304c" opacity="0.9"/>
+          <circle cx="230" cy="130" r="98" stroke="#7d67a0" opacity="0.9" mask="url(#bmA)"/>
+          <circle cx="330" cy="130" r="98" stroke="#402a50" opacity="0.9" mask="url(#bmB)"/>
+          <circle cx="280" cy="215" r="98" stroke="#b0304c" opacity="0.9" mask="url(#bmC)"/>
         </g>
         <text x="128" y="70" font-family="PingFang SC" font-size="15" font-weight="700" fill="#5b4585">想象界 I</text>
         <text x="366" y="70" font-family="PingFang SC" font-size="15" font-weight="700" fill="#402a50">象征界 S</text>
