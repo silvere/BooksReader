@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 传统养生</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23b3542f'/%3E%3Ctext x='32' y='44' font-size='34' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E7%BB%8F%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">传统养生<span class="mk"> · </span>NEIJING</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-suwen.html">素问精读</a>
+      <a href="book-lingshu-modern.html">灵枢与现代解读</a>
+      <a href="practice.html">四时实践</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">CONCEPTUS · 核心概念</div>
+    <h1>六块拼图，<br>拼出《内经》的解释框架</h1>
+    <p class="lede">阴阳、四时、藏象、经络、治未病、情志养生——这六个概念共同构成了传统理论理解身体与自然关系的方式。<strong>提醒一句会在本页反复出现：以下都是"传统理论认为""《内经》主张"的内容，是一套自洽的解释体系，不等同于已被现代科学证实的生理学事实。</strong>中间放一台「四时节气起居轮」，点一个季节，看传统理论框架下对应的起居、情志、饮食主张。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="yinyang">
+      <div class="eyebrow">CONCEPT 1 · 阴阳</div>
+      <h2>对立统一、相互转化的方法论底座</h2>
+      <p><strong>阴阳是《黄帝内经》整部理论体系的方法论底座</strong>——传统理论认为，世间万物（包括人体）都可以用一对相互对立又相互依存、并且在一定条件下相互转化的属性来描述：白天与黑夜、温热与寒凉、亢奋与沉静、体表与体内，分别归为阳与阴。这不是一套物理学意义上的能量分类，而是一种<strong>解释关系的思维方式</strong>：任何一方都不能脱离另一方单独存在，任何一方过盛都会在理论框架里被视为失衡的信号。</p>
+      <p>落到人体上，传统理论认为健康是"阴阳相对平衡"的状态，疾病则被解释为阴阳失调——阳盛、阴虚、阳虚、阴盛等不同组合对应不同的理论证型。<em>需要说明的是：这是一套内部自洽的解释语言，它把观察到的症状归类进一套二元框架里，其本身不是一个可以被单独测量的生理学变量。</em>后面五个概念——四时、藏象、经络、治未病、情志——都是在阴阳这个底座上展开的具体应用。</p>
+    </div>
+
+    <div class="concept" id="seasons">
+      <div class="eyebrow">CONCEPT 2 · 四时节气</div>
+      <h2>春生夏长秋收冬藏</h2>
+      <p>《素问·四气调神大论》是传统理论里最常被引用的"顺时养生"依据：<strong>传统理论主张人应当顺应四季的"生长收藏"节律来调整起居、情志与饮食</strong>——春天万物生发，人应晚睡早起、舒展身体；夏天万物繁茂，人应保持心情舒畅、不要压抑；秋天万物收敛，人应早睡早起、收敛神气；冬天万物潜藏，人应早睡晚起、避寒保暖。<strong>违背这个节律，理论框架里认为会分别损伤肝、心、肺、肾</strong>——这是<a class="text-link" href="#zangxiang">藏象学说</a>里"四时应五脏"的具体体现。</p>
+      <p>下面这台互动，把《素问》这段经典论述拆成了可点击查看的四张卡片——点一个季节，看传统理论框架下对应的起居、情志、饮食方向与所养脏腑。</p>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap prose">
+    <div class="eyebrow">LUDUS · 签名互动</div>
+    <h2>四时节气起居轮</h2>
+    <p>点击一个季节，查看《素问·四气调神大论》为该季节给出的传统起居主张。<strong>这是对传统理论原文的转译与整理，不是现代医学处方</strong>——具体做法请结合自身情况理性参考，不要替代专业医疗判断。</p>
+
+    <div class="lab">
+      <div class="lab-title">FOUR SEASONS WHEEL · 点击季节查看传统起居主张</div>
+      <div class="mode-btns">
+        <button id="btn-spring" class="on" type="button" data-season="spring">春 · 生</button>
+        <button id="btn-summer" type="button" data-season="summer">夏 · 长</button>
+        <button id="btn-autumn" type="button" data-season="autumn">秋 · 收</button>
+        <button id="btn-winter" type="button" data-season="winter">冬 · 藏</button>
+      </div>
+      <div class="readout" id="readout">
+        <span class="verdict" id="rv-title"></span>
+        <p id="rv-quote" style="font-family:var(--serif);font-size:15.5px;color:var(--muted);margin:0 0 14px"></p>
+        <div class="season-grid" id="rv-grid"></div>
+      </div>
+    </div>
+
+    <p style="font-size:15px;color:var(--muted)">四张卡片背后的逻辑是同一套：<strong>传统理论认为人是自然的一部分，四季的阴阳消长变化会直接影响人体的阴阳状态</strong>，顺应它，理论上有助于维持平衡；违逆它，理论上会埋下失衡的隐患，且这份隐患往往要到下一季才显现（如"春伤于风，夏生飧泄"一类的传统说法）。这套"当下失养、日后显病"的逻辑，正是下面<a class="text-link" href="#zhiweibing">治未病</a>思想的一个具体注脚。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="concept" id="zangxiang">
+      <div class="eyebrow">CONCEPT 3 · 藏象学说</div>
+      <h2>五脏不是解剖器官，是功能系统</h2>
+      <p>这是最容易被现代读者误读的一点，必须先说清楚：<strong>《内经》里的"心""肝""脾""肺""肾"，在藏象学说的语境下指的是一组功能系统的集合，而不是现代解剖学定义的同名实体器官。</strong>传统理论用这五个名称，把一系列生理功能、情志表现、季节对应、五行属性打包归类——比如"肝"在这套理论里不只对应现代解剖学的肝脏，还统摄"疏泄""藏血"等功能，并与春季、怒的情志、青色、酸味等建立理论上的对应关系。</p>
+      <p>五脏与四时、五行、情志的传统对应关系大致如下（这是一套分类框架，不是逐项可验证的因果链条）：</p>
+      <table class="terms">
+        <thead><tr><th>脏</th><th>对应季节</th><th>五行</th><th>对应情志</th></tr></thead>
+        <tbody>
+          <tr><td>肝</td><td>春</td><td>木</td><td>怒</td></tr>
+          <tr><td>心</td><td>夏</td><td>火</td><td>喜</td></tr>
+          <tr><td>脾</td><td>长夏</td><td>土</td><td>思</td></tr>
+          <tr><td>肺</td><td>秋</td><td>金</td><td>悲（忧）</td></tr>
+          <tr><td>肾</td><td>冬</td><td>水</td><td>恐</td></tr>
+        </tbody>
+      </table>
+      <div class="keybox">
+        <b>Key Distinction · 关键区分</b>
+        把"藏象的肝"和"解剖学的肝脏"混为一谈，是理解传统医学理论最常见的误区。<strong>藏象学说是一套功能分类框架，用来组织对身体功能与情志、季节关系的整体性描述</strong>；它不是、也从未宣称自己是现代解剖生理学的等价物。本站在后续各页提到"养肝""养心"时，指的都是藏象学说意义上的功能系统，而非直接对应某个解剖器官的临床医嘱。
+      </div>
+    </div>
+
+    <div class="concept" id="jingluo">
+      <div class="eyebrow">CONCEPT 4 · 经络</div>
+      <h2>气血运行的传统通路</h2>
+      <p><strong>经络学说主张人体内存在一套"气血运行的通路网络"</strong>，纵行的主干称为"经"，分支联络称为"络"，全身分布着十二正经与奇经八脉等，通路上分布着可以刺激调节的"腧穴"。这套理论体系是针灸、推拿等传统疗法的理论基础——针刺特定穴位，理论上是通过调节该经络上气血的运行状态，来影响其所联络的脏腑功能。</p>
+      <p><strong>需要明确区分两个层面</strong>：经络本身作为一套解剖可见的独立结构，尚未在现代解剖学、组织学中得到直接对应的实证确认，它是传统理论框架内部的一套功能性描述系统。但另一方面，<strong>现代研究者对针灸的部分具体效果（尤其是镇痛机制）做过大量实证探索</strong>，例如从神经科学角度研究针刺如何激活内源性镇痛通路——这类研究是在现代生理学范式下对"针刺为什么可能有效"的探索，其结论与"经络作为解剖通路确实存在"是两件不同的事，不应混为一谈。</p>
+    </div>
+
+    <div class="concept" id="zhiweibing">
+      <div class="eyebrow">CONCEPT 5 · 治未病</div>
+      <h2>上工治未病，不治已病</h2>
+      <p>《素问·四气调神大论》提出"是故圣人不治已病治未病，不治已乱治未乱，此之谓也"——这是《内经》里最具预防医学色彩的一条思想：<strong>传统理论主张，高明的调养不是等疾病发生后再治疗，而是在其发生之前，通过顺应四时、调节情志、节制饮食等方式维持阴阳平衡，把失衡状态化解在萌芽阶段。</strong>后世常把这一思想概括为"治未病"三个字，涵盖未病先防、既病防变、瘥后防复三层含义。</p>
+      <p>这条思想与现代医学里"预防优于治疗"的公共卫生理念，在<strong>价值取向</strong>上有相通之处——两者都强调提前干预比事后处理更划算。但要留意：<strong>治未病依托的是阴阳、藏象、经络这套传统解释框架去判断"未病的征兆"和"如何提前调养"，其具体操作逻辑与现代预防医学（基于流行病学、风险因子模型）是两套不同的知识体系</strong>，不宜把"治未病"直接等同于现代意义上的"预防医学"，二者理念相通、方法论不同。</p>
+    </div>
+
+    <div class="concept" id="qingzhi">
+      <div class="eyebrow">CONCEPT 6 · 情志养生</div>
+      <h2>情绪与脏腑功能的双向理论</h2>
+      <p>藏象学说把五种基本情志——怒、喜、思、悲（忧）、恐——分别对应到肝、心、脾、肺、肾。<strong>传统理论认为这种对应是双向的</strong>：一方面，某种情志过度会理论上损伤对应的脏腑（如"怒伤肝""思伤脾"）；另一方面，脏腑功能状态失调，也可能在理论框架里反过来表现为对应情志的异常波动。这与现代心身医学"情绪与生理状态相互影响"的整体思路有精神上的相似之处，但具体的对应关系（哪种情绪对应哪个脏腑）是传统理论内部的分类，并非通过现代实证方法逐一验证得出的因果结论。</p>
+      <div class="keybox">
+        <b>Caveat · 一点保留</b>
+        情志养生这一条最容易被过度引申成"情绪决定论"式的说法（如"癌症都是气出来的"一类流传语），这是对传统理论的粗暴简化和过度延伸。<strong>传统理论主张情志与脏腑功能存在关联，并不等于主张情绪是疾病唯一或主要的病因</strong>——把复杂的健康问题简化归因为单一情绪因素，既不是《内经》原意的忠实转述，也缺乏现代实证支持，读者应保持审慎。
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 传统养生 · 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史</a> ·
+      <a href="book-suwen.html">素问精读</a> ·
+      <a href="book-lingshu-modern.html">灵枢与现代解读</a> ·
+      <a href="practice.html">四时实践</a>
+      <span class="foot-cross"><a href="../index.html">← 健康养生</a> · <a href="../../index.html">← 书架</a></span>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var data = {
+    spring: {
+      title: "春 · 生 —— 春三月，此谓发陈",
+      quote: "《素问·四气调神大论》：夜卧早起，广步于庭，被发缓形，以使志生。逆之则伤肝。",
+      organ: "肝（木旺于春）",
+      life: "晚睡早起，起床后到庭院里散步舒展身体，让头发松散、衣带宽缓，使身体和情志都顺应春天的生发之气。",
+      mood: "戒怒，保持心情舒畅、不压抑，让情绪像春天万物一样自然舒展，避免恼怒、烦躁。",
+      diet: "传统养生话语中，春季饮食方向偏甘温、辛香发散（如韭菜、香菜一类），少食过酸的收敛性食物，以免妨碍阳气生发——这是传统理论的一种方向性建议，非具体食谱处方。"
+    },
+    summer: {
+      title: "夏 · 长 —— 夏三月，此谓蕃秀",
+      quote: "《素问·四气调神大论》：夜卧早起，无厌于日，使志无怒，使华英成秀。逆之则伤心。",
+      organ: "心（火旺于夏）",
+      life: "晚睡早起，不要厌恶夏日的长昼与炎热，作息顺应昼长夜短的节律，让身体机能像草木一样繁茂舒展。",
+      mood: "保持情绪平和舒畅，避免大怒动怒，也不要压抑情绪不得宣泄，让“华英成秀”——情志像花朵一样自然绽放而不过激。",
+      diet: "传统养生话语中，夏季饮食方向偏清淡，可适度选择清心降火的食材，同时注意不要过食生冷，以免损伤脾胃运化功能——同样是方向性建议，非处方。"
+    },
+    autumn: {
+      title: "秋 · 收 —— 秋三月，此谓容平",
+      quote: "《素问·四气调神大论》：早卧早起，与鸡俱兴，使志安宁，以缓秋刑。逆之则伤肺。",
+      organ: "肺（金旺于秋）",
+      life: "早睡早起，作息与鸡的活动规律相近，配合秋季“收敛”的自然节律，不要熬夜耗散精神。",
+      mood: "收敛神气，保持内心安宁平静，缓和秋天肃杀之气对情绪的影响，避免过度悲伤、忧愁。",
+      diet: "传统养生话语中，秋季饮食方向偏滋阴润燥（如银耳、梨一类食材常被提及），少食辛辣燥烈之品，以免进一步耗伤津液——方向性建议，非处方。"
+    },
+    winter: {
+      title: "冬 · 藏 —— 冬三月，此谓闭藏",
+      quote: "《素问·四气调神大论》：早卧晚起，必待日光，去寒就温，无泄皮肤。逆之则伤肾。",
+      organ: "肾（水旺于冬）",
+      life: "早睡晚起，等到日光出现再起床活动，注意避寒保暖，不要让皮肤过度出汗而耗散阳气。",
+      mood: "情志宜内敛安静，“若伏若匿，若有私意，若已有得”——保持一种收藏、不张扬外露的心理状态，避免过度张扬耗神。",
+      diet: "传统养生话语中，冬季饮食方向偏温补潜藏，少食生冷寒凉之品，部分传统语境下会提到适度温补，但是否需要进补、如何进补应结合个人体质理性判断，不宜一概而论——方向性建议，非处方。"
+    }
+  };
+
+  var order = ["spring", "summer", "autumn", "winter"];
+  var buttons = {
+    spring: document.getElementById("btn-spring"),
+    summer: document.getElementById("btn-summer"),
+    autumn: document.getElementById("btn-autumn"),
+    winter: document.getElementById("btn-winter")
+  };
+  var rvTitle = document.getElementById("rv-title");
+  var rvQuote = document.getElementById("rv-quote");
+  var rvGrid = document.getElementById("rv-grid");
+
+  function render(key) {
+    var d = data[key];
+    order.forEach(function (k) {
+      buttons[k].classList.toggle("on", k === key);
+    });
+    rvTitle.textContent = d.title;
+    rvQuote.textContent = d.quote;
+    rvGrid.innerHTML =
+      '<div class="season-item"><div class="si-label">起居</div><div class="si-val">' + d.life + '</div></div>' +
+      '<div class="season-item"><div class="si-label">情志</div><div class="si-val">' + d.mood + '</div></div>' +
+      '<div class="season-item"><div class="si-label">饮食方向</div><div class="si-val">' + d.diet + '</div></div>' +
+      '<div class="season-item"><div class="si-label">所养脏腑</div><div class="si-val">' + d.organ + '</div></div>';
+  }
+
+  order.forEach(function (k) {
+    buttons[k].addEventListener("click", function () { render(k); });
+  });
+
+  render("spring");
+})();
+</script>
+
+</body>
+</html>

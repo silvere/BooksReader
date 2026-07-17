@@ -1,0 +1,99 @@
+/* ============================================================
+   健康养生 · 主题书架（hub）全站样式
+   视觉方向：生命绿 × 珊瑚点缀 · 四条路径共用一套纸面语言
+   ============================================================ */
+
+:root {
+  --paper: #f6f6f2;
+  --paper-deep: #eae9e2;
+  --ink: #1c231e;
+  --muted: #5f6b62;
+  --accent: #2f8f6a;        /* 生命绿（主色） */
+  --accent-deep: #1f6b4c;
+  --accent-wash: #e3f0e9;
+  --coral: #c65b3f;         /* 点缀珊瑚 */
+  --line: #d8d6cc;
+  --serif: "Songti SC", "Noto Serif SC", "STSong", serif;
+  --sans: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --latin: "Charter", "Georgia", "Iowan Old Style", serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.85; font-size: 16px; }
+
+.nav { position: sticky; top: 0; z-index: 50; background: rgba(246, 246, 242, 0.94); backdrop-filter: blur(8px); border-bottom: 2px solid var(--ink); }
+.nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 28px; height: 58px; }
+.nav-brand { font-family: var(--latin); font-size: 15px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 700; white-space: nowrap; }
+.nav-brand .mk { color: var(--coral); }
+.nav-links { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; }
+.nav-links a { font-size: 14px; color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 2px; white-space: nowrap; }
+.nav-links a:hover { color: var(--accent-deep); background: var(--accent-wash); }
+.nav-links a.active { color: #fff; background: var(--accent); }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.prose { max-width: 760px; }
+section { padding: 72px 0; }
+section + section { border-top: 1px solid var(--line); }
+
+.eyebrow { font-family: var(--latin); font-size: 12.5px; letter-spacing: 0.22em; color: var(--coral); text-transform: uppercase; margin-bottom: 14px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 900; line-height: 1.3; }
+h1 { font-size: clamp(34px, 5.5vw, 56px); letter-spacing: 0.01em; }
+h2 { font-size: clamp(26px, 3.6vw, 36px); margin-bottom: 20px; }
+h3 { font-size: 20px; margin: 28px 0 10px; }
+p { margin: 14px 0; }
+.lede { font-size: 18px; color: var(--muted); max-width: 680px; }
+strong { color: var(--accent-deep); }
+em { font-style: normal; border-bottom: 2px solid var(--coral); }
+a.text-link { color: var(--accent-deep); text-decoration: underline; text-underline-offset: 3px; }
+
+blockquote { border-left: 3px solid var(--coral); background: var(--accent-wash); padding: 18px 24px; margin: 22px 0; font-family: var(--serif); font-size: 17px; }
+blockquote cite { display: block; font-family: var(--latin); font-size: 12px; letter-spacing: 0.1em; color: var(--muted); margin-top: 8px; font-style: normal; }
+
+.inscription { text-align: center; font-family: var(--latin); font-size: 13px; letter-spacing: 0.3em; color: var(--coral); text-transform: uppercase; margin: 8px 0 0; }
+
+.hero { padding: 84px 0 64px; border-bottom: 2px solid var(--ink); background: var(--paper); }
+.hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
+@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero .lede { margin-top: 20px; }
+
+.figure { border: 1.5px solid var(--ink); background: #fcfbf7; padding: 28px 24px 18px; margin: 28px 0; }
+.figure svg { display: block; width: 100%; height: auto; }
+.figcap { font-family: var(--latin); font-size: 12.5px; color: var(--muted); letter-spacing: 0.02em; margin-top: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
+.figcap b { color: var(--coral); font-weight: 700; }
+
+.grid { display: grid; gap: 20px; }
+.grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 860px) { .grid.cols-3 { grid-template-columns: 1fr; } }
+
+.card { border: 1.5px solid var(--ink); background: #fcfbf7; padding: 24px; position: relative; box-shadow: 4px 4px 0 var(--accent-wash); }
+.card h3 { margin-top: 0; }
+.card .tag { display: inline-block; font-family: var(--latin); font-size: 11px; letter-spacing: 0.12em; color: #fff; background: var(--accent); padding: 2px 9px; margin-bottom: 12px; text-transform: uppercase; }
+.card .tag.coral { background: var(--coral); }
+.card p { font-size: 15px; color: #43434c; }
+
+/* 分站书架卡片（复用根书架 .book 卡片系统） */
+.stations { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 28px 0 8px; }
+.book { display: block; text-decoration: none; color: inherit; border: 1.5px solid var(--ink); background: #fff;
+  box-shadow: 5px 5px 0 var(--accent-wash); transition: transform .15s ease, box-shadow .15s ease; position: relative; overflow: hidden; }
+.book:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--accent-wash); }
+.book:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+.book .spine { height: 8px; }
+.book .body { padding: 24px; }
+.book .no { font-family: var(--latin); font-size: 12px; letter-spacing: 0.15em; }
+.book h2 { font-family: var(--serif); font-size: 24px; font-weight: 900; margin: 8px 0 4px; line-height: 1.3; }
+.book .authors { font-family: var(--latin); font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+.book p { font-size: 14.5px; color: #3a3f46; margin-bottom: 16px; }
+.book .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+.book .chip { font-family: var(--latin); font-size: 11px; letter-spacing: 0.08em; padding: 3px 9px; border: 1px solid var(--line); color: var(--muted); }
+.book .enter { margin-top: 16px; font-weight: 700; font-size: 14px; }
+
+footer { border-top: 2px solid var(--ink); margin-top: 40px; padding: 36px 0 48px; background: var(--paper-deep); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; align-items: baseline; }
+footer p, footer a { font-family: var(--latin); font-size: 12.5px; color: var(--muted); letter-spacing: 0.05em; }
+footer a { text-decoration: none; }
+footer a:hover { color: var(--coral); }
+
+:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }

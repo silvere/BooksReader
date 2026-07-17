@@ -28,6 +28,7 @@
 | 18 | 修辞学（Heinrichs《Thank You for Arguing》 + 亚里士多德《修辞学》 + Toulmin《The Uses of Argument》） | [`修辞学/`](修辞学/) | 6 页联动：总览（三诉求三角+kairos）/ 历史与人物 / 核心概念（含三诉求调音台互动）/ Heinrichs 精读 / 亚里士多德与 Toulmin / 说服与决策专题（ethos/pathos/logos） |
 | 19 | 财富的数学 / 生命周期理论（Bernstein《The Four Pillars of Investing》 + Bodie & Merton《Risk Less and Prosper》 + Milevsky《Are You a Stock or a Bond?》） | [`财富数学/`](财富数学/) | 6 页联动：总览（生命周期资产负债表）/ 历史与人物 / 核心概念（含生命周期资产台互动）/ Bernstein 精读 / 生命周期理论 / 财富与决策专题（人力资本上表，非投资建议） |
 | 20 | 学习科学（《Make It Stick》 + Ericsson《Peak》 + Ohlsson《Deep Learning》） | [`学习科学/`](学习科学/) | 6 页联动：总览（遗忘曲线）/ 历史与人物 / 核心概念（含遗忘曲线实验室互动）/ Make It Stick 精读 / 刻意练习与深层学习 / 学习与决策专题（书架元层：提取/间隔/合意困难） |
+| 21 | 健康养生（主题书架，4 分站）：循证长寿（Attia《Outlive》+ Sinclair《Lifespan》+ Longo《长寿饮食》）/ 传统养生（《黄帝内经》素问·灵枢）/ 饮食代谢（Pollan《为食物辩护》+ Taubes/Fung 胰岛素假说）/ 身体手册（Bryson《人体简史》+ Enders《肠子的小心思》+ Pontzer《Burn》） | [`健康养生/`](健康养生/) | hub + 4 分站 × 6 页联动：hub 总览（四条路径示意图）分流到循证长寿（健康寿命方块化台）、传统养生（四时节气起居轮）、饮食代谢（血糖-胰岛素反应台）、身体手册（每日能量分配台），各分站均含历史/概念/精读×2/决策或实践专题 |
 
 ## 本地预览
 

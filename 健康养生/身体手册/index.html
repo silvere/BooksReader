@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>总览 · 身体手册</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233f5d80'/%3E%3Ctext x='32' y='44' font-size='34' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E8%BA%AB%3C/text%3E%3C/svg%3E">
+<meta name="description" content="身体手册读书站：先把身体这台机器的说明书读一遍。Bryson《人体简史》逐系统导览，Enders《肠子的小心思》讲肠道菌群与肠脑轴，Pontzer《Burn》讲受限能量消耗模型——为什么多运动不一定多消耗。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">身体手册<span class="mk"> · </span>BODY</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-body.html">人体简史精读</a>
+      <a href="book-gut-burn.html">肠子与能量代偿精读</a>
+      <a href="decision.html">身体维护决策</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">HEALTH · STATION 4 · THE BODY MANUAL</div>
+      <h1>先把身体这台机器的<br>说明书读一遍</h1>
+      <p class="lede">在谈"该怎么养生"之前，退一步：<strong>你对自己身体这台机器，到底了解多少？</strong>三本书从三个尺度补课——Bryson《人体简史》按系统逐章导览全身，带着医学史的坦诚（很多机制我们至今没完全搞懂）；Enders《肠子的小心思》把肠道从"消化管道"重估为一个与免疫、情绪深度相连的复杂器官；Pontzer《Burn》则用田野实测数据挑战一个大家习以为常的直觉——<strong>运动量翻倍，每日总能耗却几乎不变。</strong></p>
+      <blockquote style="margin-top:28px">
+        身体不是一堆孤立零件的合集，是一个把能量预算摊开在各个系统之间反复腾挪的整体。你多花在一处，它就悄悄从别处省回来。
+        <cite>受限能量消耗模型 · 本站导言</cite>
+      </blockquote>
+    </div>
+    <div class="figure" style="margin:0">
+      <svg viewBox="0 0 560 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="每日能量预算示意：体力活动增加时，总能耗趋于上限，其余分项相应收缩">
+        <g font-family="Charter,Georgia,serif">
+          <text x="20" y="28" font-size="12" letter-spacing="1" fill="#5e6470">每日能量去哪了 · 示意，非精确数据</text>
+        </g>
+        <line x1="46" y1="40" x2="46" y2="360" stroke="#1f2430" stroke-width="1.5"/>
+        <line x1="46" y1="360" x2="540" y2="360" stroke="#1f2430" stroke-width="1.5"/>
+        <text x="52" y="378" font-size="11" font-family="Charter,serif" fill="#5e6470">久坐</text>
+        <text x="470" y="378" font-size="11" font-family="Charter,serif" fill="#5e6470">高活动量</text>
+        <!-- 久坐柱：分项堆叠 -->
+        <g>
+          <rect x="90" y="120" width="70" height="220" fill="#3f5d80"/>
+          <rect x="90" y="90" width="70" height="30" fill="#457a5c"/>
+          <rect x="90" y="65" width="70" height="25" fill="#8a8f5c"/>
+          <rect x="90" y="40" width="70" height="25" fill="#c1752f"/>
+        </g>
+        <!-- 高活动量柱：活动大幅增加，免疫/内分泌收缩，总量小幅上升后趋平 -->
+        <g>
+          <rect x="400" y="120" width="70" height="220" fill="#3f5d80"/>
+          <rect x="400" y="105" width="70" height="15" fill="#457a5c"/>
+          <rect x="400" y="95" width="70" height="10" fill="#8a8f5c"/>
+          <rect x="400" y="30" width="70" height="65" fill="#c1752f"/>
+        </g>
+        <line x1="46" y1="35" x2="540" y2="35" stroke="#c1752f" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="460" y="24" font-size="10.5" font-family="Charter,serif" fill="#c1752f">朴素预期的总量上限 ↑</text>
+        <text x="90" y="356" font-size="12" font-family="Songti SC,serif" font-weight="900" fill="#253649" text-anchor="middle">久坐</text>
+        <text x="400" y="356" font-size="12" font-family="Songti SC,serif" font-weight="900" fill="#253649" text-anchor="middle">高活动量</text>
+        <text x="46" y="404" font-size="11.5" font-family="Charter,serif" letter-spacing="1" fill="#c1752f">ACTIVITY UP · TOTAL BARELY MOVES · 其余分项悄悄收缩</text>
+      </svg>
+      <div class="figcap"><b>FIG. I</b> 两根柱子，同样堆叠四类去处（体力活动·橙、消化·浅橄榄、免疫与内分泌·绿、基础代谢·蓝）——右边体力活动大涨，但总高度只涨了一点，因为免疫与内分泌那两段悄悄缩短了。这正是 Pontzer 团队提出的"能量代偿"，本站签名互动会让你亲手拖出这条曲线。</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">CUR LEGERE · 为什么读这三本书</div>
+    <h2>补一堂被跳过的说明书课</h2>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="tag">导览</div>
+        <h3>先认全身体的零件</h3>
+        <p>多数健康建议直接跳到"该怎么做"，却假设你已经懂身体是怎么运作的。Bryson 的贡献是<strong>补齐这一课</strong>——用幽默笔法逐系统导览，还坦白承认哪些机制医学至今没完全搞懂。</p>
+      </div>
+      <div class="card">
+        <div class="tag teal">重估</div>
+        <h3>肠道不只是消化管</h3>
+        <p>肠道装着人体最大规模的微生物群落，且通过肠脑轴与情绪、免疫深度相连。Enders 把这个常被忽视的器官<strong>重新放回身体叙事的中心</strong>，同时提醒这个领域很多具体机制仍在研究中。</p>
+      </div>
+      <div class="card">
+        <div class="tag coral">反直觉</div>
+        <h3>运动量翻倍，消耗不翻倍</h3>
+        <p>Pontzer 团队用双标水法实测哈扎部落的真实能耗，发现结果<strong>违背"动得越多、燃得越多"的朴素直觉</strong>——这是较新的研究范式，仍在被检验，但已经足够颠覆一个流传甚广的减肥逻辑。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">TRES LIBRI · 三书阶梯</div>
+    <h2>导览 → 器官 → 系统模型</h2>
+    <p class="lede" style="margin-bottom:32px">三本书从三个分辨率给你身体这台机器的说明书：Bryson 给全景导览（先认全身体），Enders 把镜头拉近到一个被低估的器官（肠道），Pontzer 再把镜头拉远到整个身体的能量预算模型（系统怎么在各部分之间分配资源）。合起来是一条从"部件"到"系统"的完整读法。</p>
+    <div class="grid cols-3">
+      <a class="card" href="book-body.html">
+        <div class="tag">第一级 · 全景导览</div>
+        <h3>Bryson《The Body》</h3>
+        <p>《人体简史》：从头到脚逐系统讲一遍，医学史轶事密布，坦诚承认身体仍有大量未解之谜。最适合先读，建立整体地图。</p>
+      </a>
+      <a class="card" href="book-gut-burn.html#gut">
+        <div class="tag teal">第二级 · 单个器官</div>
+        <h3>Enders《Gut》</h3>
+        <p>《肠子的小心思》：肠道菌群的规模、肠脑轴的机制、消化系统与免疫的深度纠缠——把一个常被忽视的器官讲透。</p>
+      </a>
+      <a class="card" href="book-gut-burn.html#burn">
+        <div class="tag coral">第三级 · 系统模型</div>
+        <h3>Pontzer《Burn》</h3>
+        <p>受限能量消耗模型：田野实测数据显示身体会在各生理过程间做能量代偿，直接挑战"运动越多、消耗越多"的线性直觉。</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">MAPPA · 本站地图</div>
+    <h2>六页怎么走</h2>
+    <p><a class="text-link" href="history.html">历史与人物</a>讲三条并行的认知演进：人体解剖学从盖伦到维萨里的纠错史、肠道微生物组研究在 2000 年代后随人类微生物组计划兴起、以及双标水法这项测量技术如何让 Pontzer 团队第一次能在真实野外部落身上测出可信的能耗数据。<a class="text-link" href="concepts.html">核心概念</a>是主菜，配签名互动<strong>「每日能量分配台」</strong>——拖动体力活动量滑块，亲眼看总能耗如何趋于一个上限，而非随活动量线性上涨。<a class="text-link" href="book-body.html">人体简史精读</a>挑几个印象深刻的章节展开，<a class="text-link" href="book-gut-burn.html">肠子与能量代偿精读</a>合页精读 Enders 与 Pontzer 两本书。<a class="text-link" href="decision.html">身体维护决策</a>收束全站：把"身体是一个有限能量预算的系统"这个框架，落到日常维护的取舍上。</p>
+    <p style="font-size:15px;color:var(--muted)">本站与书架同层的<a class="text-link" href="../../压力生理学/index.html">压力生理学</a>分站略有重叠（都会提到运动、压力），但那座站聚焦 HPA 轴、皮质醇节律与睡眠——本站聚焦身体系统导览、肠道菌群与能量代谢模型，两者互补，不重复展开。</p>
+    <p class="inscription">READ THE MANUAL BEFORE THE MAINTENANCE GUIDE</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 身体手册 · 总览</p>
+    <p>
+      <a href="history.html">历史</a> ·
+      <a href="concepts.html">概念</a> ·
+      <a href="book-body.html">人体简史</a> ·
+      <a href="book-gut-burn.html">肠子与能量代偿</a> ·
+      <a href="decision.html">决策专题</a> ·
+      <a href="../index.html">← 健康养生</a> ·
+      <a href="../../index.html">← 书架</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
