@@ -19,7 +19,7 @@
 阶梯：Heinrichs《Thank You for Arguing》（现代最好的入门，有趣）→ 亚里士多德《修辞学》（直接读原典，比想象中好读）→ Toulmin《The Uses of Argument》（论证的结构解剖）。
 7. 财富的数学（Household Finance / 生命周期理论）
 不是投资技巧，而是理论层：Merton 生命周期模型（人力资本与金融资本的统一资产负债表——你35岁前最大的资产是未来工资的贴现值，这改变配置逻辑）、安全提取率研究、遍历性视角下的保险定价。大众理财书都在讲"术"，这一层讲的是"你的人生现金流是一个随机过程，如何对它做最优控制"——字面意义上的控制论应用。
-阶梯：Bernstein《The Four Pillars of Investing》（理论最扎实的通俗书）→ Bodie & Merton 的生命周期投资论文/《Risk Less and Prosper》→ Milevsky《Are You a Stock or a Bond?》（人力资本视角，直接对应你的处境）。
+阶梯：Bernstein《The Four Pillars of Investing》（理论最扎实的通俗书）→ Bodie & Merton 的生命周期投资论文 / Bodie & Taqqu《Risk Less and Prosper》→ Milevsky《Are You a Stock or a Bond?》（人力资本视角，直接对应你的处境）。
 8. 学习科学（Science of Learning）
 元层杠杆：你后面要学的一切的效率倍增器。有坚实认知心理学内核（提取练习、间隔效应、交错、期望效应、认知负荷理论），而市面上"学习方法"书 90% 与实验证据相悖。
 阶梯：《Make It Stick》（Roediger 等，实验证据的忠实综述）→ Ericsson《Peak》（刻意练习原著，纠正被讹传的一万小时）→ Ohlsson《Deep Learning: How the Mind Overrides Experience》（认知科学的深水区）。
