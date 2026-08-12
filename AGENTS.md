@@ -1,5 +1,8 @@
 # Repository Guidelines
 
+本文件是**工程规范**的唯一来源（目录结构、命名、样式约定、提交格式）。
+**内容生产 SOP**（选书阶梯、六页骨架、签名交互实验台、书架暗线、事实核验门槛、上架质检清单）见 `/book` 技能：`~/.claude/skills/book/`。新建一座书站时先调用 `/book`。
+
 ## Project Structure & Module Organization
 
 BooksReader is a dependency-free static site deployed with GitHub Pages. The root [`index.html`](index.html) is the bookshelf landing page; [`README.md`](README.md) lists the published book sites and their scope. Each book has a self-contained, Chinese-named directory such as `控制论/`, `斯多葛/`, or `因果推断/`:
