@@ -342,3 +342,6 @@ table.terms th { background: var(--blue-wash); font-family: var(--mono); font-si
 table.terms td:first-child { font-weight: 700; white-space: nowrap; }
 
 :focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+
+/* 人物肖像（Wikimedia Commons，PD/CC，详见各历史页版权说明） */
+.card img.portrait { float: right; width: 76px; height: 76px; object-fit: cover; border: 1.5px solid var(--ink); margin: 0 0 10px 14px; background: #fff; }

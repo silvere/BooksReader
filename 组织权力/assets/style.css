@@ -132,3 +132,6 @@ table.terms th { background: var(--accent-wash); font-family: var(--latin); font
 table.terms td:first-child { font-weight: 700; }
 
 :focus-visible { outline: 3px solid var(--blood); outline-offset: 2px; }
+
+/* 人物肖像（Wikimedia Commons，PD/CC，详见各历史页版权说明） */
+.card img.portrait { float: right; width: 76px; height: 76px; object-fit: cover; border: 1.5px solid var(--ink); margin: 0 0 10px 14px; background: #fff; }
