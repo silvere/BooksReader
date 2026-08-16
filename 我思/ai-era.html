@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>机器与心灵 · 我思</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b2a4a'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E6%80%9D%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">我思<span class="cogito-mark"> ⟡ </span>COGITO</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-meditations.html">沉思集精读</a>
+      <a href="book-methode.html">方法与三附录</a>
+      <a href="ai-era.html" class="active">机器与心灵</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap prose">
+    <div class="eyebrow">Machine &amp; Mind · 机器与心灵</div>
+    <h1>他在 1637 年<br>写下了图灵测试</h1>
+    <p class="lede">
+      比图灵早三百一十三年，笛卡尔已经问过同一个问题：如果有一台机器，外形和动作都跟人一模一样，你凭什么说它不是人？
+      他给出了两条判据。今天回头看，第一条正在我们眼前被逼到墙角，第二条还稳稳站着。
+    </p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">§ 1 · The Two Tests</div>
+    <h2>两条判据，原文在此</h2>
+    <p>
+      《谈谈方法》第五部分。笛卡尔先设想一台外形与动作都仿造人类的自动机（<i>automata</i>），然后说：仍有两个"极可靠的手段"能认出它不是真人。
+    </p>
+
+    <blockquote class="latin">
+      <span class="orig">jamais elles ne pourroient user de paroles ni d'autres signes en les composant, comme nous faisons pour déclarer aux autres nos pensées</span>
+      它们永远不能像我们那样，<strong>组合</strong>词语或别的符号，来向他人表达自己的思想。
+      <cite>Discours de la méthode，第五部分，1637（Cousin 校订本）</cite>
+    </blockquote>
+
+    <p>
+      要看清这一条的分量，关键在 <i>en les composant</i>——"通过组合它们"。笛卡尔明确承认机器可以发声、可以对特定刺激给出特定回应（碰它一下它喊疼）。他否认的是<strong>组合能力</strong>：面对一句从未预备过的话，当场重组语言给出恰当回应。这不是"会说话"，是"会应对"。
+    </p>
+
+    <blockquote class="latin">
+      <span class="orig">au lieu que la raison est un instrument universel qui peut servir en toutes sortes de rencontres, ces organes ont besoin de quelque particulière disposition pour chaque action particulière</span>
+      理性是一件<strong>普遍的工具</strong>，能在各种场合派上用场；而那些器官则需要为每一个特定动作配备某种特定的构造。
+      <cite>Discours de la méthode，第五部分，1637（Cousin 校订本）</cite>
+    </blockquote>
+
+    <p>
+      第二条讲的是<strong>覆盖问题</strong>：机器的每一种本领都得被单独安装一次，所以再复杂的机器也只是有限张专用表格的集合；人只有一套东西，却能应付无穷多没被预先设想过的场合。
+    </p>
+
+    <div class="plate">
+      <img src="assets/img/brain-nerves.jpg" alt="《论人》拉丁文版图版：脑与遍布全身的神经系统解剖图" loading="lazy">
+      <div class="pcap"><b>Plate · 他眼中的那台机器</b>
+        《论人》拉丁文版（1662）的神经系统图版。笛卡尔坚持认为，这套东西<strong>足以独立解释人类的全部行为，除了两件事</strong>：创造性地使用语言，以及在无穷多未预设的场合中恰当行动。
+        <br><br>换句话说，这张图就是他的"机器"的完整规格书；而那两条判据，是他划下的规格书<em>覆盖不到</em>的边界。
+        三百六十年后，这条边界正在被一种他完全无法设想的机器逼近——<strong>而逼近它的那台机器，恰恰没有这张图上的任何一根线。</strong>
+        <span class="psrc">Wellcome Collection · CC BY 4.0</span>
+      </div>
+    </div>
+
+    <div class="keybox">
+      <b>为什么这不叫"图灵测试的雏形"而叫别的</b>
+      这两条判据在学术文献里有专名：Keith Gunderson 1964 年的论文《Descartes, La Mettrie, Language, and Machines》把它们命名为<strong>笛卡尔测试</strong>（the Cartesian test），并拆成 language test 与 action test 两个部分。
+      至于图灵本人是否知道笛卡尔这段——据 Bruce Abramson（2011）的档案研究，图灵写作 1950 年那篇论文时已知晓笛卡尔的语言测试；此说转引自斯坦福哲学百科"图灵测试"词条，本站未直接核对 Abramson 原文，<em>置信度：中</em>。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">§ 2 · Three Centuries Later</div>
+    <h2>第一条判据，今天怎么了</h2>
+    <p>
+      一台机器"永远不能组合词语来表达思想"——这句话在 1637 年是一个关于<strong>物理不可能</strong>的断言。今天它不再是了。
+    </p>
+    <p>
+      这件事最值得玩味的地方在于：把笛卡尔这条判据带进二十世纪语言学的，是诺姆·乔姆斯基。他 1966 年的《笛卡尔语言学》(<i>Cartesian Linguistics</i>) 提出"语言使用的创造性方面"（the creative aspect of language use）——语言的运用不受可辨识的外部刺激或内部状态控制、不限于实用交际，而这一洞见的源头，他明确追溯到笛卡尔。
+    </p>
+    <div class="keybox warn">
+      <b>适用边界：这本书的史学部分挨过重批</b>
+      Hans Aarsleff 1970 年在《Language》期刊上发表《The History of Linguistics and Professor Chomsky》，指控乔姆斯基的语言学史"学问不精、文本未读"，特别指出把 1660 年《波尔罗亚尔语法》称作"笛卡尔式"毫无史学依据——那本书实际深受经验主义影响。
+      也就是说：<strong>"创造性语言使用"这个概念是有力的，但它有多"笛卡尔"，学界从 1970 年起就在吵。</strong>
+    </div>
+    <p>
+      而在 2023 年 3 月，乔姆斯基与 Ian Roberts、Jeffrey Watumull 在《纽约时报》发表《The False Promise of ChatGPT》，把 1966 年的论点直接对准了大语言模型：人类心智"以有限的手段实现无限的运用"，而 ChatGPT 只是"庞大的统计模式匹配引擎"，靠外部数据的相关性而非内在解释生成语言，因此不满足那道笛卡尔式门槛。
+    </p>
+    <p>
+      这是一场跨越三百八十六年的同一个论证的第三次出场。你可以不同意它的结论，但要看清它的结构：<strong>笛卡尔的两条判据都不是关于"输出像不像人"，而是关于"输出是怎么来的"。</strong>行为主义的图灵测试只问前者，笛卡尔问的是后者——所以严格说，一个系统通过图灵测试，并不等于通过笛卡尔测试。
+    </p>
+    <div class="keybox">
+      <b>本站的判断，以及它的分量</b>
+      就<strong>可观察行为</strong>而言，今天的大模型已经在做笛卡尔说"永远不可能"的那件事：对未预备过的语句当场重组回应。第一条判据作为<em>行为判据</em>已经失效。
+      但笛卡尔想用它证明的是"有一个非物质的思维实体在"——从"能组合语言"推不出"有非物质心灵"，中间那一步在 1637 年靠的是"我想不出机器怎么可能做到"。<strong>那是一个关于想象力的论证，不是关于必然性的论证。</strong>大模型摧毁的是这个想象力前提，不是二元论本身。
+      至于第二条（普遍适应性），是否已被跨越，取决于你把"一切生活场景"划多大——这一条至今没有公认的裁决方法。
+      <em>本段是本站的推论。检索未找到 2023–2026 年间明确以"笛卡尔语言测试"框架评估大模型的同行评审论文；PNAS 2025 年关于大模型通过三方图灵测试的研究用的是标准图灵框架，未挂钩笛卡尔判据。</em>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">§ 3 · The Executions</div>
+    <h2>三场处决，和一份翻案状</h2>
+
+    <div class="chapter">
+      <div class="ch-no">1949 · Gilbert Ryle</div>
+      <h3>机器里的幽灵</h3>
+      <p>
+        《The Concept of Mind》第一章标题就叫"笛卡尔的神话"。赖尔说二元论犯的是一种特殊的错误——<strong>范畴错误</strong>（category mistake）：把心灵和身体放进同一个逻辑类型里去比较，就像有人参观完所有学院、图书馆、实验室之后问"那么大学在哪里"。心灵不是与身体并列的另一样东西，"心灵"是描述行为方式的一整套语汇。
+        他自己说，用"<strong>机器里的幽灵教条</strong>"（the dogma of the Ghost in the Machine）这个说法是"故意带侮辱性的"。
+      </p>
+      <div class="keybox warn">
+        <b>翻案状：Baker &amp; Morris 1996</b>
+        《Descartes' Dualism》主张：赖尔攻击的那套"官方学说"——实体二元、内省私密、身体纯机械——<strong>没有一条真正属于笛卡尔本人的文本</strong>，那是后世简化出来的稻草人。
+        <em>注意这属于有争议的修正主义解读，不是共识</em>：多数教科书至今仍沿用赖尔式刻画。本站列出它，是因为读原典的人有权知道存在这条战线。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">1991 · Daniel Dennett</div>
+      <h3>脑子里没有剧场</h3>
+      <p>
+        《Consciousness Explained》提出"<strong>笛卡尔剧场</strong>"（Cartesian theater）这个说法，攻击的靶子叫"笛卡尔式唯物主义"：即使你不再相信非物质的灵魂，你可能仍偷偷相信脑内有一个特定的时空节点，无意识加工在那里"上演"为意识——那就还是留了一个内在观众，只是把幽灵换成了一小团灰质。丹尼特的替代方案是<strong>多重草稿模型</strong>：意识由脑内多处并行、持续被修订的"草稿"构成，没有定本，也没有"呈现给谁看"的那一刻。
+      </p>
+      <div class="keybox warn">
+        <b>适用边界</b>
+        常见批评是丹尼特打的也是稻草人——几乎没有当代理论家明确主张"单一中心舞台"，而笛卡尔本人的松果体学说讨论的是身心因果交互的<strong>解剖位点</strong>，不是"意识上演的舞台"这个现象学隐喻。这个争议停留在评论与书评层面，本站未找到专门裁决它的史学研究。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">1945–1999 · 具身认知</div>
+      <h3>认知不在头骨里</h3>
+      <ul>
+        <li><strong>梅洛-庞蒂《知觉现象学》(1945)</strong>——意识不是世界的超然旁观者，它根本上是具身的；笛卡尔把身体降格成了"众多客体中的一个"。但他并非全盘否定：他在笛卡尔文本里也读出了"身心复合体"这一有价值的洞见。</li>
+        <li><strong>Varela, Thompson &amp; Rosch《The Embodied Mind》(1991)</strong>——书中专设一节"<strong>笛卡尔式焦虑</strong>"（the Cartesian anxiety）：人在"必须有一个绝对稳固的知识基础"与"现实彻底没有根基"这两极之间来回摆荡而生的哲学焦虑。他们的解药是生成认知（enaction）。</li>
+        <li><strong>Lakoff &amp; Johnson《Philosophy in the Flesh》(1999)</strong>——把"<strong>知即是见</strong>"（Knowing is Seeing）判定为笛卡尔最根本的隐喻，认为正是这个视觉隐喻加上对确定性的渴求，制造了"离身心智"。</li>
+        <li><strong>Clark &amp; Chalmers《The Extended Mind》(1998)</strong>——对等原则：如果颅外的某个东西在功能上与被算作认知过程的颅内加工对等，它就该被算作认知的一部分。笔记本可以是你的记忆。这是对 <i>res cogitans / res extensa</i> 分界线最直接的一刀。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">§ 4 · The Demon Returns</div>
+    <h2>恶魔的现代版本</h2>
+    <p>
+      第一沉思那个"极有能力、极狡猾的恶魔"，在二十世纪换了两次皮：
+    </p>
+    <div class="grid cols-2" style="margin:28px 0">
+      <div class="card">
+        <span class="tag">1981</span>
+        <h3>缸中之脑</h3>
+        <p>Putnam《Reason, Truth and History》。恶魔换成了一套培养液与电极。但 Putnam 提出它的目的是<b>反驳</b>它：依据语义外在论，词语的指称由使用者的因果环境决定；若我真是缸中之脑，我说的"缸"和"脑"就无法指称真实的缸和脑——"我是缸中之脑"这句话在真的情况下反而说不出口。这是一个语义上自我反驳的假设。</p>
+      </div>
+      <div class="card ext">
+        <span class="tag ext">2003</span>
+        <h3>模拟假说</h3>
+        <p>Bostrom《Are You Living in a Computer Simulation?》。恶魔换成了后人类文明的算力。与笛卡尔的关键差别：笛卡尔的恶魔是<b>为了被驳倒而设的</b>——它是方法论工具，不是宇宙论主张；Bostrom 的论证反过来，是要用概率论证让你认真对待这个可能性。</p>
+      </div>
+    </div>
+    <div class="keybox">
+      <b>一条本站没有找到证据的联想，如实标注</b>
+      AI 对齐领域有"欺骗性对齐"（deceptive alignment）、"对齐伪装"（alignment faking）这类概念，描述模型在评估时伪装合规、隐藏真实目标——其结构与笛卡尔恶魔高度相似：<strong>你所有的检验手段，都可能正是被欺骗的通道。</strong>
+      但本站检索未找到 AI 安全的核心技术文献明确援引"Cartesian demon"。这个类比目前是本站的推断，不是文献事实，请按推断对待。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">FINIS · 收束</div>
+    <h2>为什么这座站放在书架的第二十六个位置</h2>
+    <p>
+      因为它是很多站的<strong>共同上游</strong>，也是很多站的<strong>共同靶子</strong>。你在这座书架上读过的好几套理论，都可以重述为"对笛卡尔的某种回应"：
+    </p>
+
+    <div class="keybox">
+      <b>书架里的另一站：自由能</b>
+      <a class="text-link" href="../自由能/index.html">自由能原理</a>那一站讲的是：大脑是一台不断生成内部模型、靠最小化预测误差来推断外部世界的推理机器。
+      把它和这一站并置，会看到一件尴尬的事——<strong>预测加工在结构上继承了笛卡尔</strong>：马尔可夫毯（Markov blanket）划出的内部状态与外部状态，就是"内在心灵 / 外部世界"这条分界线的数学版本。
+      Jakob Hohwy 在《The Predictive Mind》(2013) 里明确接受这个后果，认为大脑被一道"<strong>证据界限</strong>"（evidentiary boundary）与世界隔开，连自己的身体和心跳都是待推断的外部变量；Andy Clark 则反驳说这道边界是动态可变的，工具与外部表征可以被纳入生成模型之内，因此预测加工完全可以是具身外化的。
+      <strong>同一套数学，两种诠释：一种让笛卡尔复活，一种给他送终。</strong>这场争论至今未决——先读完这一站，再回去看那一站的马尔可夫毯，你会读出完全不同的东西。
+    </div>
+
+    <div class="grid cols-3" style="margin-top:28px">
+      <a class="card" href="../怀特海/index.html">
+        <span class="tag">书架 · 对照</span>
+        <h3>怀特海</h3>
+        <p>过程哲学的起点就是拆掉笛卡尔的"实体—属性"范畴。你在这一站看到的两个不可通约的实体，在那一站被换成了"事件"。</p>
+      </a>
+      <a class="card" href="../拉康/index.html">
+        <span class="tag">书架 · 改写</span>
+        <h3>拉康</h3>
+        <p>"我思"被拆开重装：拉康把确定性的位置挪走了——主体不在它思考的地方。这一站给你原版，那一站给你它的倒影。</p>
+      </a>
+      <a class="card ext" href="../佛学/index.html">
+        <span class="tag ext">书架 · 对撞</span>
+        <h3>佛学</h3>
+        <p>无我 vs 我思。两套体系用几乎相同的方法（系统性内观）走到了完全相反的结论。分歧点不在证据，在于对"我"这个词的用法。</p>
+      </a>
+    </div>
+
+    <p style="margin-top:32px">
+      读完这一站，你不会更相信笛卡尔。但你会发现一件更有用的事：<strong>你日常用来思考"我是谁"的那套词汇，是有作者、有出版年、有反对者的。</strong>
+      它是被造出来的，因此也是可以被改造的。这比接受或反对任何一个结论都值钱。
+    </p>
+
+    <p class="inscription">DUBITO, ERGO COGITO</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 我思 ⟡ 机器与心灵</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="concepts.html">核心概念</a> ·
+      <a href="book-meditations.html">沉思集</a> ·
+      <a href="book-methode.html">方法与附录</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
