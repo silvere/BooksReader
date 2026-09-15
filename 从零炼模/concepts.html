@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 从零炼模</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a5a2e'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E7%82%BC%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">从零炼模<span class="mark"> ⟡ </span>LLM FROM SCRATCH</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-架构.html">架构精读</a>
+      <a href="book-微调.html">微调精读</a>
+      <a href="decision.html">应用专题</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap prose">
+    <div class="eyebrow">Six Concepts · 六大概念</div>
+    <h1>从分词到 LoRA，六个必须亲手理解的环节</h1>
+    <p class="lede">前四个概念属于"架构与预训练"，回答模型怎么长出语言能力；后两个属于"微调"，回答怎么在已有能力上做局部改写。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose concept" id="tokenize">
+    <div class="eyebrow">Concept I</div>
+    <h2>分词与嵌入</h2>
+    <p><strong>是什么</strong>：模型不直接处理文字，第一步是分词器（tokenizer）把文本切成 token（可能是完整词，也可能是词的一部分），再给每个 token 分配一个整数 ID。嵌入层（embedding layer）随后把每个整数 ID 映射成一个高维向量——这个向量在训练开始时是随机的，训练过程会不断调整它，让语义相近的 token 在向量空间里靠得更近。</p>
+    <p><strong>原文定义</strong>：书中第 2 章用字节对编码（BPE，Byte Pair Encoding）实现分词器，这也是 GPT-2、GPT-3 实际使用的分词方案——它的好处是能把没见过的生词拆成已知的子词单元，不会出现"完全未知词"。</p>
+    <p><strong>为什么重要</strong>：分词粒度直接决定模型的"感知精度"。切得太粗（按整词切），生僻词和多语言支持会变差；切得太细（按字符切），序列长度暴涨、训练成本上升。BPE 是这两难之间的工程折衷，不是唯一正确答案。</p>
+    <div class="keybox">
+      <b>适用边界</b>
+      BPE 对英文这类空格分词的语言天然友好；中文、日文等没有天然词边界的语言，分词器的训练语料和合并规则需要额外处理，书中示例代码默认按英文语境设计，直接套用到中文语料会出现分词效率下降的问题。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose concept" id="attention">
+    <div class="eyebrow">Concept II</div>
+    <h2>自注意力机制（因果掩码）</h2>
+    <p><strong>是什么</strong>：自注意力让序列里的每个 token 都能"查询"其他所有 token，并根据相关度分配一个权重，决定该往哪些位置借多少信息。生成式模型还要加一层<strong>因果掩码</strong>（causal mask）：强制每个位置只能看到它之前的 token，看不到未来——这保证了模型在生成时的行为和训练时一致。</p>
+    <p><strong>原文定义</strong>：书中第 3 章从最基础的点积注意力手写到多头自注意力（multi-head self-attention），每一步都配一段可运行的 PyTorch 代码，而不是只给公式。核心操作是查询（Query）、键（Key）、值（Value）三个矩阵的乘法与 softmax 归一化，源头是 Vaswani 等人 2017 年的 Transformer 论文。</p>
+    <p><strong>为什么重要</strong>：在 Transformer 之前，循环神经网络（RNN）按顺序逐个处理 token，长距离依赖会随序列变长而衰减。自注意力让任意两个位置的信息交换都只需要一步，这是 Transformer 能吃下长上下文、还能并行训练的根本原因。</p>
+    <div class="keybox">
+      <b>适用边界</b>
+      自注意力的计算和显存开销随序列长度呈平方增长，这是长上下文推理成本高的直接原因。书中没有覆盖 FlashAttention、稀疏注意力等工程优化方案——这些是生产级框架在这本书讲的"朴素实现"之上又做的一层加固。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose concept" id="gpt">
+    <div class="eyebrow">Concept III</div>
+    <h2>GPT 架构的六个组件</h2>
+    <p><strong>是什么</strong>：一个 GPT 模型就是把"多头自注意力 + 前馈网络 + 层归一化（layer normalization）+ 残差连接（shortcut connection）"打包成一个 Transformer block，再把这个 block 重复堆叠 N 次（GPT-2 small 是 12 层）。堆叠的层数、隐藏维度、注意力头数，就是常说的"模型规模"。</p>
+    <p><strong>原文定义</strong>：书中第 4 章把这六个组件逐一实现，最后拼装成一个完整的 GPTModel 类——这个类在参数规模上对标 GPT-2 small（约 1.24 亿参数），可以在消费级 GPU 甚至 CPU 上跑通全流程（速度会慢，但能验证正确性）。</p>
+    <p><strong>为什么重要</strong>：理解"规模"不是玄学，而是几个可数的超参数（层数、维度、头数、上下文长度）的乘积效应，是判断"这个模型为什么贵""扩大规模具体在扩大什么"的基础。</p>
+    <div class="keybox">
+      <b>适用边界</b>
+      书中实现的架构组件顺序（Pre-LayerNorm、GELU 激活）对应的是 GPT-2 的设计选择；更新的模型（如 Llama 系列）在归一化位置、激活函数、位置编码上做了不同选择，理解这本书的六个组件是理解那些变体"改了什么"的前提，但不能直接当作它们的实现。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose concept" id="pretrain">
+    <div class="eyebrow">Concept IV</div>
+    <h2>预训练目标：预测下一个词元</h2>
+    <p><strong>是什么</strong>：预训练只有一个任务——给定前面的 token，预测下一个 token 是什么，用交叉熵损失衡量预测分布和真实下一个词之间的差距。整段语料本身既是输入也是标签，不需要人工标注。</p>
+    <p><strong>原文定义</strong>：书中第 5 章实现完整的预训练循环：前向传播算损失、反向传播算梯度、优化器更新权重，并用困惑度（perplexity）衡量模型对语料的"意外程度"——困惑度越低，模型对这段语料的预测越自信。</p>
+    <p><strong>为什么重要</strong>：这个极简单目标的力量在于它<strong>不挑语料</strong>——任何连贯文本都能提供训练信号。这是大模型能用近乎整个互联网规模的文本做训练的根本原因，也是"预训练"和后面"微调"在数据需求量级上天差地别的原因。</p>
+    <div class="keybox warn">
+      <b>适用边界</b>
+      下一词元预测教会模型语言的统计规律，但不直接教它"怎么回答问题"或"怎么遵守指令"——一个只做过预训练的模型，续写能力很强，但让它回答"1+1等于几"，它可能会续写出下一道数学题而不是给出答案。这正是概念 V、VI 要解决的问题，可以在下面的实验台里亲手验证这条边界。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose concept" id="finetune">
+    <div class="eyebrow">Concept V</div>
+    <h2>分类微调 vs 指令微调</h2>
+    <p><strong>是什么</strong>：两者都从同一个预训练模型出发，但改的骨头不一样。<strong>分类微调</strong>（第 6 章，垃圾短信分类任务）只把模型最后的输出层换成一个分类头，模型的语言理解能力基本不动，只是多接了一个"做判断"的开关。<strong>指令微调</strong>（第 7 章）用问答式的指令数据集继续训练整个模型，目标是重塑模型的<strong>说话方式</strong>——从"擅长续写"变成"擅长回应"。</p>
+    <p><strong>原文定义</strong>：书中用同一套训练循环代码分别跑这两种微调，唯一的本质差别是训练数据的形态和损失计算的位置（分类微调只对最后一个 token 的输出算损失，指令微调对整个回答序列算损失）。</p>
+    <p><strong>为什么重要</strong>：很多人把"微调"当成一个模糊的动作词，但分类微调和指令微调的计算成本、数据需求、风险完全不同——前者可以用几百条标注数据在几分钟内跑完，后者往往需要数千到数万条高质量指令数据，训练时间和过拟合风险都高得多。</p>
+    <div class="keybox">
+      <b>适用边界</b>
+      分类微调几乎不会让模型"变笨"（因为只动输出头），指令微调如果数据集质量差或规模不够，容易出现"灾难性遗忘"——模型在学会新的说话方式的同时，丢失了预训练阶段学到的部分通用能力。这也是为什么第 7 章之后紧接着讲 LoRA：用更少的可训练参数，本身就是降低灾难性遗忘风险的一种手段。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose concept" id="lora">
+    <div class="eyebrow">Concept VI</div>
+    <h2>LoRA：低秩适配</h2>
+    <p><strong>是什么</strong>：全参微调要更新模型的每一个权重矩阵，对十亿参数级别的模型来说，显存和存储开销都极高。LoRA 反其道而行：冻结原始权重矩阵，在旁路插入两个小得多的矩阵（秩为 r 的低秩分解），训练时只更新这两个小矩阵，推理时把它们的乘积加回原矩阵。</p>
+    <p><strong>原文定义</strong>：LoRA 由 Edward J. Hu、Yelong Shen 等 8 位微软研究者在 2021 年发表（arXiv:2106.09685）。论文原始实验显示，相比全参微调 GPT-3 175B，LoRA 能将可训练参数量减少约一万倍、GPU 显存需求降到三分之一，同时在 RoBERTa、DeBERTa、GPT-2、GPT-3 上的效果与全参微调相当甚至更好。书中附录 E 是这篇论文的教学级复现。</p>
+    <p><strong>为什么重要</strong>：秩 r 是核心超参数——r 越大，可训练参数越多，理论表达能力越强，但也越接近全参微调的开销；r 越小，训练越轻量，但可能欠拟合任务。这个权衡不是抽象的，书里给出了具体的参数量计算公式，可以精确算出某个 r 值对应多少可训练参数。</p>
+    <div class="keybox warn">
+      <b>适用边界</b>
+      LoRA 假设"任务所需的权重更新本身是低秩的"——论文的实验支持这个假设在多数微调场景下成立，但不是数学上的必然。对于和预训训语料分布差异极大的任务（比如从英文语料训练的模型微调到一个全新的符号系统），低秩假设可能不成立，此时可能需要更大的 r 或退回全参微调。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">Signature Lab · 签名交互实验台</div>
+    <h2>下一词元预测台：亲手验证"微调救不了没训练好的模型"</h2>
+    <p class="lede" style="margin-bottom:0">拖动下方的"预训练步数"滑块，观察一个简化模型对下一个词的预测分布如何从均匀噪声收敛为合理候选；再打开"指令微调"开关，看这个分布在不同训练阶段对微调的反应有什么区别。</p>
+
+    <div class="predictor" id="predictor">
+      <div class="predictor-title">Next-Token Predictor</div>
+      <div class="predictor-sub">一个简化的教学模拟，数值由 Concept IV / V 的结论手工设计，不代表真实模型的精确输出，但收敛方向和微调效应与正文描述一致。</div>
+
+      <div class="predictor-prefix">从零开始，你需要先搭好 —— <b id="p-blank">？</b></div>
+
+      <div class="p-control">
+        <label>预训练步数<b id="p-step-label">0</b></label>
+        <input type="range" id="p-step" min="0" max="100" value="0" step="1">
+      </div>
+
+      <div class="p-toggle" id="p-toggle">
+        <span class="dot"></span>
+        <span class="lbl">开启指令微调</span>
+        <span class="hint">（目标：让模型明确回答"分词器"）</span>
+      </div>
+
+      <div class="p-bars" id="p-bars"></div>
+
+      <div class="predictor-explain" id="p-explain"></div>
+
+      <div class="predictor-actions">
+        <button id="p-reset">重新开始 ↻</button>
+      </div>
+    </div>
+
+    <div class="keybox">
+      <b>SYNTHESIS · 六个概念怎么咬合</b>
+      分词与嵌入（I）把文本变成模型能算的向量；自注意力（II）让向量之间交换信息；六个组件堆叠成 GPT（III）把这种交换重复加深；预训练目标（IV）用"预测下一词"这一个信号，把参数调整成一个又宽又合理的概率分布——这一步建的是<strong>能力的底盘</strong>。分类微调与指令微调（V）在底盘上做局部搬移，把分布从"什么都有可能"收窄到"任务要的那个方向"；LoRA（VI）则是让这次搬移变得极其轻量的工程手段。六个概念的顺序不是随意的——每一步都依赖前一步先成立，这也是为什么这本书坚持"先搭后调"，而不是一开始就跳到微调。
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 从零炼模 ⟡ 核心概念</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="book-架构.html">架构精读</a> ·
+      <a href="book-微调.html">微调精读</a> ·
+      <a href="decision.html">应用专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var TOKENS = [
+    { label: "分词器", noise: false },
+    { label: "注意力层", noise: false },
+    { label: "优化器", noise: false },
+    { label: "数据集", noise: false },
+    { label: "咖啡机", noise: true },
+    { label: "反重力装置", noise: true }
+  ];
+  var STEP0   = [17, 17, 17, 16, 17, 16];
+  var STEP50  = [22, 20, 18, 18, 12, 10];
+  var STEP100 = [30, 26, 22, 18, 3, 1];
+  var TARGET  = [62, 18, 10, 8, 1, 1];
+
+  function interp(a, b, t) {
+    var out = [];
+    for (var i = 0; i < a.length; i++) out.push(a[i] + (b[i] - a[i]) * t);
+    return out;
+  }
+  function baseDist(s) {
+    return s <= 50 ? interp(STEP0, STEP50, s / 50) : interp(STEP50, STEP100, (s - 50) / 50);
+  }
+  function currentDist(s, finetuneOn) {
+    var base = baseDist(s);
+    if (!finetuneOn) return base;
+    var w = 0.9 * (s / 100);
+    var out = [];
+    for (var i = 0; i < base.length; i++) out.push(base[i] * (1 - w) + TARGET[i] * w);
+    return out;
+  }
+
+  var barsEl = document.getElementById("p-bars");
+  TOKENS.forEach(function (tok, i) {
+    var row = document.createElement("div");
+    row.className = "p-bar-row";
+    row.innerHTML =
+      '<div class="p-bar-tok' + (tok.noise ? " noise" : "") + '">' + tok.label + '</div>' +
+      '<div class="p-bar-track"><div class="p-bar-fill" id="p-fill-' + i + '"></div></div>' +
+      '<div class="p-bar-pct" id="p-pct-' + i + '">0%</div>';
+    barsEl.appendChild(row);
+  });
+
+  var stepInput = document.getElementById("p-step");
+  var stepLabel = document.getElementById("p-step-label");
+  var toggle = document.getElementById("p-toggle");
+  var explainEl = document.getElementById("p-explain");
+  var finetuneOn = false;
+
+  function explainText(s, on) {
+    if (on && s < 20) {
+      return { warm: true, title: "微调救不了没训练好的模型", body: "指令微调开关已经打开，但预训练步数接近 0——分布几乎没有变化。这就是第 6–7 章反复强调的边界：微调是在预训练已经收敛的分布上做局部搬移，地基没打，搬也搬不动。" };
+    }
+    if (on && s >= 20) {
+      return { warm: true, title: "微调在做局部搬移，不是重新学习", body: "预训练已经把概率质量收拢到几个合理的技术候选词上；打开指令微调后，分布在这个已有的候选集内部被进一步推向「分词器」——这正是任务想要的唯一答案。微调没有创造新知识，它只是把已经存在的能力，往一个具体方向推了一把。" };
+    }
+    if (s < 25) {
+      return { warm: false, title: "预训练早期：接近均匀噪声", body: "模型还没学到「从零开始搭 LLM，第一步通常是分词器」这类统计规律，六个候选词（包括两个明显不合理的干扰项）概率接近均匀分布。" };
+    }
+    if (s < 75) {
+      return { warm: false, title: "预训练收敛中：合理候选正在浮出水面", body: "咖啡机、反重力装置这类和语境无关的词开始被压低，分词器、注意力层、优化器、数据集这几个技术相关词的概率在上升——但彼此之间还没有拉开明显差距。" };
+    }
+    return { warm: false, title: "预训练已收敛：候选集合理，但没有唯一答案", body: "模型已经知道「接下来大概率是几个技术组件之一」，但没有被要求给出唯一正确答案——这正是预训练模型「续写能力强、指令遵循弱」的原因。打开上方的指令微调开关，看这个分布接下来会怎么变。" };
+  }
+
+  function render() {
+    var s = parseInt(stepInput.value, 10);
+    stepLabel.textContent = s;
+    var dist = currentDist(s, finetuneOn);
+    var sum = dist.reduce(function (a, b) { return a + b; }, 0);
+    dist.forEach(function (v, i) {
+      var pct = (v / sum) * 100;
+      document.getElementById("p-fill-" + i).style.width = pct + "%";
+      document.getElementById("p-fill-" + i).className = "p-bar-fill" + (finetuneOn ? " finetuned" : "");
+      document.getElementById("p-pct-" + i).textContent = pct.toFixed(1) + "%";
+    });
+    var ex = explainText(s, finetuneOn);
+    explainEl.className = "predictor-explain" + (ex.warm ? " warm" : "");
+    explainEl.innerHTML = "<b>" + ex.title + "</b>" + ex.body;
+    document.getElementById("p-blank").textContent = finetuneOn && s >= 60 ? "分词器" : "？";
+  }
+
+  stepInput.addEventListener("input", render);
+  toggle.addEventListener("click", function () {
+    finetuneOn = !finetuneOn;
+    toggle.classList.toggle("on", finetuneOn);
+    render();
+  });
+  document.getElementById("p-reset").addEventListener("click", function () {
+    stepInput.value = 0;
+    finetuneOn = false;
+    toggle.classList.remove("on");
+    render();
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>

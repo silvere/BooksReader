@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>评估与部署精读 · 工程决断 · BooksReader</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a3355'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E5%86%B3%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">工程决断 <span class="mark">⟡</span> AI ENGINEERING</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">六大概念</a>
+      <a href="book-决策框架.html">决策框架精读</a>
+      <a class="active" href="book-评估与部署.html">评估与部署精读</a>
+      <a href="decision.html">工程决断专题</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">BOOK · 第 3-4、8-10 章精读</div>
+    <h1>评估与部署：从"怎么判断对错"到"怎么撑住生产环境"</h1>
+    <p class="lede">如果说第 5–7 章回答"选哪条路径"，这五章回答"怎么知道自己选对了、怎么让它在生产里活下去"。书里把评估方法论放在最前面，比任何一条实现路径都早——这个顺序本身就是全书态度的缩影。</p>
+  </div>
+</header>
+
+<section id="ch34">
+  <div class="wrap prose">
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 3–4</div>
+      <h3>Evaluation Methodology / Evaluate AI Systems</h3>
+      <ul>
+        <li><strong>先定义"好"是什么，再动手。</strong>书中反复强调，评估指标要和具体的业务 KPI 绑定，而不是抽象的"准确率"——同一个模型输出，对不同业务目标可能是好结果，也可能是坏结果。</li>
+        <li><strong>拒绝 vibe check。</strong>看几条输出、凭印象判断"还行"，是最常见也最危险的评估方式——它没有可复现性，也无法量化"变好了多少"。</li>
+        <li><strong>三层评估体系：</strong>离线测试集（可控、可重复，但覆盖面有限）、公开 benchmark（可比较，但可能与实际场景脱节）、生产环境真实流量监控（最真实，但反馈滞后且成本高）——三层互补，不能只用一层替代全部。</li>
+      </ul>
+      <div class="keybox">
+        <b>决策要点</b>
+        没有一套可靠的评估方法论，"要不要微调""RAG 是否生效""这次改动是不是真的更好"这些问题都无法被真正回答——评估不是收尾工作，是贯穿全流程的基础设施。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 8</div>
+      <h3>Dataset Engineering</h3>
+      <ul>
+        <li><strong>数据质量决定微调效果的天花板。</strong>同样的训练算法和超参，喂给它代表性差、标注不一致的数据，产出的模型能力上限会明显更低——这一点在概念 IV 已展开。</li>
+        <li><strong>数据工程包括代表性、一致性、去重去噪三个维度</strong>：训练数据是否覆盖真实使用场景的分布，标注标准是否前后一致，是否存在重复或噪声样本拉低整体质量。</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 9</div>
+      <h3>Inference Optimization</h3>
+      <ul>
+        <li><strong>训练完成不等于可以上线。</strong>推理阶段的延迟、吞吐、成本是独立于训练效果的另一套工程问题——一个训练效果很好但推理成本过高的模型，在生产环境里同样不可用。</li>
+        <li>这一章与"三角判断"（概念 II）里的"延迟/成本约束"直接呼应：延迟约束越严苛，越需要在推理优化上投入工程资源，这部分成本也应计入微调路径的完整账本。</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 10</div>
+      <h3>AI Engineering Architecture and User Feedback</h3>
+      <ul>
+        <li><strong>全书收束在系统架构与反馈闭环。</strong>把前面九章的判断框架、评估方法、数据与推理工程，组织成一个能在生产环境里持续运转、持续吸收用户反馈的完整系统——呼应概念 V 的反馈闭环。</li>
+        <li><strong>这一章的隐含论点：任何一次性的"完美方案"都会过时。</strong>真正的工程决断不是一次性选对路径，而是搭建一套能随着数据、用户行为、基础模型能力持续演化的架构。</li>
+      </ul>
+      <div class="keybox">
+        <b>决策要点</b>
+        这五章合起来说明：路径选对只是起点，评估、数据、推理、反馈闭环任何一环缺失，再正确的路径选择也撑不起一个能持续运转的生产系统。
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 工程决断 ⟡ 评估与部署精读</p>
+    <p>
+      <a href="../index.html">← 书架</a> ·
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="concepts.html">六大概念</a> ·
+      <a href="book-决策框架.html">决策框架精读</a> ·
+      <a href="decision.html">工程决断专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

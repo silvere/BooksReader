@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>效率与生态 · 微调工坊</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23a8621f'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E5%BE%AE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">微调工坊<span class="mark"> ⟡ </span>NLPT</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-微调实战.html">四任务精读</a>
+      <a href="book-效率与生态.html" class="active">效率与生态</a>
+      <a href="decision.html">工程决断</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap prose">
+    <div class="eyebrow">Close Reading · 效率与生态</div>
+    <h1>模型跑通之后，怎么变小、变快、变省</h1>
+    <p class="lede">第 3、5、7、10 章。这四章是全书技术密度最高的部分，也是本站要老实标注时代局限的地方——第 7 章写于 LoRA/PEFT 生态成熟之前。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+
+    <div class="chapter">
+      <div class="ch-no">Chapter 3 · Transformer Anatomy</div>
+      <h3>把 Trainer 拆开看<span class="difficulty"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></h3>
+      <p>本章从零实现一个简化版的多头自注意力（multi-head self-attention）模块，把概念 II（Trainer 三段式）里被封装掉的部分打开：Query/Key/Value 矩阵怎么算注意力分数、多头怎么并行、前馈层和残差连接怎么接在一起。同时对比三类 Transformer 架构——<b>纯编码器</b>（BERT 一类，适合分类/NER/抽取式 QA）、<b>纯解码器</b>（GPT 一类，适合开放式生成）、<b>编码器-解码器</b>（T5/BART 一类，适合摘要/翻译这类"输入输出都是变长文本"的任务）。</p>
+      <div class="keybox"><b>适用边界</b>这章的价值不在"你以后要手写注意力"，而在"你能看懂报错信息和显存占用来自哪一层"。纯工程调库不需要这章，但排查训练异常时几乎离不开这章的知识。</div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">Chapter 5 · Making Transformers Efficient in Production</div>
+      <h3>蒸馏、量化、剪枝、ONNX：从能跑到能上线<span class="difficulty"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></h3>
+      <p>本章是概念 V（知识蒸馏）和概念 VI（量化与剪枝）的直接来源。实操路径大致是：先用 DistilBERT 一类的蒸馏模型把体积和延迟砍掉一大块，再对蒸馏后的模型做动态量化（把权重从 32 位浮点转成 8 位整数），最后用 ONNX Runtime 做图优化和加速推理。三步分开做，且顺序不能颠倒——量化之后的模型不适合再继续训练（包括蒸馏训练）。</p>
+      <div class="keybox warn"><b>适用边界</b>这一章的每一步优化都有精度损失，书中反复强调：<b>每做完一步都要重新跑一遍评估集</b>，不能假设"理论上应该没问题"。压缩比例和精度损失不是线性关系，必须实测。</div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">Chapter 7 · Dealing With Few to No Labels</div>
+      <h3 id="peft-gap">少标注场景：这一章需要读者自己打补丁<span class="difficulty"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></h3>
+      <p>这是概念 IV 的直接来源，覆盖零样本分类（用自然语言推断模型做 zero-shot）、少样本上下文学习、以及 UDA（无监督数据增强，用回译等方式扩充未标注数据的训练信号）。</p>
+      <div class="keybox warn">
+        <b>时代局限（必须写清楚）</b>
+        本书成书于 2022 年，此时 Hugging Face 的 <code>peft</code> 库刚刚首发，LoRA（Edward Hu 等，2021）还没有成为行业默认选项。今天工程界处理"数据不够但仍想微调"的第一反应，通常是用 <code>peft</code> 库做 LoRA 或 QLoRA 低秩微调——用极少的可训练参数（相对全参微调少几个数量级）达到接近全参微调的效果，而不是本章给出的 UDA 数据增强路径。<br><br>
+        这不意味着第 7 章过时无用——零样本分类、少样本上下文学习依然是今天常用的第一步；但如果你的目标是"用少量数据训练出一个专属模型"，应该直接学 LoRA/PEFT，把本章当作理解"为什么数据不够时不能直接全参微调"的背景知识，而不是当作可以照搬的最新实践指南。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">Chapter 10 · Training Transformers from Scratch</div>
+      <h3>从零预训练 CodeParrot<span class="difficulty"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h3>
+      <p>本章和前面九章的性质不同——不是微调一个已有模型，而是<b>从零训练一个新的分词器和一个新的 GPT-2 规模模型</b>，训练语料是 Python 代码（项目代号 CodeParrot）。这一章把全书隐含的假设摊开来：前九章默认"有一个足够好的预训练模型可以微调"，这一章回答"如果这个前提不成立怎么办"——答案是：预训练需要的数据量、算力和工程复杂度，比微调高出几个数量级，绝大多数团队不需要也不应该自己从零预训练。</p>
+      <div class="keybox"><b>适用边界</b>这一章更像是"知道有这回事、知道成本有多高"的背景知识，而不是日常工程会用到的技能。如果你的领域和预训练语料差异极大（比如全新的编程语言、生僻的专业文献），继续预训练（continued pretraining，在已有权重基础上用领域语料再训一轮，而非完全从零开始）通常是更现实的折中方案。</div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 微调工坊 ⟡ 效率与生态</p>
+    <p>
+      <a href="../index.html">← 书架</a> ·
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="concepts.html">核心概念</a> ·
+      <a href="book-微调实战.html">四任务精读</a> ·
+      <a href="decision.html">工程决断</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

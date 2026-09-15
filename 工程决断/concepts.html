@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>六大概念 · 工程决断 · BooksReader</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a3355'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E5%86%B3%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">工程决断 <span class="mark">⟡</span> AI ENGINEERING</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a class="active" href="concepts.html">六大概念</a>
+      <a href="book-决策框架.html">决策框架精读</a>
+      <a href="book-评估与部署.html">评估与部署精读</a>
+      <a href="decision.html">工程决断专题</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">SIX CONCEPTS · 六大概念</div>
+    <h1>工程判断力的六个零件</h1>
+    <p class="lede">这六个概念不是六个独立知识点，是一条判断链：先看成本结构，再看三角条件，用评估方法验证结果，用数据工程撑住天花板，靠反馈闭环持续改进，最后用不可逆性账本给整件事定价。</p>
+  </div>
+</header>
+
+<section id="paths" class="concept">
+  <div class="wrap prose">
+    <div class="eyebrow">CONCEPT I</div>
+    <h2>三条路径的成本结构</h2>
+    <p>Prompt、RAG、Finetune 经常被并排摆成三个"功能选项"，好像挑一个就行。Huyen 的框架把它们重排成三条<strong>结构不同的成本曲线</strong>：Prompt 是零训练成本、近零边际成本，但每次调用都要重新"教"一遍模型；RAG 多了一次性建检索库的成本，换来的是新信息能随时追加，不用重新训练；Finetune 有最高的一次性训练成本，此后单次调用可能更便宜、更快，但每次想改变模型行为，都要重新走一遍训练流程。</p>
+    <p>原文的表述是：多数问题在"顶层"——更好的 prompt 和恰当的上下文——就能解决；一个更小的子集需要 RAG；<strong>真正需要微调的，是一个小得多的子集</strong>。三条路径不是并列的工具箱，是一条越往下走代价越高的漏斗。</p>
+    <div class="keybox bound">
+      <b>适用边界</b>
+      这个漏斗顺序假设了"团队有能力先把 prompt 和 RAG 做扎实"——如果团队缺乏做好检索质量的工程能力，跳过 RAG 直接微调，有时反而是更现实的选择，只是要清楚自己在用更贵的方案补另一处能力缺口。
+    </div>
+  </div>
+</section>
+
+<section id="triangle" class="concept">
+  <div class="wrap prose">
+    <div class="eyebrow">CONCEPT II</div>
+    <h2>何时微调才划算：三角判断</h2>
+    <p>微调值得做，通常要求三个条件同时成立：<strong>任务足够专属</strong>（不是"写得更好"这种模糊要求，而是有明确、可复现的目标行为）、<strong>有足够高质量的标注数据</strong>支撑训练、以及<strong>存在硬约束</strong>（延迟、成本、离线部署等）让"调大模型+长 prompt"这条路走不通。三个条件里少任何一个，往往有更便宜的替代方案：任务不够专属就该用 prompt；数据不够就该先做数据工程或退回 RAG；没有硬约束，直接调用更强的通用模型可能比自己维护一个微调模型更划算。</p>
+    <div class="keybox bound">
+      <b>适用边界</b>
+      三角判断给的是"要不要开始"的门槛，不是"微调一定成功"的保证——数据质量不达标，三个条件都满足也可能训出一个更差的模型（见概念 IV）。
+    </div>
+  </div>
+</section>
+
+<section id="eval" class="concept">
+  <div class="wrap prose">
+    <div class="eyebrow">CONCEPT III · 含签名实验台</div>
+    <h2>评估：为什么"人工感觉好"不是评估</h2>
+    <p>书里用了整整两章单独讲评估方法论，且刻意放在讲任何一条实现路径<em>之前</em>——这个顺序就是论点。原文批评的做法是"vibe check"：工程师看几条输出，觉得"还行"，就上线。问题是：还行不等于达标，达标要有一个和业务 KPI 绑定的可复现指标，配合离线测试集、公开 benchmark、上线后的真实流量监控三层验证，而不是一次性的主观印象。</p>
+    <p>这也是三条路径共享的前提：不管选 prompt、RAG 还是 finetune，没有靠谱的评估方法，你根本不知道换一种做法是变好了还是变差了。</p>
+
+    <div class="decisionlab">
+      <div class="dl-title">签名交互 · 三路径决策台</div>
+      <div class="dl-sub">调整下面四个变量，实时看 Prompt / RAG / Finetune 三条路径的适配度如何变化——这是一个教学用简化模型，用来体现书中判断逻辑的相对走向，不是书中给出的精确公式。</div>
+
+      <div class="dl-controls">
+        <div class="dl-slider">
+          <label>任务专属程度</label>
+          <input type="range" id="dl-s1" min="0" max="100" value="50">
+          <span class="dl-val" id="dl-s1v">50</span>
+        </div>
+        <div class="dl-slider">
+          <label>可用标注数据量</label>
+          <input type="range" id="dl-s2" min="0" max="100" value="50">
+          <span class="dl-val" id="dl-s2v">50</span>
+        </div>
+        <div class="dl-slider">
+          <label>延迟/成本约束严苛度</label>
+          <input type="range" id="dl-s3" min="0" max="100" value="50">
+          <span class="dl-val" id="dl-s3v">50</span>
+        </div>
+        <div class="dl-slider">
+          <label>需要迭代的频率</label>
+          <input type="range" id="dl-s4" min="0" max="100" value="50">
+          <span class="dl-val" id="dl-s4v">50</span>
+        </div>
+      </div>
+
+      <div class="dl-bars">
+        <div class="dl-bar-col">
+          <div class="dl-bar-track"><div class="dl-bar-fill" id="dl-bar-prompt" style="height:0%"></div></div>
+          <div class="dl-bar-label">Prompt</div>
+          <div class="dl-bar-score" id="dl-score-prompt">0</div>
+        </div>
+        <div class="dl-bar-col">
+          <div class="dl-bar-track"><div class="dl-bar-fill" id="dl-bar-rag" style="height:0%"></div></div>
+          <div class="dl-bar-label">RAG</div>
+          <div class="dl-bar-score" id="dl-score-rag">0</div>
+        </div>
+        <div class="dl-bar-col">
+          <div class="dl-bar-track"><div class="dl-bar-fill" id="dl-bar-finetune" style="height:0%"></div></div>
+          <div class="dl-bar-label">Finetune</div>
+          <div class="dl-bar-score" id="dl-score-finetune">0</div>
+        </div>
+      </div>
+
+      <div class="dl-readout" id="dl-readout">
+        <span class="head">调整滑块看判断如何变化</span>
+        <p class="why">四个变量的默认值都在中间——这本身就是一个论点：中性条件下，微调不是默认更优的选项。</p>
+      </div>
+
+      <div class="dl-btns">
+        <button class="btn-reset" id="dl-reset">重置 ↻</button>
+      </div>
+    </div>
+
+    <div class="keybox bound">
+      <b>适用边界</b>
+      这台实验台的评分是相对刻度，用来演示四个变量如何影响三条路径的相对优劣顺序，不代表任何具体项目的真实成本比例——真实决策仍需按书中方法做具体的评估与测算。
+    </div>
+  </div>
+</section>
+
+<section id="data" class="concept">
+  <div class="wrap prose">
+    <div class="eyebrow">CONCEPT IV</div>
+    <h2>数据集工程：效果天花板由数据而非算法决定</h2>
+    <p>书里把"数据集工程"单独列为一章，而不是塞进微调那一章的附属小节——这个编排本身是论点：<strong>同样的微调算法，喂给它的数据质量差一个量级，产出的模型能力就差一个量级</strong>。数据工程包括数据的代表性（是否覆盖真实分布）、标注一致性、去重与去噪、以及数据量与任务复杂度是否匹配。多数"微调效果不如预期"的项目，回头查根因，问题不在训练脚本，在数据。</p>
+    <div class="keybox bound">
+      <b>适用边界</b>
+      这条原则不意味着"数据越多越好"——低质量数据的边际效用会迅速转负，堆更多噪声数据有时反而拉低整体效果，数据工程的核心是质量与代表性，不是单纯的体量。
+    </div>
+  </div>
+</section>
+
+<section id="feedback" class="concept">
+  <div class="wrap prose">
+    <div class="eyebrow">CONCEPT V</div>
+    <h2>生产系统的反馈闭环</h2>
+    <p>一次性训练出的模型是静态的，但用户和业务不是。书中把"用户反馈如何回流成下一轮训练/检索数据"作为生产架构的核心部件——点赞点踩、人工修正、重新提问的模式，都是信号，只是需要工程设计把它们从日志里提取出来，变成结构化的、可用于下一轮迭代的数据。<strong>没有这个闭环，无论选哪条路径，系统都只会在第一次上线时最好，此后只会缓慢过时。</strong></p>
+    <div class="keybox bound">
+      <b>适用边界</b>
+      反馈信号本身可能有偏——愿意点踩的用户和沉默的大多数用户不是同一群人，把反馈闭环直接等同于"民意"，会把系统越训越偏向活跃反馈者的偏好。
+    </div>
+  </div>
+</section>
+
+<section id="irreversible" class="concept">
+  <div class="wrap prose">
+    <div class="eyebrow">CONCEPT VI</div>
+    <h2>不可逆性账本</h2>
+    <p>这是全书态度最鲜明的一个概念，也是这一站论点的核心。Prompt 改错了，下一次请求就能修正，代价是几乎零；RAG 的知识库出错，重新索引或修正文档，代价是小时级；<strong>微调模型一旦训练完成并部署，发现问题后的"回滚"往往意味着重新训练、重新评估、重新部署一整套流程</strong>，代价是天到周级，还要叠加维护多个模型版本的组织成本。书中反复强调，团队在决定微调之前，很少真正把这笔账算进决策——他们算的是"训练要花多少钱"，没算"改主意要花多少钱"。</p>
+    <div class="keybox bound">
+      <b>适用边界</b>
+      这不是说微调永远不该做——对确实符合三角判断（概念 II）的场景，微调模型一旦稳定，单次调用成本和延迟往往优于持续调用大模型+长上下文；不可逆性账本要算的是"改主意的成本"，不是全盘否定"做出决定"本身的价值。
+    </div>
+  </div>
+</section>
+
+<section id="synthesis">
+  <div class="wrap prose">
+    <div class="eyebrow">SYNTHESIS · 六个概念如何咬合</div>
+    <div class="keybox">
+      <b>合起来看</b>
+      成本结构（I）划出三条路径的形状；三角判断（II）给出进入最贵那条路径的门槛；评估方法论（III）是贯穿全程、检验任何一步是否真的变好的尺子；数据工程（IV）决定一旦选择微调，天花板在哪；反馈闭环（V）决定系统能不能持续变好而不是只在上线那天最好；不可逆性账本（VI）则提醒你，III–V 里任何一步走错，在微调路径上纠正的代价，都比在 prompt 或 RAG 路径上纠正高出一个数量级。六个概念拼起来，就是全书那句排除法的完整版本。
+    </div>
+    <p class="inscription">MEASURE TWICE · TRAIN ONCE</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 工程决断 ⟡ 六大概念</p>
+    <p>
+      <a href="../index.html">← 书架</a> ·
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="book-决策框架.html">决策框架精读</a> ·
+      <a href="book-评估与部署.html">评估与部署精读</a> ·
+      <a href="decision.html">工程决断专题</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var s1 = document.getElementById('dl-s1'), s2 = document.getElementById('dl-s2'),
+      s3 = document.getElementById('dl-s3'), s4 = document.getElementById('dl-s4');
+  var s1v = document.getElementById('dl-s1v'), s2v = document.getElementById('dl-s2v'),
+      s3v = document.getElementById('dl-s3v'), s4v = document.getElementById('dl-s4v');
+  var barP = document.getElementById('dl-bar-prompt'), barR = document.getElementById('dl-bar-rag'), barF = document.getElementById('dl-bar-finetune');
+  var scoreP = document.getElementById('dl-score-prompt'), scoreR = document.getElementById('dl-score-rag'), scoreF = document.getElementById('dl-score-finetune');
+  var readout = document.getElementById('dl-readout');
+  var reset = document.getElementById('dl-reset');
+
+  function clamp(v) { return Math.max(0, Math.min(100, Math.round(v))); }
+  function bucket(v) { return v < 34 ? '低' : (v < 67 ? '中' : '高'); }
+
+  function compute() {
+    var v1 = +s1.value, v2 = +s2.value, v3 = +s3.value, v4 = +s4.value;
+    s1v.textContent = v1; s2v.textContent = v2; s3v.textContent = v3; s4v.textContent = v4;
+
+    var prompt = clamp(85 - 0.55 * v1 + 0.15 * v4 - 0.10 * v3);
+    var rag = clamp(35 + 0.40 * v1 + 0.15 * v2 + 0.10 * v4 - 0.15 * v3);
+    var finetune = clamp(-20 + 0.55 * v1 + 0.50 * v2 + 0.35 * v3 - 0.40 * v4);
+
+    barP.style.height = prompt + '%'; scoreP.textContent = prompt;
+    barR.style.height = rag + '%'; scoreR.textContent = rag;
+    barF.style.height = finetune + '%'; scoreF.textContent = finetune;
+
+    [barP, barR, barF].forEach(function (b) { b.classList.remove('best'); });
+    var scores = { prompt: prompt, rag: rag, finetune: finetune };
+    var names = { prompt: 'Prompt', rag: 'RAG', finetune: 'Finetune' };
+    var bars = { prompt: barP, rag: barR, finetune: barF };
+    var best = 'prompt', worst = 'prompt';
+    for (var k in scores) { if (scores[k] > scores[best]) best = k; if (scores[k] < scores[worst]) worst = k; }
+    bars[best].classList.add('best');
+
+    var b1 = bucket(v1), b2 = bucket(v2), b3 = bucket(v3), b4 = bucket(v4);
+    var whyBest = '';
+    if (best === 'prompt') whyBest = '任务专属程度' + b1 + '，通用能力配合恰当指令就能覆盖，不需要额外投入检索或训练成本。';
+    if (best === 'rag') whyBest = '任务专属程度' + b1 + '，缺的更像是"模型不知道的信息"而不是"模型不会的技能"——检索比训练更对症，也更容易随时追加新知识。';
+    if (best === 'finetune') whyBest = '任务专属程度' + b1 + '、标注数据' + b2 + '、延迟约束' + b3 + '，三角判断的三个条件同时偏向微调，且迭代频率要求' + b4 + '，不会频繁触发重训成本。';
+
+    var whyWorst = '';
+    if (worst === 'finetune') whyWorst = '当前条件下 Finetune 最不划算：' + (b4 === '高' ? '需要频繁迭代，而重训一次的成本是天到周级，跟不上迭代节奏；' : '') + (b2 === '低' ? '可用标注数据不足，训练效果没有保障；' : '') + (b1 === '低' ? '任务本身不够专属，不值得为它单独训练一个模型；' : '');
+    if (worst === 'prompt') whyWorst = '当前条件下 Prompt 最不划算：任务专属程度' + b1 + '，仅靠指令和通用能力难以稳定覆盖，且延迟约束' + b3 + '，长 prompt 带来的额外开销更难接受。';
+    if (worst === 'rag') whyWorst = '当前条件下 RAG 最不划算：任务专属程度和数据条件都不支持检索增益，反而多背了一套检索基础设施的复杂度。';
+    if (!whyWorst) whyWorst = '三条路径当前差距较小，任何一条都不构成明显的错误选择，但性价比最低的是 ' + names[worst] + '。';
+
+    readout.innerHTML = '<span class="head">当前最优：' + names[best] + '</span>' +
+      '<p class="why">' + whyBest + '</p>' +
+      '<p class="warn">最不推荐：' + names[worst] + '——' + whyWorst + '</p>';
+  }
+
+  [s1, s2, s3, s4].forEach(function (el) { el.addEventListener('input', compute); });
+  reset.addEventListener('click', function () {
+    s1.value = 50; s2.value = 50; s3.value = 50; s4.value = 50; compute();
+  });
+  compute();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>历史与人物 · 微调工坊</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23a8621f'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E5%BE%AE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">微调工坊<span class="mark"> ⟡ </span>NLPT</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html" class="active">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-微调实战.html">四任务精读</a>
+      <a href="book-效率与生态.html">效率与生态</a>
+      <a href="decision.html">工程决断</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap prose">
+    <div class="eyebrow">History & People · 历史与人物</div>
+    <h1>写库的人，回过头教你用库</h1>
+    <p class="lede">这本书的特殊之处：作者不是旁观者写的教程，是 <code>transformers</code> 库的核心开发者自己下场，把自己维护的工具写成教材。这既是它权威的原因，也是理解它"生态本位"视角的关键。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">Authors · 三位作者</div>
+    <h2>他们不是在写书，是在写自己每天维护的代码</h2>
+
+    <div class="grid cols-3" style="margin-top:8px">
+      <div class="card">
+        <span class="tag">Lewis Tunstall</span>
+        <h3>理论物理转 ML</h3>
+        <p>Hugging Face 机器学习工程师，拥有理论物理博士学位，曾在澳大利亚、美国、瑞士从事研究工作。转向 NLP 后专注于把工具做得"能教会别人用"，是这本书里教学语气最重的执笔者。</p>
+      </div>
+      <div class="card">
+        <span class="tag">Leandro von Werra</span>
+        <h3>TRL 库作者</h3>
+        <p>Hugging Face 开源团队机器学习工程师，多年 NLP 工程落地经验，覆盖机器学习全栈；后来创建了 <code>TRL</code>（Transformer Reinforcement Learning）库，把 Transformer 和强化学习训练流程结合——这条线后来直接通向 RLHF 对齐训练。</p>
+      </div>
+      <div class="card">
+        <span class="tag">Thomas Wolf</span>
+        <h3>Hugging Face 联合创始人</h3>
+        <p>Hugging Face 首席科学官（CSO）、联合创始人之一。2016 年与 Clément Delangue、Julien Chaumond 在纽约创立公司，最初做聊天机器人应用，后转型为 NLP 开源生态的核心枢纽。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">Timeline · 从聊天机器人到教育出版</div>
+    <h2>一家公司的两次转型，一本书的诞生</h2>
+
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-year">2015</div>
+        <h3>知识蒸馏被重新点燃</h3>
+        <p>Geoffrey Hinton、Oriol Vinyals、Jeff Dean 发表《Distilling the Knowledge in a Neural Network》（arXiv:1503.02531），提出用"软标签 + 温度缩放"把大模型的知识压缩进小模型。这套方法的雏形更早由 Buciluă、Caruana、Niculescu-Mizil 在 2006 年提出，但 2015 年这篇让它成为深度学习时代的标准工具，也是本站第五个概念的直接源头。</p>
+      </div>
+      <div class="t-item milestone">
+        <div class="t-year">2016</div>
+        <h3>Hugging Face 成立</h3>
+        <p>Clément Delangue、Julien Chaumond、Thomas Wolf 在纽约创立 Hugging Face，最初产品是一款面向青少年的聊天机器人 App，与后来的 NLP 工具生态几乎没有关系。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">2017</div>
+        <h3>Transformer 架构发表</h3>
+        <p>Vaswani 等人发表《Attention Is All You Need》，提出完全基于注意力机制的 Transformer 架构，为一年后的 BERT 与两年后 Hugging Face 的转型埋下伏笔。</p>
+      </div>
+      <div class="t-item milestone">
+        <div class="t-year">2018–2019</div>
+        <h3>从聊天机器人到 transformers 库</h3>
+        <p>Google 发布 BERT 后数周，Hugging Face 发布 PyTorch 重实现 <code>pytorch-pretrained-bert</code>（2018 年 11 月）；随着支持的模型家族扩大，2019 年 7 月改名 <code>pytorch-transformers</code>，同年 9 月定名 <code>transformers</code>。公司的主业务也随之从聊天机器人彻底转向开源 NLP 生态。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">2021</div>
+        <h3>LoRA 论文发表</h3>
+        <p>Edward Hu 等人在微软研究院发表《LoRA: Low-Rank Adaptation of Large Language Models》（arXiv:2106.09685），提出用低秩矩阵近似权重更新，训练参数量可比全参微调少几个数量级。这篇论文出版时，本书写作已接近尾声，成为书中未覆盖但后续必须补的一块。</p>
+      </div>
+      <div class="t-item milestone">
+        <div class="t-year">2022</div>
+        <h3>《Natural Language Processing with Transformers》出版</h3>
+        <p>O'Reilly 出版，三位 Hugging Face 工程师执笔，406 页，是 <code>transformers</code> 库自 2019 年发布三年后第一本系统性的官方实战教材。同年底 Hugging Face 首发 <code>peft</code> 库。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">2023 至今</div>
+        <h3>PEFT/LoRA 生态成为默认选项</h3>
+        <p><code>peft</code> 库随 LoRA/QLoRA 热潮迅速成为微调标配，本书里"少标注数据怎么办"一章给出的答案（零样本/少样本/UDA/蒸馏）不再是唯一选项——这是本站反复强调的时代局限，详见<a class="text-link" href="book-效率与生态.html#peft-gap">效率与生态精读页</a>。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">Debate · 学派论争</div>
+    <h2>高层封装 vs 原生手写：一场没有输家的争论</h2>
+    <p>
+      围绕 Hugging Face 生态，工程界有一条长期存在的分歧：<strong>高层封装路线</strong>（<code>Trainer</code>、<code>pipeline</code> 一类一行调用的抽象）让工程师快速产出结果，但代价是隐藏了训练循环内部的细节——学习率怎么变、梯度怎么裁、损失怎么算，全被封装掉了。<strong>原生手写路线</strong>（自己写 PyTorch 训练循环，参见 <a class="text-link" href="../从零炼模/index.html">书架另一站《从零炼模》</a> 里 Sebastian Raschka 的做法）则要求你理解每一行代码在做什么，代价是慢、易错。
+    </p>
+    <p>
+      这本书选择了折中：先用高层 API 快速跑通四个任务（第 2、4、6、9 章），再用整整一章（第 3 章 Transformer Anatomy）把 <code>Trainer</code> 内部拆开讲清楚。批评者的意见集中在——<strong>如果读者只停留在调 API 的层面，遇到训练不收敛、显存溢出这类问题时会完全无从下手</strong>。这也是本站把"任务头替换"和"Trainer 三段式"分成两个独立概念的原因：知道怎么用和知道用的是什么，是两件事。
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 微调工坊 ⟡ 历史与人物</p>
+    <p>
+      <a href="../index.html">← 书架</a> ·
+      <a href="index.html">总览</a> ·
+      <a href="concepts.html">核心概念</a> ·
+      <a href="book-微调实战.html">四任务精读</a> ·
+      <a href="book-效率与生态.html">效率与生态</a> ·
+      <a href="decision.html">工程决断</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

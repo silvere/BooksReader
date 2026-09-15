@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>应用专题 · 从零炼模</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a5a2e'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E7%82%BC%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">从零炼模<span class="mark"> ⟡ </span>LLM FROM SCRATCH</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-架构.html">架构精读</a>
+      <a href="book-微调.html">微调精读</a>
+      <a href="decision.html" class="active">应用专题</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap prose">
+    <div class="eyebrow">Application · 应用专题</div>
+    <h1>读完这本书之后，你的项目该走哪条路</h1>
+    <p class="lede">这本书教你理解"微调"这个动作本身；但一个真实项目该不该微调、该用哪种微调，答案不在这本书里，取决于你的任务、数据和预算。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">Decision Table · 决策表</div>
+    <h2>五条路径，成本和适用场景差一个数量级</h2>
+    <div class="table-scroll">
+      <table class="terms">
+        <thead><tr><th>路径</th><th>成本量级</th><th>什么时候该选它</th><th>典型陷阱</th></tr></thead>
+        <tbody>
+          <tr><td>只用 Prompt</td><td>几乎为零</td><td>任务能用自然语言说清楚，模型已有的知识和能力覆盖任务需求</td><td>把本该用微调解决的"稳定输出格式"问题，硬塞进越来越长的 prompt</td></tr>
+          <tr><td>RAG（检索增强）</td><td>低—中</td><td>任务需要模型不知道的具体知识（内部文档、实时信息），但不需要改变模型的说话方式</td><td>把"模型不知道"和"模型不会做"混为一谈——RAG 解决前者，解决不了后者</td></tr>
+          <tr><td>LoRA / 参数高效微调</td><td>中</td><td>需要改变模型的行为模式或专项能力，任务分布和预训练语料不算天差地别</td><td>秩 r 选太小导致欠拟合，或误以为 LoRA 能像全参微调一样注入大量新知识</td></tr>
+          <tr><td>全参微调</td><td>高</td><td>任务分布和预训练差异很大，或需要极致的任务专项性能，且预算和数据规模都足够</td><td>数据量不够时全参微调比 LoRA 更容易过拟合和灾难性遗忘</td></tr>
+          <tr><td>从零预训练</td><td>极高（通常不该选）</td><td>几乎只在你要研究模型本身、或所在领域的语料和现有模型的语言体系完全不兼容时才成立</td><td>把"我想学会原理"和"我的产品该怎么做"混为一谈——这本书的六大概念解决前者，不建议直接套用到后者</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="keybox">
+      <b>一句话版本</b>
+      能用 prompt 解决的不要 RAG，能用 RAG 解决的不要微调，能用 LoRA 解决的不要全参微调，能用现成开源模型微调解决的，基本不需要从零预训练。这本书的价值不在于让你走最贵的那条路，而在于让你在选更便宜的路径时，知道自己放弃了什么。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">From Book to Project · 从教学规模到生产规模</div>
+    <h2>书里的 1.24 亿参数，和你要微调的那个开源模型之间差什么</h2>
+    <p>
+      书中从零训练的模型是 GPT-2 small 规模（约 1.24 亿参数），单机甚至 CPU 都能跑通全流程。今天一个从业者更可能面对的场景，是在 Llama、Qwen 这类开源模型（70 亿到千亿参数级别）上做 LoRA 微调。这中间被这本书省略、但生产环境绕不开的几层：
+    </p>
+    <ul>
+      <li><strong>分布式训练与显存管理</strong>：单卡装不下的模型需要模型并行或量化（如 QLoRA），书中没有覆盖</li>
+      <li><strong>数据工程</strong>：真实指令数据集的清洗、去重、多样性控制，工作量往往超过训练本身</li>
+      <li><strong>评估体系</strong>：书中用"更强模型打分"作为教学示例，生产环境通常需要一套更系统的评测集和人工抽检流程</li>
+      <li><strong>推理部署</strong>：训练完成后如何量化、合并 LoRA 权重、部署成低延迟服务，是另一整套工程问题</li>
+    </ul>
+    <p>这本书打的底子，让你在面对这些工程问题时，至少知道自己在"预训练模型"的哪一层做操作——这是判断力的起点，不是终点。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">FINIS · 收束</div>
+    <h2>压缩，是这本书没有明说的主题</h2>
+    <p>
+      预训练在做的事，换一个角度看是<strong>压缩</strong>：用几亿到几千亿个参数，压缩互联网规模语料里的统计规律。LoRA 的低秩假设也是一种压缩直觉——它赌的是"完成一个具体任务所需的权重改动，本身可以用远少于原矩阵的信息量描述"。这个"用最短的描述抓住规律"的想法，不是 LLM 领域的专利。
+    </p>
+    <div class="keybox">
+      <b>书架里的另一站：算法信息论</b>
+      <a class="text-link" href="../算法信息论/index.html">算法信息论</a>站讨论的最小描述长度（MDL）和柯尔莫哥洛夫复杂度，问的是同一类问题的更一般版本：一段数据的"真正规律"，能被压缩到多短？预训练把语料压缩进模型参数，LoRA 把任务所需的改动压缩进两个低秩矩阵——两站从不同方向，逼近同一个直觉：<em>理解，某种意义上就是压缩</em>。
+    </div>
+    <p class="inscription">EX MACHINA, PER GRADUS</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 从零炼模 ⟡ 应用专题</p>
+    <p>
+      <a href="../index.html">← 书架</a> ·
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="concepts.html">核心概念</a> ·
+      <a href="book-架构.html">架构精读</a> ·
+      <a href="book-微调.html">微调精读</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

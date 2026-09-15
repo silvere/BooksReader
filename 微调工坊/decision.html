@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工程决断 · 微调工坊</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23a8621f'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E5%BE%AE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">微调工坊<span class="mark"> ⟡ </span>NLPT</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-微调实战.html">四任务精读</a>
+      <a href="book-效率与生态.html">效率与生态</a>
+      <a href="decision.html" class="active">工程决断</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap prose">
+    <div class="eyebrow">Decision · 工程决断</div>
+    <h1>这本书回答"怎么做"，没回答"要不要做"</h1>
+    <p class="lede">读完六个概念，你已经知道数据不够时该走哪条路、模型跑通后该怎么压缩。但这本书从头到尾假设了一个前提——<b>已经决定要微调</b>。这一页把那个更上层的判断补上，并把全书的判断框架收束成一张表。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">Decision Table · 决断表</div>
+    <h2>把六章书压缩成一张表</h2>
+
+    <div class="table-scroll">
+      <table class="terms">
+        <thead>
+          <tr><th>你的情况</th><th>先做什么</th><th>为什么</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>标注数据几十条以内</td><td>零样本 / 少样本，别急着微调</td><td>数据量支撑不起可靠的梯度更新，微调大概率过拟合</td></tr>
+          <tr><td>数据几百到几千条，任务是分类/NER</td><td>冻结 backbone，只训练任务头</td><td>浅层任务头用中等规模数据就能收敛，风险远低于全参微调</td></tr>
+          <tr><td>数据几百到几千条，任务是生成式（摘要/问答）</td><td>优先试更大的现成模型做零样本</td><td>生成任务输出空间大，同等数据量下微调效果通常不如分类任务稳定</td></tr>
+          <tr><td>数据几万条以上，算力充足</td><td>全参微调</td><td>数据规模能压住过拟合风险，全参微调通常给出最高精度</td></tr>
+          <tr><td>算力/显存不够跑全参微调</td><td>用 LoRA/PEFT（本书未覆盖，当代默认选项）</td><td>用远少于全参的可训练参数逼近全参微调效果，详见<a class="text-link" href="book-效率与生态.html#peft-gap">效率与生态精读页</a>的时代局限说明</td></tr>
+          <tr><td>要部署到生产环境，延迟有 SLA</td><td>训练完成后做知识蒸馏</td><td>教师模型质量越高，蒸馏出的学生模型越可靠——先有好模型，再谈压缩</td></tr>
+          <tr><td>要塞进手机/边缘设备</td><td>蒸馏之后再量化</td><td>两步顺序不能颠倒：量化后的模型不适合再继续训练</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">The Missing Layer · 缺失的上层判断</div>
+    <h2>微调之前，先问三个问题</h2>
+    <p>这本书没有回答、但工程实践里更先要回答的三个问题：</p>
+    <ol style="margin:16px 0 16px 22px; font-size:15.5px">
+      <li style="margin:10px 0"><b>这个任务能不能只靠 prompt 解决？</b>如果一个足够大的通用模型配合精心设计的提示词就能达到可接受的效果，那么整套微调流程（数据标注、训练、评估、部署）的投入可能根本不划算。</li>
+      <li style="margin:10px 0"><b>需要的是"新知识"还是"新行为"？</b>如果模型缺的是事实性知识（比如你公司内部的文档），检索增强（RAG：先检索相关文档，再让模型基于检索结果回答）往往比微调更直接、更容易更新——微调把知识"烧"进权重里，文档一变就要重新训练；RAG 只需要更新检索库。第 4 章的检索器+阅读器架构，正是这套思路的早期雏形。</li>
+      <li style="margin:10px 0"><b>微调完怎么知道训练是对的？</b>全书六章都在讲"怎么训练"，很少讲"训练完怎么系统性地评估是否达标"——这恰恰是生产环境里最容易出问题的一环，自动指标（准确率、ROUGE）和真实业务效果之间常有落差。</li>
+    </ol>
+    <p>这三个问题、以及"微调 vs RAG vs 纯 prompt"这层更上游的工程判断，是本书出版之后整个行业花了几年时间才逐渐系统化的内容——这也是本站姊妹站要接着回答的问题。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">FINIS · 收束</div>
+    <h2>一套 Trainer 教会你的，和教不会你的</h2>
+    <p>
+      这本书的价值有清晰的边界：它教会你"怎么把一个预训练模型改造成能完成具体任务的模型"，六个概念、四个任务头、三条压缩路径，都是这件事的不同侧面。它教不会你的是"要不要做这件事"——这需要对成本（标注、算力、维护）和收益（精度提升、延迟降低）做更上层的权衡，本书写作时这套权衡框架在行业里还没有沉淀成熟。
+    </p>
+    <p>
+      <b>书架里的另一站：从零炼模</b>——Sebastian Raschka 的《Build a Large Language Model (From Scratch)》。如果说这一站教的是"用工业级生态微调任何模型"，那一站教的是"亲手写出被这套生态封装掉的每一行代码"。两站合起来，才是从原理到工程的完整路径：先在那一站看懂 <code>Trainer</code> 内部到底在算什么，再回到这一站，理解为什么整个行业选择把它封装成几行调用。
+    </p>
+    <p class="inscription">EX MACHINA DISCIMUS, NON DE MACHINA COGITAMUS</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 微调工坊 ⟡ 工程决断</p>
+    <p>
+      <a href="../index.html">← 书架</a> ·
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="concepts.html">核心概念</a> ·
+      <a href="book-微调实战.html">四任务精读</a> ·
+      <a href="book-效率与生态.html">效率与生态</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

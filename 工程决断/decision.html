@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工程决断专题 · BooksReader</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a3355'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E5%86%B3%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">工程决断 <span class="mark">⟡</span> AI ENGINEERING</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">六大概念</a>
+      <a href="book-决策框架.html">决策框架精读</a>
+      <a href="book-评估与部署.html">评估与部署精读</a>
+      <a class="active" href="decision.html">工程决断专题</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">APPLICATION · 工程决断专题</div>
+    <h1>三个真实场景，走一遍排除法</h1>
+    <p class="lede">理论讲完了，下面用三个常见的工程场景，按书里的顺序——先 prompt，再 RAG，最后才轮到微调——走一遍完整判断，看看结论是不是总是"应该微调"。</p>
+  </div>
+</header>
+
+<section id="case1">
+  <div class="wrap prose">
+    <div class="eyebrow">CASE 01</div>
+    <h2>客服机器人：回答产品 FAQ 与账户问题</h2>
+    <p><strong>任务专属程度：中。</strong>语言能力要求不高（礼貌、清晰、结构化回复），但需要准确反映公司当前的产品信息、政策、账户数据——这些信息会持续变化。<strong>可用标注数据：中低。</strong>历史工单可以整理成参考资料，但很少是"标准问答对"形式。<strong>延迟约束：中等。</strong>用户可接受一两秒的响应。<strong>迭代频率：高。</strong>产品和政策经常更新。</p>
+    <div class="keybox">
+      <b>走查结论</b>
+      信息缺失是主要瓶颈，不是能力缺失——<strong>RAG 是首选</strong>：把产品文档、政策、账户系统接入检索层，配合结构化的 prompt 控制语气和格式。迭代频率高这一条，直接排除了微调——政策一周一变，没有团队能承受微调重训的周期跟上这个节奏。
+    </div>
+  </div>
+</section>
+
+<section id="case2">
+  <div class="wrap prose">
+    <div class="eyebrow">CASE 02</div>
+    <h2>代码助手：内部专有框架的自动补全</h2>
+    <p><strong>任务专属程度：高。</strong>要理解公司内部专有框架的 API 规范和代码风格，这类知识不在任何通用模型的预训练分布里，也很难靠一次性的 prompt 塞进去（框架文档可能有几十万行）。<strong>可用标注数据：高。</strong>公司内部代码库本身就是海量、高质量的训练数据。<strong>延迟约束：严苛。</strong>内联代码补全要求近乎实时响应。<strong>迭代频率：中低。</strong>内部框架的核心 API 相对稳定，不会像客服政策那样一周一变。</p>
+    <div class="keybox">
+      <b>走查结论</b>
+      三角判断的三个条件同时成立：任务专属、数据充足、延迟严苛，且迭代频率可控——<strong>这是教科书级的微调场景</strong>。RAG 可以作为补充（检索最新的内部文档片段），但核心的代码补全能力，更适合微调一个较小的专用模型，换取推理速度和成本优势。
+    </div>
+  </div>
+</section>
+
+<section id="case3">
+  <div class="wrap prose">
+    <div class="eyebrow">CASE 03</div>
+    <h2>内容审核：识别违规文本</h2>
+    <p><strong>任务专属程度：高。</strong>违规判定标准是平台自定义的，通用模型不天然理解这套标准的边界案例。<strong>可用标注数据：高。</strong>历史审核记录本身就是大量标注数据。<strong>延迟约束：极严苛。</strong>审核要在毫秒级完成，且调用量是所有场景里最大的，调用一个大模型的成本在这个量级上会迅速失控。<strong>迭代频率：中高。</strong>违规模式会随对抗性行为演化而变化，规则需要定期更新。</p>
+    <div class="keybox">
+      <b>走查结论</b>
+      这是一个<strong>混合方案</strong>的典型场景：用一个微调过的小模型处理海量的常规判定（满足延迟与成本约束），同时保留一条 prompt/RAG 路径处理不确定案例的人工复核——纯粹押注单一路径，要么扛不住调用量的成本，要么跟不上违规模式的演化速度。这也印证了概念 I：三条路径不是互斥选项，工程决断经常是"分层组合"，不是单选题。
+    </div>
+  </div>
+</section>
+
+<section id="finis">
+  <div class="wrap prose">
+    <div class="eyebrow">FINIS · 收束</div>
+    <h2>决策层之后，是实现层</h2>
+
+    <p><strong>书架里的另一站：从零炼模。</strong>如果三角判断指向微调，下一个问题是"微调到底在改模型的什么部分"——<a class="text-link" href="../从零炼模/index.html">从零炼模</a> 从 tokenizer 到 attention 到 GPT 架构组装，逐行手写整个训练与微调流程，把这一站里"不可逆性账本"背后的机制拆开给你看：为什么微调的代价这么高，因为它改的是模型内部千万到十亿级的参数权重，不是一份配置文件。</p>
+
+    <p><strong>书架里的另一站：微调工坊。</strong>如果决策已经做出、原理也理解了，接下来是"用工业级生态怎么把它跑起来"——<a class="text-link" href="../微调工坊/index.html">微调工坊</a> 用 Hugging Face 生态展示同一个预训练 backbone 如何迁移到分类、NER、生成、摘要、问答等具体任务，以及生产环境下怎么把训练好的模型压缩到能实际部署（对应本站概念 VI 里"微调之后维护成本"的那部分账，工业界的标准解法在那一站）。</p>
+
+    <p>三站合起来是一条完整的闭环：<strong>要不要做（工程决断）→ 原理是什么（从零炼模）→ 怎么工业化地做（微调工坊）</strong>。从任意一站进入都可以，但只走完这一站就动手微调，大概率会在"不可逆性账本"那一节列出的代价上摔一跤。</p>
+
+    <p class="inscription">MEASURE TWICE · TRAIN ONCE</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 工程决断 ⟡ 工程决断专题</p>
+    <p>
+      <a href="../index.html">← 书架</a> ·
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="concepts.html">六大概念</a> ·
+      <a href="book-决策框架.html">决策框架精读</a> ·
+      <a href="book-评估与部署.html">评估与部署精读</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心概念 · 微调工坊</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23a8621f'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E5%BE%AE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">微调工坊<span class="mark"> ⟡ </span>NLPT</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html" class="active">核心概念</a>
+      <a href="book-微调实战.html">四任务精读</a>
+      <a href="book-效率与生态.html">效率与生态</a>
+      <a href="decision.html">工程决断</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap prose">
+    <div class="eyebrow">Six Concepts · 六大概念</div>
+    <h1>从解耦架构到量化压缩</h1>
+    <p class="lede">六个概念沿着一条主线排列：先理解这套生态<b>为什么能通用</b>（概念 I–III），再理解数据不够时<b>怎么办</b>（概念 IV），最后理解跑得动之后<b>怎么变小变快</b>（概念 V–VI）。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose concept" id="decouple">
+    <div class="eyebrow">Concept I</div>
+    <h2>Tokenizer ↔ AutoModel 解耦</h2>
+    <p><strong>是什么</strong>：分词器（把文本切成 token 并映射为整数 ID）和模型权重是两个独立保存、独立加载的组件，二者靠一个共享的 <code>checkpoint</code> 名字（比如 <code>bert-base-uncased</code>）对齐词表版本。</p>
+    <p><strong>原文定义</strong>：书中用 <code>AutoTokenizer.from_pretrained()</code> 和 <code>AutoModel.from_pretrained()</code> 这对函数具体化这个抽象——同一个字符串既能取出分词器，也能取出模型，前提是这个 checkpoint 的分词器词表和模型的 embedding 层是在同一次预训练里配对训练出来的。</p>
+    <p><strong>为什么这对你重要</strong>：这个解耦是整个生态"随便换模型"的地基。没有它，每次换预训练权重都要手写一套新的文本预处理代码；有了它，换模型只是改一个字符串。但解耦也是脆弱点——如果你把 A 模型的权重配上 B 模型的分词器，代码不会报错，模型会安静地输出垃圾，因为 token ID 到词的映射已经对不上了。</p>
+    <div class="keybox warn"><b>适用边界</b>这个抽象假设 tokenizer 和 model 永远配对使用。混用不同 checkpoint 的分词器和权重是新手最常见、也最隐蔽的错误——它不报错，只是效果差，排查成本很高。</div>
+  </div>
+
+  <div class="wrap prose concept" id="trainer">
+    <div class="eyebrow">Concept II</div>
+    <h2>Trainer 三段式</h2>
+    <p><strong>是什么</strong>：<code>Trainer</code> API 把一次微调切成三段可配置流程——<b>数据集加载与格式化</b> → <b>分词映射（tokenize + truncate + pad）</b> → <b>训练循环（前向、反向、优化器步进、日志、评估、保存 checkpoint）</b>。</p>
+    <p><strong>原文定义</strong>：书中反复出现的模式是 <code>dataset.map(tokenize_function, batched=True)</code> 做第二段，<code>Trainer(model, args, train_dataset, eval_dataset, compute_metrics)</code> 做第三段——把原本要手写的几百行 PyTorch 训练循环压缩成几个参数配置。</p>
+    <p><strong>为什么这对你重要</strong>：三段式不是语法糖，是一种可迁移的思维模型。无论后来你用不用 <code>Trainer</code>（比如换成更底层的 <code>accelerate</code> 或自己写循环），"先把数据变成统一形状，再让循环吃掉它"这个分解方式都成立。</p>
+    <div class="keybox warn"><b>适用边界</b><code>Trainer</code> 封装得越彻底，出问题时排查越难——学习率没收敛、显存溢出这类问题，答案往往藏在被封装掉的那部分代码里。这正是本书第 3 章要把 Transformer 内部解剖一遍的原因：高层 API 帮你跑通，不帮你看懂。</div>
+  </div>
+
+  <div class="wrap prose concept" id="head">
+    <div class="eyebrow">Concept III</div>
+    <h2>任务头替换</h2>
+    <p><strong>是什么</strong>：同一个预训练 Transformer 主干（backbone），在顶端换一层不同的输出头，就能从做分类切换到做问答、命名实体识别或摘要。</p>
+    <p><strong>原文定义</strong>：<code>AutoModelForSequenceClassification</code>、<code>AutoModelForTokenClassification</code>、<code>AutoModelForQuestionAnswering</code>、<code>AutoModelForSeq2SeqLM</code>——库里这一组以 <code>AutoModelFor*</code> 命名的类，字面上就是"同一个 <code>Auto</code> 家族，不同的 <code>For</code>"。</p>
+    <p><strong>为什么这对你重要</strong>：理解"共用的是什么、不共用的是什么"，你才能判断迁移学习的边界在哪——backbone 学到的是通用语言表征，任务头学到的是"怎么把这份表征翻译成你要的输出格式"，前者可迁移，后者必须针对任务重新训练。</p>
+    <div class="keybox warn"><b>适用边界</b>任务头能换，不代表所有任务都同样容易迁移。分类和 NER 的输出结构简单，任务头一般训练几个 epoch 就收敛；生成式任务（摘要、问答里的抽取/生成边界判断）的输出空间大得多，同样的数据量下效果差距明显——这也是概念 IV 里少标注学习要按任务类型分别讨论的原因。</div>
+  </div>
+
+  <div class="wrap prose concept" id="fewshot">
+    <div class="eyebrow">Concept IV</div>
+    <h2>少标注学习</h2>
+    <p><strong>是什么</strong>：当标注数据只有几十到几百条时，全参微调大概率过拟合，书里给出三条替代路径——零样本分类（用预训练模型的语言理解能力直接推断，不训练）、少样本学习（凭少量示例做上下文学习或轻量微调）、UDA 无监督数据增强（用未标注数据 + 数据增强扩充训练信号）。</p>
+    <p><strong>原文定义</strong>：书中第 7 章把这三条路径按"能拿到多少标注数据"排成一个连续谱，而不是三选一的并列选项——数据量每往上走一格，就多一种可用的技术。</p>
+    <p><strong>为什么这对你重要</strong>：这是全书最直接对抗"遇到任务就想着微调"这种本能的一章。数据不够时先微调，几乎总是错误的第一步——过拟合的模型在训练集上看着很好，一到真实分布就崩。</p>
+    <div class="keybox warn"><b>适用边界</b>零样本和少样本对分类类任务效果较好，对生成式任务（摘要、开放式问答）通常不够稳定，因为生成任务的输出空间大、评估本身噪声就高。<b>本书的这一章写于 LoRA/PEFT 生态成熟之前</b>，今天工程界处理"数据不够但仍想微调"的默认选项已经是 LoRA/QLoRA，而不是书中的 UDA——详见<a class="text-link" href="book-效率与生态.html#peft-gap">效率与生态精读页</a>的时代局限说明。</div>
+  </div>
+
+  <div class="wrap prose concept" id="distill">
+    <div class="eyebrow">Concept V</div>
+    <h2>知识蒸馏</h2>
+    <p><strong>是什么</strong>：用一个已经训练好的大模型（教师）指导一个小模型（学生）训练，学生不只学"正确答案"，还学教师模型对每个类别给出的完整概率分布（软标签）。</p>
+    <p><strong>原文定义</strong>：这套方法的现代范式出自 Hinton、Vinyals、Dean 2015 年论文《Distilling the Knowledge in a Neural Network》，核心机制是<b>温度缩放</b>——用一个高于 1 的温度参数软化教师模型的输出分布，让学生模型能学到"教师觉得第二像、第三像的答案是什么"，而不只是"教师最终选了哪个"。DistilBERT 就是这套方法在 Transformer 上的经典应用（体积缩小 40%，速度提升 60%，保留 BERT 约 97% 的语言理解能力，这组数字出自 Hugging Face 官方论文，并非本站臆测）。</p>
+    <p><strong>为什么这对你重要</strong>：蒸馏解决的是"模型已经训练好、但太大跑不动"的问题——它不是解决"数据不够"的工具，这是新手最常混淆的一点。</p>
+    <div class="keybox warn"><b>适用边界</b>蒸馏效果的天花板由教师模型决定——教师本身有偏见或错误，学生会原样学会，蒸馏不具备纠错能力。且蒸馏本身也要一轮完整训练，不是免费的。</div>
+  </div>
+
+  <div class="wrap prose concept" id="quant">
+    <div class="eyebrow">Concept VI</div>
+    <h2>量化与剪枝</h2>
+    <p><strong>是什么</strong>：两条独立的推理效率优化路径。<b>量化</b>把模型权重从 32 位浮点压缩到 16 位、8 位甚至更低精度的整数表示，直接减小体积、加快计算；<b>剪枝</b>找出对输出影响很小的权重或注意力头，直接砍掉。</p>
+    <p><strong>原文定义</strong>：书中第 5 章把这两条路径和知识蒸馏并列为"让 Transformer 在生产环境里能用"的三件工具，并给出用 ONNX Runtime 做推理加速的实操流程。</p>
+    <p><strong>为什么这对你重要</strong>：三条路径（蒸馏、量化、剪枝）可以叠加使用，但顺序有讲究——一般先蒸馏出一个更小的模型，再对这个小模型做量化，而不是反过来，因为量化后的模型继续训练（蒸馏需要训练）会引入额外的数值误差。</p>
+    <div class="keybox warn"><b>适用边界</b>量化和剪枝都有精度损失的临界点，压缩比例越高，输出质量下降越明显，且下降曲线不是线性的——往往在某个压缩比之后断崖式变差，需要实测校准，不能只按理论比例外推。</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">Signature Lab · 签名交互实验台</div>
+    <h2>微调策略选择工坊</h2>
+    <p class="lede">三个问题，推出一条微调路径——附带它在什么情况下会失效。</p>
+
+    <div class="workshop">
+      <div class="ws-title">Fine-Tuning Strategy Workshop</div>
+      <div class="ws-sub">依次回答三个问题，工坊会实时给出推荐路径与失效边界。</div>
+
+      <div class="ws-step">
+        <div class="ws-step-label">1 · 你有多少标注数据？</div>
+        <div class="ws-options" data-group="data">
+          <button class="ws-opt" data-value="tiny"><strong>几十条以内</strong><span>刚开始标注，或任务本身样本稀缺</span></button>
+          <button class="ws-opt" data-value="mid"><strong>几百到几千条</strong><span>标注了一阵子，规模中等</span></button>
+          <button class="ws-opt" data-value="large"><strong>几万条以上</strong><span>有稳定的数据管线在持续产出</span></button>
+        </div>
+      </div>
+
+      <div class="ws-step">
+        <div class="ws-step-label">2 · 什么类型的任务？</div>
+        <div class="ws-options" data-group="task">
+          <button class="ws-opt" data-value="cls"><strong>分类 / 情感判断</strong><span>输出空间小，类别固定</span></button>
+          <button class="ws-opt" data-value="gen"><strong>生成式（摘要/问答/开放生成）</strong><span>输出空间大，评估本身有噪声</span></button>
+          <button class="ws-opt" data-value="ner"><strong>序列标注（NER）</strong><span>逐 token 打标，对标注一致性敏感</span></button>
+        </div>
+      </div>
+
+      <div class="ws-step">
+        <div class="ws-step-label">3 · 部署环境的约束？</div>
+        <div class="ws-options" data-group="deploy">
+          <button class="ws-opt" data-value="free"><strong>无所谓，能跑就行</strong><span>离线跑批，没有延迟要求</span></button>
+          <button class="ws-opt" data-value="prod"><strong>生产环境，要低延迟</strong><span>在线服务，响应时间有 SLA</span></button>
+          <button class="ws-opt" data-value="edge"><strong>要塞进手机 / 边缘设备</strong><span>内存和算力都受限</span></button>
+        </div>
+      </div>
+
+      <div class="ws-result" id="wsResult"></div>
+
+      <div class="ws-actions">
+        <button id="wsReset" type="button">重新开始 ↻</button>
+      </div>
+      <div class="ws-progress" id="wsProgress">0 / 3 已选择</div>
+    </div>
+
+    <div class="keybox">
+      <b>Synthesis · 六个概念如何咬合</b>
+      解耦架构（I）让你能随便换 backbone；Trainer 三段式（II）让你能快速跑通训练；任务头替换（III）让同一套流程适配四种任务。这三个概念解决"怎么做"。数据不够时，少标注学习（IV）先把"要不要微调"这个问题挡在前面。真正微调完之后，蒸馏和量化剪枝（V、VI）负责把模型从"能用"压缩成"能部署"。六个概念合起来，就是上面那个工坊里的决策逻辑——本站的签名交互，就是把这条隐藏在六章书里的判断链路显式地跑一遍。
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 微调工坊 ⟡ 核心概念</p>
+    <p>
+      <a href="../index.html">← 书架</a> ·
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="book-微调实战.html">四任务精读</a> ·
+      <a href="book-效率与生态.html">效率与生态</a> ·
+      <a href="decision.html">工程决断</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var state = { data: null, task: null, deploy: null };
+  var groups = document.querySelectorAll('.ws-options');
+  var resultEl = document.getElementById('wsResult');
+  var progressEl = document.getElementById('wsProgress');
+  var resetBtn = document.getElementById('wsReset');
+
+  var DATA_TEXT = {
+    tiny: '标注数据只有几十条，全参微调几乎必然过拟合——模型会把训练集背下来，而不是学到规律。',
+    mid: '几百到几千条足够训练一个浅层任务头，但通常不足以安全地更新几亿参数的整个 backbone。',
+    large: '几万条以上的数据规模，足以支撑全参微调而不必太担心过拟合。'
+  };
+  var TASK_NOTE = {
+    cls: '分类任务输出空间小，少样本和轻量微调通常都比较稳定。',
+    gen: '生成式任务的输出空间大、评估噪声高，同等数据量下效果通常比分类任务差一截——数据不够时优先考虑直接用更大的现成模型做零样本，而不是硬凑数据微调。',
+    ner: 'NER 对标注一致性要求高于分类——同样的数据量下，先做一次标注质量审计，往往比直接加训练轮数更划算。'
+  };
+  var deployNote = {
+    free: '部署端没有硬约束，可以把预算优先花在提升精度上。',
+    prod: '生产环境有延迟 SLA，模型跑通之后大概率还要再过一轮蒸馏或量化才能上线。',
+    edge: '边缘设备内存和算力都受限，几乎总是需要蒸馏或量化收尾，模型体积和延迟才可能达标——这一步不是可选项。'
+  };
+
+  function pathFor(data, task) {
+    if (data === 'tiny') {
+      return {
+        name: task === 'gen' ? '零样本 / 少样本优先，别急着凑数据微调' : '零样本或少样本学习',
+        fail: '如果任务需要模型输出一套预训练时从没见过的全新格式（比如特定结构的 JSON schema），少样本提示很难稳定复现格式，这时候哪怕只有几十条数据，做一次小范围全参微调反而更可靠。'
+      };
+    }
+    if (data === 'mid') {
+      return {
+        name: '冻结 backbone，只训练任务头',
+        fail: '如果任务领域和预训练语料差异很大（比如高度专业化的法律或医疗术语），只训练头可能不够，需要解冻顶部若干层做领域适应，而不是完全冻结。'
+      };
+    }
+    return {
+      name: '全参微调',
+      fail: '如果显存或算力预算撑不住全参微调，即使数据量支持，也应该退到参数高效微调（LoRA/PEFT）——这是本书出版之后才成熟的技术，书中未覆盖，但今天是更常见的默认选择。'
+    };
+  }
+
+  function render() {
+    var filled = Object.keys(state).filter(function (k) { return state[k]; }).length;
+    progressEl.textContent = filled + ' / 3 已选择';
+    if (filled < 3) {
+      resultEl.classList.remove('show');
+      return;
+    }
+    var path = pathFor(state.data, state.task);
+    var deployTail = deployNote[state.deploy];
+    var extra = '';
+    if (state.deploy === 'edge' && state.data !== 'tiny') {
+      extra = '结合部署约束：先按上面的路径把模型训练好，再做一轮蒸馏或量化收尾，两步分开做，不要指望一步到位。';
+    } else if (state.deploy === 'edge' && state.data === 'tiny') {
+      extra = '结合部署约束：数据本来就少，先解决"有没有一个够格的模型"，边缘部署的压缩问题留到模型可用之后再处理，顺序不要颠倒。';
+    }
+    resultEl.innerHTML =
+      '<b>推荐路径 · ' + path.name + '</b>' +
+      '<p style="margin:0 0 8px">' + DATA_TEXT[state.data] + ' ' + TASK_NOTE[state.task] + ' ' + deployTail + '</p>' +
+      (extra ? '<p style="margin:0">' + extra + '</p>' : '') +
+      '<div class="ws-fail"><b style="margin-bottom:4px">这条路径会在什么情况下失效</b>' + path.fail + '</div>';
+    resultEl.classList.add('show');
+  }
+
+  groups.forEach(function (group) {
+    var key = group.getAttribute('data-group');
+    group.querySelectorAll('.ws-opt').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        group.querySelectorAll('.ws-opt').forEach(function (b) { b.classList.remove('on'); });
+        btn.classList.add('on');
+        state[key] = btn.getAttribute('data-value');
+        render();
+      });
+    });
+  });
+
+  resetBtn.addEventListener('click', function () {
+    state = { data: null, task: null, deploy: null };
+    groups.forEach(function (group) {
+      group.querySelectorAll('.ws-opt').forEach(function (b) { b.classList.remove('on'); });
+    });
+    render();
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微调精读 · 从零炼模</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a5a2e'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E7%82%BC%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">从零炼模<span class="mark"> ⟡ </span>LLM FROM SCRATCH</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-架构.html">架构精读</a>
+      <a href="book-微调.html" class="active">微调精读</a>
+      <a href="decision.html">应用专题</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap prose">
+    <div class="eyebrow">Book Deep Dive · Part 2</div>
+    <h1>第 6–7 章 + 附录 E：让一个会续写的模型变得有用</h1>
+    <p class="lede">这三章是这本书真正区别于 Karpathy "Zero to Hero" 系列的部分——从"能续写"到"能干活"，中间隔着这三种不同成本的手术。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+
+    <div class="chapter warm">
+      <div class="ch-no">Chapter 6 · Finetuning for Text Classification</div>
+      <h3>分类微调：只换一个输出头<span class="difficulty"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></h3>
+      <p>用垃圾短信分类作为示例任务：把预训练模型最后一层的输出维度，从"词表大小"（预测下一个词）换成"类别数"（这里是 2：垃圾/非垃圾），只对序列最后一个 token 的输出算损失。训练时可以选择冻结大部分参数、只训练新加的分类头和最后几层，用很少的标注数据（书中示例是几千条短信）就能在几分钟内训练完成。</p>
+      <div class="keybox">
+        <b>为什么这一章成本低</b>
+        分类微调不要求模型学会"生成"任何新东西，只要求它把已经学到的语言理解能力，正确路由到一个判断上。这是它训练快、数据需求低、灾难性遗忘风险也低的根本原因。
+      </div>
+    </div>
+
+    <div class="chapter warm">
+      <div class="ch-no">Chapter 7 · Finetuning to Follow Instructions</div>
+      <h3>指令微调：重写整个说话方式<span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></h3>
+      <p>用指令-回答对构成的数据集（格式类似 Alpaca 风格）继续训练整个模型，这次损失计算覆盖整个目标回答序列，而不只是最后一个 token。书中还讲了如何用另一个更大的模型（示例用 Meta 的 Llama）给微调后的回答打分，作为一种自动化评估手段。</p>
+      <ul>
+        <li>数据格式：指令 + 可选输入 + 期望回答，三段式结构</li>
+        <li>损失掩码：只对"回答"部分算损失，"指令"部分不参与梯度更新</li>
+        <li>评估：人工评估成本高，书中演示用更强模型做自动打分作为替代</li>
+      </ul>
+      <div class="keybox warn">
+        <b>适用边界</b>
+        指令微调用的数据集规模、多样性、标注质量，直接决定微调后模型的行为上限——这本书受篇幅限制，示例数据集是教学规模（约千条级别），真实产品级的指令微调数据集往往需要数万到数十万条经过严格筛选和去重的样本，这中间的数据工程工作量，是这本书没有覆盖的部分。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">Appendix E · Parameter-efficient Finetuning with LoRA</div>
+      <h3>LoRA：用两个小矩阵撬动整个模型<span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h3>
+      <p>把第 6 章的分类微调换成 LoRA 版本做对照：冻结原始权重矩阵 W，在旁路加入两个低秩矩阵 A（d×r）和 B（r×d），训练时只更新 A 和 B，推理时把 <code>W + BA</code> 作为等效权重。书中给出了具体的参数量对比——原始权重矩阵的参数量是 <code>d × d</code>，而 LoRA 新增的可训练参数量是 <code>2 × d × r</code>，当 r 远小于 d 时，可训练参数能降到原来的几十分之一到几百分之一。</p>
+      <table class="terms">
+        <thead><tr><th>秩 r</th><th>可训练参数（相对全参微调）</th><th>适用场景</th></tr></thead>
+        <tbody>
+          <tr><td>r = 1–4</td><td>极小</td><td>任务和预训练分布接近，只需轻微调整</td></tr>
+          <tr><td>r = 8–16</td><td>小</td><td>书中示例默认区间，多数微调任务的常见起点</td></tr>
+          <tr><td>r = 32+</td><td>接近全参微调</td><td>任务分布和预训练差异大，低秩假设可能不完全成立</td></tr>
+        </tbody>
+      </table>
+      <p><a class="text-link" href="concepts.html#lora">→ 回到概念页：LoRA 的原始论文与低秩假设的适用边界</a></p>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 从零炼模 ⟡ 微调精读</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="concepts.html">核心概念</a> ·
+      <a href="book-架构.html">架构精读</a> ·
+      <a href="decision.html">应用专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

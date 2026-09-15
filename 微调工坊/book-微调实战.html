@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四任务精读 · 微调工坊</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23a8621f'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E5%BE%AE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">微调工坊<span class="mark"> ⟡ </span>NLPT</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-微调实战.html" class="active">四任务精读</a>
+      <a href="book-效率与生态.html">效率与生态</a>
+      <a href="decision.html">工程决断</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap prose">
+    <div class="eyebrow">Close Reading · 四任务精读</div>
+    <h1>同一套流程，四次不同的落地</h1>
+    <p class="lede">第 2、6、4、9 章。四个任务共用"数据 → 分词 → Trainer"的骨架，本页只讲每个任务<b>不一样</b>的那部分——任务头结构、评估指标、以及各自最容易踩的坑。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+
+    <div class="chapter">
+      <div class="ch-no">Chapter 2 · Text Classification</div>
+      <h3>文本分类：情绪识别<span class="difficulty"><i class="on"></i><i></i><i></i><i></i><i></i></span></h3>
+      <p>本章用一个英文推特情绪数据集（多类情绪标签，如愤怒、喜悦、悲伤等）演示分类任务的完整流程，并对比两种做法：</p>
+      <ul>
+        <li><b>特征提取</b>：冻结 backbone，只把最后一层的 <code>[CLS]</code> 隐藏状态当作特征，喂给一个简单的分类器（如逻辑回归）。训练快，但天花板较低。</li>
+        <li><b>完全微调</b>：连 backbone 一起更新权重。收敛后精度通常更高，但需要更多数据和算力，且更容易过拟合在小数据集上。</li>
+      </ul>
+      <p>这一章第一次把"任务头替换"具体化：<code>AutoModelForSequenceClassification</code> 在 backbone 顶端接一个线性层，输出维度等于类别数。</p>
+      <div class="keybox"><b>适用边界</b>特征提取和完全微调的选择本质是概念 IV（少标注学习）的一个特例——数据少、算力紧张时优先特征提取；数据够、要求精度高时才上完全微调。</div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">Chapter 6 · Multilingual Named Entity Recognition</div>
+      <h3>多语言命名实体识别<span class="difficulty"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></h3>
+      <p>本章的任务头是 <code>AutoModelForTokenClassification</code>——和分类不同，NER 要给<b>每一个 token</b> 打标签，而不是给整句话打一个标签。这里出现全书第一个真正的技术陷阱：分词器的 subword 切分（比如把 "Transformers" 切成 "Trans" + "##formers"）和词级别的标注对不上，必须做<b>标签对齐（label alignment）</b>——只在每个词的第一个 subword 上保留标签，其余 subword 标记为 <code>-100</code>（PyTorch 交叉熵损失里会自动忽略的标签值）。</p>
+      <p>多语言部分使用跨语言预训练模型（如 XLM-R），演示"在资源丰富的语言上训练、迁移到资源稀缺的语言上评估"的跨语言迁移效果——这是本章区别于分类章节的核心议题。</p>
+      <div class="keybox warn"><b>适用边界</b>标签对齐这一步经常被新手忽略，忽略的后果不是报错，而是模型学到错位的标签——这类错误只有通过预测结果人工核查才能发现，自动化测试很难覆盖。</div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">Chapter 4 · Question Answering</div>
+      <h3>问答：从抽取式 QA 到检索增强<span class="difficulty"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></h3>
+      <p>本章任务头是 <code>AutoModelForQuestionAnswering</code>，做的是<b>抽取式问答</b>——给定问题和一段上下文，模型输出答案在上下文里的起止位置（start logits / end logits），而不是生成一段新文本。数据集来自产品评论场景（SubjQA 一类，评论文本本身噪声大、主观性强，比标准 SQuAD 基准更接近真实业务数据）。</p>
+      <p>本章后半段把问题从"在一段给定文本里找答案"扩展为"在一整个文档库里找答案"——引入<b>检索器 + 阅读器（retriever + reader）</b>的两阶段架构：检索器先从文档库里捞出最相关的几段文本，阅读器再在这几段里做抽取式问答。这个架构后来被更广泛地称为 RAG（检索增强生成）的早期雏形。</p>
+      <div class="keybox"><b>适用边界</b>抽取式 QA 的答案必须<b>原文存在</b>，无法处理"需要综合多段信息才能回答"的问题——这是它和后来生成式问答/RAG 最本质的区别。检索器质量决定了整条流水线的天花板：阅读器再准，检索器没找对段落也白搭。</div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">Chapter 9 · Summarization</div>
+      <h3>摘要：编码器-解码器与 ROUGE 指标<span class="difficulty"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></h3>
+      <p>摘要是本章里第一个真正的<b>生成式</b>任务，任务头是 <code>AutoModelForSeq2SeqLM</code>，架构是编码器-解码器（如 PEGASUS、BART、mT5 这类模型），而不是前三章共用的纯编码器结构——这是四个任务里唯一一次连 backbone 类型都要换的情况。</p>
+      <p>评估用 ROUGE 系列指标（ROUGE-1/2/L，衡量生成摘要和参考摘要之间 n-gram 重叠程度），书中明确指出 ROUGE 的已知局限：它只看字面重叠，无法判断"意思对但用词不同"的摘要，也无法惩罚"字面重叠但事实错误"的摘要——这是生成式任务评估普遍存在的开放问题，至今没有完全解决。</p>
+      <div class="keybox warn"><b>适用边界</b>ROUGE 分数高不等于摘要质量好，只能作为粗筛指标。生产环境里做摘要质量评估，通常还需要人工抽检或额外的事实一致性检测，不能只看自动指标。</div>
+    </div>
+
+    <div class="keybox">
+      <b>四章横向对比</b>
+      分类和 NER 的评估相对"干净"（准确率、F1 都基于精确匹配），问答和摘要的评估天然带噪声（ROUGE、EM/F1 都只是代理指标）。数据量要求也不同：分类和 NER 通常几百到几千条就能起步，问答和摘要因为输出空间更大，同等效果通常需要更多数据——这正是本站签名交互实验台里把"任务类型"设为独立变量的原因。
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 微调工坊 ⟡ 四任务精读</p>
+    <p>
+      <a href="../index.html">← 书架</a> ·
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="concepts.html">核心概念</a> ·
+      <a href="book-效率与生态.html">效率与生态</a> ·
+      <a href="decision.html">工程决断</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

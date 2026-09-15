@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>架构精读 · 从零炼模</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a5a2e'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E7%82%BC%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">从零炼模<span class="mark"> ⟡ </span>LLM FROM SCRATCH</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-架构.html" class="active">架构精读</a>
+      <a href="book-微调.html">微调精读</a>
+      <a href="decision.html">应用专题</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap prose">
+    <div class="eyebrow">Book Deep Dive · Part 1</div>
+    <h1>第 1–5 章：从一段文本，到一个能续写的 GPT</h1>
+    <p class="lede">这五章的终点不是一个"听话"的模型，而是一个能生成连贯英文、还没被要求做任何具体任务的语言模型——这正是"预训练"这个词的字面含义。</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+
+    <div class="chapter">
+      <div class="ch-no">Chapter 1 · Understanding Large Language Models</div>
+      <h3>大模型到底是什么<span class="difficulty"><i class="on"></i><i></i><i></i><i></i><i></i></span></h3>
+      <p>概念性的开篇：LLM 是什么、Transformer 架构的历史位置、GPT 系列和 BERT 系列的路线分岔（仅解码器 vs 编码器-解码器）。这一章不写代码，是给后面四章立地基的语境铺垫。</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">Chapter 2 · Working with Text Data</div>
+      <h3>文本数据处理<span class="difficulty"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></h3>
+      <p>手写一个字节对编码（BPE）分词器，把原始文本变成 token ID 序列；再实现滑动窗口采样，把长文本切成模型训练需要的"输入-目标"对；最后加上词嵌入和位置嵌入，让模型知道每个 token 是什么、在哪个位置。</p>
+      <div class="keybox">
+        <b>容易被忽略的细节</b>
+        位置嵌入不是可有可无的装饰——自注意力本身对顺序不敏感（打乱输入顺序，注意力的计算结果只是跟着重新排列，模型分不出"谁在前谁在后"），必须显式注入位置信息，模型才知道词序。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">Chapter 3 · Coding Attention Mechanisms</div>
+      <h3>注意力机制从矩阵乘法里长出来<span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></h3>
+      <p>全书概念密度最高的一章：从简化版的自注意力（不带可训练权重）开始，逐步加上可训练的 Query/Key/Value 矩阵，再加因果掩码防止看到未来，再加多头机制让模型并行学习多种"关注模式"。每一步都用小规模的玩具张量手算一遍再上代码，避免公式和实现之间的断层。</p>
+      <ul>
+        <li>点积注意力：用 Query 和 Key 的点积衡量"相关度"</li>
+        <li>因果掩码：把未来位置的注意力权重置零，保证生成时的一致性</li>
+        <li>多头拆分：把同一组 Q/K/V 拆到多个"头"，让不同头关注不同的模式</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">Chapter 4 · Implementing a GPT Model from Scratch</div>
+      <h3>把六个组件拼成一个真正能跑的模型<span class="difficulty"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></h3>
+      <p>把第 3 章的多头注意力，配上前馈网络、层归一化、残差连接和 GELU 激活，打包成一个 Transformer block；再把这个 block 堆叠 12 层（对标 GPT-2 small），拼出一个约 1.24 亿参数的 GPTModel。这一章结束时模型能跑，但权重是随机初始化的，生成的文本是乱码。</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">Chapter 5 · Pretraining on Unlabeled Data</div>
+      <h3>让乱码变成连贯的英文<span class="difficulty"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></h3>
+      <p>实现完整训练循环（前向 → 交叉熵损失 → 反向传播 → 优化器更新），用困惑度衡量训练进展，并演示了三种控制生成随机性的采样策略：贪心解码、温度采样、top-k 采样。这一章还讲了如何加载 OpenAI 发布的 GPT-2 官方预训练权重，直接替换掉自己训练的（教学规模、数据量有限的）权重，得到一个效果好得多的起点。</p>
+      <div class="keybox warn">
+        <b>适用边界</b>
+        书中在单机（甚至 CPU）上跑的预训练，用的是极小规模语料（示例用的是一篇公版小说），得到的模型质量远不能和 GPT-2 官方权重相比——这一章的目的是让你理解训练循环怎么运作，而不是真的从零复现一个可用的 GPT-2。真实规模的预训练需要数百 GB 到 TB 级语料和成百上千张 GPU，这本书没有、也不打算覆盖这一层。
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 从零炼模 ⟡ 架构精读</p>
+    <p>
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="concepts.html">核心概念</a> ·
+      <a href="book-微调.html">微调精读</a> ·
+      <a href="decision.html">应用专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

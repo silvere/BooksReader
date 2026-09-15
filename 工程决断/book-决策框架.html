@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>决策框架精读 · 工程决断 · BooksReader</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a3355'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E5%86%B3%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">工程决断 <span class="mark">⟡</span> AI ENGINEERING</a>
+    <div class="nav-links">
+      <a href="index.html">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">六大概念</a>
+      <a class="active" href="book-决策框架.html">决策框架精读</a>
+      <a href="book-评估与部署.html">评估与部署精读</a>
+      <a href="decision.html">工程决断专题</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">BOOK · 第 5–7 章精读</div>
+    <h1>决策框架：Prompt Engineering → RAG and Agents → Finetuning</h1>
+    <p class="lede">这三章是全书的决策主干，也是这座站六大概念里"成本结构"与"三角判断"的原文出处。逐章拆开看每一级台阶具体在做什么、什么时候该往上走一级。</p>
+  </div>
+</header>
+
+<section id="ch5">
+  <div class="wrap prose">
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 5</div>
+      <h3>Prompt Engineering</h3>
+      <ul>
+        <li><strong>先把说明书写清楚。</strong>多数"模型做不好这件事"的问题，根因是指令模糊、缺少格式约束、缺少示例，而不是模型能力不够——这一章的核心论点是：在怀疑模型能力之前，先怀疑自己的 prompt。</li>
+        <li><strong>上下文工程是 prompt engineering 的延伸。</strong>把恰当的背景信息、约束条件、输出格式塞进上下文窗口，往往能达到早期需要微调才能达到的效果，而且零训练成本、可即时修改。</li>
+        <li><strong>Prompt 的局限是真实存在的。</strong>上下文窗口再大也有限，长 prompt 会增加延迟和成本，复杂的多步骤任务光靠一次性的指令堆砌容易失控——这是催生下一章 RAG 与 agent 模式的直接原因。</li>
+      </ul>
+      <div class="keybox">
+        <b>决策要点</b>
+        进入这一章讨论的默认起点：任何新任务都先在这里穷尽可能性，只有明确遇到"信息缺失"或"能力缺失"两类瓶颈之一，才有理由往下一级走。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 6</div>
+      <h3>RAG and Agents</h3>
+      <ul>
+        <li><strong>RAG 解决的是信息问题，不是能力问题。</strong>书中明确指出，AI 系统失败的一大主因是"信息不足"——模型本身具备回答问题的语言能力，只是不知道你私有知识库里的具体内容，检索增强直接对症下药。</li>
+        <li><strong>Agent 是 RAG 的能力延伸。</strong>把检索、工具调用、多步推理组织成一个可以自主决策"下一步查什么/调什么"的系统，用来处理单次检索无法覆盖的复杂任务。</li>
+        <li><strong>RAG 相对微调的核心优势：知识可以随时更新。</strong>新增文档、修正错误知识，重新索引即可生效，不需要重新训练整个模型——这也是不可逆性账本（概念 VI）里 RAG 代价远低于微调的具体原因。</li>
+      </ul>
+      <div class="keybox">
+        <b>决策要点</b>
+        当 prompt 已经写到位、问题依然存在，先问"是不是模型不知道这件事"——如果是，答案通常是 RAG，而不是直接跳去微调。
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">CHAPTER 7</div>
+      <h3>Finetuning</h3>
+      <ul>
+        <li><strong>微调是排除法的最后一级，不是首选。</strong>书中直言，很多团队从未真正走到这一步，因为部署和维护一个微调模型的复杂度，加上基础模型本身持续进化，会不断削弱自建模型相对新一代通用模型的优势。</li>
+        <li><strong>微调有明确的副作用。</strong>针对特定任务微调，可能损害模型在其他未被微调任务上的表现——这在多任务场景下是需要认真权衡的成本，不是免费的能力升级。</li>
+        <li><strong>微调要求团队具备"对训练过程的深度理解"。</strong>这不是调一个 API 参数的工作，需要理解数据质量如何传导到模型效果、如何设置训练超参、如何评估微调是否真的带来了改进——这一层能力门槛本身也是"要不要微调"的决策变量之一。</li>
+      </ul>
+      <div class="keybox">
+        <b>决策要点</b>
+        真正该微调的信号：任务足够专属、有足够高质量的标注数据、存在硬性延迟/成本约束——三个条件同时成立（对应概念 II 的三角判断），且团队能承受不可逆性账本（概念 VI）里描述的长周期迭代成本。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="handoff">
+  <div class="wrap prose">
+    <div class="eyebrow">HANDOFF · 走到这一步之后</div>
+    <p>如果三角判断确实指向微调，接下来的问题就不再是"要不要"，而是"怎么做"——那部分内容不在这本书的详细覆盖范围内，书架另外两站补上了这块：想懂微调具体在改模型的哪个部分，去 <a class="text-link" href="../从零炼模/index.html">从零炼模</a>；想用工业级生态跑一次真实的微调流程，去 <a class="text-link" href="../微调工坊/index.html">微调工坊</a>。</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 工程决断 ⟡ 决策框架精读</p>
+    <p>
+      <a href="../index.html">← 书架</a> ·
+      <a href="index.html">总览</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="concepts.html">六大概念</a> ·
+      <a href="book-评估与部署.html">评估与部署精读</a> ·
+      <a href="decision.html">工程决断专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

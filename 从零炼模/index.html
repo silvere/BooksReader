@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>从零炼模 · 读书笔记</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a5a2e'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='-apple-system,PingFang SC,sans-serif' fill='%23fff' text-anchor='middle'%3E%E7%82%BC%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">从零炼模<span class="mark"> ⟡ </span>LLM FROM SCRATCH</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">总览</a>
+      <a href="history.html">历史与人物</a>
+      <a href="concepts.html">核心概念</a>
+      <a href="book-架构.html">架构精读</a>
+      <a href="book-微调.html">微调精读</a>
+      <a href="decision.html">应用专题</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">BOOK 28 · BUILD AN LLM FROM SCRATCH · 一本书，一条从空白到能跑的路径</div>
+      <h1>你没法微调，<br>你没亲手搭过的<br>那台机器</h1>
+      <p class="lede">
+        多数"大模型实战"教程教你调 API、换 prompt、跑一段 LoRA 脚本——跳过了中间那台机器到底长什么样。Sebastian Raschka 这本书反过来做：先带你用 PyTorch <strong>从零写出一个能跑的 GPT</strong>，再回头微调它。当你亲手搭过注意力层、写过预训练循环，"微调"就不再是一行 <code>peft.get_peft_model()</code>，而是一个你确切知道它在往权重矩阵的哪个角落插入了两个低秩矩阵的具体操作。
+      </p>
+    </div>
+    <div class="figure" style="margin:0">
+      <svg viewBox="0 0 720 380" role="img" aria-label="左侧为预训练阶段，一个宽而扁的概率分布代表模型见过通用语料后学到的语言能力；右侧为微调阶段，同一个分布在原有基础上向特定任务方向被局部搬移变窄；中间一支箭头标注LoRA只在两侧插入两个小矩阵">
+        <text x="180" y="36" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700" fill="#2f3c1c">预训练 · PRETRAIN</text>
+        <g>
+          <path d="M 60 220 Q 180 100 300 220" fill="none" stroke="#4a5a2e" stroke-width="3"/>
+          <path d="M 60 220 L 300 220" stroke="#ddd5c1" stroke-width="1.5"/>
+          <text x="180" y="250" text-anchor="middle" font-family="PingFang SC" font-size="12" fill="#66604f">通用语言能力 · 分布又宽又扁</text>
+        </g>
+        <g>
+          <path d="M 330 190 L 390 190" stroke="#221f19" stroke-width="2"/>
+          <path d="M 385 183 L 393 190 L 385 197" fill="none" stroke="#221f19" stroke-width="2"/>
+          <text x="360" y="172" text-anchor="middle" font-family="Courier New" font-size="11" fill="#7a3f08">LoRA：插两个</text>
+          <text x="360" y="210" text-anchor="middle" font-family="Courier New" font-size="11" fill="#7a3f08">低秩矩阵</text>
+        </g>
+        <text x="540" y="36" text-anchor="middle" font-family="PingFang SC" font-size="14" font-weight="700" fill="#7a3f08">微调 · FINETUNE</text>
+        <g>
+          <path d="M 420 220 Q 540 60 660 220" fill="none" stroke="#b8620f" stroke-width="3"/>
+          <path d="M 420 220 L 660 220" stroke="#ddd5c1" stroke-width="1.5"/>
+          <text x="540" y="250" text-anchor="middle" font-family="PingFang SC" font-size="12" fill="#66604f">任务分布 · 在原分布上局部搬移变窄</text>
+        </g>
+        <text x="360" y="320" text-anchor="middle" font-family="PingFang SC" font-size="12.5" fill="#66604f">微调没有另起一座山——它只是把预训练已经堆起来的那座山，往一个方向推了一把</text>
+      </svg>
+      <div class="figcap"><b>这本书的论点</b> · 预训练建能力的底盘，微调在底盘上做局部搬移。底盘没打好，搬移也救不回来——这条边界在 <a class="text-link" href="concepts.html#lora">概念页</a> 的交互实验台里可以亲手验证。</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">Why This Book · 为什么读这一站</div>
+    <h2>不是"会用"，是"知道在改什么"</h2>
+    <p>
+      2024 年之后，"微调大模型"这件事的门槛已经低到只需要几行 <code>transformers</code> 或 <code>peft</code> 代码。但门槛低带来一个副作用：很多人在没搞懂"模型内部到底在算什么"的情况下，就已经在生产环境里跑微调任务了——调参靠试，出问题靠猜。
+    </p>
+    <p>
+      Sebastian Raschka 的《Build a Large Language Model (From Scratch)》选择了一条更慢但更结实的路径：全书用不到 400 页，带你用纯 PyTorch <strong>逐行写出</strong>一个 GPT 架构——分词、嵌入、自注意力、Transformer block、预训练循环——然后在这个你亲手搭出来的模型上做分类微调和指令微调，最后讲到 LoRA 参数高效微调。它和 Andrej Karpathy 的 "Neural Networks: Zero to Hero" 视频系列师出同源（Raschka 本人承认这本书是那套内容的"浓缩重排版"），但多走了 Karpathy 当时还没讲的那一段：<strong>微调</strong>。
+    </p>
+    <div class="keybox">
+      <b>这一站要说清的三件事</b>
+      一、把"注意力机制""GPT 架构""预训练目标"这几个被说滥的词，还原到书里逐行代码对应的具体计算——不是比喻，是可以自己跑一遍验证的东西。<br>
+      二、把"微调"从一个动作词拆成两种不同的手术：只换输出头的<em>分类微调</em>，和重塑整个对话行为的<em>指令微调</em>，以及用极少参数撬动这一切的 <em>LoRA</em>。<br>
+      三、给出这套方法的适用边界：从零训练教你理解原理，但生产环境该不该真的从零训练、什么时候该直接上 LoRA、什么时候该等更成熟的库——这是 <a class="text-link" href="decision.html">应用专题</a> 要回答的问题。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Six Doors · 六张概念门</div>
+    <h2>这一站的六个入口</h2>
+    <div class="grid cols-3" style="margin-top:32px">
+      <a class="card" href="concepts.html#tokenize">
+        <span class="tag">Concept I</span>
+        <h3>分词与嵌入</h3>
+        <p>模型不认字，只认数字。分词器把文本切成 token，嵌入层把每个 token 变成一个可训练的向量——这一步决定了模型"看见"世界的最小颗粒度。</p>
+      </a>
+      <a class="card" href="concepts.html#attention">
+        <span class="tag">Concept II</span>
+        <h3>自注意力（因果掩码）</h3>
+        <p>每个词都在问"我该往前看多远、看谁最重要"。因果掩码保证它只能看过去，不能偷看未来——这是"生成式"和"理解式"模型的分岔点。</p>
+      </a>
+      <a class="card" href="concepts.html#gpt">
+        <span class="tag">Concept III</span>
+        <h3>GPT 架构的六个组件</h3>
+        <p>把注意力层、前馈网络、层归一化、残差连接按固定顺序堆叠 N 次，就是一个 GPT。没有魔法，只有可数的、可重复的积木。</p>
+      </a>
+      <a class="card warm" href="concepts.html#pretrain">
+        <span class="tag warm">Concept IV</span>
+        <h3>预训练目标</h3>
+        <p>唯一的训练信号是"预测下一个词元"。没有标签、没有人工标注——语料本身就是标签，这也是大模型能吃下整个互联网的原因。</p>
+      </a>
+      <a class="card warm" href="concepts.html#finetune">
+        <span class="tag warm">Concept V</span>
+        <h3>分类微调 vs 指令微调</h3>
+        <p>前者只换掉输出层，让模型吐一个类别；后者重写模型的整个"说话方式"。同名"微调"，动的骨头完全不是一回事。</p>
+      </a>
+      <a class="card warm" href="concepts.html#lora">
+        <span class="tag warm">Concept VI</span>
+        <h3>LoRA：低秩适配</h3>
+        <p>冻结原模型几乎所有参数，只在旁路插两个小矩阵训练。参数量能降到万分之一，效果却往往和全参微调打平手。</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <div class="eyebrow">The Path · 这一站的路径</div>
+    <h2>从架构到微调，一条线走完</h2>
+
+    <div class="chapter">
+      <div class="ch-no">Part 1 · 架构与预训练</div>
+      <h3>第 1–5 章：从文本到能续写的 GPT<span class="difficulty"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></h3>
+      <p>文本数据处理、注意力机制手写实现、GPT 架构组装、无标签数据上的预训练循环。这五章的产物是一个还不会"听话"、但已经能生成连贯英文的模型。</p>
+      <p><a class="text-link" href="book-架构.html">→ 逐章精读：注意力怎么从矩阵乘法里长出来</a></p>
+    </div>
+
+    <div class="chapter warm">
+      <div class="ch-no">Part 2 · 微调</div>
+      <h3>第 6–7 章 + 附录 E：让模型分类、听话、变小<span class="difficulty hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></h3>
+      <p>第 6 章用垃圾短信分类任务讲分类微调，第 7 章用指令数据集讲指令微调，附录 E 补上 LoRA——三章合起来是这本书真正区别于 Karpathy 系列的部分。</p>
+      <p><a class="text-link" href="book-微调.html">→ 逐章精读：两种微调 + LoRA 的秩怎么选</a></p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-no">Part 3 · 落地</div>
+      <h3>从书本到你自己的项目<span class="difficulty"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></h3>
+      <p>书里的模型是教学规模（1.24 亿参数级别），生产场景要面对的是别人训好的百亿/千亿参数模型。这本书打的底子，怎么迁移到"该不该微调、该用哪种微调"这个决策上。</p>
+      <p><a class="text-link" href="decision.html">→ 应用专题：微调 / LoRA / 直接调 API 的取舍边界</a></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>BooksReader · 从零炼模 ⟡ 总览</p>
+    <p>
+      <a href="../index.html">← 书架</a> ·
+      <a href="history.html">历史与人物</a> ·
+      <a href="concepts.html">核心概念</a> ·
+      <a href="book-架构.html">架构精读</a> ·
+      <a href="book-微调.html">微调精读</a> ·
+      <a href="decision.html">应用专题</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
