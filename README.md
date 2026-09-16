@@ -38,6 +38,7 @@
 | 28 | 从零炼模 / Raschka（Sebastian Raschka《Build a Large Language Model (From Scratch)》，2024） | [`从零炼模/`](从零炼模/) | 6 页联动：总览 / 历史与人物（与 Karpathy「Zero to Hero」系列、Vaswani et al. 原始 Transformer 论文的关系）/ 六大概念（含下一词元预测台互动：训练步数滑块驱动概率分布收敛 + 微调局部搬移演示）/ 架构精读（第 1–5 章：分词·注意力·GPT 架构·预训练）/ 微调精读（第 6–7 章 + 附录 E：分类微调·指令微调·LoRA）/ 应用专题（从这本书到你自己的项目，与 BOOK 12 算法信息论互见——预训练即压缩） |
 | 29 | 微调工坊 / Hugging Face 团队（Lewis Tunstall / Leandro von Werra / Thomas Wolf《Natural Language Processing with Transformers》，2022） | [`微调工坊/`](微调工坊/) | 6 页联动：总览 / 历史与人物（三位作者与 Hugging Face 生态转型）/ 六大概念（含微调策略选择工坊互动：数据量×任务类型×算力×延迟驱动的决策树）/ 微调实战精读（分类·NER·摘要·问答四个任务头）/ 效率与生态精读（Transformer 解剖·知识蒸馏·量化剪枝·少标注学习，标注 LoRA/PEFT 生态成熟前的适用边界缺口）/ 应用专题（与 BOOK 28 从零炼模互见——从工业级生态回到手写代码） |
 | 30 | 工程决断 / Chip Huyen（《AI Engineering: Building Applications with Foundation Models》，2024） | [`工程决断/`](工程决断/) | 6 页联动：总览 / 历史与人物（Chip Huyen 履历、与前作《Designing Machine Learning Systems》的关系）/ 六大概念（含三路径决策台互动：任务专属度×数据量×延迟×迭代频率驱动 prompt/RAG/微调三条路径的成本-适配度评分）/ 决策框架精读（prompt engineering·RAG & agents·finetuning 的排除法决策树）/ 评估与部署精读（评估方法论·数据集工程·推理优化·生产架构）/ 收束专题（书架第 28、29 两站的决策层，三站构成"要不要做→原理是什么→怎么工业化地做"的闭环） |
+| 31 | 薄伽梵歌 / 行动哲学四书（Barbara Stoler Miller 译本 1986 + Eknath Easwaran 译本 1985/2007 + 甘地《薄伽梵歌之魂》1926 讲稿 + 阿罗频多《薄伽梵歌论》1916–1920） | [`薄伽梵歌/`](薄伽梵歌/) | 6 页联动：总览 / 历史与人物（成书年代学界争议区间、商羯罗×罗摩努阇×甘地×阿罗频多四种解经传统的真实分歧）/ 六大概念（含业瑜伽决策台互动：执著度×达摩清晰度四象限诊断，附"不执著≠不负责任"免责边界）/《薄伽梵歌》原典精读（Miller 译本十八章逐章导读）/ 行动的两条路（甘地非暴力政治行动纲领 vs 阿罗频多形而上学神圣行动论对读）/ 应用专题（与 BOOK 02 斯多葛互见——控制二分法的认知理性主义 vs 业瑜伽的皈依超越，两站互链已打通） |
 
 ## 本地预览
 
